@@ -1,0 +1,100 @@
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# Pods/
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
+/ppgame/ycdata
+/ppgame/hotupdate
+ppgame/.vs/src/v14/.suo
+ppgame/ycui.udf
+ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.db
+/ppgame/frameworks/runtime-src/proj.android-studio/app/build
+/ppgame/frameworks/runtime-src/proj.android-studio/app/.externalNativeBuild
+/ppgame/frameworks/runtime-src/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32
+/ppgame/frameworks/cocos2d-x/external/Box2D/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/cocos/scripting/lua-bindings/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/external/bullet/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/cocos/editor-support/spine/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/tools/simulator/libsimulator/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/external/recast/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/external/bullet/proj.win32/Debug.win32
+/ppgame/frameworks/cocos2d-x/external/Box2D/proj.win32/Debug.win32
+/ppgame/simulator/win32/res
+/ppgame/simulator/win32/src
+/ppgame/simulator
+
+ppgame/simulator/win32/sanzhang.pdb
+*.ilk
+*.log
+*.pdb
+ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
+ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
+ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.VC.opendb
+ppgame/xxldata.txt
+ppgame/ycdb
+
+tests/windows/sanzhang.ilk
+tests/windows/sanzhang.pdb
+ppgame/frameworks/runtime-src/proj.win32/sanzhang.opensdf
+ppgame/frameworks/runtime-src/proj.win32/sanzhang.sdf
+ppgame/.vs/yc_script/v14/.suo
+ppgame/frameworks/runtime-src/proj.win32/.vs/sanzhang/v14/.suo
