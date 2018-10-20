@@ -33,6 +33,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <cstring>
 #include "audio/android/cutils/log.h"
 
 #include "pvmp3decoder_api.h"

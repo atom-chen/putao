@@ -33,6 +33,7 @@
  allocator. Failure to do so will result in recursive memory allocation.
  ****************************************************************************/
 
+#include <cstring>
 #include "base/allocator/CCAllocatorMacros.h"
 #include "base/allocator/CCAllocatorBase.h"
 #include "base/allocator/CCAllocatorGlobal.h"
