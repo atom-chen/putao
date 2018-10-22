@@ -88,6 +88,7 @@ ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.db
 *.pdb
 *.opendb
 *.suo
+*.DS_Store
 ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
 ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
 ppgame/xxldata.txt
