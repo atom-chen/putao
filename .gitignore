@@ -82,13 +82,13 @@ ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.db
 /ppgame/simulator/win32/src
 /ppgame/simulator
 
-ppgame/simulator/win32/sanzhang.pdb
 *.ilk
 *.log
 *.pdb
+*.opendb
+*.suo
 ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
 ppgame/frameworks/cocos2d-x/cocos/2d/Debug.win32/libcocos2d.log
-ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.VC.opendb
 ppgame/xxldata.txt
 ppgame/ycdb
 
