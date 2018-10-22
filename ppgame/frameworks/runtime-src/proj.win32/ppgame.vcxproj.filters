@@ -58,14 +58,8 @@
     <Filter Include="Classes\quick-src\extra\luabinding">
       <UniqueIdentifier>{9d276c42-10c9-4696-9a30-674a647575f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\quick-src\extra\native">
-      <UniqueIdentifier>{8036d964-7944-4d2c-ba8a-1636d4288e7c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\quick-src\extra\platform">
       <UniqueIdentifier>{f7b81c43-49a5-4ef6-9553-3d5c5162a615}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\quick-src\extra\store">
-      <UniqueIdentifier>{57fde6fb-efb2-4fd9-b8b1-71ae79bf679a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\quick-src\extra\platform\win32">
       <UniqueIdentifier>{c5cf7dcd-b9eb-41a2-b12f-4233d51bed57}</UniqueIdentifier>
@@ -169,36 +163,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.h">
       <Filter>Classes\quick-src\extra\luabinding</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\native\CCAlertViewDelegate.h">
-      <Filter>Classes\quick-src\extra\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\native\CCNative.h">
-      <Filter>Classes\quick-src\extra\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStore.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStorePaymentTransactionWrapper.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreProduct.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreProductsRequestDelegate.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreTransactionObserver.h">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.h">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32def.h">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\manual\lua_xianyou_manual.h">
       <Filter>Classes\manual</Filter>
@@ -323,22 +287,7 @@
     <ClCompile Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.cpp">
       <Filter>Classes\quick-src\extra\luabinding</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.cpp">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\store\CCStoreProduct.cpp">
-      <Filter>Classes\quick-src\extra\store</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCCryptoWin32.cpp">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNative.cpp">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.cpp">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCStorePaymentTransactionWrapper.cpp">
       <Filter>Classes\quick-src\extra\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\manual\lua_xianyou_manual.cpp">

@@ -23,7 +23,6 @@ LOCAL_SRC_FILES := \
 ../../../Classes/quick-src/extra/crypto/md5/md5.c \
 ../../../Classes/quick-src/extra/crypto/CCCrypto.cpp \
 ../../../Classes/quick-src/extra/platform/android/CCCryptoAndroid.cpp \
-../../../Classes/quick-src/extra/platform/android/CCNativeAndroid.cpp \
 ../../../Classes/quick-src/extra/luabinding/cocos2dx_extra_luabinding.cpp \
 ../../../Classes/quick-src/extra/luabinding/HelperFunc_luabinding.cpp \
 ../../../Classes/serialize/PacketHelper.cpp \
