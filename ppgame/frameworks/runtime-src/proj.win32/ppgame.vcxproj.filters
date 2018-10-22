@@ -10,6 +10,87 @@
     <Filter Include="resource">
       <UniqueIdentifier>{2d1d0979-58cd-4ab6-b91c-13650158f1fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\astar">
+      <UniqueIdentifier>{ad3bfd1a-eda1-4560-9ca2-162103fd6188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\utils">
+      <UniqueIdentifier>{ddc317d6-98b5-4213-8259-c0371e30f4ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\texmerge">
+      <UniqueIdentifier>{7e55ac8a-5a9f-439c-8e2f-e3b57e50ff6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\manual">
+      <UniqueIdentifier>{ff3dd9b1-6fae-4f31-9e29-e965a8cd508d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src">
+      <UniqueIdentifier>{dd60b67b-b109-43b9-89c4-cfe62979716c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions">
+      <UniqueIdentifier>{4d92c73e-c6ec-4f54-80dc-5df2e8b62d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra">
+      <UniqueIdentifier>{638bd7a4-7dad-4591-97b6-a24ee06925b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\cjson">
+      <UniqueIdentifier>{4e7b64ca-2cf7-47ac-856e-18aec0d52d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\filesystem">
+      <UniqueIdentifier>{96074ec4-0992-4a4b-ab58-63fd3b3da57d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\lpack">
+      <UniqueIdentifier>{507169f7-9dfd-4e35-9c7d-118f621a28e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\lsqlite3">
+      <UniqueIdentifier>{69cb53a3-6fdc-470e-9e7d-6a2710a45d59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\protobuf">
+      <UniqueIdentifier>{7a561990-bda1-4884-85c8-a343bee4eee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\lua_extensions\zlib">
+      <UniqueIdentifier>{5ec97a99-65ef-4c5a-b72c-ca318df5f24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\apptools">
+      <UniqueIdentifier>{60bd90d2-e1fe-46c4-b04e-b320443eb019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\crypto">
+      <UniqueIdentifier>{4e5a4592-7f13-4271-89af-8a6f63d7871d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\luabinding">
+      <UniqueIdentifier>{9d276c42-10c9-4696-9a30-674a647575f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\native">
+      <UniqueIdentifier>{8036d964-7944-4d2c-ba8a-1636d4288e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\network">
+      <UniqueIdentifier>{66cf5f21-3d5a-4c43-a42d-3d6368a89aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\platform">
+      <UniqueIdentifier>{f7b81c43-49a5-4ef6-9553-3d5c5162a615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\store">
+      <UniqueIdentifier>{57fde6fb-efb2-4fd9-b8b1-71ae79bf679a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\platform\win32">
+      <UniqueIdentifier>{c5cf7dcd-b9eb-41a2-b12f-4233d51bed57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\crypto\base64">
+      <UniqueIdentifier>{1b709f26-365f-4e76-8cbe-e23342b6a538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\quick-src\extra\crypto\md5">
+      <UniqueIdentifier>{f606a529-21cd-4b1a-a0ee-a17f1d32601e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\net">
+      <UniqueIdentifier>{62dde030-5449-4bc5-9c61-9e40ebd0b5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\serialize">
+      <UniqueIdentifier>{d66a5709-acee-4b84-9512-32fec4ef7ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\pthread">
+      <UniqueIdentifier>{3a979489-4cd6-4b28-9454-3616c1e37a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\auto">
+      <UniqueIdentifier>{0c57c7fd-94ef-4e77-86b6-6e4e3d466f7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -26,6 +107,174 @@
     <ClInclude Include="targetver.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\astar\AStarSearch.hpp">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\fsa.h">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\ftype.h">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\IntrHashSet.hpp">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\IntrHeapHash.hpp">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\PathFinder.h">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\astar\stlastar.h">
+      <Filter>Classes\astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\cjson\fpconv.h">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\cjson\lua_cjson.h">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\cjson\strbuf.h">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\filesystem\lfs.h">
+      <Filter>Classes\quick-src\lua_extensions\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\lpack\lpack.h">
+      <Filter>Classes\quick-src\lua_extensions\lpack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\lsqlite3\lsqlite3.h">
+      <Filter>Classes\quick-src\lua_extensions\lsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\lsqlite3\sqlite3.h">
+      <Filter>Classes\quick-src\lua_extensions\lsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\zlib\lua_zlib.h">
+      <Filter>Classes\quick-src\lua_extensions\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\protobuf\pb.h">
+      <Filter>Classes\quick-src\lua_extensions\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\apptools\HelperFunc.h">
+      <Filter>Classes\quick-src\extra\apptools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\crypto\base64\libbase64.h">
+      <Filter>Classes\quick-src\extra\crypto\base64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\crypto\md5\md5.h">
+      <Filter>Classes\quick-src\extra\crypto\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\crypto\CCCrypto.h">
+      <Filter>Classes\quick-src\extra\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\luabinding\cocos2dx_extra_luabinding.h">
+      <Filter>Classes\quick-src\extra\luabinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.h">
+      <Filter>Classes\quick-src\extra\luabinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\native\CCAlertViewDelegate.h">
+      <Filter>Classes\quick-src\extra\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\native\CCNative.h">
+      <Filter>Classes\quick-src\extra\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequest.h">
+      <Filter>Classes\quick-src\extra\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequestDelegate.h">
+      <Filter>Classes\quick-src\extra\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\network\CCNetwork.h">
+      <Filter>Classes\quick-src\extra\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStore.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStorePaymentTransactionWrapper.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreProduct.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreProductsRequestDelegate.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\store\CCStoreTransactionObserver.h">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.h">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32def.h">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\manual\lua_xianyou_manual.h">
+      <Filter>Classes\manual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\texmerge\KKLabelFT2.h">
+      <Filter>Classes\texmerge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\texmerge\KKRichText.h">
+      <Filter>Classes\texmerge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\texmerge\TextureMerge.h">
+      <Filter>Classes\texmerge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\int64.h">
+      <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\Log.h">
+      <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\NetUtils.h">
+      <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\extra\cocos2dx_extra.h">
+      <Filter>Classes\quick-src\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\BSDSocket.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\MessageDispatcher.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\Plsocket.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\ReceiveThread.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\SocketThread.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\serialize\PacketHelper.h">
+      <Filter>Classes\serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\serialize\SerialBuffer.h">
+      <Filter>Classes\serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\pthread\include\pthread.h">
+      <Filter>Classes\pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\pthread\include\sched.h">
+      <Filter>Classes\pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\pthread\include\semaphore.h">
+      <Filter>Classes\pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\xian_you.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\quick-src\lua_extensions\lua_extensions_more.h">
+      <Filter>Classes\quick-src\lua_extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\auto\lua_xianyou_auto.hpp">
+      <Filter>Classes\auto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -38,6 +287,129 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\astar\PathFinder.cpp">
+      <Filter>Classes\astar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\cjson\fpconv.c">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\cjson\lua_cjson.c">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\cjson\strbuf.c">
+      <Filter>Classes\quick-src\lua_extensions\cjson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\filesystem\lfs.c">
+      <Filter>Classes\quick-src\lua_extensions\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\lpack\lpack.c">
+      <Filter>Classes\quick-src\lua_extensions\lpack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\lsqlite3\lsqlite3.c">
+      <Filter>Classes\quick-src\lua_extensions\lsqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\lsqlite3\sqlite3.c">
+      <Filter>Classes\quick-src\lua_extensions\lsqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\zlib\lua_zlib.c">
+      <Filter>Classes\quick-src\lua_extensions\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\protobuf\pb.c">
+      <Filter>Classes\quick-src\lua_extensions\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\apptools\HelperFunc.cpp">
+      <Filter>Classes\quick-src\extra\apptools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\crypto\base64\libbase64.c">
+      <Filter>Classes\quick-src\extra\crypto\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\crypto\md5\md5.c">
+      <Filter>Classes\quick-src\extra\crypto\md5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\crypto\CCCrypto.cpp">
+      <Filter>Classes\quick-src\extra\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\luabinding\cocos2dx_extra_luabinding.cpp">
+      <Filter>Classes\quick-src\extra\luabinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.cpp">
+      <Filter>Classes\quick-src\extra\luabinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\network\CCHTTPRequest.cpp">
+      <Filter>Classes\quick-src\extra\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\network\CCNetwork.cpp">
+      <Filter>Classes\quick-src\extra\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.cpp">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\store\CCStoreProduct.cpp">
+      <Filter>Classes\quick-src\extra\store</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCCryptoWin32.cpp">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNative.cpp">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.cpp">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNetworkWin32.cpp">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCStorePaymentTransactionWrapper.cpp">
+      <Filter>Classes\quick-src\extra\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\manual\lua_xianyou_manual.cpp">
+      <Filter>Classes\manual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\texmerge\KKLabelFT2.cpp">
+      <Filter>Classes\texmerge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\texmerge\KKRichText.cpp">
+      <Filter>Classes\texmerge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\texmerge\TextureMerge.cpp">
+      <Filter>Classes\texmerge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utils\int64.cpp">
+      <Filter>Classes\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utils\Log.cpp">
+      <Filter>Classes\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utils\NetUtils.cpp">
+      <Filter>Classes\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\BSDSocket.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\MessageDispatcher.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\Plsocket.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\ReceiveThread.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\SocketThread.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\serialize\PacketHelper.cpp">
+      <Filter>Classes\serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\serialize\SerialBuffer.cpp">
+      <Filter>Classes\serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\quick-src\lua_extensions\lua_extensions_more.c">
+      <Filter>Classes\quick-src\lua_extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\auto\lua_xianyou_auto.cpp">
+      <Filter>Classes\auto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -46,5 +418,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\game.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\Classes\pthread\lib\pthreadVCE2.lib">
+      <Filter>Classes\pthread</Filter>
+    </Library>
   </ItemGroup>
 </Project>

@@ -18,8 +18,49 @@ using namespace cocos2d::experimental;
 using namespace CocosDenshion;
 #endif
 
+#include "cocos2dx_extra.h"
+
+#include "luabinding/cocos2dx_extra_luabinding.h"
+//#include "luabinding/HelperFunc_luabinding.h"
+#include "lua_extensions_more.h"
+#include "auto/lua_xianyou_auto.hpp"
+#include "manual/lua_xianyou_manual.h"
+
+#include "serialize/PacketHelper.h"
+#include "utils/Log.h"
+#include "utils/int64.h"
+
 USING_NS_CC;
 using namespace std;
+
+
+static int tolua_Cocos2d_Function_loadChunksFromZIP(lua_State* tolua_S)
+{
+	return LuaEngine::getInstance()->getLuaStack()->luaLoadChunksFromZIP(tolua_S);
+}
+
+void extendFunctions(lua_State* tolua_S)
+{
+	tolua_module(tolua_S, "cc", 0);
+	tolua_beginmodule(tolua_S, "cc");
+	tolua_function(tolua_S, "LuaLoadChunksFromZIP", tolua_Cocos2d_Function_loadChunksFromZIP);
+	tolua_endmodule(tolua_S);
+}
+
+static void quick_module_register(lua_State *L)
+{
+	luaopen_lua_extensions_more(L);
+	lua_getglobal(L, "_G");
+	if (lua_istable(L, -1))//stack:...,_G,
+	{
+		tolua_int64_open(L);
+		extendFunctions(L);
+		luaopen_cocos2dx_extra_luabinding(L);
+		register_all_xianyou(L);
+	}
+	lua_pop(L, 1);
+}
+
 
 AppDelegate::AppDelegate()
 {
@@ -67,6 +108,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
+
+	quick_module_register(L);
+	register_packet_helper_manual(L);
+	register_Custom_XLog(L);
+	register_manual_MessageDispatcher(L);
 
     register_all_packages();
 

@@ -357,6 +357,69 @@
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/astar">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/astar" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/auto">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/auto" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/manual">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/manual" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/net">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/net" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/apptools">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/apptools" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto/base64">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto/base64" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto/md5">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto/md5" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/luabinding">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/luabinding" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/network">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/network" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/platform/android">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/platform/android" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/cjson">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/cjson" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/filesystem">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/filesystem" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/lpack">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/lpack" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/lsqlite3">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/lsqlite3" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/protobuf">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/protobuf" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/zlib">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/lua_extensions/zlib" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/serialize">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/serialize" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/texmerge">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/texmerge" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/utils">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/utils" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/jni/hellolua" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/debug" isTestSource="false" generated="true" />

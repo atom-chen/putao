@@ -1,0 +1,5 @@
+将下列目录替换成你自己的
+
+
+1. genxianyou.py文件中
+output_dir = 'E:/trunk2/frameworks/runtime-src/Classes/auto'
