@@ -219,9 +219,6 @@ xcopy "$(ProjectDir)..\..\..\Assets" "$(LocalDebuggerWorkingDirectory)\Assets" /
     <ClInclude Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.h" />
     <ClInclude Include="..\Classes\quick-src\extra\native\CCAlertViewDelegate.h" />
     <ClInclude Include="..\Classes\quick-src\extra\native\CCNative.h" />
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequest.h" />
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequestDelegate.h" />
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCNetwork.h" />
     <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.h" />
     <ClInclude Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32def.h" />
     <ClInclude Include="..\Classes\quick-src\extra\store\CCStore.h" />
@@ -271,12 +268,9 @@ xcopy "$(ProjectDir)..\..\..\Assets" "$(LocalDebuggerWorkingDirectory)\Assets" /
     <ClCompile Include="..\Classes\quick-src\extra\crypto\md5\md5.c" />
     <ClCompile Include="..\Classes\quick-src\extra\luabinding\cocos2dx_extra_luabinding.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.cpp" />
-    <ClCompile Include="..\Classes\quick-src\extra\network\CCHTTPRequest.cpp" />
-    <ClCompile Include="..\Classes\quick-src\extra\network\CCNetwork.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCCryptoWin32.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNative.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.cpp" />
-    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNetworkWin32.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCStorePaymentTransactionWrapper.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.cpp" />
     <ClCompile Include="..\Classes\quick-src\extra\store\CCStoreProduct.cpp" />

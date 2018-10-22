@@ -61,9 +61,6 @@
     <Filter Include="Classes\quick-src\extra\native">
       <UniqueIdentifier>{8036d964-7944-4d2c-ba8a-1636d4288e7c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\quick-src\extra\network">
-      <UniqueIdentifier>{66cf5f21-3d5a-4c43-a42d-3d6368a89aea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\quick-src\extra\platform">
       <UniqueIdentifier>{f7b81c43-49a5-4ef6-9553-3d5c5162a615}</UniqueIdentifier>
     </Filter>
@@ -178,15 +175,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\quick-src\extra\native\CCNative.h">
       <Filter>Classes\quick-src\extra\native</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequest.h">
-      <Filter>Classes\quick-src\extra\network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCHTTPRequestDelegate.h">
-      <Filter>Classes\quick-src\extra\network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\quick-src\extra\network\CCNetwork.h">
-      <Filter>Classes\quick-src\extra\network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\quick-src\extra\store\CCStore.h">
       <Filter>Classes\quick-src\extra\store</Filter>
@@ -335,12 +323,6 @@
     <ClCompile Include="..\Classes\quick-src\extra\luabinding\HelperFunc_luabinding.cpp">
       <Filter>Classes\quick-src\extra\luabinding</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\network\CCHTTPRequest.cpp">
-      <Filter>Classes\quick-src\extra\network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\network\CCNetwork.cpp">
-      <Filter>Classes\quick-src\extra\network</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\quick-src\extra\store\CCStorePaymentTransaction.cpp">
       <Filter>Classes\quick-src\extra\store</Filter>
     </ClCompile>
@@ -354,9 +336,6 @@
       <Filter>Classes\quick-src\extra\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNativeWin32.cpp">
-      <Filter>Classes\quick-src\extra\platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCNetworkWin32.cpp">
       <Filter>Classes\quick-src\extra\platform\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\quick-src\extra\platform\win32\CCStorePaymentTransactionWrapper.cpp">

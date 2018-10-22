@@ -22,11 +22,8 @@ LOCAL_SRC_FILES := \
 ../../../Classes/quick-src/extra/crypto/base64/libbase64.c \
 ../../../Classes/quick-src/extra/crypto/md5/md5.c \
 ../../../Classes/quick-src/extra/crypto/CCCrypto.cpp \
-../../../Classes/quick-src/extra/network/CCNetwork.cpp \
 ../../../Classes/quick-src/extra/platform/android/CCCryptoAndroid.cpp \
-../../../Classes/quick-src/extra/platform/android/CCHTTPRequestAndroid.cpp \
 ../../../Classes/quick-src/extra/platform/android/CCNativeAndroid.cpp \
-../../../Classes/quick-src/extra/platform/android/CCNetworkAndroid.cpp \
 ../../../Classes/quick-src/extra/luabinding/cocos2dx_extra_luabinding.cpp \
 ../../../Classes/quick-src/extra/luabinding/HelperFunc_luabinding.cpp \
 ../../../Classes/serialize/PacketHelper.cpp \
@@ -48,7 +45,6 @@ hellolua/main.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
 $(LOCAL_PATH)/../../../Classes/quick-src/extra \
-$(LOCAL_PATH)/../../../Classes/quick-src/extra/network \
 $(LOCAL_PATH)/../../../Classes/quick-src/extra/luabinding \
 $(LOCAL_PATH)/../../../Classes/quick-src/lua_extensions \
 $(LOCAL_PATH)/../../../Classes/texmerge \
