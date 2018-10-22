@@ -81,6 +81,7 @@ ppgame/frameworks/runtime-src/proj.win32/sanzhang.VC.db
 /ppgame/simulator/win32/res
 /ppgame/simulator/win32/src
 /ppgame/simulator
+/ppgame/runtime/mac
 
 *.ilk
 *.log
