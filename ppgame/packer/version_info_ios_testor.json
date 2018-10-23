@@ -1,0 +1,20 @@
+{
+	"packageUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/assets",
+	"remoteManifestUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/assets/res/project.manifest",
+	"remoteVersionUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/assets/res/version.manifest",
+	"remotePackageUrl" : "",
+	"version" : "1.5.133",
+	"isForceUpdate" : true,
+	"engineVersion" : "cocos2d-x-3.14.1",
+	"assets" : {
+	},
+	"searchPaths":[
+	],
+	"loadChunkZips":[
+		"res/laucher.zip",
+		"res/cocos.zip",
+		"res/lib.zip",
+		"res/kernel.zip",
+		"res/app.zip"
+	]
+}

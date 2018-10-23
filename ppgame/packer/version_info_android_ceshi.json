@@ -1,0 +1,20 @@
+{
+	"packageUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/android/ceshi/assets",
+	"remoteManifestUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/android/ceshi/assets/res/project.manifest",
+	"remoteVersionUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/android/ceshi/assets/res/version.manifest",
+	"remotePackageUrl" : "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/android/ceshi/HW0001_v1.16.0_release.apk",
+	"version" : "1.16.9",
+	"isForceUpdate" : true,
+	"engineVersion" : "cocos2d-x-3.14.1",
+	"assets" : {
+	},
+	"searchPaths":[
+	],
+	"loadChunkZips":[
+		"res/laucher.zip",
+		"res/cocos.zip",
+		"res/lib.zip",
+		"res/kernel.zip",
+		"res/app.zip"
+	]
+}
