@@ -162,6 +162,11 @@ public:
      */
     virtual void purgeCachedEntries();
 
+	void setXXTEAKeyAndSign(std::string key, std::string sign) {
+		_xxteaKey = key;
+		_xxteaSign = sign;
+	}
+
     /**
      *  Gets string from a file.
      */
@@ -948,6 +953,10 @@ protected:
      * Writable path.
      */
     std::string _writablePath;
+
+	//
+	std::string _xxteaKey;
+	std::string _xxteaSign;
 
     /**
      *  The singleton pointer of FileUtils.

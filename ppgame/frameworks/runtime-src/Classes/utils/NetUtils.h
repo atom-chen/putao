@@ -32,6 +32,4 @@ unsigned int transToAddrFromIP(char* szIP);
 char* transToIPFromAddr(unsigned int dwIP);
 
 
-#endif
-
-
+#endif  //__NETUTILS_H__

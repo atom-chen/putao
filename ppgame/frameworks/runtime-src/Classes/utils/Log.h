@@ -41,4 +41,4 @@ private:
 	std::queue<std::string> logQueue;
 };
 
-#endif /* __VISIBLERECT_H__ */
+#endif // __XLog_H__
