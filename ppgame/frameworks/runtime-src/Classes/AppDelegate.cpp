@@ -116,8 +116,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     register_all_packages();
 
+	std::string k = "LHPxyou520";
+	std::string s = "xxtea";
+	FileUtils::getInstance()->setXXTEAKeyAndSign(k, s);
     LuaStack* stack = engine->getLuaStack();
-    stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+    stack->setXXTEAKeyAndSign( k.c_str(), k.size(), s.c_str(), s.size() );
 
     //register custom function
     //LuaStack* stack = engine->getLuaStack();
