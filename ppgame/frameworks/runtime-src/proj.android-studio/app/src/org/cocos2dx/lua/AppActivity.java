@@ -25,14 +25,28 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.cocos2dx.lua;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxLuaJavaBridge;
 
 public class AppActivity extends Cocos2dxActivity{
+    public static AppActivity mInstance = null;
+
+
+    //----------------------------------------------------------------------------------------------
+    // overrides
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.setEnableVirtualButton(false);
         super.onCreate(savedInstanceState);
+        mInstance = this;
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
             // Android launched another instance of the root activity into an existing task
@@ -45,4 +59,88 @@ public class AppActivity extends Cocos2dxActivity{
         // DO OTHER INITIALIZATION BELOW
         
     }
+
+    //----------------------------------------------------------------------------------------------
+    // methods
+    //----------------------------------------------------------------------------------------------
+    //游戏启动完成回调
+    public static void onGameLauch(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        try{
+            mInstance.registerReceiver(connectionReceiver, intentFilter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        intentFilter=new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        try{
+            mInstance.registerReceiver(batteryReceiver, intentFilter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    // 网络连接监听
+    public static BroadcastReceiver connectionReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectMgr = (ConnectivityManager) mInstance.getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            mInstance.runOnGLThread(new Runnable() {
+                @Override
+                public void run() {
+                    int ret = Cocos2dxLuaJavaBridge.callLuaGlobalFunctionWithString("networkStateChange", "");
+                }
+            });
+        }
+    };
+
+    // 电量变化监听
+    public static BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)){
+                //得到系统当前电量
+                int level=intent.getIntExtra("level", 0);
+                //取得系统总电量
+                int total=intent.getIntExtra("scale", 100);
+                final String battery = (level*100)/total + "";
+                mInstance.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int ret = Cocos2dxLuaJavaBridge.callLuaGlobalFunctionWithString("batteryChange", battery);
+                    }
+                });
+            }
+
+        }
+    };
+
+    //检测网络状态
+    public static boolean isNetworkConnected() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) mInstance.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        if (mNetworkInfo != null) {
+            return mNetworkInfo.isAvailable();
+        }
+        return false;
+    }
+
+    //获取剩余电量
+    public static int getBattery() {
+//		if(Build.VERSION.SDK_INT >21){
+//			BatteryManager batteryManager=(BatteryManager)mInstance.getSystemService(Context.BATTERY_SERVICE);
+//			int battery = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_AVERAGE);
+//			return battery;
+//		}else{
+//			return 100;
+//		}
+        return 100;
+    }
+
+
 }

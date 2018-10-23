@@ -479,6 +479,17 @@ public:
      */
     void formatText();
 
+	float getRealWidth() {
+		return mRealWidth;
+	}
+	float getRealHeight() {
+		return mRealHeight;
+	}
+	void removeAllElement() {
+		_richElements.clear();
+		_formatTextDirty = true;
+	}
+
     //override functions.
     virtual void ignoreContentAdaptWithSize(bool ignore) override;
     virtual std::string getDescription() const override;
@@ -572,6 +583,9 @@ protected:
     int findSplitPositionForChar(cocos2d::Label* label, const std::string& text);
 	void doHorizontalAlignment(const Vector<Node*>& row, float rowWidth);
 	float stripTrailingWhitespace(const Vector<Node*>& row);
+
+	float mRealWidth;
+	float mRealHeight;
 
     bool _formatTextDirty;
     Vector<RichElement*> _richElements;

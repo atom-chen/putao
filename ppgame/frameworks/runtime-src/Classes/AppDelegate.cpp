@@ -132,7 +132,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 #endif
     FileUtils::getInstance()->addSearchPath("Assets/src");
     FileUtils::getInstance()->addSearchPath("Assets/res");
-    if (engine->executeScriptFile("src/main.lua"))
+    if (engine->executeScriptFile("src/laucher/main.lua"))
     {
         return false;
     }
