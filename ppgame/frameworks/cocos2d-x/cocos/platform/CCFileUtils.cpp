@@ -33,7 +33,10 @@ THE SOFTWARE.
 #include "platform/CCSAXParser.h"
 //#include "base/ccUtils.h"
 
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 #include "xxtea/xxtea.h"
+#endif
+
 #include "tinyxml2/tinyxml2.h"
 #ifdef MINIZIP_FROM_SYSTEM
 #include <minizip/unzip.h>
@@ -628,6 +631,7 @@ std::string FileUtils::getStringFromFile(const std::string& filename)
     std::string s;
     getContents(filename, &s);
 
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 	// decrypt XXTEA
 	if (_xxteaKey.length() > 0 && _xxteaSign.length() > 0 && s.length() > 0) {
 		bool isXXTEA = true;
@@ -649,6 +653,7 @@ std::string FileUtils::getStringFromFile(const std::string& filename)
 			s.append((const char*)buffer, len);
 		}
 	}
+#endif
 
     return s;
 }
@@ -668,6 +673,7 @@ Data FileUtils::getDataFromFile(const std::string& filename)
     Data d;
     getContents(filename, &d);
 
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 	// decrypt XXTEA
 	if (_xxteaKey.length() > 0 && _xxteaSign.length() > 0 && !d.isNull()) {
 		bool isXXTEA = true;
@@ -689,6 +695,7 @@ Data FileUtils::getDataFromFile(const std::string& filename)
 			d.fastSet(buffer, len);
 		}
 	}
+#endif
 
     return d;
 }
