@@ -172,7 +172,12 @@ function clone(object)
     return _copy(object)
 end
 
+local ALL_CLASS = {}
+function GetAllClass() return ALL_CLASS end
 function class(classname, ...)
+	assert( not ALL_CLASS[classname], string.format("class is already exist: %s",classname) )
+	ALL_CLASS[classname] = true
+	
     local cls = {__cname = classname}
 
     local supers = {...}
@@ -225,9 +230,23 @@ function class(classname, ...)
 
     if not cls.ctor then
         -- add default constructor
-        cls.ctor = function() end
+        cls.ctor = function() 
+        	print("default constructor")
+        end
     end
+    if not cls.dtor then
+    	-- add default destructor
+    	cls.dtor = function(this) 
+    		print("default destructor")
+    	end
+    end
+    
     cls.new = function(...)
+    	if cls.__inst_singleton then
+        	assert(false, "ERROR: Creating Singleton Many times")
+        	return cls.__inst_singleton
+        end
+        
         local instance
         if cls.__create then
             instance = cls.__create(...)
@@ -237,11 +256,42 @@ function class(classname, ...)
         setmetatableindex(instance, cls)
         instance.class = cls
         instance:ctor(...)
+        
+        if cls.__is_singleton then
+    		cls.__inst_singleton = instance	
+    	end
+    	
         return instance
+    end
+    cls.delete = function(cls)
+    	local function _delete(obj)
+			obj.dtor(cls)
+			local supers = obj.__supers
+			if supers then
+            	for i=#supers, 1, -1 do
+                	_delete(supers[i])
+            	end
+            end
+		end
+		_delete(cls)
+		cls.__inst_singleton = nil
     end
     cls.create = function(_, ...)
         return cls.new(...)
     end
+    
+    function cls.GetInstance(...)
+		if not cls.__inst_singleton then
+			cls.__inst_singleton = cls.new(...)
+		end
+		return cls.__inst_singleton
+	end
+	function cls.DelInstance()
+		if cls.__inst_singleton then
+			cls.__inst_singleton:delete()
+			cls.__inst_singleton = nil
+		end
+	end
 
     return cls
 end
