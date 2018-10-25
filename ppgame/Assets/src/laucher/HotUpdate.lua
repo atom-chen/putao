@@ -127,15 +127,6 @@ local function getNamedNodes(root, tbl)
 	getNode(root)
 end
 
--- call by engine
-function updateDownloadGame(percent)
-	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
-	local event = cc.EventCustom:new("updateDownloadGame")
-	event._usedata = percent
-	eventDispatcher:dispatchEvent(event)
-end
-
--- call by engine 
 local function isNetworkConnected()
     if plattarget == cc.PLATFORM_OS_ANDROID then
         local ok, ret = luaj.callStaticMethod("org.cocos2dx.lua.AppActivity", "isNetworkConnected", { }, "()Z")
@@ -168,6 +159,18 @@ local function CheckNetConnect(curScene)
 		print("-----------没场景")
 	end
 end
+
+--------------------------------------------------------------------------------------------
+
+-- call by engine
+function updateDownloadGame(percent)
+	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
+	local event = cc.EventCustom:new("updateDownloadGame")
+	event._usedata = percent
+	eventDispatcher:dispatchEvent(event)
+end
+
+-- call by engine
 function networkStateChange(sState)
 	local bConnected = isNetworkConnected()
 	CheckNetConnect()
@@ -188,29 +191,6 @@ end
 -- call by engine 
 function batteryChange(sPercent)
 	
-end
-
-function getPhoneType()
-	if plattarget == cc.PLATFORM_OS_IPHONE or plattarget == cc.PLATFORM_OS_IPAD then
-        local ok,ret  = luaoc.callStaticMethod("SalmonUtils","getPhoneType",{})
-        if ok then
-        	return ret 
-        else
-        	return ""
-        end
-    end
-end
-
-function getImgByPhoneType()
-	if not cc.Sprite:create("launcher/first_page2.png") then
-		return nil
-	end
-	local respath = "launcher/first_page2.png"
---	local ptype = getPhoneType() or ""
---	if string.find(ptype, "iPhone X") then
---		respath = "launcher/first_page2.png"
---	end
-	return respath
 end
 
 --------------------------------------------------------------------------------------------
@@ -258,10 +238,6 @@ function UpdateScene:initView()
 	self._curScene:addChild(rootNode)
 	getNamedNodes(rootNode, self)
 --	rootNode:setContentSize(GAME_CONFIG.SCREEN_W, GAME_CONFIG.SCREEN_H)
-	local firstpath = getImgByPhoneType()
-	if firstpath and firstpath ~= "" then
-		self.ImgFirstPage:loadTexture( firstpath )
-	end
 	self.ImgFirstPage:setContentSize(GAME_CONFIG.SCREEN_W, GAME_CONFIG.SCREEN_H)
 	self.ImgFirstPage:setScale(GAME_CONFIG.DESIGN_W/GAME_CONFIG.SCREEN_W)
 	
