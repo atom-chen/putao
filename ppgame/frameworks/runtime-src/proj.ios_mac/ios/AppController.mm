@@ -27,6 +27,7 @@
 #import "cocos2d.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import <sys/utsname.h>
 
 @implementation AppController
 
@@ -35,6 +36,7 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+const NSString* channel = @"IOSQY01";
 // cocos2d application instance
 static AppDelegate s_sharedApplication;
 
@@ -82,6 +84,197 @@ static AppDelegate s_sharedApplication;
     return YES;
 }
 
++(NSString*) getModel:(NSDictionary*)dic{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString * platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    
+    if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 2G";
+    
+    if ([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
+    
+    if ([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
+    
+    if ([platform isEqualToString:@"iPhone3,1"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone3,2"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone3,3"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone4,1"]) return @"iPhone 4S";
+    
+    if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
+    
+    if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
+    
+    if ([platform isEqualToString:@"iPhone5,3"]) return @"iPhone 5c";
+    
+    if ([platform isEqualToString:@"iPhone5,4"]) return @"iPhone 5c";
+    
+    if ([platform isEqualToString:@"iPhone6,1"]) return @"iPhone 5s";
+    
+    if ([platform isEqualToString:@"iPhone6,2"]) return @"iPhone 5s";
+    
+    if ([platform isEqualToString:@"iPhone7,1"]) return @"iPhone 6 Plus";
+    
+    if ([platform isEqualToString:@"iPhone7,2"]) return @"iPhone 6";
+    
+    if ([platform isEqualToString:@"iPhone8,1"]) return @"iPhone 6s";
+    
+    if ([platform isEqualToString:@"iPhone8,2"]) return @"iPhone 6s Plus";
+    
+    if ([platform isEqualToString:@"iPhone8,4"]) return @"iPhone SE";
+    
+    if ([platform isEqualToString:@"iPhone9,1"]) return @"iPhone 7";
+    
+    if ([platform isEqualToString:@"iPhone9,2"]) return @"iPhone 7 Plus";
+    
+    if ([platform isEqualToString:@"iPod1,1"])   return @"iPod Touch 1G";
+    
+    if ([platform isEqualToString:@"iPod2,1"])   return @"iPod Touch 2G";
+    
+    if ([platform isEqualToString:@"iPod3,1"])   return @"iPod Touch 3G";
+    
+    if ([platform isEqualToString:@"iPod4,1"])   return @"iPod Touch 4G";
+    
+    if ([platform isEqualToString:@"iPod5,1"])   return @"iPod Touch 5G";
+    
+    if ([platform isEqualToString:@"iPad1,1"])   return @"iPad 1G";
+    
+    if ([platform isEqualToString:@"iPad2,1"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,2"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,3"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,4"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,5"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad2,6"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad2,7"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad3,1"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,2"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,3"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,4"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad3,5"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad3,6"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad4,1"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,2"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,3"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,4"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"iPad4,5"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"iPad4,6"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"i386"])      return @"iPhone Simulator";
+    
+    if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
+    
+    return platform;
+}
+
+
++(NSString*) getImei:(NSDictionary*)dic{
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *imei = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return imei;
+}
+
+
++(NSString*) getImsi:(NSDictionary*)dic{
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *imsi = @"";
+    return imsi;
+}
+
+
++(NSString*) getVersion:(NSDictionary*)dic{
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    return version;
+}
+
++(NSString*) getChannel:(NSDictionary*)dic{
+    NSUserDefaults* userdafault = [NSUserDefaults standardUserDefaults];
+    NSString* value = [userdafault objectForKey:@"channel_code"];
+    if(value != nil and value != @""){
+        return value;
+    }
+    
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *promote_code = (NSString *)channel;
+    return promote_code;
+}
+
++(void) onGameLauch:(NSDictionary*)dic{
+    
+}
+
++(void) reachabilityChanged:(NSNotification *)note{
+    
+}
+
++(void) batteryChanged:(NSNotification *)note{
+    
+}
+
++(int) isNetworkConnected:(NSDictionary*)dic{
+    return 1;
+}
+
++(int) getBattery:(NSDictionary*)dic{
+    int level = (int)([UIDevice currentDevice].batteryLevel *100);
+    return level;
+}
+
++(float) getSafeAreaTopHei:(NSDictionary*)dic{
+    return 0;
+}
+
++(float) getSafeAreaBottomHei:(NSDictionary*)dic{
+    return 0;
+}
+
++(float) getKeyboardHei:(NSDictionary*)dic{
+    return 0;
+}
+
++(float) getAdjustHei:(NSDictionary*)dic{
+    return 0;
+}
+
++(float) getEdtboxHei:(NSDictionary*)dic{
+    return 0;
+}
+
++(void) setKeyboardAutoCloseMode:(NSDictionary*)dic{
+    
+}
+
++(int) getKeyboardAutoCloseMode:(NSDictionary*)dic{
+    return 0;
+}
+
++(int) isInstallWX:(NSDictionary*)dic{
+    return true;
+}
+
++(void) onPageEvent:(NSDictionary*)dic{
+    NSString* name = dic[@"name"];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -98,6 +291,8 @@ static AppDelegate s_sharedApplication;
      */
     // We don't need to call this method any more. It will interrupt user defined game pause&resume logic
     /* cocos2d::Director::getInstance()->resume(); */
+    NSLog(@"applicationDidBecomeActive");
+    cocos2d::Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("APP_DID_BECOME_ACTIVE_EVENT");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -105,6 +300,7 @@ static AppDelegate s_sharedApplication;
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     cocos2d::Application::getInstance()->applicationDidEnterBackground();
 }
 
@@ -112,6 +308,7 @@ static AppDelegate s_sharedApplication;
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     cocos2d::Application::getInstance()->applicationWillEnterForeground();
 }
 
