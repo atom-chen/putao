@@ -24,10 +24,13 @@
  ****************************************************************************/
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
+#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#import <UserNotifications/UserNotifications.h>
 
 @class RootViewController;
 
-@interface AppController : NSObject <UIApplicationDelegate> {
+@interface AppController : NSObject <UIApplicationDelegate, UNUserNotificationCenterDelegate> {
 
 }
 
