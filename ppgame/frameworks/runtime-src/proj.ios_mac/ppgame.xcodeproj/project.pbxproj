@@ -54,6 +54,19 @@
 		8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */; };
 		8E402FFF217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
 		8E403000217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
+		8E768D4C2182C40D007336AD /* OSInfoUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D302182C40D007336AD /* OSInfoUtils.mm */; };
+		8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D312182C40D007336AD /* ScreenUtils.mm */; };
+		8E768D4E2182C40D007336AD /* SalmonUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D322182C40D007336AD /* SalmonUtils.mm */; };
+		8E768D4F2182C40D007336AD /* FileTools.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D332182C40D007336AD /* FileTools.mm */; };
+		8E768D502182C40D007336AD /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D352182C40D007336AD /* SFHFKeychainUtils.m */; };
+		8E768D512182C40D007336AD /* MediaUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D3A2182C40D007336AD /* MediaUtils.mm */; };
+		8E768D522182C40D007336AD /* photoGrallery.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D402182C40D007336AD /* photoGrallery.mm */; };
+		8E768D542182C40D007336AD /* CameraUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D432182C40D007336AD /* CameraUtils.mm */; };
+		8E768D552182C40D007336AD /* MediaTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D442182C40D007336AD /* MediaTool.m */; };
+		8E768D562182C40D007336AD /* NetworkUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D462182C40D007336AD /* NetworkUtils.mm */; };
+		8E768D572182C40D007336AD /* NetUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D472182C40D007336AD /* NetUtils.mm */; };
+		8E768D582182C40D007336AD /* TextUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D482182C40D007336AD /* TextUtils.mm */; };
+		8E768D5A2182DED1007336AD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E768D592182DED0007336AD /* CoreTelephony.framework */; };
 		8E89F880217D9462008948EA /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F878217D9462008948EA /* PathFinder.cpp */; };
 		8E89F881217D9462008948EA /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F878217D9462008948EA /* PathFinder.cpp */; };
 		8E89F88A217D947E008948EA /* lua_xianyou_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F883217D947E008948EA /* lua_xianyou_auto.cpp */; };
@@ -315,6 +328,31 @@
 		8E0BE67321819FF500284161 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		8E402FF8217D71A30046BD6A /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../Assets; sourceTree = "<group>"; };
+		8E768D302182C40D007336AD /* OSInfoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSInfoUtils.mm; sourceTree = "<group>"; };
+		8E768D312182C40D007336AD /* ScreenUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScreenUtils.mm; sourceTree = "<group>"; };
+		8E768D322182C40D007336AD /* SalmonUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SalmonUtils.mm; sourceTree = "<group>"; };
+		8E768D332182C40D007336AD /* FileTools.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileTools.mm; sourceTree = "<group>"; };
+		8E768D342182C40D007336AD /* ScreenUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenUtils.h; sourceTree = "<group>"; };
+		8E768D352182C40D007336AD /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		8E768D362182C40D007336AD /* MediaTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTool.h; sourceTree = "<group>"; };
+		8E768D382182C40D007336AD /* NetUitls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetUitls.h; sourceTree = "<group>"; };
+		8E768D392182C40D007336AD /* photoGrallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoGrallery.h; sourceTree = "<group>"; };
+		8E768D3A2182C40D007336AD /* MediaUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MediaUtils.mm; sourceTree = "<group>"; };
+		8E768D3B2182C40D007336AD /* FileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTools.h; sourceTree = "<group>"; };
+		8E768D3C2182C40D007336AD /* CameraUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraUtils.h; sourceTree = "<group>"; };
+		8E768D3D2182C40D007336AD /* NetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtils.h; sourceTree = "<group>"; };
+		8E768D3E2182C40D007336AD /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		8E768D3F2182C40D007336AD /* SalmonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalmonUtils.h; sourceTree = "<group>"; };
+		8E768D402182C40D007336AD /* photoGrallery.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = photoGrallery.mm; sourceTree = "<group>"; };
+		8E768D412182C40D007336AD /* OSInfoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSInfoUtils.h; sourceTree = "<group>"; };
+		8E768D432182C40D007336AD /* CameraUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraUtils.mm; sourceTree = "<group>"; };
+		8E768D442182C40D007336AD /* MediaTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTool.m; sourceTree = "<group>"; };
+		8E768D452182C40D007336AD /* MediaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaUtils.h; sourceTree = "<group>"; };
+		8E768D462182C40D007336AD /* NetworkUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkUtils.mm; sourceTree = "<group>"; };
+		8E768D472182C40D007336AD /* NetUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetUtils.mm; sourceTree = "<group>"; };
+		8E768D482182C40D007336AD /* TextUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextUtils.mm; sourceTree = "<group>"; };
+		8E768D492182C40D007336AD /* TextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtils.h; sourceTree = "<group>"; };
+		8E768D592182DED0007336AD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
 		8E89F876217D9462008948EA /* stlastar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stlastar.h; sourceTree = "<group>"; };
 		8E89F877217D9462008948EA /* AStarSearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AStarSearch.hpp; sourceTree = "<group>"; };
 		8E89F878217D9462008948EA /* PathFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathFinder.cpp; sourceTree = "<group>"; };
@@ -462,6 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E768D5A2182DED1007336AD /* CoreTelephony.framework in Frameworks */,
 				8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */,
 				294D0D721D0D572600F7F5D4 /* CoreText.framework in Frameworks */,
 				9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */,
@@ -500,6 +539,7 @@
 		5023810617EBBCAC00990C9B /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				8E768D2F2182C40D007336AD /* Utils */,
 				8E0BE67021819FF500284161 /* Reachability.h */,
 				8E0BE67321819FF500284161 /* Reachability.m */,
 				521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */,
@@ -554,6 +594,37 @@
 				5023811217EBBCAC00990C9B /* Icon-76.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		8E768D2F2182C40D007336AD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8E768D3C2182C40D007336AD /* CameraUtils.h */,
+				8E768D432182C40D007336AD /* CameraUtils.mm */,
+				8E768D3B2182C40D007336AD /* FileTools.h */,
+				8E768D332182C40D007336AD /* FileTools.mm */,
+				8E768D362182C40D007336AD /* MediaTool.h */,
+				8E768D442182C40D007336AD /* MediaTool.m */,
+				8E768D452182C40D007336AD /* MediaUtils.h */,
+				8E768D3A2182C40D007336AD /* MediaUtils.mm */,
+				8E768D382182C40D007336AD /* NetUitls.h */,
+				8E768D472182C40D007336AD /* NetUtils.mm */,
+				8E768D3D2182C40D007336AD /* NetworkUtils.h */,
+				8E768D462182C40D007336AD /* NetworkUtils.mm */,
+				8E768D412182C40D007336AD /* OSInfoUtils.h */,
+				8E768D302182C40D007336AD /* OSInfoUtils.mm */,
+				8E768D392182C40D007336AD /* photoGrallery.h */,
+				8E768D402182C40D007336AD /* photoGrallery.mm */,
+				8E768D3F2182C40D007336AD /* SalmonUtils.h */,
+				8E768D322182C40D007336AD /* SalmonUtils.mm */,
+				8E768D342182C40D007336AD /* ScreenUtils.h */,
+				8E768D312182C40D007336AD /* ScreenUtils.mm */,
+				8E768D3E2182C40D007336AD /* SFHFKeychainUtils.h */,
+				8E768D352182C40D007336AD /* SFHFKeychainUtils.m */,
+				8E768D492182C40D007336AD /* TextUtils.h */,
+				8E768D482182C40D007336AD /* TextUtils.mm */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		8E89F875217D9462008948EA /* astar */ = {
@@ -924,6 +995,7 @@
 		F293B3CB15EB7BE500256477 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E768D592182DED0007336AD /* CoreTelephony.framework */,
 				8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */,
 				294D0D711D0D572600F7F5D4 /* CoreText.framework */,
 				9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */,
@@ -1259,12 +1331,15 @@
 			files = (
 				8E89F940217D949D008948EA /* CCCryptoIOS.mm in Sources */,
 				8E89F9A0217D949D008948EA /* lua_extensions_more.c in Sources */,
+				8E768D582182C40D007336AD /* TextUtils.mm in Sources */,
+				8E768D542182C40D007336AD /* CameraUtils.mm in Sources */,
 				8E89F938217D949D008948EA /* CCCrypto.cpp in Sources */,
 				8E89F9A8217D949D008948EA /* ReceiveThread.cpp in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				8E89F932217D949D008948EA /* PacketHelper.cpp in Sources */,
 				8E89F9AA217D949D008948EA /* BSDSocket.cpp in Sources */,
 				8E89F93C217D949D008948EA /* OpenUDIDIOS.m in Sources */,
+				8E768D502182C40D007336AD /* SFHFKeychainUtils.m in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
 				8E89F94E217D949D008948EA /* SBJsonWriter.m in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
@@ -1272,6 +1347,7 @@
 				8E89F930217D949D008948EA /* SerialBuffer.cpp in Sources */,
 				8E89F9A2217D949D008948EA /* lua_xianyou_manual.cpp in Sources */,
 				8E89F88A217D947E008948EA /* lua_xianyou_auto.cpp in Sources */,
+				8E768D4C2182C40D007336AD /* OSInfoUtils.mm in Sources */,
 				8E89F99C217D949D008948EA /* sqlite3.c in Sources */,
 				8E89F9B4217D949D008948EA /* KKRichText.cpp in Sources */,
 				8E89F934217D949D008948EA /* md5.c in Sources */,
@@ -1281,18 +1357,24 @@
 				8E89F996217D949D008948EA /* lfs.c in Sources */,
 				8E89F992217D949D008948EA /* lpack.c in Sources */,
 				8E89F9AC217D949D008948EA /* MessageDispatcher.cpp in Sources */,
+				8E768D552182C40D007336AD /* MediaTool.m in Sources */,
 				8E89F984217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */,
 				8E89F99A217D949D008948EA /* pb.c in Sources */,
 				8E89F986217D949D008948EA /* HelperFunc.cpp in Sources */,
 				8E89F976217D949D008948EA /* HelperFunc_luabinding.cpp in Sources */,
 				8E89F9B2217D949D008948EA /* NetUtils.cpp in Sources */,
+				8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */,
+				8E768D522182C40D007336AD /* photoGrallery.mm in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
 				8E89F9A6217D949D008948EA /* Plsocket.cpp in Sources */,
+				8E768D4E2182C40D007336AD /* SalmonUtils.mm in Sources */,
 				8E89F936217D949D008948EA /* libbase64.c in Sources */,
 				8E89F94A217D949D008948EA /* SBJSON.m in Sources */,
 				8E89F9AE217D949D008948EA /* int64.cpp in Sources */,
+				8E768D562182C40D007336AD /* NetworkUtils.mm in Sources */,
 				8E0BE67421819FF500284161 /* Reachability.m in Sources */,
 				8E89F948217D949D008948EA /* SBJsonParser.m in Sources */,
+				8E768D512182C40D007336AD /* MediaUtils.mm in Sources */,
 				8E89F94C217D949D008948EA /* SBJsonBase.m in Sources */,
 				8E89F98C217D949D008948EA /* fpconv.c in Sources */,
 				8E89F9B6217D949D008948EA /* KKLabelFT2.cpp in Sources */,
@@ -1301,6 +1383,8 @@
 				8E89F9A4217D949D008948EA /* SocketThread.cpp in Sources */,
 				8E89F880217D9462008948EA /* PathFinder.cpp in Sources */,
 				8E89F9B8217D949D008948EA /* TextureMerge.cpp in Sources */,
+				8E768D572182C40D007336AD /* NetUtils.mm in Sources */,
+				8E768D4F2182C40D007336AD /* FileTools.mm in Sources */,
 				8E89F98E217D949D008948EA /* strbuf.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
