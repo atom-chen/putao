@@ -50,7 +50,6 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
-		8E0BE67421819FF500284161 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0BE67321819FF500284161 /* Reachability.m */; };
 		8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */; };
 		8E402FFF217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
 		8E403000217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
@@ -67,6 +66,7 @@
 		8E768D572182C40D007336AD /* NetUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D472182C40D007336AD /* NetUtils.mm */; };
 		8E768D582182C40D007336AD /* TextUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D482182C40D007336AD /* TextUtils.mm */; };
 		8E768D5A2182DED1007336AD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E768D592182DED0007336AD /* CoreTelephony.framework */; };
+		8E768D5D2182E288007336AD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D5C2182E288007336AD /* Reachability.m */; };
 		8E89F880217D9462008948EA /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F878217D9462008948EA /* PathFinder.cpp */; };
 		8E89F881217D9462008948EA /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F878217D9462008948EA /* PathFinder.cpp */; };
 		8E89F88A217D947E008948EA /* lua_xianyou_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F883217D947E008948EA /* lua_xianyou_auto.cpp */; };
@@ -324,8 +324,6 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
-		8E0BE67021819FF500284161 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		8E0BE67321819FF500284161 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		8E402FF8217D71A30046BD6A /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../Assets; sourceTree = "<group>"; };
 		8E768D302182C40D007336AD /* OSInfoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSInfoUtils.mm; sourceTree = "<group>"; };
@@ -353,6 +351,8 @@
 		8E768D482182C40D007336AD /* TextUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextUtils.mm; sourceTree = "<group>"; };
 		8E768D492182C40D007336AD /* TextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtils.h; sourceTree = "<group>"; };
 		8E768D592182DED0007336AD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		8E768D5B2182E287007336AD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8E768D5C2182E288007336AD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8E89F876217D9462008948EA /* stlastar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stlastar.h; sourceTree = "<group>"; };
 		8E89F877217D9462008948EA /* AStarSearch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AStarSearch.hpp; sourceTree = "<group>"; };
 		8E89F878217D9462008948EA /* PathFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathFinder.cpp; sourceTree = "<group>"; };
@@ -540,8 +540,6 @@
 			isa = PBXGroup;
 			children = (
 				8E768D2F2182C40D007336AD /* Utils */,
-				8E0BE67021819FF500284161 /* Reachability.h */,
-				8E0BE67321819FF500284161 /* Reachability.m */,
 				521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */,
 				521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */,
 				5023810717EBBCAC00990C9B /* AppController.h */,
@@ -599,6 +597,8 @@
 		8E768D2F2182C40D007336AD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8E768D5B2182E287007336AD /* Reachability.h */,
+				8E768D5C2182E288007336AD /* Reachability.m */,
 				8E768D3C2182C40D007336AD /* CameraUtils.h */,
 				8E768D432182C40D007336AD /* CameraUtils.mm */,
 				8E768D3B2182C40D007336AD /* FileTools.h */,
@@ -1339,6 +1339,7 @@
 				8E89F932217D949D008948EA /* PacketHelper.cpp in Sources */,
 				8E89F9AA217D949D008948EA /* BSDSocket.cpp in Sources */,
 				8E89F93C217D949D008948EA /* OpenUDIDIOS.m in Sources */,
+				8E768D5D2182E288007336AD /* Reachability.m in Sources */,
 				8E768D502182C40D007336AD /* SFHFKeychainUtils.m in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
 				8E89F94E217D949D008948EA /* SBJsonWriter.m in Sources */,
@@ -1372,7 +1373,6 @@
 				8E89F94A217D949D008948EA /* SBJSON.m in Sources */,
 				8E89F9AE217D949D008948EA /* int64.cpp in Sources */,
 				8E768D562182C40D007336AD /* NetworkUtils.mm in Sources */,
-				8E0BE67421819FF500284161 /* Reachability.m in Sources */,
 				8E89F948217D949D008948EA /* SBJsonParser.m in Sources */,
 				8E768D512182C40D007336AD /* MediaUtils.mm in Sources */,
 				8E89F94C217D949D008948EA /* SBJsonBase.m in Sources */,
