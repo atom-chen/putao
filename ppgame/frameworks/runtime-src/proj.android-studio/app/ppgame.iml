@@ -384,9 +384,6 @@
     <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/luabinding">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/luabinding" isTestSource="false" />
     </content>
-    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/network">
-      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/network" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/platform/android">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/platform/android" isTestSource="false" />
     </content>
@@ -519,17 +516,19 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-27.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-27.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\putao\ppgame\frameworks\runtime-src\proj.android-studio\app\libs\okio-1.6.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable-27.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\putao\ppgame\frameworks\runtime-src\proj.android-studio\app\libs\okhttp-3.2.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.support:support-compat-27.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-27.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:27.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable-27.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-27.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui-27.0.0" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime-1.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.support:support-compat-27.0.0" level="project" />
     <orderEntry type="module" module-name="libcocos2dx" />
   </component>
 </module>
