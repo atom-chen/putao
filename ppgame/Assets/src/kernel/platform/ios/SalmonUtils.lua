@@ -92,14 +92,13 @@ function SalmonUtils:getAdjustHei()
 end
 
 function SalmonUtils:fixUrl2utf8(url)
---    local args = { urlStr = url }
---    local ok,ret  = luaoc.callStaticMethod(className,"fixUrl2utf8",args)
---    if not ok then
---        print("luaoc error:", ok)
---    else
---        return ret
---    end
-    return url
+    local args = { urlStr = url }
+    local ok,ret  = luaoc.callStaticMethod(className,"fixUrl2utf8",args)
+    if not ok then
+        print("luaoc error:", ok)
+    else
+        return ret
+    end
 end
 
 function SalmonUtils:setVolume(_percent)
