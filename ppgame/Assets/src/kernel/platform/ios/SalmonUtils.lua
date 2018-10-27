@@ -92,13 +92,19 @@ function SalmonUtils:getAdjustHei()
 end
 
 function SalmonUtils:fixUrl2utf8(url)
+    function SalmonUtils:fixUrl2utf8(url)
+	if not url or url == "" then return "" end
     local args = { urlStr = url }
     local ok,ret  = luaoc.callStaticMethod(className,"fixUrl2utf8",args)
     if not ok then
-        print("luaoc error:", ok)
+        return url
     else
+    	if not ret or type(ret) ~= "string" then return url end
+    	local s1 = string.find(ret or "", "http")
+    	if not s1 then return url end
         return ret
     end
+end
 end
 
 function SalmonUtils:setVolume(_percent)
@@ -230,25 +236,6 @@ function SalmonUtils:clearAllCache()
     else
         print("The ret is:", ret)
     end
-end
-
--- 获取所在城市
-function SalmonUtils:getCNBylocation(handler)
-	-- print("警告：SalmonUtils:getCNBylocation IOS接口未实现")
-	-- local function cb(cityname)
-	-- 	print("返回城市名字:", cityname)
-	-- end
-    print("获取所在城市")
-	local args = {scriptHandler = handler}
-    local ok,ret  = luaoc.callStaticMethod(className,"getCNBylocation", args)
-    if not ok then
-        print("luaoc error:", ok)
-    else
-        -- print("The ret is:", ret)
-    end
-
-
-	return "未定位"
 end
 
 function SalmonUtils:isOpenFlashLight()
