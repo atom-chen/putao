@@ -24,7 +24,7 @@ import hashlib
 import subprocess
 import sys
 
-key = "xianyou0522"
+key = "LHPxyou520"
 sign = "xxtea"
 outDir = "out_ios/Assets"
 assetsDir = {
