@@ -48,9 +48,9 @@ end
 function ClsApp:Exit()
 	profiler:stop()
     cc.Director:getInstance():endToLua()
-    if device.platform == "windows" or device.platform == "mac" then
-        os.exit()
-    end
+    if device.platform ~= "android" then
+    	os.exit(0)
+    end 
 end
 
 function ClsApp:GetModFileList()
