@@ -3,6 +3,7 @@
 -------------------------
 local MsgBox = require("laucher.MsgBox")
 local cjson = require("cjson")
+require("laucher.engine_face")
 local plattarget = cc.Application:getInstance():getTargetPlatform()
 local luaj = {}
 local luaoc = {}
@@ -85,34 +86,6 @@ local function string_split(input, delimiter)
 	return arr
 end
 
-local function get_dir(path)
-	for i = #path, 1, -1 do
-		print(string.sub(path, i, i))
-		if string.sub(path, i, i) == "/" then
-			return string.sub(path, 1, i)
-		end
-	end
-	return ""
-end
-
-local function getChannel()
-	if plattarget == cc.PLATFORM_OS_ANDROID then
-		local ok, ret = luaj.callStaticMethod("org.cocos2dx.lua.AppActivity", "getChannel", { }, "()Ljava/lang/String;")
-		if ok then
-			return ret
-		else
-			return ""
-		end
-	elseif plattarget == cc.PLATFORM_OS_IPHONE or plattarget == cc.PLATFORM_OS_IPAD then
-		local ok, ret = luaoc.callStaticMethod("AppController", "getChannel", { })
-		if ok then
-			return ret
-		else
-			return ""
-		end
-	end
-end
-
 -- 迭代root上所有命名节点到tbl
 local function getNamedNodes(root, tbl)
 	tbl = tbl or root
@@ -161,38 +134,6 @@ local function CheckNetConnect(curScene)
 end
 
 --------------------------------------------------------------------------------------------
-
--- call by engine
-function updateDownloadGame(percent)
-	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
-	local event = cc.EventCustom:new("updateDownloadGame")
-	event._usedata = percent
-	eventDispatcher:dispatchEvent(event)
-end
-
--- call by engine
-function networkStateChange(sState)
-	local bConnected = isNetworkConnected()
-	CheckNetConnect()
-	--
-	if not PlatformHelper or not PlatformHelper.isNetworkConnected then return end
-	if ClsUIManager then
-		if not bConnected then
-			ClsUIManager.GetInstance():PopConfirmDlg("CFM_NET_STATE", "", "网络连接异常，请检查网络状况", nil, nil, nil, 1)
-		else
-			ClsUIManager.GetInstance():CloseConfirmDlg("CFM_NET_STATE")
-		end
-	end
-	if g_EventMgr then 
-		g_EventMgr:FireEvent("NET_STATE_CHANGE", bConnected)
-	end
-end
-
--- call by engine 
-function batteryChange(sPercent)
-	
-end
-
 --------------------------------------------------------------------------------------------
 
 local UpdateState = {}

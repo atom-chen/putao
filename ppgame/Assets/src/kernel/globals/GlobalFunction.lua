@@ -157,6 +157,9 @@ function KE_ExtendClass(WhichClass)
 	end
 end
 
+--------------------------------------------------------------------------------------------
+-- call by engine 
+--------------------------------------------------------------------------------------------
 -- call by engine 
 function networkStateChange(sState)
 	if not PlatformHelper or not PlatformHelper.isNetworkConnected then return end
@@ -174,6 +177,11 @@ function networkStateChange(sState)
 	if g_EventMgr then 
 		g_EventMgr:FireEvent("NET_STATE_CHANGE", bConnected)
 	end
+end
+
+-- call by engine 
+function batteryChange(sPercent)
+	
 end
 
 function KE_CheckNetConnect(bForce)

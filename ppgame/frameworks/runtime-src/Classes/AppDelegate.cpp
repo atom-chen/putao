@@ -126,13 +126,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     //LuaStack* stack = engine->getLuaStack();
     //register_custom_function(stack->getLuaState());
     
-	FileUtils::getInstance()->addSearchPath("Assets");
-#if CC_64BITS
-    FileUtils::getInstance()->addSearchPath("Assets/src/64bit");
-#endif
     FileUtils::getInstance()->addSearchPath("Assets/src");
     FileUtils::getInstance()->addSearchPath("Assets/res");
-    if (engine->executeScriptFile("src/laucher/main.lua"))
+    if (engine->executeScriptFile("Assets/src/laucher/main.lua"))
     {
         return false;
     }

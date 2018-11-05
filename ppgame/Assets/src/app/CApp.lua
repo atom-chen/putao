@@ -75,14 +75,6 @@ function ClsApp:GetModFileList()
 		"app.VVDirector",			-- 游戏总管理器
 	}
 	
-	if ENGINE_BUILD_TYPE == 1 then
-		table.insert(ModFileList, "app.xiaoxiaole.init")
-	elseif ENGINE_BUILD_TYPE == 3 then
-		table.insert(ModFileList, "app.disstar.init")
-	elseif ENGINE_BUILD_TYPE == 4 then
-	--	table.insert(ModFileList, "app.airplane.init")
-	end
-
 	return ModFileList
 end 
 
@@ -143,28 +135,7 @@ function ClsApp:OnPreloadOver()
 	
 	--
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
-	if ENGINE_BUILD_TYPE == 1 then
-		self:runXiaoxiaole()
-	elseif ENGINE_BUILD_TYPE == 3 then
-		self:runDisStar()
-	elseif ENGINE_BUILD_TYPE == 4 then
-		self:runFeiji()
-	else
-		self:runGame()
-	end
-end
-
-function ClsApp:runXiaoxiaole()
-	xiaoxiaole.kGameCache():load()
-	ClsSceneManager.GetInstance():Turn2Scene("clsXiaoxiaoleEntryScene")
-end
-
-function ClsApp:runDisStar()
-    ClsSceneManager.GetInstance():Turn2Scene("clsStartScene")
-end
-
-function ClsApp:runFeiji()
-    ClsSceneManager.GetInstance():Turn2Scene("clsPlaneScene")
+	self:runGame()
 end
 
 --游戏

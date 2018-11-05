@@ -58,39 +58,6 @@ SERVER_PORT = curServ[2]
 
 -----------------------------------------------------------------------------------------
 local SITE_CFG = {
-	--消消乐
-	xxle = {
-		hotdir = "xxle",
-		ENGINE_BUILD_TYPE = 1,
-		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
-		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "w08",
-	},
-	--飞机
-	feiji = {
-		hotdir = "feiji",
-		ENGINE_BUILD_TYPE = 4,
-		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
-		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "w08",
-	},
-	--wfuse
-	wfuse = {
-		hotdir = "wfuse",
-		ENGINE_BUILD_TYPE = 0,
-		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
-		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "w08",
-	},
-	--消灭星星
-	xiaomiexx = {
-		hotdir = "xiaomiexx",
-		ENGINE_BUILD_TYPE = 3,
-		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
-		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "w08",
-	},
-	
 	--测试站
 	testor = {
 		hotdir = "testor",
