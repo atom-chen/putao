@@ -206,7 +206,7 @@ def GenerateprojectManifestPath():
     for f in fileList:
         f2 = {"md5" : CalcMD5(f)}
         #f1 = "res" + f[6:]
-        f = f.replace('out_ios/Assets','Assets')
+        f = f.replace(outDir,'Assets')
         print f
         dataDic[f] = f2
         #print f1
