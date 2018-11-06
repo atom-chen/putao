@@ -503,7 +503,7 @@ HttpUtil._noprints = {
 	req_goucai_game_wanfa_list = true,
 }
 
-if device.platform == "windows" or device.platform == "ios" then
+if device.platform ~= "android" then
 	function HttpUtil:Request(ptoname, tParams, tUrlParams, unsafeCallback)
 		KE_CheckNetConnect()
 		

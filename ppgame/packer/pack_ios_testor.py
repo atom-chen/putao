@@ -40,17 +40,24 @@ rootPath = os.path.split(os.path.realpath(__file__))[0]
 new_env = os.environ.copy()
 engineRoot = os.path.abspath(os.path.join(os.getcwd(), ".."))
 
+from_src = "../Assets/src"
+from_res = "../Assets/res"
+to_src = outDir+"/src"
+to_res = outDir+"/res"
+
 def joinDir(root, *dirs):
     for item in dirs:
         root = os.path.join(root, item)
     return root
 
-def encrypt_res():
+def clean_outDir():
     if os.path.exists(outDir):
         shutil.rmtree(outDir)
+    
+def encrypt_res():
     print "====> start encrypt_res\n"
-    cmd = subprocess.Popen('%s/quick/bin/encrypt_res.sh -i ../Assets/res -o %s -ek %s -es %s' \
-            %(engineRoot,outDir+'/res',key,sign), shell=True,env=new_env)
+    cmd = subprocess.Popen('%s/quick/bin/encrypt_res.sh -i %s -o %s -ek %s -es %s' \
+            %(engineRoot,from_res,to_res,key,sign), shell=True,env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -58,11 +65,10 @@ def encrypt_res():
 		
 def compile_laucher():
     print "====> start compile_laucher\n"
-    scriptDir = outDir + "/src"
-    if not os.path.exists(scriptDir):
-        os.makedirs(scriptDir)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i ../Assets/src -o %s/laucher.zip -x app,kernel,lib,cocos -e xxtea_chunk -ek %s -es %s -b 64' \
-            %(engineRoot,scriptDir,key,sign), shell=True,env=new_env)
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/laucher.zip -x app,kernel,lib,cocos -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True,env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -70,11 +76,10 @@ def compile_laucher():
 
 def compile_cocos():
     print "====> start compile_cocos\n"
-    scriptDir = outDir + "/src"
-    if not os.path.exists(scriptDir):
-        os.makedirs(scriptDir)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i ../Assets/src -o %s/cocos.zip -x app,kernel,lib,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
-            %(engineRoot,scriptDir,key,sign), shell=True,env=new_env)
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/cocos.zip -x app,kernel,lib,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True,env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -82,11 +87,10 @@ def compile_cocos():
 
 def compile_lib():
     print "====> start compile_lib\n"
-    scriptDir = outDir + "/src"
-    if not os.path.exists(scriptDir):
-        os.makedirs(scriptDir)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i ../Assets/src -o %s/lib.zip -x app,kernel,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
-            %(engineRoot,scriptDir,key,sign), shell=True, env=new_env)
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/lib.zip -x app,kernel,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -94,11 +98,10 @@ def compile_lib():
 
 def compile_kernel():
     print "====> start compile_kernel\n"
-    scriptDir = outDir + "/src"
-    if not os.path.exists(scriptDir):
-        os.makedirs(scriptDir)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i ../Assets/src -o %s/kernel.zip -x app,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
-            %(engineRoot,scriptDir,key,sign), shell=True, env=new_env)
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/kernel.zip -x app,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -106,11 +109,10 @@ def compile_kernel():
 		
 def compile_app():
     print "====> start compile_app\n"
-    scriptDir = outDir + "/src"
-    if not os.path.exists(scriptDir):
-        os.makedirs(scriptDir)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i ../Assets/src -o %s/app.zip -x kernel,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
-            %(engineRoot,scriptDir,key,sign), shell=True, env=new_env)
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/app.zip -x kernel,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
         print "Error while building, check error above!"
@@ -205,11 +207,9 @@ def GenerateprojectManifestPath():
     dataDic = {}
     for f in fileList:
         f2 = {"md5" : CalcMD5(f)}
-        #f1 = "res" + f[6:]
         f = f.replace(outDir,'Assets')
         print f
         dataDic[f] = f2
-        #print f1
 
     project_str.update({"assets":dataDic})
     json_str = json.dumps(project_str, sort_keys = True, indent = 2)
@@ -219,6 +219,7 @@ def GenerateprojectManifestPath():
     fo.close()
 	
 if __name__ == "__main__":
+    clean_outDir()
     encrypt_res()
     compile_laucher()
     compile_cocos()
