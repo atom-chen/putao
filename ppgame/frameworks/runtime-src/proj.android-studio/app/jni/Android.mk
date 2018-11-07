@@ -18,13 +18,11 @@ LOCAL_SRC_FILES := \
 ../../../Classes/quick-src/lua_extensions/cjson/lua_cjson.c \
 ../../../Classes/quick-src/lua_extensions/cjson/strbuf.c \
 ../../../Classes/quick-src/lua_extensions/cjson/fpconv.c \
-../../../Classes/quick-src/extra/apptools/HelperFunc.cpp \
 ../../../Classes/quick-src/extra/crypto/base64/libbase64.c \
 ../../../Classes/quick-src/extra/crypto/md5/md5.c \
 ../../../Classes/quick-src/extra/crypto/CCCrypto.cpp \
 ../../../Classes/quick-src/extra/platform/android/CCCryptoAndroid.cpp \
 ../../../Classes/quick-src/extra/luabinding/cocos2dx_extra_luabinding.cpp \
-../../../Classes/quick-src/extra/luabinding/HelperFunc_luabinding.cpp \
 ../../../Classes/serialize/PacketHelper.cpp \
 ../../../Classes/serialize/SerialBuffer.cpp \
 ../../../Classes/utils/Log.cpp \
