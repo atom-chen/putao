@@ -198,7 +198,7 @@ SERVER_URL = curSite.SERVER_URL
 HTTP_HEAD_KEY = curSite.HTTP_HEAD_KEY
 HTTP_HEAD_VAL_1 = curSite.HTTP_HEAD_VAL_1
 
-IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
+IS_DEBUG_MODE = true	--测试版or发布版（仅作用于脚本层）
 
 
 -----------------------------------------------------------------------------------------

@@ -259,7 +259,7 @@ function UpdateScene:checkUpdate(callback)
 	local writablepath = cc.FileUtils:getInstance():getWritablePath()
 	self._storagepath = writablepath .. "hotupdate/"
 
-	local versionFile = cc.FileUtils:getInstance():fullPathForFilename("version.manifest")
+	local versionFile = cc.FileUtils:getInstance():fullPathForFilename("Assets/version.manifest")
 	if IS_DEBUG_MODE then self:showDebugStr( string.format("storagepath: %s", self._storagepath) ) end
 	if IS_DEBUG_MODE then self:showDebugStr( string.format("versionFile: %s", versionFile) ) end
 	if not cc.FileUtils:getInstance():isFileExist(versionFile) then
@@ -436,7 +436,7 @@ function UpdateScene:downEngine(remotePackageUrl, isForceUpdate)
 end
 
 function UpdateScene:beginUpdate()
-	self._am = cc.AssetsManagerEx:create("project.manifest", self._storagepath)
+	self._am = cc.AssetsManagerEx:create("Assets/project.manifest", self._storagepath)
 	self._am:retain()
 	
 	if not self._am:getLocalManifest():isLoaded() then
@@ -469,12 +469,12 @@ function UpdateScene:updateFinish(bSucc, strErrReason)
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self.progressBarBg)
 	
 	local delayTm = 0.06
-	if IS_DEBUG_MODE then delayTm = 5 end
+	if IS_DEBUG_MODE then delayTm = 55 end
 	local handle
 	handle = cc.Director:getInstance():getScheduler():scheduleScriptFunc( function()
 		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(handle)
-		if cc.FileUtils:getInstance():isFileExist("res/version.manifest") then
-			local json = cc.FileUtils:getInstance():getStringFromFile("res/version.manifest")
+		if cc.FileUtils:getInstance():isFileExist("Assets/version.manifest") then
+			local json = cc.FileUtils:getInstance():getStringFromFile("Assets/version.manifest")
 			local tbVersion = json_decode(json)
 			if tbVersion then
 				self._callback(tbVersion.loadChunkZips)

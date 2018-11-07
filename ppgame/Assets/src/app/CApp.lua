@@ -63,11 +63,11 @@ function ClsApp:Exit()
 		KE_KillTimer(self.tmrCheck) 
 		self.tmrCheck = nil
 	end
-	if device.platform == "ios" then
-		return
-	end
+	
 	profiler:stop()
+	
     cc.Director:getInstance():endToLua()
+    
     if device.platform ~= "android" then
         os.exit()
     end
