@@ -21,7 +21,6 @@ using namespace CocosDenshion;
 #include "cocos2dx_extra.h"
 
 #include "luabinding/cocos2dx_extra_luabinding.h"
-//#include "luabinding/HelperFunc_luabinding.h"
 #include "lua_extensions_more.h"
 #include "auto/lua_xianyou_auto.hpp"
 #include "manual/lua_xianyou_manual.h"
@@ -61,6 +60,7 @@ static void quick_module_register(lua_State *L)
 	lua_pop(L, 1);
 }
 
+//--------------------------------------------------------------------------------
 
 AppDelegate::AppDelegate()
 {

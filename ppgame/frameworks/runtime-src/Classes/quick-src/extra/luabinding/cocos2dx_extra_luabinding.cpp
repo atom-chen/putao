@@ -28,7 +28,6 @@ static void tolua_reg_types(lua_State* tolua_S)
 {
 	tolua_usertype(tolua_S, "cc.Ref");
 	tolua_usertype(tolua_S, "Crypto");
-	tolua_usertype(tolua_S, "Native");
 #if USE_HTTPREQUEST_UPLOAD
     tolua_usertype(tolua_S, "HTTPRequest");
 #endif
