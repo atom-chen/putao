@@ -157,6 +157,30 @@ function KE_ExtendClass(WhichClass)
 	end
 end
 
+function KE_CheckNetConnect(bForce)
+	if not PlatformHelper or not PlatformHelper.isNetworkConnected then return true end
+	
+	local bConnected = PlatformHelper.isNetworkConnected()
+	
+	if bForce then
+		if ClsUIManager then
+			if not bConnected then
+				ClsUIManager.GetInstance():PopConfirmDlg("CFM_NET_STATE", "", "网络连接异常，请检查网络状况", nil, nil, nil, 2)
+			else
+				ClsUIManager.GetInstance():CloseConfirmDlg("CFM_NET_STATE")
+			end
+		end
+	else
+		if not bConnected then
+			if utils and utils.TellMe then
+				utils.TellMe("请检查网络连接是否正常")
+			end
+		end
+	end
+	
+	return bConnected
+end
+
 --------------------------------------------------------------------------------------------
 -- call by engine 
 --------------------------------------------------------------------------------------------
@@ -182,28 +206,4 @@ end
 -- call by engine 
 function batteryChange(sPercent)
 	
-end
-
-function KE_CheckNetConnect(bForce)
-	if not PlatformHelper or not PlatformHelper.isNetworkConnected then return true end
-	
-	local bConnected = PlatformHelper.isNetworkConnected()
-	
-	if bForce then
-		if ClsUIManager then
-			if not bConnected then
-				ClsUIManager.GetInstance():PopConfirmDlg("CFM_NET_STATE", "", "网络连接异常，请检查网络状况", nil, nil, nil, 2)
-			else
-				ClsUIManager.GetInstance():CloseConfirmDlg("CFM_NET_STATE")
-			end
-		end
-	else
-		if not bConnected then
-			if utils and utils.TellMe then
-				utils.TellMe("请检查网络连接是否正常")
-			end
-		end
-	end
-	
-	return bConnected
 end

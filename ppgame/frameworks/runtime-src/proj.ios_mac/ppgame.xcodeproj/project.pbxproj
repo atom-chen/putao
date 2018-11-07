@@ -99,14 +99,8 @@
 		8E89F955217D949D008948EA /* OpenUDIDMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8C3217D949C008948EA /* OpenUDIDMac.m */; };
 		8E89F95A217D949D008948EA /* CCCryptoMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8C7217D949C008948EA /* CCCryptoMac.mm */; };
 		8E89F95B217D949D008948EA /* CCCryptoMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8C7217D949C008948EA /* CCCryptoMac.mm */; };
-		8E89F976217D949D008948EA /* HelperFunc_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8E1217D949C008948EA /* HelperFunc_luabinding.cpp */; };
-		8E89F977217D949D008948EA /* HelperFunc_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8E1217D949C008948EA /* HelperFunc_luabinding.cpp */; };
-		8E89F97E217D949D008948EA /* HelperFunc_luabinding.tolua in Resources */ = {isa = PBXBuildFile; fileRef = 8E89F8E6217D949C008948EA /* HelperFunc_luabinding.tolua */; };
-		8E89F97F217D949D008948EA /* HelperFunc_luabinding.tolua in Resources */ = {isa = PBXBuildFile; fileRef = 8E89F8E6217D949C008948EA /* HelperFunc_luabinding.tolua */; };
 		8E89F984217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8EA217D949C008948EA /* cocos2dx_extra_luabinding.cpp */; };
 		8E89F985217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8EA217D949C008948EA /* cocos2dx_extra_luabinding.cpp */; };
-		8E89F986217D949D008948EA /* HelperFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8EE217D949C008948EA /* HelperFunc.cpp */; };
-		8E89F987217D949D008948EA /* HelperFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8EE217D949C008948EA /* HelperFunc.cpp */; };
 		8E89F98C217D949D008948EA /* fpconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8FB217D949C008948EA /* fpconv.c */; };
 		8E89F98D217D949D008948EA /* fpconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8FB217D949C008948EA /* fpconv.c */; };
 		8E89F98E217D949D008948EA /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F8FE217D949C008948EA /* strbuf.c */; };
@@ -376,7 +370,6 @@
 		8E89F896217D949C008948EA /* SerialBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialBuffer.h; sourceTree = "<group>"; };
 		8E89F897217D949C008948EA /* SerialBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerialBuffer.cpp; sourceTree = "<group>"; };
 		8E89F898217D949C008948EA /* PacketHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketHelper.cpp; sourceTree = "<group>"; };
-		8E89F89B217D949C008948EA /* cocos2dx_extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocos2dx_extra.h; sourceTree = "<group>"; };
 		8E89F89E217D949C008948EA /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		8E89F89F217D949C008948EA /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
 		8E89F8A1217D949C008948EA /* libbase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libbase64.h; sourceTree = "<group>"; };
@@ -386,13 +379,8 @@
 		8E89F8C3217D949C008948EA /* OpenUDIDMac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDIDMac.m; sourceTree = "<group>"; };
 		8E89F8C4217D949C008948EA /* OpenUDIDMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDIDMac.h; sourceTree = "<group>"; };
 		8E89F8C7217D949C008948EA /* CCCryptoMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCCryptoMac.mm; sourceTree = "<group>"; };
-		8E89F8E1217D949C008948EA /* HelperFunc_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelperFunc_luabinding.cpp; sourceTree = "<group>"; };
 		8E89F8E3217D949C008948EA /* cocos2dx_extra_luabinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocos2dx_extra_luabinding.h; sourceTree = "<group>"; };
-		8E89F8E6217D949C008948EA /* HelperFunc_luabinding.tolua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelperFunc_luabinding.tolua; sourceTree = "<group>"; };
-		8E89F8E7217D949C008948EA /* HelperFunc_luabinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperFunc_luabinding.h; sourceTree = "<group>"; };
 		8E89F8EA217D949C008948EA /* cocos2dx_extra_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocos2dx_extra_luabinding.cpp; sourceTree = "<group>"; };
-		8E89F8ED217D949C008948EA /* HelperFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperFunc.h; sourceTree = "<group>"; };
-		8E89F8EE217D949C008948EA /* HelperFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelperFunc.cpp; sourceTree = "<group>"; };
 		8E89F8FA217D949C008948EA /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuf.h; sourceTree = "<group>"; };
 		8E89F8FB217D949C008948EA /* fpconv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fpconv.c; sourceTree = "<group>"; };
 		8E89F8FC217D949C008948EA /* lua_cjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cjson.h; sourceTree = "<group>"; };
@@ -718,11 +706,9 @@
 		8E89F89A217D949C008948EA /* extra */ = {
 			isa = PBXGroup;
 			children = (
-				8E89F89B217D949C008948EA /* cocos2dx_extra.h */,
 				8E89F89C217D949C008948EA /* crypto */,
 				8E89F8A9217D949C008948EA /* platform */,
 				8E89F8E0217D949C008948EA /* luabinding */,
-				8E89F8EC217D949C008948EA /* apptools */,
 			);
 			path = extra;
 			sourceTree = "<group>";
@@ -794,22 +780,10 @@
 		8E89F8E0217D949C008948EA /* luabinding */ = {
 			isa = PBXGroup;
 			children = (
-				8E89F8E1217D949C008948EA /* HelperFunc_luabinding.cpp */,
 				8E89F8E3217D949C008948EA /* cocos2dx_extra_luabinding.h */,
-				8E89F8E6217D949C008948EA /* HelperFunc_luabinding.tolua */,
-				8E89F8E7217D949C008948EA /* HelperFunc_luabinding.h */,
 				8E89F8EA217D949C008948EA /* cocos2dx_extra_luabinding.cpp */,
 			);
 			path = luabinding;
-			sourceTree = "<group>";
-		};
-		8E89F8EC217D949C008948EA /* apptools */ = {
-			isa = PBXGroup;
-			children = (
-				8E89F8ED217D949C008948EA /* HelperFunc.h */,
-				8E89F8EE217D949C008948EA /* HelperFunc.cpp */,
-			);
-			path = apptools;
 			sourceTree = "<group>";
 		};
 		8E89F8F8217D949C008948EA /* lua_extensions */ = {
@@ -1213,7 +1187,6 @@
 				8E89F893217D947E008948EA /* PathFinder.lua in Resources */,
 				C05D1C131923449100B808A4 /* config.json in Resources */,
 				8E403000217D71A30046BD6A /* Assets in Resources */,
-				8E89F97F217D949D008948EA /* HelperFunc_luabinding.tolua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,7 +1194,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E89F97E217D949D008948EA /* HelperFunc_luabinding.tolua in Resources */,
 				15A8A4491834C64F00142BE0 /* Icon-114.png in Resources */,
 				5023811D17EBBCAC00990C9B /* Icon-120.png in Resources */,
 				5091733B17ECE17A00D62437 /* Icon-100.png in Resources */,
@@ -1295,8 +1267,6 @@
 				8E89F9AD217D949D008948EA /* MessageDispatcher.cpp in Sources */,
 				8E89F985217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */,
 				8E89F99B217D949D008948EA /* pb.c in Sources */,
-				8E89F987217D949D008948EA /* HelperFunc.cpp in Sources */,
-				8E89F977217D949D008948EA /* HelperFunc_luabinding.cpp in Sources */,
 				8E89F9B3217D949D008948EA /* NetUtils.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
 				8E89F9A7217D949D008948EA /* Plsocket.cpp in Sources */,
@@ -1348,8 +1318,6 @@
 				8E768D552182C40D007336AD /* MediaTool.m in Sources */,
 				8E89F984217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */,
 				8E89F99A217D949D008948EA /* pb.c in Sources */,
-				8E89F986217D949D008948EA /* HelperFunc.cpp in Sources */,
-				8E89F976217D949D008948EA /* HelperFunc_luabinding.cpp in Sources */,
 				8E89F9B2217D949D008948EA /* NetUtils.cpp in Sources */,
 				8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */,
 				8E768D522182C40D007336AD /* photoGrallery.mm in Sources */,
@@ -1611,6 +1579,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../cocos2d-x/external/curl/prebuilt/ios";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
