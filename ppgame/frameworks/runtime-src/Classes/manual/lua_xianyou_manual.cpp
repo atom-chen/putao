@@ -33,6 +33,7 @@
 #include "utils/NetUtils.h"
 #include "net/MessageDispatcher.h"
 
+//------------------------------------------------------------------------------
 
 static int UTF16ToUTF8(lua_State* tolua_S)
 {
@@ -98,6 +99,7 @@ tolua_lerror :
 #endif
 }
 
+//------------------------------------------------------------------------------
 
 #ifdef __cplusplus
 static int tolua_collect_PacketHelper(lua_State* tolua_S)
@@ -108,7 +110,6 @@ static int tolua_collect_PacketHelper(lua_State* tolua_S)
 }
 #endif
 
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_PacketHelper_create00
 static int tolua_Cocos2d_PacketHelper_create00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -130,9 +131,7 @@ tolua_lerror :
 	return 0;
 #endif
 }
-#endif //#ifndef TOLUA_DISABLE
 
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_PacketHelper_encryptSendPacket00
 static int tolua_Cocos2d_PacketHelper_encryptSendPacket00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -165,10 +164,7 @@ tolua_lerror :
 	return 0;
 #endif
 }
-#endif //#ifndef TOLUA_DISABLE
 
-/* method: sendString of class WebSocket */
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_PacketHelper_pushRecvData00
 static int tolua_Cocos2d_PacketHelper_pushRecvData00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -197,9 +193,7 @@ tolua_lerror :
 	return 0;
 #endif
 }
-#endif //#ifndef TOLUA_DISABLE
 
-#ifndef TOLUA_DISABLE_tolua_Cocos2d_PacketHelper_popRecvPaket00
 static int tolua_Cocos2d_PacketHelper_popRecvPaket00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
@@ -232,8 +226,6 @@ tolua_lerror :
 	return 0;
 #endif
 }
-#endif //#ifndef TOLUA_DISABLE
-
 
 TOLUA_API int tolua_packet_helper_open(lua_State* tolua_S){
 
@@ -269,7 +261,7 @@ TOLUA_API int register_packet_helper_manual(lua_State* tolua_S){
 	return 1;
 }
 
-
+//------------------------------------------------------------------------------
 
 static int tolua_Custom_XLog_start00(lua_State* tolua_S){
 	XLog::getInstance()->start();
@@ -361,6 +353,8 @@ TOLUA_API int register_Custom_XLog(lua_State* tolua_S){
 	luaL_register(tolua_S, "XLog", _reg);
 	return 1;
 }
+
+//------------------------------------------------------------------------------
 
 int lua_xianyou_MessageDispatcher_sendMessageToServer00(lua_State* tolua_S)
 {
