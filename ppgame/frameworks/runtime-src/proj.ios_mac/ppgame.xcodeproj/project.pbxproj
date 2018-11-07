@@ -53,6 +53,8 @@
 		8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */; };
 		8E402FFF217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
 		8E403000217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
+		8E5FDD9F2192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
+		8E5FDDA02192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
 		8E768D4C2182C40D007336AD /* OSInfoUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D302182C40D007336AD /* OSInfoUtils.mm */; };
 		8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D312182C40D007336AD /* ScreenUtils.mm */; };
 		8E768D4E2182C40D007336AD /* SalmonUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D322182C40D007336AD /* SalmonUtils.mm */; };
@@ -314,6 +316,8 @@
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		8E402FF8217D71A30046BD6A /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../Assets; sourceTree = "<group>"; };
+		8E5FDD9D2192DBF6008BD8F5 /* CurlAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurlAsset.h; sourceTree = "<group>"; };
+		8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurlAsset.cpp; sourceTree = "<group>"; };
 		8E768D302182C40D007336AD /* OSInfoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSInfoUtils.mm; sourceTree = "<group>"; };
 		8E768D312182C40D007336AD /* ScreenUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScreenUtils.mm; sourceTree = "<group>"; };
 		8E768D322182C40D007336AD /* SalmonUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SalmonUtils.mm; sourceTree = "<group>"; };
@@ -574,6 +578,16 @@
 				5023811217EBBCAC00990C9B /* Icon-76.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		8E5FDD9C2192DBF6008BD8F5 /* curlhttp */ = {
+			isa = PBXGroup;
+			children = (
+				8E5FDD9D2192DBF6008BD8F5 /* CurlAsset.h */,
+				8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */,
+			);
+			name = curlhttp;
+			path = ../Classes/curlhttp;
 			sourceTree = "<group>";
 		};
 		8E768D2F2182C40D007336AD /* Utils */ = {
@@ -996,6 +1010,7 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E5FDD9C2192DBF6008BD8F5 /* curlhttp */,
 				8E89F9BA217D94A8008948EA /* xian_you.h */,
 				8E89F914217D949C008948EA /* manual */,
 				8E89F917217D949D008948EA /* net */,
@@ -1274,6 +1289,7 @@
 				8E89F9AF217D949D008948EA /* int64.cpp in Sources */,
 				8E89F98D217D949D008948EA /* fpconv.c in Sources */,
 				8E89F9B7217D949D008948EA /* KKLabelFT2.cpp in Sources */,
+				8E5FDDA02192DBF6008BD8F5 /* CurlAsset.cpp in Sources */,
 				8E89F999217D949D008948EA /* lua_zlib.c in Sources */,
 				8E89F95B217D949D008948EA /* CCCryptoMac.mm in Sources */,
 				8E89F9A5217D949D008948EA /* SocketThread.cpp in Sources */,
@@ -1317,6 +1333,7 @@
 				8E89F9AC217D949D008948EA /* MessageDispatcher.cpp in Sources */,
 				8E768D552182C40D007336AD /* MediaTool.m in Sources */,
 				8E89F984217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */,
+				8E5FDD9F2192DBF6008BD8F5 /* CurlAsset.cpp in Sources */,
 				8E89F99A217D949D008948EA /* pb.c in Sources */,
 				8E89F9B2217D949D008948EA /* NetUtils.cpp in Sources */,
 				8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */,

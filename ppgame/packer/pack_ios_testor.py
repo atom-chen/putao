@@ -38,7 +38,8 @@ projectManifestPath = outDir + "/project.manifest"    #由此脚本生成的proj
 
 rootPath = os.path.split(os.path.realpath(__file__))[0]
 new_env = os.environ.copy()
-engineRoot = os.path.abspath(os.path.join(os.getcwd(), ".."))
+#engineRoot = os.path.abspath(os.path.join(os.getcwd(), ".."))
+engineRoot = os.path.abspath(os.path.join(os.getcwd(), "../../../yicai/ycgame"))
 
 from_src = "../Assets/src"
 from_res = "../Assets/res"
