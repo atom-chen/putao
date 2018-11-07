@@ -182,6 +182,42 @@ function UpdateScene:initView()
 	self.ImgFirstPage:setContentSize(GAME_CONFIG.SCREEN_W, GAME_CONFIG.SCREEN_H)
 	self.ImgFirstPage:setScale(GAME_CONFIG.DESIGN_W/GAME_CONFIG.SCREEN_W)
 	
+	g_cur_scene = self._curScene
+	
+	local yOffset = 0
+	if CUR_SITE_NAME == "yicaile" then
+		yOffset = -30
+	elseif CUR_SITE_NAME == "zhongcai" then
+		yOffset = -170
+	elseif CUR_SITE_NAME == "yibo" then
+		yOffset = -70
+	elseif CUR_SITE_NAME == "guocai" then
+		yOffset = 0
+	elseif CUR_SITE_NAME == "yicaiwang" then
+		yOffset = -20
+	elseif CUR_SITE_NAME == "kaicai" then
+		yOffset = -160
+	elseif CUR_SITE_NAME == "yicaitang" then
+		yOffset = -170
+	elseif CUR_SITE_NAME == "k8ycy" then
+		yOffset = -160
+	elseif CUR_SITE_NAME == "quanmin" then
+		yOffset = -170
+	elseif CUR_SITE_NAME == "zongcai64" then
+		yOffset = 180
+	elseif CUR_SITE_NAME == "cai7" then
+		yOffset = 0
+	elseif CUR_SITE_NAME == "dabaojiang" then
+		yOffset = -80
+	elseif CUR_SITE_NAME == "aicai" then
+		yOffset = 260
+	elseif CUR_SITE_NAME == "xincai" then
+		yOffset = -170
+	end
+	self.progressBarBg:setPositionY(215+yOffset)
+	self.progressBar:setPositionY(216+yOffset)
+	self.updateTip:setPositionY(193+yOffset)
+	
 	-- 调试界面
 	if IS_DEBUG_MODE then
 		local dbgView = ccui.ScrollView:create()
@@ -206,8 +242,6 @@ function UpdateScene:initView()
 		self.lblDbg = lblDbg
 		self.dbgView = dbgView
 	end
-	
-	g_cur_scene = self._curScene
 end
 
 function UpdateScene:checkUpdate(callback)

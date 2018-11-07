@@ -3,9 +3,9 @@
        "isLandscape": true,
        "isWindowTop": false,
        "name": "ppgame",
-       "width": 1280,
-       "height": 720,
-       "entry": "src/main.lua",
+       "width": 720,
+       "height": 1280,
+       "entry": "src/laucher/main.lua",
        "consolePort": 6050,
        "uploadPort": 6060
     },

@@ -68,7 +68,7 @@ function ClsApp:Exit()
 	end
 	profiler:stop()
     cc.Director:getInstance():endToLua()
-    if device.platform == "windows" or device.platform == "mac" then
+    if device.platform ~= "android" then
         os.exit()
     end
 end
