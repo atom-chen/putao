@@ -469,7 +469,7 @@ function UpdateScene:updateFinish(bSucc, strErrReason)
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self.progressBarBg)
 	
 	local delayTm = 0.06
-	if IS_DEBUG_MODE then delayTm = 55 end
+	if IS_DEBUG_MODE then delayTm = 5 end
 	local handle
 	handle = cc.Director:getInstance():getScheduler():scheduleScriptFunc( function()
 		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(handle)
@@ -524,6 +524,7 @@ function UpdateScene:onUpdateEvent(event)
 		
 	elseif eventCode == cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED then
 		if IS_DEBUG_MODE then self:showDebugStr( string.format("更新失败 UPDATE_FAILED %s", self.updateFailedCount) ) end
+		if IS_DEBUG_MODE then self:showDebugStr(string.format("文件下载失败(%d): assetId->%s, percent->%d, percentByFile->%s, message->%s", eventCode, assetId, percent, percentByFile, message)) end
 		if self.updateFailedCount == FAIL_TRY_COUNT then
 			-- 如果有的文件更新失败,重试更新FAIL_TRY_COUNT次
 			MsgBox:show(self._curScene, 10, "更新失败", "请确保网络顺畅和存储空间充足后重试", function(index)

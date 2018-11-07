@@ -931,7 +931,7 @@
       "md5": "40a5e2a0ac23e5a7c8c361fac3735d98"
     }, 
     "Assets/src/app.zip": {
-      "md5": "a3fa5df3b6a3010b100fa80797d8e405"
+      "md5": "9aab19b62539c2b8bc0259e4b5e2bb1b"
     }, 
     "Assets/src/cocos.zip": {
       "md5": "36343d664b10ad8d5904511c626798ee"
@@ -940,7 +940,7 @@
       "md5": "924d633166e3345d423e2a580c7a207b"
     }, 
     "Assets/src/laucher.zip": {
-      "md5": "ad356f25f37a8e3140492de1e878bb37"
+      "md5": "17f8f70fbc59a63047db525d08314a82"
     }, 
     "Assets/src/lib.zip": {
       "md5": "571c68b51737b124a8d6cf7fa963509c"
@@ -960,5 +960,5 @@
   "remotePackageUrl": "", 
   "remoteVersionUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/version.manifest", 
   "searchPaths": [], 
-  "version": "1.1.1"
+  "version": "1.1.0"
 }

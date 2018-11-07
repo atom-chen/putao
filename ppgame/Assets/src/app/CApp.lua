@@ -69,7 +69,7 @@ function ClsApp:Exit()
     cc.Director:getInstance():endToLua()
     
     if device.platform ~= "android" then
-        os.exit()
+        os.exit(0)
     end
 end
 
