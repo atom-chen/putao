@@ -366,8 +366,14 @@ function clsAgentJuniorOpen:on_req_agent_invite_code_list(recvdata, tArgs)
     for i,v in ipairs(invite_codes) do
         self.ListView_1:pushBackDefaultItem()
         local Btn = self.ListView_1:getItem(i-1)
+        if v.type == 2 or v.type=="2" then
+            Btn:getChildByName("type"):setString("代理")
+        else
+            Btn:getChildByName("type"):setString("用户")
+        end
+      --  utils.TellMe("===="..v.type..type(v.type))
         Btn:getChildByName("invite_code"):setString(v.invite_code)
-        Btn:getChildByName("time"):setString(os.date( "%Y-%m-%d %H:%M:%S", tonumber(v.addtime) ) or "")
+        Btn:getChildByName("time"):setString(os.date( "%Y-%m-%d", tonumber(v.addtime) ) or "")
         Btn:getChildByName("num"):setString("注册("..v.register_num..")")
         utils.RegClickEvent(Btn,function()
             ClsAgentDataMgr.GetInstance():SaveCode(v)

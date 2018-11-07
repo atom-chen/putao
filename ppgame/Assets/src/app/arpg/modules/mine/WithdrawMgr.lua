@@ -1,4 +1,5 @@
 ClsWithdrawMgr = class("ClsWitehdrawMgr",clsCoreObject)
+ClsWithdrawMgr.__is_singleton = true
 
 function ClsWithdrawMgr:ctor()
     clsCoreObject.ctor(self)

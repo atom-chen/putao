@@ -102,7 +102,7 @@ function ClsGameMgr:ReqAllWanfaData()
 										subP:Done() 
 									end)
 								end)
-								self._taskProcedure:SetNext(subProcdure)
+								if self._taskProcedure then self._taskProcedure:SetNext(subProcdure) end 
 								break
 							end
 						else
@@ -120,7 +120,7 @@ function ClsGameMgr:ReqAllWanfaData()
 										subP:Done() 
 									end)
 								end)
-								self._taskProcedure:SetNext(subProcdure)
+								if self._taskProcedure then self._taskProcedure:SetNext(subProcdure) end
 								break
 							end
 						end
@@ -131,12 +131,12 @@ function ClsGameMgr:ReqAllWanfaData()
 					Procedure:Done() 
 				end)
 			end)
-			self._taskProcedure:SetNext(procedure)
+			if self._taskProcedure then self._taskProcedure:SetNext(procedure) end
 		end
 	end
 	
 	if not self._bTaskPaused then
-		self._taskProcedure:Run()
+		if self._taskProcedure then self._taskProcedure:Run() end
 	else
 		self:SetTaskPaused(self._bTaskPaused)
 	end

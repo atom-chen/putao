@@ -12,8 +12,8 @@ function clsGouCaiView:ctor(parent)
 	self.ScrollView_1:setScrollBarEnabled(false)
 	
 	self._hithSpr = utils.CreateScale9Sprite(RES_CONFIG.common_black)
-	self._hithSpr:setContentSize(150, self.ListViewGameType:getContentSize().height)
-	self._hithSpr:setPosition(75, self.ListViewGameType:getContentSize().height/2)
+	self._hithSpr:setContentSize(160, self.ListViewGameType:getContentSize().height)
+	self._hithSpr:setPosition(80, self.ListViewGameType:getContentSize().height/2)
 	self._hithSpr:retain()
 	
 	self:InitUiEvents()
@@ -64,7 +64,7 @@ end
 
 function clsGouCaiView:CreateGameTypeBtn(info)
 	logger.dump(info)
-	local wid, hei = 150, self.ListViewGameType:getContentSize().height
+	local wid, hei = 160, self.ListViewGameType:getContentSize().height
 	
 	local BtnGameType = ccui.Button:create()
 	BtnGameType:setScale9Enabled(true)
@@ -72,19 +72,19 @@ function clsGouCaiView:CreateGameTypeBtn(info)
 	
 	local lblName = utils.CreateLabel(info.cnname, 24)
 	BtnGameType:addChild(lblName,1)
-	lblName:setPosition(wid/2, 22)
+	lblName:setPosition(wid/2, 42)
 	lblName:setColor(cc.c3b(222,222,222))
 	BtnGameType.lblName = lblName
 	
 	local imgGameIcon = ccui.ImageView:create()
 	BtnGameType:addChild(imgGameIcon,1)
-	imgGameIcon:setPosition(wid/2, 70)
+	imgGameIcon:setPosition(wid/2, 100)
 	BtnGameType.imgGameIcon = imgGameIcon
 	imgGameIcon:setScale9Enabled(false)
 	imgGameIcon:setContentSize(64,64)
 	imgGameIcon:ignoreContentAdaptWithSize(false)
 	local iconPath = info.img
-	local selectPath = info.img
+	local selectPath = info.img2
 	if const.GAME_TYPE[info.cptype] then
 		iconPath = string.format("uistu/icon/%s.png", const.GAME_TYPE[info.cptype].icon_name)
 		selectPath = string.format("uistu/icon/%s_1.png", const.GAME_TYPE[info.cptype].icon_name)
@@ -104,7 +104,8 @@ function clsGouCaiView:InitListViewGameType(data)
 	local listWnd = self.ListViewGameType
 	listWnd:removeAllItems()
 	
-	local btnTypeAll = self:CreateGameTypeBtn({cnname="全部", img="uistu/common/navigate1.png"})
+    --local btnTypeAll = self:CreateGameTypeBtn({cnname="全部", img="uistu/common/navigate1.png"})
+	local btnTypeAll = self:CreateGameTypeBtn({cnname="全部", img="uistu/icon/icon_more.png", img2 ="uistu/icon/icon_more_1.png"})
 	listWnd:pushBackCustomItem(btnTypeAll)
 	local alltypes = {}
 	
@@ -180,7 +181,8 @@ function clsGouCaiView:RefleshContent(infotbl)
 	local totalWid = 720
 	local gridSize = totalWid / COL
 	local btnSize = gridSize - 3
-	local totalHei = math.max(hei + gridSize * ROW, self.ScrollView_1:getContentSize().height)
+    local btnSizeHei = btnSize + 7
+	local totalHei = math.max(hei + (gridSize+7) * ROW, self.ScrollView_1:getContentSize().height)
 	self.ScrollView_1:setInnerContainerSize(cc.size(totalWid,totalHei))
 	totalHei = self.ScrollView_1:getInnerContainerSize().height
 --	self.ListView_1:setPosition(0,totalHei)
@@ -188,12 +190,12 @@ function clsGouCaiView:RefleshContent(infotbl)
 	
 	for idx=1, cnt do 
 		local info = infolist[idx]
-		local BtnGame = self:CreateGameBtn(btnSize,btnSize,info.name,info.every_time,info.img)
+		local BtnGame = self:CreateGameBtn(btnSize,btnSizeHei,info.name,info.every_time,info.img)
 		self.ScrollView_1:addChild(BtnGame)
 		local r = math.ceil(idx/COL)
 		local c = idx%COL
 		if c == 0 then c=COL end
-		BtnGame:setPosition( c*gridSize-gridSize/2, leftHei-(r*gridSize-gridSize/2) )
+		BtnGame:setPosition( c*gridSize-gridSize/2, leftHei-(r*(gridSize+7)-gridSize/2) )
 		
 		utils.RegClickEvent(BtnGame, function()
 			ClsGameMgr.GetInstance():OpenGame(tonumber(info.gid), info.type, info.name)

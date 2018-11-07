@@ -238,11 +238,11 @@ function CreateRichText(parent, sContent)
 	return newobj
 end
 
-function CreateLabel(str, fontSize, fontColor)
+function CreateLabel(str, fontSize, fontColor, bForceSys)
 	local font = const.FONT_CFG(fontSize)
 	local label
-	if cc.FileUtils:getInstance():isFileExist(font.fontFilePath) then
-		label = cc.Label:createWithTTF(font, str)
+	if not bForceSys and cc.FileUtils:getInstance():isFileExist(font.fontFilePath) then
+		label = cc.Label:createWithTTF(font, str or "")
 		if label and fontColor then
 			label:setColor(fontColor)
 		end

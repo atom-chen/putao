@@ -9,12 +9,12 @@ function clsGameSscView:ctor(parent,gameArg)
 	clsBaseUI.ctor(self, parent, "uistu/GameSSC.csb")
 	self.ScrollViewGame = self.AreaAuto
 	self.EditMoney = utils.ReplaceTextField(self.EditMoney)
-	self.EditMoney:setInputMode(cc.EDITBOX_INPUT_MODE_NUMERIC)
+	self.EditMoney:setInputMode(cc.EDITBOX_INPUT_MODE_DECIMAL)
 	if const.MAX_BET_LENGTH then self.EditMoney:setMaxLength(const.MAX_BET_LENGTH) end
 	self.ScrollViewGame:setScrollBarWidth(5)
 	self.ScrollViewGame:setScrollBarPositionFromCorner(cc.p(2,2)) 
 	
-	ClsLayerManager.GetInstance():SetKeyboardAniDelegate({self.AreaBottom})
+	ClsLayerManager.GetInstance():SetKeyboardAniDelegate({self.AreaBottom},40)
 	
 	self._diceList = {}
 	self._btnFeatureList = {}
@@ -94,19 +94,40 @@ function clsGameSscView:InitUiEvents()
 		end)
 	end)
 	self.EditMoney:registerScriptEditBoxHandler(function(evenName, sender)
-		local money = tonumber(self.EditMoney:getString()) or 0
 		if evenName == "return" then 
-			money = math.floor(money) or 0
-			if money <= 0 then money = 0 end
-			if const.MAX_BET_MONEY and money > const.MAX_BET_MONEY then 
-				money = const.MAX_BET_MONEY 
-				utils.TellMe("下注额不得高于："..const.MAX_BET_MONEY) 
+			local money = self.EditMoney:getString() or ""
+			if money ~= "" then
+				local pos = string.find(money, "%.")
+				if pos then
+					money = string.sub(money, 1, pos+1)
+				end
+				money = tonumber(money) or 0
+				if money <= 0 then money = 0 end
+				if const.MAX_BET_MONEY and money > const.MAX_BET_MONEY then 
+					money = const.MAX_BET_MONEY 
+					utils.TellMe("下注额不得高于："..const.MAX_BET_MONEY) 
+				end
+				if const.MIN_BET_MONEY and money < const.MIN_BET_MONEY then
+					money = const.MIN_BET_MONEY
+				end
+				if money <= 0 then money = "" end
+				self.EditMoney:setString(money)
 			end
-			if money <= 0 then money = "" end
-			self.EditMoney:setString(money)
 		elseif evenName == "changed" then
-			if const.MAX_BET_MONEY and money > const.MAX_BET_MONEY then
+			local fixMoney = self.EditMoney:getString() or ""
+			
+			local money = tonumber(fixMoney) or 0
+			if const.MAX_BET_MONEY and  money > const.MAX_BET_MONEY then
 				utils.TellMe("下注额不得高于："..const.MAX_BET_MONEY)
+			end
+			
+			local pos = string.find(fixMoney, "%.")
+			if pos then
+				fixMoney = string.sub(fixMoney, 1, pos+1)
+			end
+			if fixMoney ~= self.EditMoney:getString() then
+				self:DestroyTimer("chgmony")
+				self:CreateTimerDelay("chgmony", 1, function() self.EditMoney:setString(fixMoney) end)
 			end
 		end
 		self:OnSelectBallChanged()
@@ -539,12 +560,12 @@ function clsGameSscView:OnSelectBallChanged()
 	local preSize = self.ScrollViewGame:getInnerContainerSize()
 	if betCount > 0 then
         self.BtnBet:setTouchEnabled(true)
-        self.BtnBet:setColor(cc.c3b(255,255,255))
+        --self.BtnBet:setColor(cc.c3b(255,255,255))
 		--self.WndSelectInfo:setVisible(true)
 		--self.ScrollViewGame:setContentSize(cc.size(preSize.width,self:GetAdaptInfo().hAuto))
 	else
         self.BtnBet:setTouchEnabled(false)
-        self.BtnBet:setColor(cc.c3b(77,77,77))
+        --self.BtnBet:setColor(cc.c3b(77,77,77))
 		--self.WndSelectInfo:setVisible(false)
 		--self.ScrollViewGame:setContentSize(cc.size(preSize.width,self:GetAdaptInfo().hAuto+self.WndSelectInfo:getContentSize().height))
 	end
@@ -586,7 +607,12 @@ function clsGameSscView:ClearSelectedBalls()
 end
 
 function clsGameSscView:GetCost()
-	local cost = self.EditMoney:getString() or ""
-	cost = tonumber(cost) or 0
+	local money = self.EditMoney:getString() or ""
+	local pos = string.find(money, "%.")
+	if pos then
+		money = string.sub(money, 1, pos+1)
+	end
+	
+	local cost = tonumber(money) or 0
 	return cost
 end

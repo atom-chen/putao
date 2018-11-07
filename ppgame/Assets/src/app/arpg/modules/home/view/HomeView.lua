@@ -237,13 +237,14 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 	local anounceHei = self.BtnNotice:getContentSize().height--+2
 	local totalWid = 720
 	local gridSize = totalWid / COL
+    local gridSizeHei = gridSize - 30
 	local btnSize = gridSize - 2
-	local totalHei = math.max(listHei + anounceHei + gridSize * ROW, self.ScrollView_1:getContentSize().height) + 1
+	local totalHei = math.max(listHei + anounceHei + gridSizeHei * ROW, self.ScrollView_1:getContentSize().height) + 40
 	self.ScrollView_1:setInnerContainerSize(cc.size(totalWid,totalHei))
 	totalHei = self.ScrollView_1:getInnerContainerSize().height
 	self.PageView_1:setPosition(0,totalHei)
-	self.BtnNotice:setPositionY(self.PageView_1:getPositionY()-self.PageView_1:getContentSize().height-1)
-	local leftHei = totalHei - listHei - anounceHei - 1
+	self.BtnNotice:setPositionY(self.PageView_1:getPositionY()-self.PageView_1:getContentSize().height)
+	local leftHei = totalHei - listHei - anounceHei - 40
 	if self._dots then
 		local totalPage = #self._dots
 		for i, obj in pairs(self._dots) do
@@ -261,10 +262,10 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 		if utils.IsValidCCObject(BtnGame) then
 			BtnGame.imgGameIcon:LoadTextureSync(gameicon)
 			BtnGame.lblName:setString(info.name)
-            print("++++++++++++++++++++++++++++++++"..info.name)
-			BtnGame.lblZhouqi:setString(info.every_time)
+            
+			BtnGame.lblZhouqi:setString(info.every_time or "")
 		else
-			BtnGame = self:CreateGameBtn(btnSize,btnSize, info.name,info.every_time, gameicon)
+			BtnGame = self:CreateGameBtn(btnSize,btnSize-30, info.name,info.every_time, gameicon)
 			self.ScrollView_1:addChild(BtnGame)
 		end
 		self._gridBtnList[idx] = BtnGame
@@ -272,7 +273,7 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 		local r = math.ceil(idx/COL)
 		local c = idx%COL
 		if c == 0 then c=COL end
-		BtnGame:setPosition( c*gridSize-gridSize/2, leftHei-(r*gridSize-gridSize/2) )
+		BtnGame:setPosition( c*gridSize-gridSize/2, leftHei-(r*gridSizeHei-gridSize/2) )
 		
 		utils.RegClickEvent(BtnGame, function()
 			self._redbagClosed = false
@@ -286,7 +287,7 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 	
 	--
 	if not utils.IsValidCCObject(self.BtnMore) then
-		self.BtnMore = self:CreateGameBtn(btnSize,btnSize,"更多彩种","","uistu/icon/icon_add.png")
+		self.BtnMore = self:CreateGameBtn(btnSize,btnSize-30,"更多彩种","","uistu/icon/icon_add.png")
 		self.ScrollView_1:addChild(self.BtnMore)
 		utils.RegClickEvent(self.BtnMore, function()
 			ClsUIManager.GetInstance():GetWindow("clsHallUI"):SwitchTo(2)
@@ -296,7 +297,7 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 	local r = math.ceil(idx/COL)
 	local c = idx%COL
 	if c == 0 then c=COL end
-	self.BtnMore:setPosition( c*gridSize-gridSize/2, leftHei-(r*gridSize-gridSize/2) )
+	self.BtnMore:setPosition( c*gridSize-gridSize/2, leftHei-(r*gridSizeHei-gridSize/2) )
 end
 
 function clsHomeView:CreateGameBtn(wid, hei, name, every_time, img)
@@ -307,14 +308,14 @@ function clsHomeView:CreateGameBtn(wid, hei, name, every_time, img)
 	local lblZhouqi = utils.CreateLabel(every_time, 22)
     lblZhouqi:setAdditionalKerning(3)
 	BtnGame:addChild(lblZhouqi)
-	lblZhouqi:setPosition(wid/2, 45)
+	lblZhouqi:setPosition(wid/2, 35)
 	lblZhouqi:setColor(cc.c3b(99,99,99))
 	BtnGame.lblZhouqi = lblZhouqi
 	
 	local lblName = utils.CreateLabel(name, 28)
     lblName:setAdditionalKerning(5)
 	BtnGame:addChild(lblName)
-	lblName:setPosition(wid/2, 85)
+	lblName:setPosition(wid/2, 75)
 	lblName:setColor(cc.c3b(22,22,22))
 	BtnGame.lblName = lblName
 	

@@ -10,21 +10,65 @@ end
 
 --获取支付通道信息
 function on_req_pay_get_pay_channel_info(recvdata)
-	
+	HttpUtil.g_pay_url = recvdata and recvdata.data and recvdata.data.pay_url
 end
 
 --提交支付
 function on_req_pay_commit(recvdata, tArgs)	
+	dump(tArgs)
 --	utils.TellMe("充值申请提交成功",4)
 	proto.req_user_balance()
 	local data = recvdata and recvdata.data
 	if data then
 		if tArgs._client_jump == false then
 			ClsUIManager.GetInstance():DestroyWindow("clsRechargeCommit2")
-			ClsUIManager.GetInstance():DestroyWindow("clsRecharge22Commit")
 			ClsUIManager.GetInstance():ShowPanel("clsRechargeOver", tArgs)
 		else
-			PlatformHelper.openURL(data.url or "") 
+			if tArgs and tArgs._client_data then
+				local info1 = tArgs._client_data.info1
+				local info2 = tArgs._client_data.info2
+				local money = tArgs._client_data.money
+				
+				local param = {}
+				param.id = info2.id
+				param.code = info2.code
+				param.money = money
+				param.from_way = const.FROMWAY
+				
+				if data.jump == 4 or data.jump == "4" then
+					KE_SetTimeout(1, function()
+						proto.req_get_game_article_content({id="13", param=param})
+						local wnd = ClsUIManager.GetInstance():ShowPanel("clsRechargeScan", {
+							info1 = info1,
+							info2 = info2,
+							name = info2.name,
+							money = money,
+						})
+						wnd:RefleshQRCode(data.img)
+						wnd:TellForbit()
+					end)
+				elseif data.jump == 3 or data.jump == "3" then
+					KE_SetTimeout(1, function()
+						proto.req_get_game_article_content({id="13", param=param})
+						local wnd = ClsUIManager.GetInstance():ShowPanel("clsRechargeScan", {
+							info1 = info1,
+							info2 = info2,
+							name = info2.name,
+							money = money,
+						})
+						wnd:RefleshQRCode(data.img)
+						wnd:TellForbit()
+					end)
+				else
+					if data.url and data.url ~= "" then
+						PlatformHelper.openURL(data.url or "") 
+					end 
+				end
+			else
+				if data.url and data.url ~= "" then
+					PlatformHelper.openURL(data.url or "") 
+				end 
+			end
 		end
 	end
 end

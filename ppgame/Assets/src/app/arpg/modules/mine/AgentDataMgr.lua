@@ -1,5 +1,5 @@
 ClsAgentDataMgr = class ("ClsAgentDataMgr",clsCoreObject)
-
+ClsAgentDataMgr.__is_singleton = true
 
 function ClsAgentDataMgr:ctor()
     clsCoreObject.ctor(self)

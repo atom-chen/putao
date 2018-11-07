@@ -9,7 +9,7 @@ clsRegistUI2 = class("clsRegistUI2", clsBaseUI)
 
 function clsRegistUI2:ctor(parent)
 	clsBaseUI.ctor(self, parent, "uistu/RegistUI2.csb")
-	
+	self.Text_13:setTextColor(cc.c3b(0,0,0))
 	self.WndRegist:setPositionY(self.AreaAuto:getContentSize().height/2+45)
 	--self.PanelRed:setContentSize(self.PanelRed:getContentSize().width, self.AreaAuto:getContentSize().height/2-45)
 	
@@ -115,7 +115,13 @@ function clsRegistUI2:InitUiEvents()
 		self:removeSelf()
 		ClsUIManager.GetInstance():ShowPopWnd("clsLoginUI4")
 	end)
-	
+	utils.RegClickEvent(self.Button_2,function()
+        PlatformHelper.openURL(ClsHomeMgr.GetInstance():GetHomeConfigData().online_service)
+    end)
+    --开户协议
+    utils.RegClickEvent(self.Btn_agreement,function()
+        ClsUIManager.GetInstance():ShowPopWnd("clsAgreement")
+    end)
     utils.RegClickEvent(self.BtnEyePwd,function()
         self.EditRegPassWord:ToggleSensitive()
         self.BtnEyePwd:getChildByName("eyesee"):setVisible(not self.EditRegPassWord:IsSensitive())
@@ -190,6 +196,33 @@ function clsRegistUI2:InitUiEvents()
 	utils.RegClickEvent(self.Button_Service,function()
 		PlatformHelper.openURL(ClsHomeMgr.GetInstance():GetHomeConfigData().online_service)
 	end)
+    self:DestroyTimer("BtnColor")
+    self:CreateTimerLoop("BtnColor",4,function()
+        local bYzm = false
+        local bRealName = false
+        local bInviteCode = false
+        if (ClsLoginMgr.GetInstance():RegistNeedYzm() and self.EditRegYzm:getString()~="") or (not ClsLoginMgr.GetInstance():RegistNeedYzm() and self.EditRegYzm:getString()=="") then
+            bYzm = true
+        else
+            bYzm = false
+        end
+        if (ClsLoginMgr.GetInstance():RegistNeedRealname() and self.EditRegYourName:getString()~="") or (not ClsLoginMgr.GetInstance():RegistNeedRealname() and self.EditRegYourName:getString()=="") then
+            bRealName = true
+        else
+            bRealName = false
+        end
+        if (ClsLoginMgr.GetInstance():RegistNeedInvitecode() and self.EditRegYzm:getString() ~= "") or (not ClsLoginMgr.GetInstance():RegistNeedInvitecode() and self.EditRegYzm:getString() == "") then
+            bInviteCode = true
+        else
+            bInviteCode = false
+        end
+        if bYzm and bRealName and bInviteCode then
+            if self.EditRegUserName:getString()~="" and self.EditRegPassWord:getString()~="" and self.EditRegPassword2:getString()~="" and self.chkAgree:isSelected() then
+                self.BtnRegist:setColor(cc.c3b(255,0,0))
+                self.Text_13:setTextColor(cc.c3b(255,255,255))
+            end
+        end
+    end)
 end
 
 function clsRegistUI2:IsNeedYzm()

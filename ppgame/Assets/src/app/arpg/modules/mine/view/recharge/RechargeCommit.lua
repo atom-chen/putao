@@ -98,6 +98,11 @@ function clsRechargeCommit:AskPay(bank_style, money, info1, info2)
 	param.from_way = const.FROMWAY
 	
 	param._client_jump = false
+	param._client_data = {}
+	param._client_data.info1 = info1
+	param._client_data.info2 = info2
+	param._client_data.money = money
+	
 	proto.req_pay_commit(param)
 end
 

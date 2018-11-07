@@ -27,10 +27,23 @@ function ClsLayerManager:SetKeyboardAniDelegate(objList, fixHeight)
 	self._keyboardFixHeight = fixHeight
 end
 
+function ClsLayerManager:StopFixLayer()
+	local aniObjs = self._keyboardAniDelegates or self.tAllLayers
+	for _, obj in pairs(aniObjs) do
+		if not tolua.isnull(obj) then
+			obj:stopAllActions()
+		end
+	end
+end
+
+local MAXKBDH = 0
 function ClsLayerManager:FixLayerPos(Hei, duration)
 	local aniObjs = self._keyboardAniDelegates or self.tAllLayers
+	MAXKBDH = math.max(MAXKBDH or 0, SalmonUtils:getKeyboardHei() or 0)
 	if Hei > 0 and self._keyboardAniDelegates and self._keyboardFixHeight then
-		Hei = Hei + self._keyboardFixHeight
+		Hei = MAXKBDH + self._keyboardFixHeight
+	elseif Hei > 0 and self._keyboardAniDelegates then
+		Hei = MAXKBDH
 	end
 	duration = duration or 0
 	

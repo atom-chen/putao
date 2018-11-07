@@ -51,39 +51,37 @@ function clsScene:InitSystemKeyboard()
 	
 	local listener = cc.EventListenerCustom:create("sys_keyboard_willshow", function(event)
 		local height = SalmonUtils:getAdjustHei()
-		KE_SetTimeout(1, function()
-		--	utils.TellMe("键盘即将弹起 "..height)
-			if height > 0 then
+		if height > 0 then 
+			ClsLayerManager.GetInstance():StopFixLayer()
+			KE_SetTimeout(1, function()
 				ClsLayerManager.GetInstance():FixLayerPos(height+50, 0.2)
-			end
-		end)
+			end)
+		end
 	end )
 	eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
 
 	local listener = cc.EventListenerCustom:create("sys_keyboard_didshow", function(event)
 		local height = SalmonUtils:getAdjustHei()
-		KE_SetTimeout(1, function()
-		--	utils.TellMe("键盘已经弹起 "..height)
-			if height > 0 then
-			--	ClsLayerManager.GetInstance():FixLayerPos(height+50)
-			end
-		end)
+		if height > 0 then 
+			ClsLayerManager.GetInstance():StopFixLayer()
+			KE_SetTimeout(1, function()
+				ClsLayerManager.GetInstance():FixLayerPos(height+50)
+			end)
+		end
 	end )
 	eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
 
 	local listener = cc.EventListenerCustom:create("sys_keyboard_willhide", function(event)
-		local height = SalmonUtils:getKeyboardHei()
+		ClsLayerManager.GetInstance():StopFixLayer()
 		KE_SetTimeout(1, function()
-		--	utils.TellMe("键盘即将隐藏 "..height)
 			ClsLayerManager.GetInstance():FixLayerPos(0, 0.2)
 		end)
 	end )
 	eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
 
 	local listener = cc.EventListenerCustom:create("sys_keyboard_didhide", function(event)
-		local height = SalmonUtils:getKeyboardHei()
+		ClsLayerManager.GetInstance():StopFixLayer()
 		KE_SetTimeout(1, function()
-			--    utils.TellMe("键盘已经隐藏 "..height)
 			ClsLayerManager.GetInstance():FixLayerPos(0)
 		end)
 	end )

@@ -1,6 +1,19 @@
 -------------------------
 -- 应用类
 -------------------------
+local cjson = require("cjson")
+
+local function json_decode(text)
+	local status, result = pcall(cjson.decode, text)
+	if status then return result end
+end
+
+local function json_encode(var)
+	local status, result = pcall(cjson.encode, var)
+	if status then return result end
+end
+
+
 ClsApp = class("ClsApp")
 ClsApp.__is_singleton = true
 
@@ -46,11 +59,18 @@ function ClsApp:InitAppEvents()
 end
 
 function ClsApp:Exit()
+	if self.tmrCheck then
+		KE_KillTimer(self.tmrCheck) 
+		self.tmrCheck = nil
+	end
+	if device.platform == "ios" then
+		return
+	end
 	profiler:stop()
     cc.Director:getInstance():endToLua()
-    if device.platform ~= "android" then
-    	os.exit(0)
-    end 
+    if device.platform == "windows" or device.platform == "mac" then
+        os.exit()
+    end
 end
 
 function ClsApp:GetModFileList()
@@ -75,6 +95,14 @@ function ClsApp:GetModFileList()
 		"app.VVDirector",			-- 游戏总管理器
 	}
 	
+--	if ENGINE_BUILD_TYPE == 1 then
+--		table.insert(ModFileList, "app.xiaoxiaole.init")
+--	elseif ENGINE_BUILD_TYPE == 3 then
+--		table.insert(ModFileList, "app.disstar.init")
+--	elseif ENGINE_BUILD_TYPE == 4 then
+--	--	table.insert(ModFileList, "app.airplane.init")
+--	end
+
 	return ModFileList
 end 
 
@@ -135,7 +163,28 @@ function ClsApp:OnPreloadOver()
 	
 	--
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
-	self:runGame()
+--	if ENGINE_BUILD_TYPE == 1 then
+--		self:runXiaoxiaole()
+--	elseif ENGINE_BUILD_TYPE == 3 then
+--		self:runDisStar()
+--	elseif ENGINE_BUILD_TYPE == 4 then
+--		self:runFeiji()
+--	else
+		self:runGame()
+--	end
+end
+
+function ClsApp:runXiaoxiaole()
+	xiaoxiaole.kGameCache():load()
+	ClsSceneManager.GetInstance():Turn2Scene("clsXiaoxiaoleEntryScene")
+end
+
+function ClsApp:runDisStar()
+    ClsSceneManager.GetInstance():Turn2Scene("clsStartScene")
+end
+
+function ClsApp:runFeiji()
+    ClsSceneManager.GetInstance():Turn2Scene("clsPlaneScene")
 end
 
 --游戏
@@ -214,6 +263,109 @@ function ClsApp:runGame()
 	end)
 	
 	ClsStateMachine.GetInstance():StartUp()
+	
+	self.tmrCheck = self.tmrCheck or KE_SetAbsInterval(60, function() self:CheckHotUpdate() end)
 end
 
-
+local function string_split(input, delimiter)
+	input = tostring(input)
+	delimiter = tostring(delimiter)
+	if (delimiter == '') then return false end
+	local pos, arr = 0, { }
+	-- for each divider found
+	for st, sp in function() return string.find(input, delimiter, pos, true) end do
+		table.insert(arr, string.sub(input, pos, st - 1))
+		pos = sp + 1
+	end
+	table.insert(arr, string.sub(input, pos))
+	return arr
+end
+function ClsApp:CheckHotUpdate()
+	local versionFile = cc.FileUtils:getInstance():fullPathForFilename("version.manifest")
+	if not cc.FileUtils:getInstance():isFileExist(versionFile) then
+		print("本地版本文件不存在")
+		return
+	end
+	
+	local versionJson = cc.FileUtils:getInstance():getStringFromFile(versionFile)
+	local tbLocalVersionManifest = json_decode(versionJson)
+	if not tbLocalVersionManifest then
+		print("加载本地版本文件失败")
+		return
+	end
+	
+	local remoteVersionUrl = tbLocalVersionManifest["remoteVersionUrl"]
+	
+	local xhr = cc.XMLHttpRequest:new()
+	xhr.timeout = 10
+	xhr.responseType = cc.XMLHTTPREQUEST_RESPONSE_STRING
+	xhr:open("GET", remoteVersionUrl)
+	local function onReadyStateChange()
+		if xhr.readyState == 4 and(xhr.status >= 200 and xhr.status < 207) then
+			if xhr.status ~= 200 then
+				print( string.format("获取远程版本失败: %s", remoteVersionUrl) )
+			else
+				local tbVersionManifest = json_decode(xhr.response)
+				if tbVersionManifest and tbVersionManifest.version then
+					local isForceUpdate = tbVersionManifest.isForceUpdate
+					local remotePackageUrl = tbVersionManifest.remotePackageUrl
+					local remoteVersion = tbVersionManifest.version
+					local localVersion = tbLocalVersionManifest.version
+					local tbRemote = string_split(remoteVersion, ".")
+					local tbLocal = string_split(localVersion, ".")
+					
+					if #tbRemote == 3 and #tbLocal == 3 then
+						local iRemote1 = tonumber(tbRemote[1])
+						local iRemote2 = tonumber(tbRemote[2])
+						local iRemote3 = tonumber(tbRemote[3])
+						local iLocal1 = tonumber(tbLocal[1])
+						local iLocal2 = tonumber(tbLocal[2])
+						local iLocal3 = tonumber(tbLocal[3])
+					
+						if iRemote1 == iLocal1 and iRemote2 == iLocal2 then
+							-- 检查热更
+							if iRemote3 > iLocal3 then
+								print( string.format("需要进行热更: %s --> %s", localVersion, remoteVersion) )
+								ClsUIManager.GetInstance():PopConfirmDlg("CFM_HOTUPDATE", "提示", "检测到APP更新，请重启更新", function(mnuId)
+									if mnuId == 1 then
+										self:Exit()
+									end
+								end) 
+							else
+								print( string.format("不需要进行热更: %s --> %s", localVersion, remoteVersion) )
+							end
+						else
+							-- 检查引擎
+							if iRemote1 < iLocal1 then
+								print("已经是最新版本")
+								return 
+							elseif iRemote1 == iLocal1 then
+								if iRemote2 < iLocal2 then
+									print("已经是最新版本")
+									return
+								end
+							end
+							if not remotePackageUrl or remotePackageUrl == "" then
+								print("已经是最新版本")
+								return 
+							end
+							ClsUIManager.GetInstance():PopConfirmDlg("CFM_HOTUPDATE", "提示", "检测到APP更新，请重启更新", function(mnuId)
+								if mnuId == 1 then
+									self:Exit()
+								end
+							end) 
+						end
+					else
+						print("版本格式错误,终止热更")
+					end
+				else
+					print("不存在版本号,终止热更")
+				end
+			end
+		else
+			print("获取远程版本失败")
+		end
+	end
+	xhr:registerScriptHandler(onReadyStateChange)
+	xhr:send()
+end

@@ -1,11 +1,12 @@
 ClsRechargeRecoMgr = class("ClsRechargeRecoMgr",clsCoreObject)
+ClsRechargeRecoMgr.__is_singleton = true
 
 function ClsRechargeRecoMgr:ctor()
     clsCoreObject.ctor(self)
     self.RechargeRecord = {}
     self.RechargeDetail = {}
     self.RechargeDate = {}
-    self.RechargeType = 0
+    
     self.RechargeRecharge = {}
 end
 
@@ -33,14 +34,24 @@ function ClsRechargeRecoMgr:GetRechargeDate()
     return self.RechargeDate
 end
 
-function ClsRechargeRecoMgr:SaveRechargeType(data)
-    self.RechargeType = data
-end
+------------------- 充值流程 -----------------------------------
+--[[
+  / 内部网页 */
+  public static final int JUMP_MODE_WEB_INNER = 1;
+  / 银行卡转账 */
+  public static final int JUMP_MODE_BANK = 2;
+  / 公众号扫码 */
+  public static final int JUMP_MODE_QRCODE_PUBLIC = 3;
+  / 个人扫码 */
+  public static final int JUMP_MODE_QRCODE_PERSONAL = 4;
+  /** 外部网页 */
+  public static final int JUMP_MODE_WEB_OUTER = 5;
 
-function ClsRechargeRecoMgr:GetRechargeType()
-    return self.RechargeType
-end
 
+1. type == bank 跳转银行卡支付
+2. 4和2直接跳转。
+3. 其它调用 /pay/pay/pay_do 支付接口再确定跳转。
+]]
 function ClsRechargeRecoMgr:SaveRechargeRecharge(data)
     self.RechargeRecharge = data
 end

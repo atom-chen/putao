@@ -119,10 +119,10 @@ function clsLoginUI4:AdjustUI()
 			curOpt.comp:setVisible(false)
 		end
 	end
-	curY = curY - count*100-100
+	curY = curY - count*100-140
 	self.BtnLogon:setPositionY(curY)
---	self.BtnForgetSec:setPositionY(curY-77)
---	self.BtnHitRegist:setPositionY(curY-77)
+	self.BtnForgetSec:setPositionY(curY-97)
+	self.BtnHitRegist:setPositionY(curY-97)
 	
 	if self:IsNeedYzm() then
 		local cacheDir, cachePath = ClsLoginMgr.GetInstance():GetYzmPath()

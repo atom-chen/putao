@@ -4,11 +4,11 @@
 module("ui", package.seeall)
 
 clsRechargeView2 = class("clsRechargeView2", clsBaseUI)
-
-function clsRechargeView2:ctor(parent, info1)
+local mmm = 0
+function clsRechargeView2:ctor(parent, rechargeIdx)
 	clsBaseUI.ctor(self, parent, "uistu/RechargeView2.csb")
-	--self.curIndex = ClsRechargeRecoMgr.GetInstance():GetRechargeType() or 0
-    self.curIndex = info1
+	
+    self.curIndex = rechargeIdx
 	self.EditorMoney = utils.ReplaceTextField(self.EditorMoney,"","ff000000")
     self.editBindName = utils.ReplaceTextField(self.editBindName,"","ff000000")
 	self.EditorMoney:setInputMode(cc.EDITBOX_INPUT_MODE_DECIMAL)
@@ -41,7 +41,6 @@ function clsRechargeView2:ctor(parent, info1)
 	KE_SafeDelete(self.ListItem3)
 	self.ListItem3 = nil
 	
-	--self.ListView1:setScrollBarEnabled(false)
 	self.ListView2:setScrollBarEnabled(false)
 	self.ListView3:setScrollBarEnabled(false)
 	
@@ -110,14 +109,21 @@ function clsRechargeView2:InitUiEvents()
     self.EditorMoney:registerScriptEditBoxHandler(function(evenName, sender)
         if evenName == "changed" then
             tabGroup:SetSelectedTabSlient( tonumber(self.EditorMoney:getString()) )
+            local data1 = tonumber(self.EditorMoney:getString())
+            if data1 then
+                data1 = string.format("%0.2f", data1)
+                mmm = data1
+            end
         elseif evenName == "began" then 
             self.MoneyVisible:setVisible(false)
         elseif evenName == "return" then
             local data = tonumber(self.EditorMoney:getString())
             if data then
-                data = data - data%0.01
+                data = string.format("%0.2f", data)
+                mmm=data
                 self.EditorMoney:setString(data)
             else
+                self.EditorMoney:setString("")
                 self.MoneyVisible:setVisible(true)
             end
         end
@@ -153,8 +159,6 @@ end
 
 -- 注册全局事件
 function clsRechargeView2:InitGlbEvents()
-	--g_EventMgr:AddListener(self, "on_req_user_info", self.RefleshUI, self)
-	--g_EventMgr:AddListener(self, "on_req_user_balance", self.RefleshUI, self)
     g_EventMgr:AddListener(self,"RechargeOver",function()
         self:removeSelf()
     end,self)
@@ -164,7 +168,7 @@ function clsRechargeView2:InitGlbEvents()
 		local str = self.EditorMoney:getString()
         if str~="" then
             str = tonumber(str)
-            if math.floor(str) < str then
+            if str and math.floor(str) < str then
                 self.Money_notice:setVisible(false)
             else
                 self.Money_notice:setVisible(true)
@@ -183,223 +187,137 @@ function clsRechargeView2:on_req_pay_get_pay_channel_info(recvdata)
 	local data = recvdata and recvdata.data
 	if not data then return end
 	
+	local curIndex = self.curIndex
+	local info1 = data.zhifu[curIndex]
 	
-	self.ListView1:removeAllItems()
-	
-	--self.ListView1:addEventListener(function(sender, eventType)
-        --if ccui.ListViewEventType.ONSELECTEDITEM_END == eventType then
-    if self.curIndex ~= 0 then
-		local curIndex = self.curIndex - 1
-		local selectedItem = curIndex and self.ListView1:getItem(curIndex)
-		
-		local allitems = self.ListView1:getChildren()
-		for i, wnd in ipairs(allitems or {}) do
-			wnd.spr9:setVisible(i-1==curIndex)
-			wnd.lblName:setColor(i-1==curIndex and cc.c3b(255,0,0) or cc.c3b(255,255,255))
+	if info1.type == "bank" then
+		self.ListView2:setVisible(false)
+		self.ListView3:setVisible(true)
+		self.ListView3:removeAllItems()
+		for i, info2 in ipairs(info1.list) do
+			self.ListView3:pushBackDefaultItem()
+			local item = self.ListView3:getItem(i-1)
+				
+			item:getChildByName("lblBankName"):setString(info2.bank_name)
+			item:getChildByName("lblBindName"):setString(info2.name)
+			item:getChildByName("lblKaihuHang"):setString(info2.card_address)
+			item:getChildByName("lblCardNum"):setString(info2.num)
+				
+			utils.RegClickEvent(item, function()
+				local money = self.EditorMoney:getString()
+				money = tonumber(money)
+				if not money or money < 0 then
+					utils.TellMe("请输入有效的充值额度")
+					return
+				end
+
+                if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
+                    utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
+					return
+                end
+				
+                if not self._selectedBtn then
+			        utils.TellMe("请选择转账方式")
+			        return 
+		        end
+		        
+                local bindName = self.editBindName:getString()
+	            if not bindName or bindName == "" then
+		            utils.TellMe("请输入存款人姓名")
+		            return
+	            end
+                ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(mmm, info1, info2, self._selectedBtn.id, bindName)
+			end)
 		end
-		
-		if data.zhifu[curIndex+1].type == "bank" then
-			self.ListView2:setVisible(false)
-			self.ListView3:setVisible(true)
-			self.ListView3:removeAllItems()
-			for i, info2 in ipairs(data.zhifu[curIndex+1].list) do
-				self.ListView3:pushBackDefaultItem()
-				local item = self.ListView3:getItem(i-1)
+	elseif info1.type == "wy" then
+		self.ListView2:setVisible(true)
+		self.ListView3:setVisible(false)
+		self.ListView2:removeAllItems()
+		for i, info2 in ipairs(info1.list) do
+			self.ListView2:pushBackDefaultItem()
+			local item = self.ListView2:getItem(i-1)
 				
-				item:getChildByName("lblBankName"):setString(info2.bank_name)
-				item:getChildByName("lblBindName"):setString(info2.name)
-				item:getChildByName("lblKaihuHang"):setString(info2.card_address)
-				item:getChildByName("lblCardNum"):setString(info2.num)
-				
-				utils.RegClickEvent(item, function()
-				--	self:AskPay(selectedItem._info1, info2)
-					local money = self.EditorMoney:getString()
-					money = tonumber(money)
-					if not money or money < 0 then
-						utils.TellMe("请输入有效的充值额度")
-						return
-					end
+			local imgGameIcon = item:getChildByName("ImgBankLogo")
+			imgGameIcon:setScale9Enabled(false)
+			imgGameIcon:setContentSize(80,80)
+			imgGameIcon:ignoreContentAdaptWithSize(false)
+			imgGameIcon:LoadTextureSync(info2.img)
+			local bindName = self.editBindName:getString()
+--			if not bindName or bindName == "" then
+--				utils.TellMe("请输入存款人姓名")
+--				return
+--			end
+			item:getChildByName("lblBank1"):setString(info2.name)
+			item:getChildByName("lblBank2"):setString("")
+			item:getChildByName("lblBank1"):setPositionY(item:getContentSize().height/2)
+			utils.RegClickEvent(item, function()
+				local money = self.EditorMoney:getString()
+				money = tonumber(money)
+				if not money or money < 0 then
+					utils.TellMe("请输入有效的充值额度")
+					return
+				end
 
-                    if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
-                        utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
-						return
-                    end
-					--ClsUIManager.GetInstance():ShowPanel("clsRechargeCommit"):SetParams(self.EditorMoney:getString(), selectedItem._info1, info2)
-                    if not self._selectedBtn then
-			            utils.TellMe("请选择转账方式")
-			            return 
-		            end
-                    local bindName = self.editBindName:getString()
-	                if not bindName or bindName == "" then
-		                utils.TellMe("请输入存款人姓名")
-		                return
-	                end
-                    ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(self.EditorMoney:getString(), data.zhifu[self.curIndex], info2,self._selectedBtn.id,bindName)
-                    --ClsUIManager.GetInstance():ShowPanel("clsRechargeCommit2"):SetParams(self.EditorMoney:getString(), data.zhifu[self.curIndex], info2,self._selectedBtn.id,bindName)
-				end)
-			end
-		elseif data.zhifu[curIndex+1].type == "wy" then
-			self.ListView2:setVisible(true)
-			self.ListView3:setVisible(false)
-			self.ListView2:removeAllItems()
-			for i, info2 in ipairs(data.zhifu[curIndex+1].list) do
-				self.ListView2:pushBackDefaultItem()
-				local item = self.ListView2:getItem(i-1)
-				
-				local imgGameIcon = item:getChildByName("ImgBankLogo")
-				imgGameIcon:setScale9Enabled(false)
-				imgGameIcon:setContentSize(80,80)
-				imgGameIcon:ignoreContentAdaptWithSize(false)
-                imgGameIcon:LoadTextureSync(info2.img)
+				if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
+					utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
+					return
+				end
+					
+				if not self._selectedBtn then
+					utils.TellMe("请选择转账方式")
+					return 
+				end
+		            
 				local bindName = self.editBindName:getString()
---	            if not bindName or bindName == "" then
---		            utils.TellMe("请输入存款人姓名")
---		            return
---	            end
-				item:getChildByName("lblBank1"):setString(info2.name)
-				item:getChildByName("lblBank2"):setString("")
-				item:getChildByName("lblBank1"):setPositionY(item:getContentSize().height/2)
-				utils.RegClickEvent(item, function()
-                    local money = self.EditorMoney:getString()
-					money = tonumber(money)
-					if not money or money < 0 then
-						utils.TellMe("请输入有效的充值额度")
-						return
-					end
-
-                    if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
-                        utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
-						return
-                    end
-					--ClsUIManager.GetInstance():ShowPanel("clsRechargeCommit"):SetParams(self.EditorMoney:getString(), selectedItem._info1, info2)
-                    if not self._selectedBtn then
-			            utils.TellMe("请选择转账方式")
-			            return 
-		            end
-                    local bindName = self.editBindName:getString()
-	                if not bindName or bindName == "" then
-		                utils.TellMe("请输入存款人姓名")
-		                return
-	                end
-                    ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(self.EditorMoney:getString(), data.zhifu[self.curIndex], info2,self._selectedBtn.id,bindName)
-                    --self:AskPay(data.zhifu[self.curIndex], info2)
-					--self:AskPay(selectedItem._info1, info2)
-				end)
-			end
-		else
-			self.ListView2:setVisible(true)
-			self.ListView3:setVisible(false)
-			self.ListView2:removeAllItems()
-			for i, info2 in ipairs(data.zhifu[curIndex+1].list) do
-				self.ListView2:pushBackDefaultItem()
-				local item = self.ListView2:getItem(i-1)
-				
-				local imgGameIcon = item:getChildByName("ImgBankLogo")
-				imgGameIcon:setScale9Enabled(false)
-				imgGameIcon:setContentSize(80,80)
-				imgGameIcon:ignoreContentAdaptWithSize(false)
-                imgGameIcon:LoadTextureSync(info2.img)
-				local bindName = self.editBindName:getString()
-				item:getChildByName("lblBank1"):setString(info2.title)
-				item:getChildByName("lblBank2"):setString(info2.Prompt)
-				utils.RegClickEvent(item, function()
-                    local money = self.EditorMoney:getString()
-					money = tonumber(money)
-					if not money or money < 0 then
-						utils.TellMe("请输入有效的充值额度")
-						return
-					end
-
-                    if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
-                        utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
-						return
-                    end
-					--ClsUIManager.GetInstance():ShowPanel("clsRechargeCommit"):SetParams(self.EditorMoney:getString(), selectedItem._info1, info2)
-                    if not self._selectedBtn then
-			            utils.TellMe("请选择转账方式")
-			            return 
-		            end
-                    local bindName = self.editBindName:getString()
-	                if not bindName or bindName == "" then
-		                utils.TellMe("请输入存款人姓名")
-		                return
-	                end
-                    ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(self.EditorMoney:getString(), data.zhifu[self.curIndex], info2,self._selectedBtn.id,bindName)
-				end)
-			end
+				if not bindName or bindName == "" then
+					utils.TellMe("请输入存款人姓名")
+					return
+				end
+				ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(self.EditorMoney:getString(), info1, info2, self._selectedBtn.id, bindName)
+			end)
 		end
-    end
-		--end 
-    --end)
-    
-    --self.ListView1:setCurSelectedIndex(0)
-end
-
-function clsRechargeView2:AskPay(info1, info2)
-	local money = self.EditorMoney:getString()
-	money = tonumber(money)
-	if not money or money < 0 then
-		utils.TellMe("请输入有效的充值额度")
-		return
-	end
-	if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
-        utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
-		return
-    end
-	local param = {}
-	param.id = info2.id
-	param.code = info2.code
-	param.money = money
-	param.from_way = const.FROMWAY
-    param.name = self.editBindName:getString()
-    if param.name == "" then
-        utils.TellMe("姓名不可为空")
-    end
-	
-	if info2.jump_mode == 1 or info2.jump_mode == "1" then
-		proto.req_get_game_article_content({id="13", param=param})
-		ClsUIManager.GetInstance():ShowPanel("clsRechargeScan", {
-			info1 = info1,
-			info2 = info2,
-			name = info2.name,
-			money = money,
-		})
 	else
-		proto.req_pay_commit(param)
-	end
-end
+		self.ListView2:setVisible(true)
+		self.ListView3:setVisible(false)
+		self.ListView2:removeAllItems()
+		for i, info2 in ipairs(info1.list) do
+			self.ListView2:pushBackDefaultItem()
+			local item = self.ListView2:getItem(i-1)
+				
+			local imgGameIcon = item:getChildByName("ImgBankLogo")
+			imgGameIcon:setScale9Enabled(false)
+			imgGameIcon:setContentSize(80,80)
+			imgGameIcon:ignoreContentAdaptWithSize(false)
+			imgGameIcon:LoadTextureSync(info2.img)
+			local bindName = self.editBindName:getString()
+			item:getChildByName("lblBank1"):setString(info2.title)
+			item:getChildByName("lblBank2"):setString(info2.Prompt)
+			utils.RegClickEvent(item, function()
+				local money = self.EditorMoney:getString()
+				money = tonumber(money)
+				if not money or money < 0 then
+					utils.TellMe("请输入有效的充值额度")
+					return
+				end
 
-function clsRechargeView2:AskQuickPay(info1, info2)
-	local money = self.EditorMoney:getString()
-	money = tonumber(money)
-	if not money or money < 0 then
-		utils.TellMe("请输入有效的充值额度")
-		return
+				if money < tonumber(info2.catm_min) or money > tonumber(info2.catm_max) then
+					utils.TellMe("充值金额的范围，最低"..info2.catm_min..",最高"..info2.catm_max)
+					return
+				end
+					
+				if not self._selectedBtn then
+					utils.TellMe("请选择转账方式")
+					return 
+				end
+		            
+				local bindName = self.editBindName:getString()
+				if not bindName or bindName == "" then
+					utils.TellMe("请输入存款人姓名")
+					return
+				end
+	                
+				ClsUIManager.GetInstance():ShowPopWnd("clsRechargeNotice"):RefreshUI(self.EditorMoney:getString(), info1, info2, self._selectedBtn.id, bindName)
+			end)
+		end
 	end
-	
-	local param = {}
-	param.id = info2.id
-	param.code = info2.code
-	param.bank_type = info2.bank_type
-	param.money = money
-	--
-	param.cardNo = ""
-	param.cardType = 1
-	param.cardName = UserEntity.GetInstance():Get_bank_name() or ""
-	param.idCardNo = ""
---	param.cnv2 = ""
---	param.validData = ""
-	param.step = 1
-	proto.req_pay_quick_pay_step1(param)
-end
-
-function clsRechargeView2:randomfloat()
-    local num = math.random() * 100
-    num = math.floor(num)
-    if num == 0 then
-        return 0.85
-    end
-    local num1 = num/100
-    local num2 = math.floor(num1)
-    return num1 - num2
 end

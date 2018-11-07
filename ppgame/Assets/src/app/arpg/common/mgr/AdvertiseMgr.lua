@@ -100,7 +100,7 @@ function ClsAdvertiseMgr:CreatePushorWnd(info1)
 	htmlText:setContentSize(600, 300)
 	htmlText:setString(info1.content)
 	
-	bg:setContentSize( 600, 50+math.min(htmlText:getRealHeight(),300) )
+	bg:setContentSize( 600, 50+htmlText:getRealHeight() )
 	title:setPosition(bg:getContentSize().width/2,bg:getContentSize().height)
 	
 	htmlText:setReRenderCallback(function()

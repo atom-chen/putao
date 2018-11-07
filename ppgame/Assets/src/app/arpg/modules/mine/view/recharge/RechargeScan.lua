@@ -29,6 +29,11 @@ function clsRechargeScan:ctor(parent, param)
 		end
 	end)
 	utils.RegClickEvent(self.BtnSure, function()
+		if self.forbitCommit then 
+			self:removeSelf() 
+			g_EventMgr:FireEvent("RechargeOver")
+			return 
+		end
 		proto.req_pay_commit(self._param)
 	end)
 	utils.RegClickEvent(self.BtnScan, function()
@@ -96,6 +101,14 @@ end
 
 function clsRechargeScan:dtor()
 	
+end
+
+function clsRechargeScan:TellForbit()
+	self.forbitCommit = true
+end
+
+function clsRechargeScan:RefleshQRCode(imgpath)
+	self.qrImg:LoadTextureSync(imgpath)
 end
 
 function clsRechargeScan:quitListener()

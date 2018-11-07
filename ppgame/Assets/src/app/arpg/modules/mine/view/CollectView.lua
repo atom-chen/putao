@@ -43,9 +43,11 @@ function clsCollectView:ChangeDelState(bStateDel)
 	else
 		self.BtnDel:setTitleText("删除")
 		for _, item in ipairs(allitems) do
+			item:getChildByName("CheckBox_1"):setSelected(false)
 			item:getChildByName("CheckBox_1"):setVisible(false)
             item:setTouchEnabled(true)
 		end
+		self.BtnSelectAll:setTitleText("全选")
 		self.BtnSelectAll:setVisible(false)
 		self.BtnSure:setVisible(false)
 	end
@@ -67,8 +69,22 @@ function clsCollectView:InitUiEvents()
 	end)
 	utils.RegClickEvent(self.BtnSelectAll, function() 
 		local allitems = self.ListView_1:getItems() or {}
+		local bAllSel = true
 		for _, item in ipairs(allitems) do
-			item:getChildByName("CheckBox_1"):setSelected(true)
+			if not item:getChildByName("CheckBox_1"):isSelected() then
+				bAllSel = false
+				break
+			end
+		end
+		
+		if bAllSel then
+			self.BtnSelectAll:setTitleText("全选")
+		else 
+			self.BtnSelectAll:setTitleText("取消")
+		end
+		
+		for _, item in ipairs(allitems) do
+			item:getChildByName("CheckBox_1"):setSelected(not bAllSel)
 		end
 	end)
 	utils.RegClickEvent(self.BtnSure, function() 

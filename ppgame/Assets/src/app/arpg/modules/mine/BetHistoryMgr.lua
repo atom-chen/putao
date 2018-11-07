@@ -1,4 +1,5 @@
 ClsBetHistoryMgr = class("ClsBetHistoryMgr",clsCoreObject)
+ClsBetHistoryMgr.__is_singleton = true
 
 function ClsBetHistoryMgr:ctor()
     clsCoreObject.ctor(self)

@@ -25,6 +25,9 @@ function clsWithdrawView:InitUiEvents()
     utils.RegClickEvent(self.Button_2,function () 
         ClsUIManager.GetInstance():ShowPanel("clsWithdrawRecord")
     end)
+    utils.RegClickEvent(self.Button_1,function()
+        PlatformHelper.openURL(ClsHomeMgr.GetInstance():GetHomeConfigData().online_service)
+    end)
     utils.RegClickEvent(self.BtnNext,function () 
     	local cnt = self.EditDrawMoney:getString()
     	cnt = tonumber(cnt)
@@ -92,10 +95,10 @@ function clsWithdrawView:RefleshUI(recvdata)
     self.lblBankName:setString(data.bank_name)
     self.lblBankNum:setString(data.bank_num)
 
-	self.lblBalance:setString(data.balance .. "元")
-	self.lblCandraw:setString(data.out_balance .. "元")
-	self.lblFreelines:setString(data.w_dml .. "元")
-	self.lblShouxufei:setString(data.all_fee)
+	self.lblBalance:setString((data.balance or 0) .. "元")
+	self.lblCandraw:setString((data.out_balance or 0) .. "元")
+	self.lblFreelines:setString((data.w_dml or 0) .. "元")
+	self.lblShouxufei:setString(data.all_fee or 0)
 	
     
     --布局调整
@@ -107,7 +110,7 @@ function clsWithdrawView:RefleshUI(recvdata)
 			"④ 单笔提现最低"..data.out_min.."元，最高"..data.out_max.."元。\n\n",
 			"⑤ 如有任何问题请及时联系24小时在线客服。",
 		}
-	    self.Text_33:setString(table.concat(tbTip))
+	    --self.Text_33:setString(table.concat(tbTip))
     else
     	local tbTip = {
 			"① 24小时无限次数提现。\n\n",
@@ -115,7 +118,7 @@ function clsWithdrawView:RefleshUI(recvdata)
 			"③ 单笔提现最低"..data.out_min.."元，最高"..data.out_max.."元。\n\n",
 			"④ 如有任何问题请及时联系24小时在线客服。",
 		}
-	    self.Text_33:setString(table.concat(tbTip))
+	    --self.Text_33:setString(table.concat(tbTip))
 	    
 	    if utils.IsValidCCObject(self.Panel4) then
 	    	self.AreaAuto:removeItem(self.AreaAuto:getIndex(self.Panel4))

@@ -6,10 +6,12 @@ function clsRechargeRecharge:ctor(parent)
     self.ListView_1:setSwallowTouches(false)
     self.ListView_1:setScrollBarEnabled(false)
     self.AreaAuto:setScrollBarEnabled(false)
-    proto.req_user_balance()
-    proto.req_pay_get_pay_channel_info()
+    
     self:InitGlbEvents()
     self:InitUiEvents()
+    
+    proto.req_user_balance()
+    proto.req_pay_get_pay_channel_info()
 end
 
 function clsRechargeRecharge:ForceAdapt()
@@ -46,10 +48,13 @@ end
 
 function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
     ClsRechargeRecoMgr.GetInstance():SaveRechargeRecharge(recvdata)
+    
     local data = recvdata and recvdata.data
     if not data then return end
-    self.ListView_1:removeAllItems()
+    
     ClsUIManager.GetInstance():ShowPopWnd("clsAnounceWnd"):RefleshUI(data.is_bomb_box.bomb_box)
+    
+    self.ListView_1:removeAllItems()
     for idx, infol in ipairs(data.zhifu) do
 		local item = self.ListItem1:clone()
         item:setSwallowTouches(false)
@@ -58,7 +63,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/wnds/bank.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView2", idx)
             end)
         elseif infol.type == "wx" then
@@ -66,7 +70,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/wnds/wx.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView", idx)
             end)
         elseif infol.type == "zfb" then
@@ -74,7 +77,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/wnds/zfb.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView", idx)
             end)
         elseif infol.type == "wy" then
@@ -82,7 +84,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/wnds/unionpay.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView", idx)
             end)
         elseif infol.type == "other" then
@@ -90,7 +91,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/wnds/other.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView", idx)
             end)
         else
@@ -98,7 +98,6 @@ function clsRechargeRecharge:on_req_pay_get_pay_channel_info(recvdata)
             item:getChildByName("ImgBankLogo"):loadTexture("uistu/common/null.png")
             item:getChildByName("lblBank2"):setString("单笔最低"..infol.list[1].catm_min.."元，最高"..infol.list[1].catm_max.."元")
             utils.RegClickEvent(item,function()
-                ClsRechargeRecoMgr.GetInstance():SaveRechargeType(idx)
                 ClsUIManager.GetInstance():ShowPanel("clsRechargeView", idx)
             end)
         end

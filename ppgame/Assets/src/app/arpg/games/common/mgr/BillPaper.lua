@@ -86,11 +86,42 @@ function clsBillPaper:DelBall(ballId)
 		end
 	end
 end
+function clsBillPaper:compute(cost,gameObj)
+    local _ttids = {0}
+    local _tmoney = {0}
+    --将玩法的tid号统计，避免重复的tid号
+    for _,info in ipairs(self._tBillObjList) do
+        for c,v in ipairs(_ttids) do
+            if info.tid ~= v then
+                table.insert(_ttids,info.tid)
+            end
+        end
+    end
+    --统计每个tid号的最大赔率
+    for _,info in ipairs(self._tBillObjList) do
+        for c,v in ipairs(_ttids) do
+            if info.tid == v then
+                local xx = gameObj:CalculatePeiLv(info.ball_list[1]) * cost
+                if not _tmoney[v] then
+                    _tmoney[v] = xx
+                elseif xx > _tmoney[v] then
+                    _tmoney[v] = xx
+                end
+            end
+        end
+    end
+    local mm = 0
+    for _,info in pairs (_tmoney) do
+        mm = mm + info
+    end
+    return mm
+end
 
 function clsBillPaper:AddBall(cost, ball, gameObj, bShowTips)
 	local gid = gameObj:GetGid()
 	local tid = ball.tid
 	local combInfo = gameObj:GetBallCombineInfo(tid)
+
 	if not combInfo then
 		logger.error("球组数据尚未返回", ball.tid)
 		if bShowTips then
@@ -100,7 +131,6 @@ function clsBillPaper:AddBall(cost, ball, gameObj, bShowTips)
 	end
 	local billType, onceCnt, maxCnt = combInfo.billType, combInfo.onceCnt, combInfo.maxCnt
 	local billObj = self:FindBillObjByTid(tid)
-	
 	if billObj then
 		local flag, tipStr = billObj:AddBall(cost, ball, gameObj)
 		if not flag then
@@ -116,7 +146,6 @@ function clsBillPaper:AddBall(cost, ball, gameObj, bShowTips)
 				utils.TellMe(tipStr)
 			end
 		end
-		
 		return flag
 	else
 		billObj = clsBetBill.new(gid, tid, billType, onceCnt, maxCnt, cost)
@@ -126,7 +155,6 @@ function clsBillPaper:AddBall(cost, ball, gameObj, bShowTips)
 		else
 			if bShowTips then utils.TellMe(tipStr) end
 		end
-		
 		return flag
 	end
 end

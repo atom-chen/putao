@@ -8,8 +8,8 @@ function clsLoginScene:ctor()
 	
 	ClsUIManager.GetInstance():ShowView("clsLoginUI4").BtnClose:setVisible(false)
 	
---	require("test.testResource").TestRenderTex(self)
---	require("test.testFuncs").testContainerInterface(self)
+--	require("app.test.testResource").TestRenderTex(self)
+--	require("app.test.testFuncs").testContainerInterface(self)
 end
 
 function clsLoginScene:dtor()

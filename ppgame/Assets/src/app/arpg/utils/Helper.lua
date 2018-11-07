@@ -8,12 +8,12 @@ function MarkAllLoaded(listWnd)
 	if not utils.IsValidCCObject(listWnd.markAllLoaded) then
 		local sz = listWnd:getContentSize()
 		listWnd.markAllLoaded = ccui.Layout:create()
-		listWnd.markAllLoaded:setContentSize(sz.width, 46)
+		listWnd.markAllLoaded:setContentSize(sz.width, 66)
 		listWnd.markAllLoaded:setBackGroundColorType(1)
 		listWnd.markAllLoaded:setBackGroundColor(cc.c3b(255,255,255))
-		local lblAllLoaded = utils.CreateLabel("已全部加载", 24, cc.c3b(122,122,122))
+		local lblAllLoaded = utils.CreateLabel("已全部加载", 28, cc.c3b(122,122,122))
 		listWnd.markAllLoaded:addChild(lblAllLoaded)
-		lblAllLoaded:setPosition(sz.width/2, 23)
+		lblAllLoaded:setPosition(sz.width/2, 33)
 		listWnd:pushBackCustomItem(listWnd.markAllLoaded)
 	end
 end

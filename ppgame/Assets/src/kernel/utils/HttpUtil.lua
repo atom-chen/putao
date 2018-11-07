@@ -587,16 +587,20 @@ if device.platform ~= "android" then
 			end
 		end
 		
+		local thePayUrl = HttpUtil.g_pay_url 
+		if thePayUrl and thePayUrl == "" then thePayUrl = nil end
+		if ptoname ~= "req_pay_commit" then thePayUrl = nil end
+		
 		if ptoInfo.reqType == "POST" then
-			HttpUtil:callXhrPost(assist_info, ptoInfo.domain, addrStr, tblParams, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+			HttpUtil:callXhrPost(assist_info, thePayUrl or ptoInfo.domain, addrStr, tblParams, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 				self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 			end, tParams)
 		elseif ptoInfo.reqType == "GET" then 
-			HttpUtil:callXhrGet(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+			HttpUtil:callXhrGet(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 				self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 			end, tParams)
 		elseif ptoInfo.reqType == "XHRGET" then
-			HttpUtil:callXhrGet(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+			HttpUtil:callXhrGet(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 				self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 			end, tParams)
 		else
@@ -686,28 +690,32 @@ elseif device.platform == "android" then
 			end
 		end
 		
+		local thePayUrl = HttpUtil.g_pay_url 
+		if thePayUrl and thePayUrl == "" then thePayUrl = nil end
+		if ptoname ~= "req_pay_commit" then thePayUrl = nil end
+		
 		if ptoInfo.reqType == "POST" then
 			if HttpUtil._useOkHttp then
-				HttpUtil:callOkHttpPost(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+				HttpUtil:callOkHttpPost(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 					self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 				end, tParams)
 			else
-				HttpUtil:callXhrPost(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+				HttpUtil:callXhrPost(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 					self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 				end, tParams)
 			end
 		elseif ptoInfo.reqType == "GET" then 
 			if HttpUtil._useOkHttp then
-				HttpUtil:callOkHttpGet(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+				HttpUtil:callOkHttpGet(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 					self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 				end, tParams)
 			else
-				HttpUtil:callXhrGet(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+				HttpUtil:callXhrGet(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 					self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 				end, tParams)
 			end
 		elseif ptoInfo.reqType == "XHRGET" then
-			HttpUtil:callXhrGet(assist_info, ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
+			HttpUtil:callXhrGet(assist_info, thePayUrl or ptoInfo.domain, addrStr, strParam, cc[ptoInfo.respType], function(bError, resp_data, tArgs, assist_info)
 				self:OnRespData(ptoname, bError, resp_data, unsafe_callback, tArgs, assist_info)
 			end, tParams)
 		else

@@ -211,7 +211,7 @@ function ReplaceTextField(widget, bkgimg, sFontColor, sHolderColor)
 
 	editBox:setPlaceholderFontName(sPlaceHolderFontName)
 	editBox:setPlaceholderFontSize(sPlaceholderFontSize)
-	editBox:setPlaceholderFontColor(tPlaceholderFontColor)
+	editBox:setPlaceholderFontColor(cc.c3b(245,245,245))
 	editBox:setPlaceHolder(sPlaceHolder)
 
 	editBox:setInputMode(cc.EDITBOX_INPUT_MODE_SINGLELINE)

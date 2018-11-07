@@ -72,7 +72,10 @@ function ImageView:LoadTextureSync(url)
 	local s, e = string.find(url, "http")
 	if s and s == 1 then
 		if device.platform == "ios" then
-			url = SalmonUtils:fixUrl2utf8(url) or url 
+			local originUrl = url
+			url = SalmonUtils:fixUrl2utf8(url) 
+			local s1, e1 = string.find(url or "", "http")
+			if not s1 or not url or url == "" then url = originUrl end
 		end
 		
 		self.callback = function(filepath)

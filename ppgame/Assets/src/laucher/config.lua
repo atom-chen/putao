@@ -26,9 +26,9 @@ GAME_CONFIG.SCREEN_W = screensize.width				-- 实际屏幕宽
 GAME_CONFIG.SCREEN_H = screensize.height			-- 实际屏幕高
 GAME_CONFIG.SCREEN_W_2 = screensize.width/2			-- 实际屏幕宽/2
 GAME_CONFIG.SCREEN_H_2 = screensize.height/2		-- 实际屏幕高/2
-GAME_CONFIG.DESIGN_W = 1280							-- 设计宽
+GAME_CONFIG.DESIGN_W = 720							-- 设计宽
 GAME_CONFIG.DESIGN_H = GAME_CONFIG.SCREEN_H			-- 设计高
-GAME_CONFIG.DESIGN_W_2 = 640						-- 设计宽/2
+GAME_CONFIG.DESIGN_W_2 = 360						-- 设计宽/2
 GAME_CONFIG.DESIGN_H_2 = GAME_CONFIG.SCREEN_H_2		-- 设计高/2
 GAME_CONFIG.VIEW_W = 720
 GAME_CONFIG.VIEW_H = 1280
@@ -66,6 +66,14 @@ local SITE_CFG = {
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w01",
 	},
+	--试玩站
+	shiwan = {
+		hotdir = "shiwan",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "yicai.tw",
+	},
 	
 	--易彩乐
 	yicaile = {
@@ -74,14 +82,6 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w08",
-	},
-	--8k站
-	k8ycy = {
-		hotdir = "k8ycy",
-		ENGINE_BUILD_TYPE = 2,
-		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
-		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "w05",
 	},
 	--中彩网
 	zhongcai = {
@@ -123,6 +123,70 @@ local SITE_CFG = {
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w34",
 	},
+	--易彩堂
+	yicaitang = {
+		hotdir = "yicaitang",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w36",
+	},
+	--8k站
+	k8ycy = {
+		hotdir = "k8ycy",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w05",
+	},
+	--全民彩票
+	quanmin = {
+		hotdir = "quanmin",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w62",
+	},
+	--中彩64
+	zongcai64 = {
+		hotdir = "zongcai64",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w64",
+	},
+	--彩7
+	cai7 = {
+		hotdir = "cai7",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w07",
+	},
+	--大爆奖
+	dabaojiang = {
+		hotdir = "dabaojiang",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w46",
+	},
+	--爱彩
+	aicai = {
+		hotdir = "aicai",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w47",
+	},
+	--新彩票
+	xincai = {
+		hotdir = "xincai",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w44",
+	},
 }
 
 CUR_SITE_NAME = "testor"	--当前站点
@@ -141,7 +205,7 @@ IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
 -----------------------------------------------------------------------------------------
 
 -- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
-DEBUG = 2
+DEBUG = 0
 
 -- use framework, will disable all deprecated API, false - use legacy API
 CC_USE_FRAMEWORK = true

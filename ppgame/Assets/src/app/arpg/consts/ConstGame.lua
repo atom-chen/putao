@@ -32,7 +32,7 @@ GAME_TYPE = {
 }
 for k, v in pairs(GAME_TYPE) do assert(k==v.typeid) end
 
-MIN_BET_MONEY = 1
+MIN_BET_MONEY = 0.1
 --MAX_BET_MONEY = 1000000
 MAX_BET_LENGTH = 9
 

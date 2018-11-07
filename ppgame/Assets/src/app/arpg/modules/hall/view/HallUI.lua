@@ -31,11 +31,15 @@ local PAGE_CFG = {
 	},
 }
 
+local LOGOSCALE = 0.5
+
 clsHallUI = class("clsHallUI", clsBaseUI)
 
 function clsHallUI:ctor(parent, argInfo)
 	clsBaseUI.ctor(self, parent, "uistu/HallUI.csb")
 	self.Button_Service:setVisible(false)
+	if CUR_SITE_NAME == "aicai" then LOGOSCALE = 1 end
+	self.ImgLogo:setScale(LOGOSCALE)
 	self._subViews = {}
 	self._tabBtns = { self.BtnShouYe, self.BtnGouCai, self.BtnHuoDong, self.BtnFaXian, self.BtnWoDe }
 	self:InitGlbEvents()
@@ -70,7 +74,7 @@ function clsHallUI:on_req_home_homedata(recvdata)
 	self.ImgLogo:setScale9Enabled(false)
 	self.ImgLogo:ignoreContentAdaptWithSize(true)
 	self.ImgLogo:LoadTextureSync(logo)
-	self.ImgLogo:setScale(0.65)
+	self.ImgLogo:setScale(LOGOSCALE)
 end
 
 function clsHallUI:_swith_to(pageIdx)
