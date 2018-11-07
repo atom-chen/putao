@@ -1,18 +1,18 @@
 {
-  "packageUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets", 
+  "packageUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets", 
   "searchPaths": [], 
   "version": "1.1.0", 
-  "remoteVersionUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets/res/version.manifest", 
+  "remoteVersionUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/version.manifest", 
   "remotePackageUrl": "", 
   "isForceUpdate": true, 
   "loadChunkZips": [
-    "src/laucher.zip", 
-    "src/cocos.zip", 
-    "src/lib.zip", 
-    "src/kernel.zip", 
-    "src/app.zip"
+    "Assets/src/laucher.zip", 
+    "Assets/src/cocos.zip", 
+    "Assets/src/lib.zip", 
+    "Assets/src/kernel.zip", 
+    "Assets/src/app.zip"
   ], 
   "engineVersion": "cocos2d-x-3.16", 
-  "remoteManifestUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets/res/project.manifest", 
+  "remoteManifestUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/project.manifest", 
   "assets": {}
 }

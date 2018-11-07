@@ -44,9 +44,7 @@ function unquire(filepath)
 	package.loaded[filepath] = nil
 end
 
-
 local function main()
-	print("main......")
 	collectgarbage("setpause", 100) 
 	collectgarbage("setstepmul", 5000)
 	math.randomseed(os.time()) 
@@ -55,18 +53,21 @@ local function main()
 	math.random()
 	
 	cc.Director:getInstance():setClearColor({ r = 238, g = 238, b = 238, a = 255 })
+	
 	cc.FileUtils:getInstance():setPopupNotify(false)
 	local updateDir = cc.UserDefault:getInstance():getStringForKey("update_dir", "")
 	if updateDir ~= "" then
-		cc.FileUtils:getInstance():addSearchPath(updateDir.."res/", true)
+		cc.FileUtils:getInstance():addSearchPath(updateDir.."Assets/src/", true)
+		cc.FileUtils:getInstance():addSearchPath(updateDir.."Assets/res/", true)
 	end
-	cc.FileUtils:getInstance():addSearchPath("res")
-	cc.FileUtils:getInstance():addSearchPath("src")
+	cc.FileUtils:getInstance():addSearchPath("Assets/src")
+	cc.FileUtils:getInstance():addSearchPath("Assets/res")
 	
 	
 	require("laucher.config")
 	require("laucher.logger")
 	logger.EnablePrint(false)
+	cc.LuaLoadChunksFromZIP("Assets/src/cocos.zip")
 	require("cocos.init")
 	logger.EnablePrint(device.platform=="windows")
 	print("本地缓存路径",GAME_CONFIG.LOCAL_DIR)
@@ -85,13 +86,14 @@ local function main()
 		cc.FileUtils:getInstance():setPopupNotify(false)
 		local updateDir = cc.UserDefault:getInstance():getStringForKey("update_dir", "")
 		if updateDir ~= "" then
-			cc.FileUtils:getInstance():addSearchPath(updateDir.."res/", true)
+			cc.FileUtils:getInstance():addSearchPath(updateDir.."Assets/src/", true)
+			cc.FileUtils:getInstance():addSearchPath(updateDir.."Assets/res/", true)
 		end
-		cc.FileUtils:getInstance():addSearchPath("res")
-		cc.FileUtils:getInstance():addSearchPath("src")
+		cc.FileUtils:getInstance():addSearchPath("Assets/src")
+		cc.FileUtils:getInstance():addSearchPath("Assets/res")
 		
 		--- 3. 重新加载模块包
-		local tbZip = { "res/laucher.zip","res/cocos.zip","res/lib.zip","res/kernel.zip","res/app.zip" }
+		local tbZip = { "Assets/src/laucher.zip","Assets/src/cocos.zip","Assets/src/lib.zip","Assets/src/kernel.zip","Assets/src/app.zip" }
 		if tbLoadChunkZips then
 			tbZip = tbLoadChunkZips
 		end
@@ -103,20 +105,16 @@ local function main()
         
 		require("laucher.config")
 		require("laucher.logger")
+		require("laucher.HotUpdate")
 		logger.EnablePrint(false)
 		require("cocos.init")
 		logger.EnablePrint(device.platform=="windows")
 		require("laucher.override_traceback")
 		
-		if device.platform == "windows" then
-			require("laucher.auto_init")
-		end 
-		
 		--
 		require("app.CApp")
 		ClsApp.GetInstance():Run()
 	end
-	
 	local HotUpdate = require("laucher.HotUpdate")
 	HotUpdate:checkUpdate(finishCallback)
 end

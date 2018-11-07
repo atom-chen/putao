@@ -51,10 +51,10 @@
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
 		8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */; };
-		8E402FFF217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
-		8E403000217D71A30046BD6A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E402FF8217D71A30046BD6A /* Assets */; };
 		8E5FDD9F2192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
 		8E5FDDA02192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
+		8E5FDDA92192FB12008BD8F5 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E5FDDA82192FB11008BD8F5 /* Assets */; };
+		8E5FDDAA2192FB12008BD8F5 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E5FDDA82192FB11008BD8F5 /* Assets */; };
 		8E768D4C2182C40D007336AD /* OSInfoUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D302182C40D007336AD /* OSInfoUtils.mm */; };
 		8E768D4D2182C40D007336AD /* ScreenUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D312182C40D007336AD /* ScreenUtils.mm */; };
 		8E768D4E2182C40D007336AD /* SalmonUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D322182C40D007336AD /* SalmonUtils.mm */; };
@@ -315,9 +315,9 @@
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		8E402FF8217D71A30046BD6A /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../Assets; sourceTree = "<group>"; };
 		8E5FDD9D2192DBF6008BD8F5 /* CurlAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurlAsset.h; sourceTree = "<group>"; };
 		8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurlAsset.cpp; sourceTree = "<group>"; };
+		8E5FDDA82192FB11008BD8F5 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../packer/out_ios/Assets; sourceTree = "<group>"; };
 		8E768D302182C40D007336AD /* OSInfoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSInfoUtils.mm; sourceTree = "<group>"; };
 		8E768D312182C40D007336AD /* ScreenUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScreenUtils.mm; sourceTree = "<group>"; };
 		8E768D322182C40D007336AD /* SalmonUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SalmonUtils.mm; sourceTree = "<group>"; };
@@ -1030,7 +1030,7 @@
 		F293BC4615EB859D00256477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8E402FF8217D71A30046BD6A /* Assets */,
+				8E5FDDA82192FB11008BD8F5 /* Assets */,
 				C05D1C111923449100B808A4 /* config.json */,
 			);
 			name = Resources;
@@ -1194,6 +1194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E89F891217D947E008948EA /* KKLabelFT2.lua in Resources */,
+				8E5FDDAA2192FB12008BD8F5 /* Assets in Resources */,
 				9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */,
 				8E89F88D217D947E008948EA /* lua_xianyou_auto_api.lua in Resources */,
 				8E89F88F217D947E008948EA /* TextureMerge.lua in Resources */,
@@ -1201,7 +1202,6 @@
 				9FFC07361A4A764100AED399 /* MainMenu.xib in Resources */,
 				8E89F893217D947E008948EA /* PathFinder.lua in Resources */,
 				C05D1C131923449100B808A4 /* config.json in Resources */,
-				8E403000217D71A30046BD6A /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A8A4491834C64F00142BE0 /* Icon-114.png in Resources */,
+				8E5FDDA92192FB12008BD8F5 /* Assets in Resources */,
 				5023811D17EBBCAC00990C9B /* Icon-120.png in Resources */,
 				5091733B17ECE17A00D62437 /* Icon-100.png in Resources */,
 				8E89F892217D947E008948EA /* PathFinder.lua in Resources */,
@@ -1221,7 +1222,6 @@
 				5091733917ECE17A00D62437 /* Icon-58.png in Resources */,
 				5023811F17EBBCAC00990C9B /* Icon-152.png in Resources */,
 				5023812017EBBCAC00990C9B /* Icon-57.png in Resources */,
-				8E402FFF217D71A30046BD6A /* Assets in Resources */,
 				521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */,
 				5023812217EBBCAC00990C9B /* Icon-76.png in Resources */,
 				5091733A17ECE17A00D62437 /* Icon-80.png in Resources */,

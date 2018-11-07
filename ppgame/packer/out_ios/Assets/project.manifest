@@ -940,7 +940,7 @@
       "md5": "924d633166e3345d423e2a580c7a207b"
     }, 
     "Assets/src/laucher.zip": {
-      "md5": "adb498aa61d9470d64f3556d80d72fb1"
+      "md5": "687f4fc4a778018d951d6ccb06e84b2c"
     }, 
     "Assets/src/lib.zip": {
       "md5": "571c68b51737b124a8d6cf7fa963509c"
@@ -949,16 +949,16 @@
   "engineVersion": "cocos2d-x-3.16", 
   "isForceUpdate": true, 
   "loadChunkZips": [
-    "src/laucher.zip", 
-    "src/cocos.zip", 
-    "src/lib.zip", 
-    "src/kernel.zip", 
-    "src/app.zip"
+    "Assets/src/laucher.zip", 
+    "Assets/src/cocos.zip", 
+    "Assets/src/lib.zip", 
+    "Assets/src/kernel.zip", 
+    "Assets/src/app.zip"
   ], 
-  "packageUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets", 
-  "remoteManifestUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets/res/project.manifest", 
+  "packageUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets", 
+  "remoteManifestUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/project.manifest", 
   "remotePackageUrl": "", 
-  "remoteVersionUrl": "http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/testor/Assets/res/version.manifest", 
+  "remoteVersionUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/version.manifest", 
   "searchPaths": [], 
   "version": "1.1.0"
 }

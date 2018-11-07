@@ -126,9 +126,17 @@ bool AppDelegate::applicationDidFinishLaunching()
     //LuaStack* stack = engine->getLuaStack();
     //register_custom_function(stack->getLuaState());
     
-    FileUtils::getInstance()->addSearchPath("Assets/src");
-    FileUtils::getInstance()->addSearchPath("Assets/res");
-    if (engine->executeScriptFile("Assets/src/laucher/main.lua"))
+    std::string updateDir = UserDefault::getInstance()->getStringForKey("update_dir", "");
+    if (!updateDir.empty()) {
+        //if is already the highest engine, should remove the hotupdate dir.
+        FileUtils::getInstance()->addSearchPath(updateDir+"/Assets/src", true);
+        FileUtils::getInstance()->addSearchPath(updateDir+"/Assets/res", true);
+    }
+    if (FileUtils::getInstance()->isFileExist("Assets/src/laucher.zip")) {
+        stack->loadChunksFromZIP("Assets/src/laucher.zip");
+        stack->executeString("require 'laucher.main'");
+    }
+    else if (engine->executeScriptFile("Assets/src/laucher/main.lua"))
     {
         return false;
     }
