@@ -28,7 +28,6 @@ LOCAL_SRC_FILES := \
 ../../../Classes/utils/Log.cpp \
 ../../../Classes/utils/int64.cpp \
 ../../../Classes/utils/NetUtils.cpp \
-../../../Classes/curlhttp/CurlAsset.cpp \
 ../../../Classes/texmerge/TextureMerge.cpp \
 ../../../Classes/texmerge/KKRichText.cpp \
 ../../../Classes/texmerge/KKLabelFT2.cpp \
@@ -48,7 +47,6 @@ $(LOCAL_PATH)/../../../Classes/quick-src/lua_extensions \
 $(LOCAL_PATH)/../../../Classes/texmerge \
 $(LOCAL_PATH)/../../../Classes/astar \
 $(LOCAL_PATH)/../../../Classes/net \
-$(LOCAL_PATH)/../../../Classes/curlhttp \
 $(LOCAL_PATH)/../../../Classes/auto \
 $(LOCAL_PATH)/../../../Classes/manual
 
