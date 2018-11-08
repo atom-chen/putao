@@ -303,10 +303,6 @@ static AppDelegate s_sharedApplication;
     return 0;
 }
 
-+(float) getEdtboxHei:(NSDictionary*)dic{
-    return 0;
-}
-
 +(int) isInstallWX:(NSDictionary*)dic{
     return true;
 }

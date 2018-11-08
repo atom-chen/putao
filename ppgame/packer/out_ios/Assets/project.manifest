@@ -937,10 +937,10 @@
       "md5": "36343d664b10ad8d5904511c626798ee"
     }, 
     "Assets/src/kernel.zip": {
-      "md5": "924d633166e3345d423e2a580c7a207b"
+      "md5": "204bbb7eb0b15b2bb97161a25dccadf3"
     }, 
     "Assets/src/laucher.zip": {
-      "md5": "17f8f70fbc59a63047db525d08314a82"
+      "md5": "6d56c6c62345264bd0c9a6dcef4ea6fe"
     }, 
     "Assets/src/lib.zip": {
       "md5": "571c68b51737b124a8d6cf7fa963509c"
@@ -960,5 +960,5 @@
   "remotePackageUrl": "", 
   "remoteVersionUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/version.manifest", 
   "searchPaths": [], 
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
