@@ -297,7 +297,7 @@ static NSString* _deviceToken = nil;
 
 +(NSString *) fixUrl2utf8:(NSDictionary *)dict
 {
-    NSString *urlStr = [[dict valueForKey:@"urlStr"] stringValue];
+    NSString *urlStr = [dict objectForKey:@"urlStr"];
  //   NSLog(@"转换前： %@", urlStr);
     NSString *utf8Str = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"#%^{}\"[]|\\<> "].invertedSet];
     urlStr = [utf8Str copy];
