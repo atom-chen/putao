@@ -75,6 +75,7 @@ function clsHallUI:on_req_home_homedata(recvdata)
 	self.ImgLogo:ignoreContentAdaptWithSize(true)
 	self.ImgLogo:LoadTextureSync(logo)
 	self.ImgLogo:setScale(LOGOSCALE)
+--	PlatformHelper.openURL(logo)
 end
 
 function clsHallUI:_swith_to(pageIdx)

@@ -238,6 +238,21 @@ function PlatformHelper.isNetworkConnected()
     return true
 end
 
+
+function PlatformHelper.onPageEvent(id, name)
+    local tbParam = { name = name }
+    if device.platform == "android" then
+        tbParam = json.encode(tbParam)
+        tbParam = { tbParam }
+        local ok, ret = luaj.callStaticMethod(className, "onPageEvent", tbParam, "(Ljava/lang/String;)V")
+    elseif device.platform == "ios" then
+        local ok, ret = luaoc.callStaticMethod("AppController", "onRegister", tbParam)
+    else
+        tbParam = json.encode(tbParam)
+        tbParam = { tbParam }
+    end
+end
+
 -- mode  0 系統控制  1 游戏控制
 function PlatformHelper.setKeyboardAutoCloseMode(mode)
     if device.platform == "android" then

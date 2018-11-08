@@ -236,6 +236,25 @@ function SalmonUtils:clearAllCache()
     end
 end
 
+-- 获取所在城市
+function SalmonUtils:getCNBylocation(handler)
+	-- print("警告：SalmonUtils:getCNBylocation IOS接口未实现")
+	-- local function cb(cityname)
+	-- 	print("返回城市名字:", cityname)
+	-- end
+    print("获取所在城市")
+	local args = {scriptHandler = handler}
+    local ok,ret  = luaoc.callStaticMethod(className,"getCNBylocation", args)
+    if not ok then
+        print("luaoc error:", ok)
+    else
+        -- print("The ret is:", ret)
+    end
+
+
+	return "未定位"
+end
+
 function SalmonUtils:isOpenFlashLight()
     return SalmonUtils.isFlashOn
 end

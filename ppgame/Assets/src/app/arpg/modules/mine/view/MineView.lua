@@ -14,10 +14,29 @@ function clsMineView:ctor(parent)
 	proto.req_user_balance()
     self.ListView_3:setScrollBarEnabled(false)
     self:SetMoneyVisible(false)
+    self:RelayoutMenus()
 end
 
 function clsMineView:dtor()
 	
+end
+
+function clsMineView:RelayoutMenus()
+	local quickPayUrl = ClsHomeMgr.GetInstance():GetQuickPayUrl()
+	local x1 = self.BtnChongZhi:getPositionX()
+	local x2 = self.BtnAccountDetail:getPositionX()
+	if quickPayUrl and quickPayUrl ~= "" then
+		self.BtnQuickRecharge:setVisible(true)
+		
+		self.BtnQuickRecharge:setPositionX( x1+(x2-x1)/4 )
+		self.BtnTiXian:setPositionX( x1+2*(x2-x1)/4 )
+		self.BtnTouZhuJiLu:setPositionX( x1+3*(x2-x1)/4 )
+	else 
+		self.BtnQuickRecharge:setVisible(false)
+		
+		self.BtnTiXian:setPositionX( x1+(x2-x1)/3 )
+		self.BtnTouZhuJiLu:setPositionX( x1+2*(x2-x1)/3 )
+	end
 end
 
 --注册控件事件
