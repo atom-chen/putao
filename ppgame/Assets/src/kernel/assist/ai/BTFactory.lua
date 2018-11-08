@@ -9,6 +9,10 @@ ClsBTFactory.__is_singleton = true
 function ClsBTFactory:ctor()
 	self.tAllBT = {}
 	self.tBTTreeSet = new_weak_table("k")
+	--
+	self:_InitBT("bt_hero_fight")
+	self:_InitBT("bt_monster_fight")
+	self:_InitBT("bt_post_fight")
 end
 
 function ClsBTFactory:dtor()
