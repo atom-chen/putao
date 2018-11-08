@@ -1,6 +1,14 @@
 -------------------------------
 -- 工具接口，具体实现请看对应文件夹
 -------------------------------
+local luaj = {}
+local luaoc = {}
+if device.platform == "android" then
+	luaj = require("cocos.cocos2d.luaj")
+elseif device.platform == "ios" or device.platform == "mac" then
+	luaoc = require("cocos.cocos2d.luaoc")
+end
+
 local className = "ppasist.utils.SalmonUtils"
 if device.platform == "ios" then
 	className = "SalmonUtils"

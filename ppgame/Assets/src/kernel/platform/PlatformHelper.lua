@@ -1,6 +1,14 @@
 ---------------------------------------
 -- 平台相关接口
 ---------------------------------------
+local luaj = {}
+local luaoc = {}
+if device.platform == "android" then
+	luaj = require("cocos.cocos2d.luaj")
+elseif device.platform == "ios" or device.platform == "mac" then
+	luaoc = require("cocos.cocos2d.luaoc")
+end
+
 local className = "org.cocos2dx.lua.AppActivity"
 
 local socket = require("socket")
