@@ -58,13 +58,13 @@
       "md5": "7c2e432fcb02a2b73440d884e9adc203"
     }, 
     "Assets/res/launcher/first_page.png": {
-      "md5": "4d8fdf0c759e199f45433f12dae78353"
+      "md5": "56949f7c4e208f74b60bb52be52f5c9c"
     }, 
     "Assets/res/launcher/first_page2.png": {
-      "md5": "4d8fdf0c759e199f45433f12dae78353"
+      "md5": "56949f7c4e208f74b60bb52be52f5c9c"
     }, 
     "Assets/res/launcher/logo_title.png": {
-      "md5": "91c1b4fac9629689b790a6ad37d5ac58"
+      "md5": "47c49d49cb0a2e010acc978e7bd1f5b3"
     }, 
     "Assets/res/launcher/progress_bg.png": {
       "md5": "1e227e017c46bde549a04c0bcb2ba1fe"
@@ -931,13 +931,13 @@
       "md5": "40a5e2a0ac23e5a7c8c361fac3735d98"
     }, 
     "Assets/src/app.zip": {
-      "md5": "9aab19b62539c2b8bc0259e4b5e2bb1b"
+      "md5": "570ed171898cd4b4b8c0cdd9adfd3f57"
     }, 
     "Assets/src/cocos.zip": {
       "md5": "36343d664b10ad8d5904511c626798ee"
     }, 
     "Assets/src/kernel.zip": {
-      "md5": "204bbb7eb0b15b2bb97161a25dccadf3"
+      "md5": "1cf4ae30de1c5cb133a2b78906688690"
     }, 
     "Assets/src/laucher.zip": {
       "md5": "6d56c6c62345264bd0c9a6dcef4ea6fe"

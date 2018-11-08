@@ -3,19 +3,8 @@
 ---------------------------------------
 local className = "org.cocos2dx.lua.AppActivity"
 
-PlatformHelper = {}
-
-function PlatformHelper.IsSysWindows()
-	return device.platform == "windows"
-end
-function PlatformHelper.IsSysAndroid()
-	return device.platform == "android"
-end
-function PlatformHelper.IsSysIos()
-	return device.platform == "ios"
-end
-
 local socket = require("socket")
+
 local function GetAdd(hostname)
 	local ip, resolved = socket.dns.toip(hostname)
 	local ListTab = {}
@@ -26,12 +15,17 @@ local function GetAdd(hostname)
 	end
 	return ListTab
 end
+
+
+PlatformHelper = {}
+
+-- 获取IP地址
 function PlatformHelper:GetIpAddress()
 	local ipAddr = unpack(GetAdd(socket.dns.gethostname()))
-	print("=======", ipAddr, type(ipAddr))
 	return ipAddr
 end
 
+-- 在浏览器中打开url
 function PlatformHelper.openURL(url)
 	if not url or url == "" then
 		return
@@ -39,6 +33,7 @@ function PlatformHelper.openURL(url)
 	cc.Application:getInstance():openURL(url)
 end
 
+-- 关闭键盘
 function PlatformHelper.closeSystemKeyboard(edtbox)
 	if device.platform == "android" then
 		luaj.callStaticMethod(className, "closeSystemKeyboard", { }, "()V")
@@ -50,120 +45,14 @@ function PlatformHelper.closeSystemKeyboard(edtbox)
 	end
 end
 
+-- 检查相机权限
 function PlatformHelper.CheckCamera()
 	if device.platform == "android" then
 		luaj.callStaticMethod("ppasist.utils.AuthorUtils", "CheckCamera", { }, "()Z")
 	end
 end
 
-function PlatformHelper.getLocalInfo()
-	local localInfo = { }
-	if device.platform == "android" then
-		localInfo.bPlatform = 1
-		localInfo.szChannel = ""
-		localInfo.szVersion = "1.0.2"
-
-		local ok, ret = luaj.callStaticMethod(className, "getImsi", { }, "()Ljava/lang/String;")
-		if ok then
-			localInfo.szImsi = ret
-		else
-			localInfo.szImsi = string.format("%015d", math.random(0, 10000000000))
-		end
-
-		ok, ret = luaj.callStaticMethod(className, "getImei", { }, "()Ljava/lang/String;")
-		if ok then
-			localInfo.szImei = ret
-		else
-			localInfo.szImei = string.format("46%013d", math.random(0, 10000000000))
-		end
-
-		ok, ret = luaj.callStaticMethod(className, "getModel", { }, "()Ljava/lang/String;")
-		if ok then
-			localInfo.szModel = ret
-		else
-			localInfo.szModel = ""
-		end
-
-		ok, ret = luaj.callStaticMethod(className, "getVersion", { }, "()Ljava/lang/String;")
-		if ok then
-			localInfo.szVersion = ret
-		else
-			localInfo.szVersion = "1.0.2"
-		end
-
-		ok, ret = luaj.callStaticMethod(className, "getChannel", { }, "()Ljava/lang/String;")
-		if ok then
-			localInfo.szChannel = ret
-		else
-			localInfo.szChannel = "1.0.2"
-		end
-	elseif device.platform == "ios" then
-		localInfo.bPlatform = 2
-		localInfo.wChannel = 0
-		localInfo.szVersion = "1.0.2"
-
-		local ok, ret = luaoc.callStaticMethod("AppController", "getImsi", { })
-		if ok then
-			localInfo.szImsi = ret
-		else
-			localInfo.szImsi = string.format("%015d", math.random(0, 10000000000))
-		end
-
-		ok, ret = luaoc.callStaticMethod("AppController", "getImei", { })
-		if ok then
-			localInfo.szImei = ret
-		else
-			localInfo.szImei = string.format("46%013d", math.random(0, 10000000000))
-		end
-
-		ok, ret = luaoc.callStaticMethod("AppController", "getModel", { })
-		if ok then
-			localInfo.szModel = ret
-		else
-			localInfo.szModel = ""
-		end
-		ok, ret = luaoc.callStaticMethod("AppController", "getVersion", { })
-		if ok then
-			localInfo.szVersion = ret
-		else
-			localInfo.szVersion = "1.0.2"
-		end
-		ok, ret = luaoc.callStaticMethod("AppController", "getChannel", { })
-		if ok then
-			localInfo.szChannel = ret
-		else
-			localInfo.szChannel = "1.0.2"
-		end
-	elseif device.platform == "mac" then
-		localInfo.bPlatform = 3
-		localInfo.szChannel = "HW0001"
-		localInfo.szVersion = "1.0.2"
-		localInfo.szImsi = "460000001233456334"
-		localInfo.szImei = "678956712323456345"
-		localInfo.szModel = "xiaomi123345"
-	elseif device.platform == "windows" then
-		localInfo.bPlatform = 3
-		localInfo.szChannel = "HW0001"
-		localInfo.szVersion = "1.0.2"
-		localInfo.szImsi = "460000001233456334"
-		localInfo.szImei = "678956712323456345"
-		localInfo.szModel = "xiaomi123345"
-	end
-	return localInfo
-end
-
-function PlatformHelper.vibrate(count)
-	if device.platform == "android" then
-		local ok, ret = luaj.callStaticMethod(className, "vibrate", { count }, "(I)V")
-	elseif device.platform == "ios" then
-		local ok, ret = luaoc.callStaticMethod("AppController", "vibrate", { count = count })
-	elseif device.platform == "mac" then
-	
-	elseif device.platform == "windows" then
-
-	end
-end
-
+-- 获取引擎版本
 function PlatformHelper.getVersion()
 	if device.platform == "android" then
 		local ok, ret = luaj.callStaticMethod(className, "getVersion", { }, "()Ljava/lang/String;")
@@ -186,6 +75,7 @@ function PlatformHelper.getVersion()
 	end
 end
 
+-- 是否安装了微信
 function PlatformHelper.isInstallWX()
     if device.platform == "android" then
         if true then
@@ -211,6 +101,7 @@ function PlatformHelper.isInstallWX()
     end
 end
 
+-- 开始监听网络状态和电池状态
 function PlatformHelper.onGameLauch()
     if device.platform == "android" then
         local ok, ret = luaj.callStaticMethod(className, "onGameLauch", { }, "()V")
@@ -223,6 +114,7 @@ function PlatformHelper.onGameLauch()
     end
 end
 
+-- 系统网络是否打开
 function PlatformHelper.isNetworkConnected()
     if device.platform == "android" then
         local ok, ret = luaj.callStaticMethod(className, "isNetworkConnected", { }, "()Z")
@@ -238,80 +130,7 @@ function PlatformHelper.isNetworkConnected()
     return true
 end
 
-
-function PlatformHelper.onPageEvent(id, name)
-    local tbParam = { name = name }
-    if device.platform == "android" then
-        tbParam = json.encode(tbParam)
-        tbParam = { tbParam }
-        local ok, ret = luaj.callStaticMethod(className, "onPageEvent", tbParam, "(Ljava/lang/String;)V")
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "onRegister", tbParam)
-    else
-        tbParam = json.encode(tbParam)
-        tbParam = { tbParam }
-    end
-end
-
--- mode  0 系統控制  1 游戏控制
-function PlatformHelper.setKeyboardAutoCloseMode(mode)
-    if device.platform == "android" then
-        utils.callJavaFunc(className, "setKeyboardAutoCloseMode", { mode }, "(I)V")
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "setKeyboardAutoCloseMode", { mode = mode })
-    end
-end 
-function PlatformHelper.getKeyboardAutoCloseMode()
-    if device.platform == "android" then
-        local ok, ret = utils.callJavaFunc(className, "getKeyboardAutoCloseMode", { }, "(V)I")
-        if ok then
-            return ret;
-        end
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "getKeyboardAutoCloseMode", { })
-        if ok then
-            return ret;
-        end
-    end
-    return 0
-end 
-
-function PlatformHelper.isKeyboardShow()
-    if device.platform == "android" then
-        return false
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "isKeyboardShow", { })
-        return ret == 1 and true or false
-    end
-end
-
-function PlatformHelper.getOpenUrlJson()
-    if device.platform == "android" then
-        local ok, ret = utils.callJavaFunc(className, "getOpenUrlJson", { }, "()Ljava/lang/String;")
-        if ok then
-            return ret;
-        end
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "getOpenUrlJson", { })
-        if ok then
-            return ret;
-        end
-    end
-    return ""
-end 
-
-function PlatformHelper.clearOpenUrlJson()
-    if device.platform == "android" then
-        local ok, ret = luaj.callStaticMethod(className, "clearOpenUrlJson", { }, "()V")
-    elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "clearOpenUrlJson", { })
-    elseif device.platform == "windows" then
-
-    else
-
-    end
-end
-
+-- 获取设备ID
 function PlatformHelper.getDeviceId()
     if device.platform == "android" then
         local ok, ret = utils.callJavaFunc(className, "getDeviceId", { }, "()Ljava/lang/String;")
@@ -327,6 +146,7 @@ function PlatformHelper.getDeviceId()
     return ""
 end 
 
+-- 获取手机机型
 function PlatformHelper.getModel()
     if device.platform == "android" then
         local ok, ret = utils.callJavaFunc(className, "getModel", { }, "()Ljava/lang/String;")
@@ -342,6 +162,7 @@ function PlatformHelper.getModel()
     return ""
 end 
 
+-- 获取剩余电量
 function PlatformHelper.getBattery()
     if device.platform == "android" then
         local ok, ret = utils.callJavaFunc(className, "getBattery", { }, "()I")
@@ -357,18 +178,21 @@ function PlatformHelper.getBattery()
     return 100
 end
 
+-- OkHttp GET
 function PlatformHelper.httpGet(url, succCallback, failCallback, loadingCallback)
 	if device.platform == "android" then
 		local ok, ret = utils.callJavaFunc("ppasist.utils.HttpLua", "httpGet", { url, succCallback, failCallback, loadingCallback }, "(Ljava/lang/String;III)V")
 	end
 end
 
+-- OkHttp POST
 function PlatformHelper.httpPost(url, cont, succCallback, failCallback, loadingCallback)
 	if device.platform == "android" then
 		local ok, ret = utils.callJavaFunc("ppasist.utils.HttpLua", "httpPost", { url, cont, succCallback, failCallback, loadingCallback }, "(Ljava/lang/String;Ljava/lang/String;III)V")
 	end
 end
 
+-- OkHttp HEAD
 function PlatformHelper.setHeader(key, value)
 	if device.platform == "android" then 
 		local ok, ret = utils.callJavaFunc("ppasist.utils.HttpLua", "setHeader", {key, value}, "(Ljava/lang/String;Ljava/lang/String;)V")
@@ -376,6 +200,7 @@ function PlatformHelper.setHeader(key, value)
 	PlatformHelper.addHeader("FROMWAY", const.FROMWAY)
 end
 
+-- OkHttp HEAD
 function PlatformHelper.addHeader(key, value)
 	if device.platform == "android" then 
 		local ok, ret = utils.callJavaFunc("ppasist.utils.HttpLua", "addHeader", {key, value}, "(Ljava/lang/String;Ljava/lang/String;)V")
