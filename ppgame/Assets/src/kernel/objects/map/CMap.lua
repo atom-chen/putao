@@ -38,8 +38,8 @@ function clsMap:ctor(parent, map_id, bLockCamera)
 	self._c0 = -1
 	self._r1 = -1
 	self._c1 = -1
-	self._xCenter = 0
-	self._yCenter = 0
+	self._xCenter = 0.01
+	self._yCenter = 0.01
 	self._x0 = 0
 	self._y0 = 0
 	self._x1 = 0
