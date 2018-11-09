@@ -47,15 +47,14 @@ function VVDirector:GetServerTime()
 	return os.time()
 end
 
-function VVDirector:GetTipProcedure() 
-	return self.mTipProcedure 
+function VVDirector:GetCaipiaoProcedure() 
+	return self.mCaipiaoProcedure 
 end
 
 ---------------------------------------------------------------------------------
 
 -- 初始化数据
 function VVDirector:InitDatas()
-	self.mTipProcedure = smartor.clsPromise.new()
 	guide.ClsGuideMgr.GetInstance()
 	UserEntity.GetInstance()
 	--
@@ -64,7 +63,6 @@ end
 
 -- 清理数据
 function VVDirector:ClearDatas()
-	KE_SafeDelete(self.mTipProcedure) self.mTipProcedure = nil
 	guide.ClsGuideMgr.DelInstance()
 	UserEntity.DelInstance()
 	--
@@ -74,6 +72,8 @@ function VVDirector:ClearDatas()
 end
 
 function VVDirector:InitCaiPiaoData()
+	self.mCaipiaoProcedure = smartor.clsPromise.new()
+	--
 	ClsAgentDataMgr.GetInstance()
 	ClsBankMgr.GetInstance()
 	ClsBetHistoryMgr.GetInstance()
@@ -85,7 +85,7 @@ function VVDirector:InitCaiPiaoData()
 	clsActiveMgr.GetInstance()
 	ClsCollectMgr.GetInstance()
 	ClsRedbagMgr.GetInstance()
-	
+	--
 	ClsGameK3Mgr.GetInstance()
 	ClsGameKL10Mgr.GetInstance()
 	ClsGameLhcMgr.GetInstance()
@@ -98,6 +98,8 @@ function VVDirector:InitCaiPiaoData()
 end
 
 function VVDirector:ClearCaiPiaoData()
+	KE_SafeDelete(self.mCaipiaoProcedure) self.mCaipiaoProcedure = nil
+	--
 	ClsAgentDataMgr.DelInstance()
 	ClsBankMgr.DelInstance()
 	ClsBetHistoryMgr.DelInstance()
@@ -109,7 +111,7 @@ function VVDirector:ClearCaiPiaoData()
 	clsActiveMgr.DelInstance()
 	ClsCollectMgr.DelInstance()
 	ClsRedbagMgr.DelInstance()
-	
+	--
 	ClsGameK3Mgr.DelInstance()
 	ClsGameKL10Mgr.DelInstance()
 	ClsGameLhcMgr.DelInstance()

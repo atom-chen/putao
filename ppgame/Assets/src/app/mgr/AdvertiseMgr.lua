@@ -18,9 +18,9 @@ end
 function ClsAdvertiseMgr:CheckLoginAdver()
 	if self.bHasCheckLoginAdver then return end
 	self.bHasCheckLoginAdver = true
-	if not VVDirector:GetTipProcedure() then return end
+	if not VVDirector:GetCaipiaoProcedure() then return end
 	
-	local nextNode = VVDirector:GetTipProcedure()
+	local nextNode = VVDirector:GetCaipiaoProcedure()
 	for _, info in ipairs(setting.T_advertise) do
 		if info.login_checker() then
 			logger.normal("推荐成立", info.Id, info.ImgPath)
@@ -35,13 +35,13 @@ function ClsAdvertiseMgr:CheckLoginAdver()
 			logger.normal("推荐失败", info.Id, info.ImgPath)
 		end
 	end
-	VVDirector:GetTipProcedure():Run()
+	VVDirector:GetCaipiaoProcedure():Run()
 end
 
 -- 条件宣传
 function ClsAdvertiseMgr:CheckSpecAdver()
-	if not VVDirector:GetTipProcedure() then return end
-	local nextNode = VVDirector:GetTipProcedure()
+	if not VVDirector:GetCaipiaoProcedure() then return end
+	local nextNode = VVDirector:GetCaipiaoProcedure()
 	for _, info in ipairs(setting.T_advertise) do
 		if not self._HistoryList[info.Id] and info.spec_checker() then
 			self._HistoryList[info.Id] = true 
@@ -57,7 +57,7 @@ function ClsAdvertiseMgr:CheckSpecAdver()
 			break
 		end
 	end
-	VVDirector:GetTipProcedure():Run()
+	VVDirector:GetCaipiaoProcedure():Run()
 end
 
 --服务端推图弹窗
@@ -117,7 +117,7 @@ local pre_user = false
 --服务端推图弹窗
 function ClsAdvertiseMgr:AddPushor(info1)
 	if not info1.content or info1.content == "" then return end
-	if not VVDirector:GetTipProcedure() then return end
+	if not VVDirector:GetCaipiaoProcedure() then return end
 	if pre_user and pre_user == UserEntity.GetInstance():Get_username() then return end
 	pre_user = UserEntity.GetInstance():Get_username()
 	
@@ -133,6 +133,6 @@ function ClsAdvertiseMgr:AddPushor(info1)
 			Procedure:Done()
 		end
 	end)
-	VVDirector:GetTipProcedure():SetNext(procedure_1)
-	VVDirector:GetTipProcedure():Run()
+	VVDirector:GetCaipiaoProcedure():SetNext(procedure_1)
+	VVDirector:GetCaipiaoProcedure():Run()
 end
