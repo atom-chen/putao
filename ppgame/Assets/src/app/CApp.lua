@@ -197,8 +197,12 @@ function ClsApp:GetModFileList()
 		"kernel.manager.init",		-- 管理器
 		"kernel.assist.init",		-- 辅助模块
 		--logic
-		"app.init",					-- 游戏逻辑
-		"app.VVDirector",			-- 游戏总管理器
+		"app.consts.init",
+		"app.utils.init",
+		"app.proto.init",
+		"app.mgr.init",
+		"app.view.init",
+		"app.VVDirector",
 	}
 
 	return ModFileList

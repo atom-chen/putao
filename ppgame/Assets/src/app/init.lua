@@ -1,5 +1,0 @@
-require("app.consts.init")
-require("app.utils.init")
-require("app.proto.init")
-require("app.mgr.init")
-require("app.view.init")
