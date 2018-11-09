@@ -252,7 +252,7 @@ function clsHomeView:on_req_home_caizhong(recvdata)
 		end
 	end
 	
-	local T_game_cfg = setting.Get("app.configs.xls.T_game_cfg")
+	local T_game_cfg = setting.T_game_cfg
 	self._gridBtnList = self._gridBtnList or {}
 	for idx=1, cnt do 
 		local info = infolist[idx]

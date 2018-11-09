@@ -1,3 +1,3 @@
-require "src/kernel/assist/team/TeamMember"
-require "src/kernel/assist/team/Team"
-require "src/kernel/assist/team/TeamMgr"
+require "kernel.assist.team.TeamMember"
+require "kernel.assist.team.Team"
+require "kernel.assist.team.TeamMgr"

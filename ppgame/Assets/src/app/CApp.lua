@@ -90,18 +90,10 @@ function ClsApp:GetModFileList()
 		"kernel.manager.init",		-- 管理器
 		"kernel.assist.init",		-- 辅助模块
 		--logic
---		"app.configs.init",			-- 配置表
-		"app.arpg.init",			-- 游戏逻辑
+		"app.init",					-- 游戏逻辑
 		"app.VVDirector",			-- 游戏总管理器
+		"app_caipiao.init",			-- 彩票APP
 	}
-	
---	if ENGINE_BUILD_TYPE == 1 then
---		table.insert(ModFileList, "app.xiaoxiaole.init")
---	elseif ENGINE_BUILD_TYPE == 3 then
---		table.insert(ModFileList, "app.disstar.init")
---	elseif ENGINE_BUILD_TYPE == 4 then
---	--	table.insert(ModFileList, "app.airplane.init")
---	end
 
 	return ModFileList
 end 
@@ -163,33 +155,12 @@ function ClsApp:OnPreloadOver()
 	
 	--
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
---	if ENGINE_BUILD_TYPE == 1 then
---		self:runXiaoxiaole()
---	elseif ENGINE_BUILD_TYPE == 3 then
---		self:runDisStar()
---	elseif ENGINE_BUILD_TYPE == 4 then
---		self:runFeiji()
---	else
-		self:runGame()
---	end
-end
-
-function ClsApp:runXiaoxiaole()
-	xiaoxiaole.kGameCache():load()
-	ClsSceneManager.GetInstance():Turn2Scene("clsXiaoxiaoleEntryScene")
-end
-
-function ClsApp:runDisStar()
-    ClsSceneManager.GetInstance():Turn2Scene("clsStartScene")
-end
-
-function ClsApp:runFeiji()
-    ClsSceneManager.GetInstance():Turn2Scene("clsPlaneScene")
+	self:runCaiPiao()
 end
 
 --游戏
-function ClsApp:runGame()
-	require("app.arpg.proto.proto_register"):RegisterAllProtocal()
+function ClsApp:runCaiPiao()
+	require("app.proto.proto_register"):RegisterAllProtocal()
 	
 	HttpUtil:AddUserCacheProto("req_goucai_game_wanfa_list", HttpUtil.CACHE_TYPE_FOREVER)
 	HttpUtil:AddUserCacheProto("req_goucai_game_qiuhao_peilv_list", HttpUtil.CACHE_TYPE_TEMP)
@@ -266,6 +237,7 @@ function ClsApp:runGame()
 	
 	self.tmrCheck = self.tmrCheck or KE_SetAbsInterval(60, function() self:CheckHotUpdate() end)
 end
+
 
 local function string_split(input, delimiter)
 	input = tostring(input)

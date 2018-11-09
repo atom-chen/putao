@@ -1,4 +1,4 @@
-require "src/kernel/assist/physics/PhysHelper"
-require "src/kernel/assist/physics/PhysBody"
-require "src/kernel/assist/physics/PhysGroup"
-require "src/kernel/assist/physics/PhysicsWorld"
+require "kernel.assist.physics.PhysHelper"
+require "kernel.assist.physics.PhysBody"
+require "kernel.assist.physics.PhysGroup"
+require "kernel.assist.physics.PhysicsWorld"

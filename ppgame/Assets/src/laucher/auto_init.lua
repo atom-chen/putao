@@ -150,6 +150,9 @@ local function IsValidVarName(Name)
 	return true
 end
 
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
 local function check_res_path()
 	if device.platform ~= "windows" then return end
 	
@@ -198,7 +201,7 @@ local function init_res_path()
 	
 	local WORK_DIR = lfs.currentdir()
 	local INPUT_DIR = "Assets/res/uistu"
-	local OUT_PATH = "Assets/src/app/arpg/consts/IMG_CONFIG.lua"
+	local OUT_PATH = "Assets/src/app/consts/IMG_CONFIG.lua"
 	
 	local AllImages = {}
 	
@@ -242,79 +245,17 @@ local function init_res_path()
 	fout:close()
 end
 
-local function init_modules()
-	if device.platform ~= "windows" then return end
-	
-	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/app/arpg/modules"
-	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "app.arpg.modules.init"
-	
-	local path_list = {}
-	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
-	local cut = WORK_DIR .. "/Assets/src/"
-	for i, sss in ipairs(path_list) do 
-		path_list[i] = string.gsub(sss, cut, "")
-		path_list[i] = string.gsub(path_list[i], "/", ".")
-		path_list[i] = string.sub(path_list[i], 1, -5)
-	end 
-	
-	local fout = io.open(OUT_PATH,"w")
-	if not fout then assert(false, "无法自动生成"..OUT_PATH) return end
-	fout:write("-------------------------------\n")
-	fout:write("-- 该文件自动生成，请勿更改\n")
-	fout:write("-------------------------------\n")
-	for i, filestr in ipairs(path_list) do 
-		if filestr ~= skipFile then
-			fout:write( string.format("require(\"%s\") \n",filestr) )
-		end
-	end
-	fout:close()
-end
-
-local function init_games()
-	if device.platform ~= "windows" then return end
-	
-	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/app/arpg/games"
-	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "app.arpg.games.init"
-	
-	local path_list = {}
-	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
-	local cut = WORK_DIR .. "/Assets/src/"
-	for i, sss in ipairs(path_list) do 
-		path_list[i] = string.gsub(sss, cut, "")
-		path_list[i] = string.gsub(path_list[i], "/", ".")
-		path_list[i] = string.sub(path_list[i], 1, -5)
-	end 
-	
-	local fout = io.open(OUT_PATH,"w")
-	if not fout then assert(false, "无法自动生成"..OUT_PATH) return end
-	fout:write("-------------------------------\n")
-	fout:write("-- 该文件自动生成，请勿更改\n")
-	fout:write("-------------------------------\n")
-	for i, filestr in ipairs(path_list) do 
-		if filestr ~= skipFile then
-			fout:write( string.format("require(\"%s\") \n",filestr) )
-		end
-	end
-	fout:close()
-end
-
 --init_res_path()
-init_modules()
-init_games()
 
 ---------------------------------------------------------------------------
 
-local function init_xiaoxiaole()
+local function init_app_caipiao_modules()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/app/xiaoxiaole"
+	local INPUT_DIR = "Assets/src/app_caipiao/modules"
 	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "app.xiaoxiaole.init"
+	local skipFile = "app_caipiao.modules.init"
 	
 	local path_list = {}
 	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
@@ -338,17 +279,15 @@ local function init_xiaoxiaole()
 	fout:close()
 end
 
-init_xiaoxiaole()
+init_app_caipiao_modules()
 
----------------------------------------------------------------------------
---[[
-local function init_star()
+local function init_app_caipiao_games()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/fegg/disstar"
+	local INPUT_DIR = "Assets/src/app_caipiao/games"
 	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "fegg.disstar.init"
+	local skipFile = "app_caipiao.games.init"
 	
 	local path_list = {}
 	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
@@ -372,5 +311,6 @@ local function init_star()
 	fout:close()
 end
 
-init_star()
-]]
+init_app_caipiao_games()
+
+---------------------------------------------------------------------------

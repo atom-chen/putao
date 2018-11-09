@@ -1,0 +1,8 @@
+require("app.proto.init")
+require("app.consts.init")
+require("app.UserEntity")
+require("app.GlobalEvents")
+require("app.mgr.init")
+require("app.view.init")
+require("app.utils.init")
+require("app.Game")
