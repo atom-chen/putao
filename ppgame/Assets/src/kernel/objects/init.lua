@@ -21,3 +21,5 @@ require("kernel.objects.gui.ScrollHtmlText")
 require("kernel.objects.gui.BaseUI")
 
 require("kernel.objects.effect.EffectSeq")
+
+require("kernel.objects.map.CMap")
