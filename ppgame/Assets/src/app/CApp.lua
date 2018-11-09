@@ -272,7 +272,7 @@ end
 
 function ClsApp:load_CaiPiao()
 	require("app_caipiao.init")
---	require("app_arpg.init")
+	require("app_arpg.init")
 end
 
 --游戏

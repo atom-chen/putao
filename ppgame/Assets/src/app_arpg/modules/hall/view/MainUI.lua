@@ -33,12 +33,12 @@ function clsMainUI:InitUiEvents()
 	--金币
 	self.coinBg:setTouchEnabled(true)
 	utils.RegClickEvent(self.coinBg, function()
-		ClsUIManager.GetInstance():ShowPanel("clsShopUI"):ShowPage(const.CURRENCY.GOLD)
+		
 	end)
 	--钻石
 	self.diamondBg:setTouchEnabled(true)
 	utils.RegClickEvent(self.diamondBg, function()
-		ClsUIManager.GetInstance():ShowPanel("clsShopUI"):ShowPage(const.CURRENCY.DIAMOND)
+		
 	end)
 	
 	--即时战斗
@@ -59,11 +59,11 @@ function clsMainUI:InitUiEvents()
 	
 	--救济金
 	utils.RegClickEvent(self.BtnBenefit, function()
-		ClsUIManager.GetInstance():ShowPopWnd("clsBenefitUI")
+		
 	end)
 	--转盘
 	utils.RegClickEvent(self.BtnWheel, function()
-		ClsUIManager.GetInstance():ShowDialog("clsWheelUI")
+		
 	end)
 	--摇钱树
 	utils.RegClickEvent(self.BtnMoneyTree, function()
@@ -71,11 +71,11 @@ function clsMainUI:InitUiEvents()
 	end)
 	--首充
 	utils.RegClickEvent(self.BtnFirstRecharge, function()
-		ClsUIManager.GetInstance():ShowDialog("clsFirstRechargeUI")
+		
 	end)
 	--每日任务
 	utils.RegClickEvent(self.BtnDailyTask, function()
-		ClsUIManager.GetInstance():ShowPanel("clsTaskUI")
+		
 	end)
 	--活动
 	utils.RegClickEvent(self.BtnActivity, function()
@@ -83,6 +83,6 @@ function clsMainUI:InitUiEvents()
 	end)
 	--签到
 	utils.RegClickEvent(self.BtnSignin, function()
-		ClsUIManager.GetInstance():ShowPopWnd("clsSigninUI")
+		
 	end)
 end
