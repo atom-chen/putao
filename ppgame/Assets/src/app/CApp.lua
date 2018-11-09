@@ -274,7 +274,7 @@ end
 function ClsApp:runCaiPiao()
 	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
 	
-	require("app.proto.proto_register"):RegisterAllProtocal()
+	require("app_caipiao.proto.proto_register"):RegisterAllProtocal()
 	
 	HttpUtil:AddUserCacheProto("req_goucai_game_wanfa_list", HttpUtil.CACHE_TYPE_FOREVER)
 	HttpUtil:AddUserCacheProto("req_goucai_game_qiuhao_peilv_list", HttpUtil.CACHE_TYPE_TEMP)
