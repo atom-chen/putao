@@ -66,10 +66,11 @@ local function main()
 	
 	require("laucher.config")
 	require("laucher.logger")
+	require("laucher.engine_face")
 	logger.EnablePrint(false)
 	cc.LuaLoadChunksFromZIP("Assets/src/cocos.zip")
 	require("cocos.init")
-	logger.EnablePrint(device.platform=="windows")
+	logger.EnablePrint(device.platform=="windows" or device.platform=="mac")
 	print("本地缓存路径",GAME_CONFIG.LOCAL_DIR)
 	
 	local function finishCallback(tbLoadChunkZips)
@@ -77,6 +78,7 @@ local function main()
 		--- 1. 卸载 laucher和cocos，实现laucher和cocos的自我更新
 		unquire("laucher.config")
 		unquire("laucher.logger")
+		unquire("laucher.engine_face")
 		unquire("laucher.HotUpdate")
 		unquire("laucher.MsgBox")
 		unquire("laucher.override_traceback")
@@ -93,22 +95,29 @@ local function main()
 		cc.FileUtils:getInstance():addSearchPath("Assets/res")
 		
 		--- 3. 重新加载模块包
-		local tbZip = { "Assets/src/laucher.zip","Assets/src/cocos.zip","Assets/src/lib.zip","Assets/src/kernel.zip","Assets/src/app.zip" }
+		local tbZip = { 
+			"Assets/src/laucher.zip",
+			"Assets/src/cocos.zip",
+			"Assets/src/lib.zip",
+			"Assets/src/kernel.zip",
+			"Assets/src/app.zip" 
+		}
 		if tbLoadChunkZips then
 			tbZip = tbLoadChunkZips
 		end
-		for i = 1,#tbZip do
-			if cc.FileUtils:getInstance():isFileExist(tbZip[i]) then
-				cc.LuaLoadChunksFromZIP(tbZip[i])
+		for _, filename in ipairs(tbZip) do 
+			if cc.FileUtils:getInstance():isFileExist(filename) then
+				cc.LuaLoadChunksFromZIP(filename)
 			end
 		end
         
 		require("laucher.config")
 		require("laucher.logger")
+		require("laucher.engine_face")
 		require("laucher.HotUpdate")
 		logger.EnablePrint(false)
 		require("cocos.init")
-		logger.EnablePrint(device.platform=="windows")
+		logger.EnablePrint(device.platform=="windows" or device.platform=="mac")
 		require("laucher.override_traceback")
 		
 		--

@@ -3,7 +3,6 @@
 -------------------------
 local MsgBox = require("laucher.MsgBox")
 local cjson = require("cjson")
-require("laucher.engine_face")
 local plattarget = cc.Application:getInstance():getTargetPlatform()
 local luaj = {}
 local luaoc = {}
