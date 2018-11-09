@@ -12,6 +12,6 @@ function UnLoad(sFilePath)
 end
 
 function ReLoad(sFilePath)
-	UnLoad(sFilePath)
-	return self:Get(sFilePath)
+	unquire(sFilePath)
+	return require(sFilePath)
 end

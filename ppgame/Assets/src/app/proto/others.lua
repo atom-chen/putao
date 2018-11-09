@@ -3,13 +3,13 @@
 -------------------------
 module("proto",package.seeall)
 
-function RegisterProtocal(filepath)
-	local infolist = require(filepath)
+function RegisterProtocal(infolist)
 	for _, info in pairs(infolist) do
 		local ptoname = info.name
 		local respFuncName = "on_"..ptoname
 		local failFuncName = "fail_"..ptoname
 		local errorFuncName = "error_"..ptoname
+		assert(not g_AllProtocal[ptoname], "重复注册相同协议："..ptoname)
 		g_AllProtocal[ptoname] = info
 		g_AllRespFuncName[ptoname] = respFuncName
 		g_AllFailFuncName[ptoname] = failFuncName
