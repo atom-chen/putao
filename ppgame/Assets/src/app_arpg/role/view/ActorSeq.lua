@@ -75,14 +75,14 @@ function clsActorSeq:SetShapeId(iShapeId)
 	if self._ShapeId == iShapeId then return end
 	
 	for i=0,2 do
-		ClsResManager.GetInstance():SubSpriteFrames( string.format("res/role2d/%s%d.plist",self._ShapeId,i) )
+		ClsResManager.GetInstance():SubSpriteFrames( string.format("role2d/%s%d.plist",self._ShapeId,i) )
 	end
 	
 	self._ShapeId = iShapeId
 	self:_LoadBody()
 	
 	for i=0, 2 do
-		ClsResManager.GetInstance():AddSpriteFrames( string.format("res/role2d/%s%d.plist",self._ShapeId,i) )
+		ClsResManager.GetInstance():AddSpriteFrames( string.format("role2d/%s%d.plist",self._ShapeId,i) )
 	end
 	
 	self:_RefreshAppearance()
@@ -167,7 +167,7 @@ end
 --显示影子
 function clsActorSeq:ShowShadow(bShow)
 	if not self.mShadowSpr then
-		self.mShadowSpr = cc.Sprite:create("res/role2d/shadow.png")
+		self.mShadowSpr = cc.Sprite:create("role2d/shadow.png")
 		KE_SetParent(self.mShadowSpr, self)
 	end
 	self.mShadowSpr:setVisible(bShow)

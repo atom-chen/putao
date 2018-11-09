@@ -39,7 +39,7 @@ function test.TestParticle(parent)
 		logger.normal("滴滴滴 销毁粒子", res_path)
 	end)
 	
-	local res_path = "res/effects/effect_seq/bingpo.plist"
+	local res_path = "effects/effect_seq/bingpo.plist"
 	utils.CreateSeqSprite(parent, res_path, 2, function()
 		logger.normal("啊啊啊 销毁序列帧", res_path)
 	end):setPosition(555,0)
@@ -58,7 +58,7 @@ function test.TestSeqSprite(parent, plistName, aniName, dir8)
 	spr2d:setPosition(80,400)
 	--
 	for i=0, 2 do
-		ClsResManager.GetInstance():AddSpriteFrames( string.format("res/role2d/%s%d.plist",plistName,i) )
+		ClsResManager.GetInstance():AddSpriteFrames( string.format("role2d/%s%d.plist",plistName,i) )
 	end
 	--
 	local dirKey = dir8 
@@ -84,7 +84,7 @@ function test.TestSeqSprite(parent, plistName, aniName, dir8)
    	spr2d:registerScriptHandler(function(evtName)
 		if evtName == "cleanup" then 
 			for i=0,2 do
-				ClsResManager.GetInstance():SubSpriteFrames(string.format("res/role2d/%s%d.plist",plistName,i))
+				ClsResManager.GetInstance():SubSpriteFrames(string.format("role2d/%s%d.plist",plistName,i))
 			end
 		end
 	end)

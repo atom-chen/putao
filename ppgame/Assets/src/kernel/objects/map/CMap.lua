@@ -57,9 +57,9 @@ function clsMap:ctor(parent, map_id, bLockCamera)
 	self:InitCompLoader()
 	self:init_events()
 	
-	g_EventMgr:FireEvent("ENTER_WORLD", map_id)
+	g_EventMgr:FireEvent("ENTER_MAP", map_id)
 	
-	self:InitKeyBoardListener()
+--	self:InitKeyBoardListener()
 end
 
 function clsMap:dtor()
@@ -67,7 +67,7 @@ function clsMap:dtor()
 	self:BindCameraOn(nil)
 	self._bCameraLocked = true
 	
-	g_EventMgr:FireEvent("LEAVE_WORLD")
+	g_EventMgr:FireEvent("LEAVE_MAP")
 	
 	if self.mCompLoader then
 		KE_SafeDelete(self.mCompLoader)
@@ -90,7 +90,7 @@ end
 
 function clsMap:ReadMapHeader()
 	--读取数据
-	local filepath = string.format("res/map/header/%d.lua", self.iMapId)
+	local filepath = string.format("map/header/%d.lua", self.iMapId)
 	local data = setting.Get(filepath)
 	assert(data.row_count<=MAX_TILE_COUNT and data.col_count<=MAX_TILE_COUNT, "最大瓦片行数和列数为："..MAX_TILE_COUNT)
 	self.tMapInfo = {
@@ -114,7 +114,7 @@ function clsMap:ReadMapHeader()
 	for r = 0, MAX_TILE_COUNT do
 		for c = 0, MAX_TILE_COUNT do
 			local sIndex = QUICK_INDEX[r][c]
-			map_index_2_path[sIndex] = string.format("res/map/image/%d/%s.%s", self.iMapId, sIndex, self.tMapInfo.img_format)
+			map_index_2_path[sIndex] = string.format("map/image/%d/%s.%s", self.iMapId, sIndex, self.tMapInfo.img_format)
 		end
 	end
 	self._map_index_2_path = map_index_2_path
@@ -122,7 +122,7 @@ end
 
 function clsMap:LoadPathFinder()
 	self._path_finder = utils.GetPathFinder()
-	local bSucc = self._path_finder:loadBlock(string.format("res/map/mcm/%d.map", self.iMapId))
+	local bSucc = self._path_finder:loadBlock(string.format("map/mcm/%d.map", self.iMapId))
 	self._b_loadblock_succ = bSucc
 	
 	if IS_MAP_EDIT_MODE then
@@ -468,7 +468,7 @@ function clsMap:OnTouchEnd(touch, event)
 	
 	local info = {
 		sResType="particle",
-		sResPath="res/effects/particle/SmallSun.plist",
+		sResPath="effects/particle/SmallSun.plist",
 		iPositionType=0x2,
 		--callback = function() logger.normal("release particle") end
 	}
@@ -524,7 +524,7 @@ function clsMap:InitKeyBoardListener()
 	
 	local function onKeyPressed(thisObj, key_code, event)
 		if IS_MAP_EDIT_MODE and keyboard:IsTheseKeyPressed({cc.KeyCode.KEY_CTRL,cc.KeyCode.KEY_S}) then
-			self._path_finder:saveBlock(string.format("res/map/mcm/%d.map", self.iMapId))
+			self._path_finder:saveBlock(string.format("map/mcm/%d.map", self.iMapId))
 		end
 		
 		local opTarget = self._mCameraBinder or ClsRoleSprMgr.GetInstance():GetHero()

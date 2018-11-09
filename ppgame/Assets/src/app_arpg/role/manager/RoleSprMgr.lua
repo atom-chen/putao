@@ -10,7 +10,7 @@ function ClsRoleSprMgr:ctor()
 	self.tAllMonster = {}		--所有怪物
 	self.tAllTempRole = new_weak_table("k")		--所有临时角色
 	
-	g_EventMgr:AddListener("ClsRoleSprMgr", "LEAVE_WORLD", function(thisObj) 
+	g_EventMgr:AddListener("ClsRoleSprMgr", "LEAVE_MAP", function(thisObj) 
 		self:DestroyAllPlayer()
 		self:DestroyAllNpc()
 		self:DestroyAllMonster()

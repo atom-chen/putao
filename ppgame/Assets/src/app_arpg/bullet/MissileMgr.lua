@@ -22,7 +22,7 @@ function ClsMissileMgr:ctor()
 	
 	self._tMissileList = {}
 	
-	g_EventMgr:AddListener(self, "LEAVE_WORLD", function(thisObj)
+	g_EventMgr:AddListener(self, "LEAVE_MAP", function(thisObj)
 		self:DestroyAllMissiles()
 	end)
 end

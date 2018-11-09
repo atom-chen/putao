@@ -12,4 +12,4 @@ function clsFightScene:dtor()
 	
 end
 
-const.SCENE_CFG.clsFightScene = {scene_cls = clsFightScene}
+const.SCENE_CFG.clsFightScene = {scene_cls = clsFightScene, scene_id=2001, map_id=2001}

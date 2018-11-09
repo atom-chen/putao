@@ -264,15 +264,34 @@ function ClsApp:OnPreloadOver()
 	cc.Director:getInstance():getScheduler():scheduleScriptFunc(UpdateEveryFrame, 0, false)
 	
 	-- 启动子APP
-	self:load_CaiPiao()
-	cc.disable_global()
-	self:runCaiPiao()
+	local APP_TYPE = 2
+	if APP_TYPE == 1 then
+		self:load_CaiPiao()
+		cc.disable_global()
+		self:runCaiPiao()
+	else 
+		self:load_Arpg()
+		cc.disable_global()
+		self:runArpg()
+	end 
+	
 	self.tmrCheck = self.tmrCheck or KE_SetAbsInterval(60, function() self:CheckHotUpdate() end)
 end
 
+function ClsApp:load_Arpg()
+	require("app_arpg.init")
+end 
+
+function ClsApp:runArpg()
+	cc.FileUtils:getInstance():addSearchPath("Assets/res_arpg")
+	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
+	
+	VVDirector:Init()
+	ClsSceneManager.GetInstance():Turn2Scene("clsRestScene")
+end 
+
 function ClsApp:load_CaiPiao()
 	require("app_caipiao.init")
-	require("app_arpg.init")
 end
 
 --游戏

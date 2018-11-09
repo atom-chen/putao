@@ -47,7 +47,7 @@ end
 function clsActor3D:_LoadBody()
 	if not self._entityObj:GetShapeId() then return end
 	if self._mBody then return end
-	self._mBody = utils.NewModel(self, string.format("res/role3d/%d/stand.c3b", self._entityObj:GetShapeId()))
+	self._mBody = utils.NewModel(self, string.format("role3d/%d/stand.c3b", self._entityObj:GetShapeId()))
 	self._mBody:setScale(0.5)
 --	self._mBody.runAction = function() assert(false) end
 end
@@ -95,7 +95,7 @@ end
 
 function clsActor3D:_AddAni(sAniKey)
 	if not self._tAllAnimation[sAniKey] then
-		self._tAllAnimation[sAniKey] = load_animation3d( string.format("res/role3d/%d/%s.c3b", self._entityObj:GetShapeId(), sAniKey) )
+		self._tAllAnimation[sAniKey] = load_animation3d( string.format("role3d/%d/%s.c3b", self._entityObj:GetShapeId(), sAniKey) )
 	end
 	assert(self._tAllAnimation[sAniKey], "添加动作失败："..sAniKey)
 	return self._tAllAnimation[sAniKey]
@@ -155,7 +155,7 @@ end
 ----------------------------
 
 --显示影子
-local shadow_path = "res/role3d/shadow.png"
+local shadow_path = "role3d/shadow.png"
 function clsActor3D:ShowShadow(bShow)
 	if not bShow and not self.mShadowSpr then return end
 	if not self.mShadowSpr then
@@ -190,10 +190,10 @@ end
 --更新血条
 function clsActor3D:RefleshBloodBar()
 	if not self.mBloodBar then
-		local bloodBg = cc.Sprite:create("res/uistu/fight/hpBg.png")
+		local bloodBg = cc.Sprite:create("uiarpg/fight/hpBg.png")
 		self:addChild(bloodBg)
 		bloodBg:setPosition(0,self:GetBodyHeight()+15)
-		self.mBloodBar = ccui.LoadingBar:create("res/uistu/fight/hp_1.png", 0)
+		self.mBloodBar = ccui.LoadingBar:create("uiarpg/fight/hp_1.png", 0)
 		local theProgBar = self.mBloodBar
 		theProgBar:setDirection(ccui.LoadingBarDirection.LEFT)
 		theProgBar:setPosition(0,self:GetBodyHeight()+15)

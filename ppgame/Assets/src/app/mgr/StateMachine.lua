@@ -86,7 +86,7 @@ function ClsStateMachine:ToStateLogin()
 	VVDirector:InitDatas()
 	--
 	ClsSceneManager.GetInstance():Turn2Scene("clsHallScene")
-    --ClsSceneManager.GetInstance():Turn2Scene("clsEquipment")
+    
 	if not ClsLoginMgr.GetInstance():QuickLogon() then
 		proto.req_get_game_article_content({id="68"})
 	end

@@ -37,7 +37,7 @@ function clsActorArm:_LoadBody()
 	if not resId then return end
 	if self._mBody then return end
 	
-	ClsResManager.GetInstance():AddArmatureFileInfo("res/role/10001/Cowboy.ExportJson")
+	ClsResManager.GetInstance():AddArmatureFileInfo("role2d/10001/Cowboy.ExportJson")
 	self._mBody = ccs.Armature:create("Cowboy")
 	self._mBody:setAnchorPoint(cc.p(0.5,0))
 	KE_SetParent(self._mBody, self)
@@ -48,7 +48,7 @@ end
 function clsActorArm:_UnloadBody()
 	if not self._mBody then return end
 	if self._mBody then KE_SafeDelete(self._mBody) self._mBody = nil end
-	ClsResManager.GetInstance():SubArmatureFileInfo("res/role/10001/Cowboy.ExportJson")
+	ClsResManager.GetInstance():SubArmatureFileInfo("role2d/10001/Cowboy.ExportJson")
 end
 
 ---------------------------
@@ -124,7 +124,7 @@ end
 function clsActorArm:ShowShadow(bShow)
 	if not bShow and not self.mShadowSpr then return end
 	if not self.mShadowSpr then
-		self.mShadowSpr = cc.Sprite:create("res/role/shadow.png")
+		self.mShadowSpr = cc.Sprite:create("role2d/shadow.png")
 		KE_SetParent(self.mShadowSpr, self)
 	end
 	self.mShadowSpr:setVisible(bShow)

@@ -182,7 +182,7 @@ ALL_GEN_FUNC[21001] = function(Attacker)
 	toY = toY + 50 
 		
 	local argInfo = { 
-		["sResPath"] = "res/effects/effect_img/huoqiu.png",["sResType"] = "Sprite", 
+		["sResPath"] = "effects/effect_img/huoqiu.png",["sResType"] = "Sprite", 
 		["fromX"]=fromX, ["fromY"]=fromY, ["toX"]=toX, ["toY"]=toY, ["speed"]=1800, ["jmpH"]=150, 
 	}
 	local shootAni = smartor.NewUnit("l_shoot_curve", argInfo, ctx)
@@ -239,7 +239,7 @@ ALL_GEN_FUNC[22001] = function(Attacker)
 	
 	local movSpeed = 1000 
 	
-	local argInfo = { ["sResType"]="EffectSeq", ["sResPath"]="res/effects/effect_seq/tornado1.plist",
+	local argInfo = { ["sResType"]="EffectSeq", ["sResPath"]="effects/effect_seq/tornado1.plist",
 					  ["fromX"]=fromX, ["fromY"]=fromY, ["toX"]=toX, ["toY"]=toY, ["speed"]=movSpeed, }
 	local shootAni = smartor.NewUnit("l_shoot_line", argInfo, ctx)
 	
@@ -288,7 +288,7 @@ ALL_GEN_FUNC[22002] = function(Attacker)
 		for idx, Victim in ipairs(targets) do 
 			local toX, toY = Victim:getPosition()
 			toY = toY + 50 
-			local argInfo = { ["sResType"]="particle", ["sResPath"]="res/effects/particle/SmallSun.plist", ["iPositionType"]=0x1, 
+			local argInfo = { ["sResType"]="particle", ["sResPath"]="effects/particle/SmallSun.plist", ["iPositionType"]=0x1, 
 							  ["fromX"]=fromX, ["fromY"]=fromY, ["toX"]=toX, ["toY"]=toY, ["speed"]=500 }
 			local shootAni = smartor.NewUnit("l_shoot_line", argInfo, ctx)
 			

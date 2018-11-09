@@ -4,7 +4,7 @@
 module("smartor",package.seeall)
 
 local default_args = {
-	["respath"] = "res/effects/effect_img/huoqiu.png",
+	["respath"] = "effects/effect_img/huoqiu.png",
 	["fromX"] = 0,
 	["fromY"] = 0,
 	["toX"] = 100,

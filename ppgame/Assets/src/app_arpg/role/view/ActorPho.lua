@@ -51,8 +51,8 @@ end
 function clsActorPho:_LoadBody()
 	if not self._entityObj:GetShapeId() then return end
 	if self._mBody then return end
-	local respath = string.format( "res/rolePho/%s.png", self._entityObj:GetShapeId() )
-	self._mBody = cc.Sprite:create(respath) or cc.Sprite:create("res/rolePho/00020604_1.png")
+	local respath = string.format( "rolePho/%s.png", self._entityObj:GetShapeId() )
+	self._mBody = cc.Sprite:create(respath) or cc.Sprite:create("rolePho/00020604_1.png")
 	self._mBody:setScale(BODY_SCALE)
 	self._mBody:setAnchorPoint(cc.p(0.5,0))
 	self:addChild(self._mBody)
@@ -148,7 +148,7 @@ end
 ----------------------------
 
 --显示影子
-local shadow_path = "res/role3d/shadow.png"
+local shadow_path = "role3d/shadow.png"
 function clsActorPho:ShowShadow(bShow)
 	if not bShow and not self.mShadowSpr then return end
 	if not self.mShadowSpr then
@@ -183,10 +183,10 @@ end
 --更新血条
 function clsActorPho:RefleshBloodBar()
 	if not self.mBloodBar then
-		local bloodBg = cc.Sprite:create("res/uistu/fight/hpBg.png")
+		local bloodBg = cc.Sprite:create("uiarpg/fight/hpBg.png")
 		self:addChild(bloodBg)
 		bloodBg:setPosition(0,self:GetBodyHeight()+15)
-		self.mBloodBar = ccui.LoadingBar:create("res/uistu/fight/hp_1.png", 0)
+		self.mBloodBar = ccui.LoadingBar:create("uiarpg/fight/hp_1.png", 0)
 		local theProgBar = self.mBloodBar
 		theProgBar:setDirection(ccui.LoadingBarDirection.LEFT)
 		theProgBar:setPosition(0,self:GetBodyHeight()+15)

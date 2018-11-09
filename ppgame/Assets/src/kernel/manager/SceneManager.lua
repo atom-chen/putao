@@ -39,6 +39,7 @@ function ClsSceneManager:Turn2Scene(scene_name, OnLoadingOver)
 	
 	local sceneInfo = const.SCENE_CFG[scene_name]
 	local scene_cls = sceneInfo.scene_cls
+	local scene_id, map_id = sceneInfo.scene_id, sceneInfo.map_id
 	
 	-- 销毁旧场景资源
 	self._sPreSceneName = self._sCurSceneName
@@ -63,7 +64,7 @@ function ClsSceneManager:Turn2Scene(scene_name, OnLoadingOver)
 	
 	-- 创建新场景
 	self._sCurSceneName = scene_name
-	self._mCurScene = scene_cls.new()
+	self._mCurScene = scene_cls.new(scene_id, map_id)
 	
 	-- 运行新场景
 	self:RunScene(self._mCurScene)

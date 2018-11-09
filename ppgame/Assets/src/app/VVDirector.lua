@@ -59,6 +59,7 @@ function VVDirector:InitDatas()
 	UserEntity.GetInstance()
 	--
 	self:InitCaiPiaoData()
+	self:InitArpgDatas()
 end
 
 -- 清理数据
@@ -67,6 +68,7 @@ function VVDirector:ClearDatas()
 	UserEntity.DelInstance()
 	--
 	self:ClearCaiPiaoData()
+	self:ClearArpgDatas()
 	
 	UserDbCache.GetInstance():ClearTmpData()
 end
@@ -121,4 +123,27 @@ function VVDirector:ClearCaiPiaoData()
 	ClsGame11x5Mgr.DelInstance()
 	ClsGameYbMgr.DelInstance()
 	ClsGameMgr.DelInstance()
+end
+
+
+-- 初始化数据
+function VVDirector:InitArpgDatas()
+	self.mRoleDataMgr = ClsRoleEntityMgr.GetInstance()			--角色属性数据
+end
+
+-- 清理数据
+function VVDirector:ClearArpgDatas()
+	self.mRoleDataMgr = ClsRoleEntityMgr.DelInstance()			--角色属性数据
+end
+
+function VVDirector:SetMap(mapObj)
+	self._the_map = mapObj
+end
+
+function VVDirector:GetMap()
+	return self._the_map
+end
+
+function VVDirector:BindCameraOn(entityObj)
+	if self._the_map then self._the_map:BindCameraOn(entityObj) end
 end

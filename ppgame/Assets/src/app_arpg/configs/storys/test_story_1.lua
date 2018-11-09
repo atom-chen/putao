@@ -258,7 +258,7 @@ return
     [14] = {
         ["args"] = {
             ["atom_id"] = 2.000000,
-            ["res_path"] = "res/effects/effect_seq/bingpo.plist",
+            ["res_path"] = "effects/effect_seq/bingpo.plist",
             ["x"] = 250.000000,
             ["y"] = 250.000000,
         },

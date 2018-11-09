@@ -3,10 +3,13 @@
 -------------------------
 clsScene = class("clsScene", function() return cc.Scene:create() end)
 
-function clsScene:ctor()
+function clsScene:ctor(world_id, map_id)
 	self:EnableNodeEvents()
+	self.iWorldId = world_id		--场景ID
+	self.iMapId = map_id			--地图ID
 	ClsSceneManager:GetInstance()._mCurScene = self
 	keyboard:InitKeboardEvent(self)
+	self:SetMapId(self.iMapId)
 	self:InitUILayer(self)
 --	self.addChild = nil
 	self:InitSystemKeyboard()
@@ -18,10 +21,30 @@ end
 
 function clsScene:OnDestroy()
 	self:DestroyUILayer()
+	self:DestroyMap()
 end
 
 function clsScene:OnLoadingOver()
 	
+end
+
+function clsScene:SetMapId(iMapId, bLockCamera)
+	self.iMapId = iMapId
+	if self.mMap and self.mMap:GetUid()==iMapId then return end
+	
+	self:DestroyMap()
+	
+	if self.iMapId then  
+		self.mMap = clsMap.new(self, self.iMapId, bLockCamera)
+		self.mMap:SetCameraPos(0,0)
+	end
+end
+
+function clsScene:DestroyMap()
+	if self.mMap then
+		KE_SafeDelete(self.mMap)
+		self.mMap = nil
+	end
 end
 
 function clsScene:InitUILayer(Parent)
@@ -41,6 +64,10 @@ end
 
 function clsScene:DestroyUILayer()
 	ClsUIManager.GetInstance():DestroyAllWindow()
+end
+
+function clsScene:ShowMap(bShow)
+	if self.mMap then self.mMap:setVisible(bShow) end
 end
 
 

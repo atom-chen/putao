@@ -55,7 +55,7 @@ function FightService:EnterFight(fightArgu)
 	
 	-- 进入战斗场景
 	logger.fight("+++++++++ 进入战斗场景 +++++++++")
-	ClsSceneManager.GetInstance():Turn2Scene("clsFightScene", 500, 400, function() self:_OnLoadingOver() end)
+	ClsSceneManager.GetInstance():Turn2Scene("clsFightScene", function() self:_OnLoadingOver() end)
 end
 
 function FightService:_OnLoadingOver()
@@ -163,7 +163,7 @@ end
 
 --退出战斗
 function FightService:_ExitFight()
-	ClsSceneManager.GetInstance():Turn2Scene("clsRestScene", 500, 600)
+	ClsSceneManager.GetInstance():Turn2Scene("clsRestScene")
 end
 
 ---------------------
