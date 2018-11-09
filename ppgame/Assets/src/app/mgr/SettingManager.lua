@@ -11,9 +11,6 @@ T_advertise = setting.Get("app.configs.T_advertise")
 
 ------------------------------------------------------------------------------------------------------
 
-------------------
--- 多语言
-------------------
 if device.platform == "windows" then
 	local language_map = {}
 	for id, text in pairs(T_multy_language) do
@@ -27,12 +24,4 @@ end
 function GetMultyMsg(msgId)
 	assert(T_multy_language[msgId], "未配置多语言："..msgId)
 	return T_multy_language[msgId]
-end
-
-------------------
---剧情
-------------------
-function GetStoryCfg(sStoryName)
-	local filepath = string.format("app.configs.storys/%s", sStoryName)
-	return setting.Get(filepath)
 end
