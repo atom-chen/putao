@@ -36,7 +36,6 @@ function clsScene:SetMapId(iMapId, bLockCamera)
 	
 	if self.iMapId then  
 		self.mMap = clsMap.new(self, self.iMapId, bLockCamera)
-		self.mMap:SetCameraPos(0,0)
 	end
 end
 
