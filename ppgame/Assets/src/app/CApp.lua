@@ -92,7 +92,6 @@ function ClsApp:GetModFileList()
 		--logic
 		"app.init",					-- 游戏逻辑
 		"app.VVDirector",			-- 游戏总管理器
-		"app_caipiao.init",			-- 彩票APP
 	}
 
 	return ModFileList
@@ -140,7 +139,7 @@ function ClsApp:Run()
 end
 
 function ClsApp:OnPreloadOver()
-	cc.disable_global()	--开始限制全局变量
+--	cc.disable_global()	--开始限制全局变量
 	
 	PlatformHelper.onGameLauch()
 	
@@ -154,12 +153,19 @@ function ClsApp:OnPreloadOver()
 	cc.Director:getInstance():getScheduler():scheduleScriptFunc(UpdateEveryFrame, 0, false)
 	
 	--
-	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
+	self:load_CaiPiao()
+	cc.disable_global()
 	self:runCaiPiao()
+end
+
+function ClsApp:load_CaiPiao()
+	require("app_caipiao.init")
 end
 
 --游戏
 function ClsApp:runCaiPiao()
+	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
+	
 	require("app.proto.proto_register"):RegisterAllProtocal()
 	
 	HttpUtil:AddUserCacheProto("req_goucai_game_wanfa_list", HttpUtil.CACHE_TYPE_FOREVER)

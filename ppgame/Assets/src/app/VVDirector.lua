@@ -29,11 +29,51 @@ function VVDirector:Init()
 	end)
 end
 
+function VVDirector:CreateNotificationNode()
+	local noti_node = cc.Director:getInstance():getNotificationNode()
+	if not noti_node then
+		noti_node = cc.Node:create()
+		cc.Director:getInstance():setNotificationNode(noti_node)
+	end
+	assert(cc.Director:getInstance():getNotificationNode(), "noti_node创建失败")
+	return noti_node
+end
+
+function VVDirector:SyncServerTime(serverTime)
+	
+end
+
+function VVDirector:GetServerTime()
+	return os.time()
+end
+
+function VVDirector:GetTipProcedure() 
+	return self.mTipProcedure 
+end
+
+---------------------------------------------------------------------------------
+
 -- 初始化数据
 function VVDirector:InitDatas()
 	self.mTipProcedure = smartor.clsPromise.new()
 	guide.ClsGuideMgr.GetInstance()
 	UserEntity.GetInstance()
+	--
+	self:InitCaiPiaoData()
+end
+
+-- 清理数据
+function VVDirector:ClearDatas()
+	KE_SafeDelete(self.mTipProcedure) self.mTipProcedure = nil
+	guide.ClsGuideMgr.DelInstance()
+	UserEntity.DelInstance()
+	--
+	self:ClearCaiPiaoData()
+	
+	UserDbCache.GetInstance():ClearTmpData()
+end
+
+function VVDirector:InitCaiPiaoData()
 	ClsAgentDataMgr.GetInstance()
 	ClsBankMgr.GetInstance()
 	ClsBetHistoryMgr.GetInstance()
@@ -41,7 +81,7 @@ function VVDirector:InitDatas()
 	ClsTitleMgr.GetInstance()
 	ClsWithdrawMgr.GetInstance()
 	clsFindMgr.GetInstance()
---	ClsPlayerInfoMgr.GetInstance()
+	ClsPlayerInfoMgr.GetInstance()
 	clsActiveMgr.GetInstance()
 	ClsCollectMgr.GetInstance()
 	ClsRedbagMgr.GetInstance()
@@ -57,12 +97,7 @@ function VVDirector:InitDatas()
 	ClsGameMgr.GetInstance()
 end
 
--- 清理数据
-function VVDirector:ClearDatas()
-	KE_SafeDelete(self.mTipProcedure) self.mTipProcedure = nil
-	guide.ClsGuideMgr.DelInstance()
-	
-	UserEntity.DelInstance()
+function VVDirector:ClearCaiPiaoData()
 	ClsAgentDataMgr.DelInstance()
 	ClsBankMgr.DelInstance()
 	ClsBetHistoryMgr.DelInstance()
@@ -84,29 +119,4 @@ function VVDirector:ClearDatas()
 	ClsGame11x5Mgr.DelInstance()
 	ClsGameYbMgr.DelInstance()
 	ClsGameMgr.DelInstance()
-	
-	UserDbCache.GetInstance():ClearTmpData()
 end
-
-function VVDirector:GetTipProcedure() return self.mTipProcedure end
-
-function VVDirector:SyncServerTime(serverTime)
-	
-end
-
-function VVDirector:GetServerTime()
-	return os.time()
-end
-
------------------------------分割线---------------------------------------
-
-function VVDirector:CreateNotificationNode()
-	local noti_node = cc.Director:getInstance():getNotificationNode()
-	if not noti_node then
-		noti_node = cc.Node:create()
-		cc.Director:getInstance():setNotificationNode(noti_node)
-	end
-	assert(cc.Director:getInstance():getNotificationNode(), "noti_node创建失败")
-	return noti_node
-end
-
