@@ -2,6 +2,10 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+LOCAL_MODULE := curl_lib_static
+LOCAL_SRC_FILES := ../../../../cocos2d-x/external/curl/prebuilt/android/$(TARGET_ARCH_ABI)/libcurl.a
+include $(PREBUILT_STATIC_LIBRARY)
+
 LOCAL_MODULE := cocos2dlua_shared
 
 LOCAL_MODULE_FILENAME := libcocos2dlua
@@ -36,6 +40,7 @@ LOCAL_SRC_FILES := \
 ../../../Classes/net/MessageDispatcher.cpp \
 ../../../Classes/net/ReceiveThread.cpp \
 ../../../Classes/net/SocketThread.cpp \
+../../../Classes/curlhttp/CurlAsset.cpp \
 ../../../Classes/auto/lua_xianyou_auto.cpp \
 ../../../Classes/manual/lua_xianyou_manual.cpp \
 hellolua/main.cpp
@@ -48,12 +53,16 @@ $(LOCAL_PATH)/../../../Classes/texmerge \
 $(LOCAL_PATH)/../../../Classes/astar \
 $(LOCAL_PATH)/../../../Classes/net \
 $(LOCAL_PATH)/../../../Classes/auto \
-$(LOCAL_PATH)/../../../Classes/manual
+$(LOCAL_PATH)/../../../Classes/manual \
+$(LOCAL_PATH)/../../../Classes/curlhttp \
+$(LOCAL_PATH)/../../../../cocos2d-x/external/curl/include/android \
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END
 
 LOCAL_STATIC_LIBRARIES := cocos2d_lua_static
+LOCAL_STATIC_LIBRARIES += cocos2d_simulator_static
+LOCAL_STATIC_LIBRARIES += curl_lib_static
 
 # _COCOS_LIB_ANDROID_BEGIN
 # _COCOS_LIB_ANDROID_END
@@ -61,6 +70,8 @@ LOCAL_STATIC_LIBRARIES := cocos2d_lua_static
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,scripting/lua-bindings/proj.android)
+$(call import-module, tools/simulator/libsimulator/proj.android)
+$(call import-module, external/curl/prebuilt/android)
 
 # _COCOS_LIB_IMPORT_ANDROID_BEGIN
 # _COCOS_LIB_IMPORT_ANDROID_END
