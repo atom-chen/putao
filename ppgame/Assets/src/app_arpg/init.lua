@@ -1,0 +1,8 @@
+require "app_arpg.SettingManager"
+require "app_arpg.consts.init"
+require "app_arpg.utils.init"
+require "app_arpg.role.init"
+require "app_arpg.bullet.init"
+require "app_arpg.fight.init"
+require "app_arpg.modules.init"
+require "app_arpg.Game"

@@ -19,8 +19,8 @@ GAME_CONFIG = {
 	VV_ENABLE_MEMLEAK_CHECK = false,		-- 是否开启内测泄露检测
 	VV_ENABLE_AUTO_TEST = false,			-- 是否开启自动测试
 	--
-	ENABLE_AI_MODULE = false,
-	ENABLE_ACTREE_MODULE = false,
+	ENABLE_AI_MODULE = true,
+	ENABLE_ACTREE_MODULE = true,
 }
 GAME_CONFIG.SCREEN_W = screensize.width				-- 实际屏幕宽
 GAME_CONFIG.SCREEN_H = screensize.height			-- 实际屏幕高

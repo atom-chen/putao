@@ -5,14 +5,14 @@ module("ai",package.seeall)
 
 clsBlackBoard = class("clsBlackBoard", clsCoreObject)
 
-clsBlackBoard:RegSaveVar("IsInHandop", nil, TYPE_CHECKER.BOOL)			--手动操作的开始和结束标记
+clsBlackBoard:RegSaveVar("IsInHandop", TYPE_CHECKER.BOOL)			--手动操作的开始和结束标记
 
-clsBlackBoard:RegSaveVar("DensestPoint", nil, TYPE_CHECKER.TABLE_NIL)	--敌人最密集的坐标点
-clsBlackBoard:RegSaveVar("PatrolPos", nil, TYPE_CHECKER.TABLE_NIL)		--围绕哪个坐标附近巡逻
-clsBlackBoard:RegSaveVar("FightTargetId", nil, TYPE_CHECKER.INT_NIL)	--当前攻击对象ID
-clsBlackBoard:RegSaveVar("FollowTargetId", nil, TYPE_CHECKER.INT_NIL)	--当前跟随对象ID
-clsBlackBoard:RegSaveVar("SkillIndex", nil, TYPE_CHECKER.INT_NIL)		--当前技能Index
-clsBlackBoard:RegSaveVar("DestPlace", nil, TYPE_CHECKER.TABLE_NIL)		--目的地 {mapid=0,x=0,y=0,dis=0}
+clsBlackBoard:RegSaveVar("DensestPoint", TYPE_CHECKER.TABLE_NIL)	--敌人最密集的坐标点
+clsBlackBoard:RegSaveVar("PatrolPos", TYPE_CHECKER.TABLE_NIL)		--围绕哪个坐标附近巡逻
+clsBlackBoard:RegSaveVar("FightTargetId", TYPE_CHECKER.INT_NIL)	--当前攻击对象ID
+clsBlackBoard:RegSaveVar("FollowTargetId", TYPE_CHECKER.INT_NIL)	--当前跟随对象ID
+clsBlackBoard:RegSaveVar("SkillIndex", TYPE_CHECKER.INT_NIL)		--当前技能Index
+clsBlackBoard:RegSaveVar("DestPlace", TYPE_CHECKER.TABLE_NIL)		--目的地 {mapid=0,x=0,y=0,dis=0}
 
 function clsBlackBoard:ctor(theOwner)
 	clsCoreObject.ctor(self)

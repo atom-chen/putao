@@ -1,0 +1,457 @@
+-------------------
+-- 状态
+-------------------
+ROLE_STATE = {
+	--动作状态层（原子级动作）
+	ST_ACTBRIDGE	= "ST_ACTBRIDGE",	--过渡状态，外部不可见
+	ST_IDLE 		= "a闲散",			--站*
+	ST_WALK 		= "a行走",			--走*
+	ST_RUN 			= "a奔跑",			--跑*
+	ST_RUSH			= "a冲刺",			--冲*
+	ST_JUMP 		= "a跳跃",			--跳*
+	ST_SKILL 		= "a攻击",			--攻击*
+	ST_DEFEND		= "a防御",			--防御*
+	
+	ST_HIT 			= "a受击",			--受击
+	ST_FLIGHT		= "a击飞",			--击飞
+	ST_FREEZE		= "a僵化",			--僵化
+	ST_LIE			= "a倒地",			--倒地
+	ST_DIE 			= "a死亡",			--死亡
+	ST_REVIVE		= "a复活",			--复活
+	--水平方向移动层
+	ST_GRDBRIDGE 	= "ST_GRDBRIDGE",	--过渡状态，外部不可见
+	ST_GRDMOVLINE	= "g击退",			--击退
+	ST_GRDMOVPATH	= "g寻路",			--寻路移动
+	ST_GRDMOVREST	= "g休息",			--停止
+	ST_GRDMOVFREEZE	= "g定身",			--冻结
+	--重力方向移动层
+	ST_SKYBRIDGE	= "ST_SKYBRIDGE",	--过渡状态，外部不可见
+	ST_SKYMOVLINE	= "s腾空",			--腾空
+	ST_SKYMOVPATH	= "s飞翔",			--飞翔
+	ST_SKYMOVREST	= "s着地",			--着地
+	ST_SKYMOVFREEZE	= "s悬空",			--悬空
+}
+
+STATE_LAYER = {
+	TP_ACTION = 1,		--动作层
+	TP_GRDMOVEMENT = 2,	--水平移动层
+	TP_SKYMOVEMENT = 2,	--垂直移动层
+}
+
+STATE_2_STATE_LAYER = {
+	--动作状态层（原子级动作）
+	[ROLE_STATE.ST_ACTBRIDGE]	= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_IDLE] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_WALK] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_RUN] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_RUSH]		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_JUMP] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_SKILL] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_DEFEND]		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_HIT] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_FLIGHT]		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_FREEZE]		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_LIE]			= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_DIE] 		= STATE_LAYER.TP_ACTION,
+	[ROLE_STATE.ST_REVIVE]		= STATE_LAYER.TP_ACTION,
+	--水平方向移动层
+	[ROLE_STATE.ST_GRDBRIDGE] 	= STATE_LAYER.TP_GRDMOVEMENT,
+	[ROLE_STATE.ST_GRDMOVLINE]	= STATE_LAYER.TP_GRDMOVEMENT,
+	[ROLE_STATE.ST_GRDMOVPATH]	= STATE_LAYER.TP_GRDMOVEMENT,
+	[ROLE_STATE.ST_GRDMOVREST]	= STATE_LAYER.TP_GRDMOVEMENT,
+	[ROLE_STATE.ST_GRDMOVFREEZE]= STATE_LAYER.TP_GRDMOVEMENT,
+	--重力方向移动层
+	[ROLE_STATE.ST_SKYBRIDGE]	= STATE_LAYER.TP_SKYMOVEMENT,
+	[ROLE_STATE.ST_SKYMOVLINE]	= STATE_LAYER.TP_SKYMOVEMENT,
+	[ROLE_STATE.ST_SKYMOVPATH]	= STATE_LAYER.TP_SKYMOVEMENT,
+	[ROLE_STATE.ST_SKYMOVREST]	= STATE_LAYER.TP_SKYMOVEMENT,
+	[ROLE_STATE.ST_SKYMOVFREEZE]= STATE_LAYER.TP_SKYMOVEMENT,
+}
+
+FORBIT_THINK_STATES = {
+	[ROLE_STATE.ST_HIT] = true,
+	[ROLE_STATE.ST_FLIGHT] = true,
+	[ROLE_STATE.ST_FREEZE] = true,
+	[ROLE_STATE.ST_LIE] =true,
+	[ROLE_STATE.ST_DIE] = true,
+	[ROLE_STATE.ST_REVIVE] = true,
+}
+
+------------------------------
+-- 状态转换表
+--
+-- ST_ACTBRIDGE 是一个过渡状态，能够从任何状态切换到他，也能从他切换到任何状态
+------------------------------
+
+-- 状态转换表（动作层）
+ACTSTATE_TRANS_TABLE = {
+	[ROLE_STATE.ST_ACTBRIDGE] = {
+--		[ROLE_STATE.ST_ACTBRIDGE] = false,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+		[ROLE_STATE.ST_SKILL] = true,
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+		[ROLE_STATE.ST_LIE] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_REVIVE] = true,
+	},
+	[ROLE_STATE.ST_IDLE] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+--		[ROLE_STATE.ST_IDLE] = false,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_WALK] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_RUN]  = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = true,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_RUSH] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = true,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_JUMP] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = true,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_SKILL] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+		[ROLE_STATE.ST_DEFEND] = true,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_DEFEND] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_HIT] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_FLIGHT] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+--		[ROLE_STATE.ST_HIT] = true,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_FREEZE] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_LIE] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+--		[ROLE_STATE.ST_LIE] = false,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_DIE] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+		[ROLE_STATE.ST_IDLE] = true,
+		[ROLE_STATE.ST_WALK] = true,
+		[ROLE_STATE.ST_RUN] = true,
+		[ROLE_STATE.ST_RUSH] = true,
+		[ROLE_STATE.ST_JUMP] = true,
+		[ROLE_STATE.ST_SKILL] = true,
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+		[ROLE_STATE.ST_LIE] = true,
+--		[ROLE_STATE.ST_DIE] = false,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+	[ROLE_STATE.ST_REVIVE] = {
+		[ROLE_STATE.ST_ACTBRIDGE] = true,
+--		[ROLE_STATE.ST_IDLE] = false,
+--		[ROLE_STATE.ST_WALK] = false,
+--		[ROLE_STATE.ST_RUN] = false,
+--		[ROLE_STATE.ST_RUSH] = false,
+--		[ROLE_STATE.ST_JUMP] = false,
+--		[ROLE_STATE.ST_SKILL] = false,
+--		[ROLE_STATE.ST_DEFEND] = false,
+--		[ROLE_STATE.ST_HIT] = false,
+--		[ROLE_STATE.ST_FLIGHT] = false,
+--		[ROLE_STATE.ST_FREEZE] = false,
+--		[ROLE_STATE.ST_LIE] = false,
+		[ROLE_STATE.ST_DIE] = true,
+--		[ROLE_STATE.ST_REVIVE] = false,
+	},
+}
+
+-- 状态转换表（水平移动层）
+GRDMOVSTATE_TRANS_TABLE = {
+	[ROLE_STATE.ST_GRDBRIDGE] = {
+--		[ROLE_STATE.ST_GRDBRIDGE] = false,
+		[ROLE_STATE.ST_GRDMOVREST] = true,
+		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVPATH] = true,
+		[ROLE_STATE.ST_GRDMOVFREEZE] = true,
+	},
+	[ROLE_STATE.ST_GRDMOVREST] = {
+		[ROLE_STATE.ST_GRDBRIDGE] = true,
+		[ROLE_STATE.ST_GRDMOVREST] = true,
+		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVPATH] = true,
+--		[ROLE_STATE.ST_GRDMOVFREEZE] = true,
+	},
+	[ROLE_STATE.ST_GRDMOVLINE] = {
+		[ROLE_STATE.ST_GRDBRIDGE] = true,
+		[ROLE_STATE.ST_GRDMOVREST] = true,
+		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVPATH] = true,
+--		[ROLE_STATE.ST_GRDMOVFREEZE] = false,
+	},
+	[ROLE_STATE.ST_GRDMOVPATH] = {
+		[ROLE_STATE.ST_GRDBRIDGE] = true,
+		[ROLE_STATE.ST_GRDMOVREST] = true,
+--		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVPATH] = true,
+--		[ROLE_STATE.ST_GRDMOVFREEZE] = false,
+	},
+	[ROLE_STATE.ST_GRDMOVFREEZE] = {
+		[ROLE_STATE.ST_GRDBRIDGE] = true,
+		[ROLE_STATE.ST_GRDMOVREST] = true,
+		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVPATH] = true,
+		[ROLE_STATE.ST_GRDMOVFREEZE] = true,
+	},
+}
+
+-- 状态转换表（空中移动层）
+SKYMOVSTATE_TRANS_TABLE = {
+	[ROLE_STATE.ST_SKYBRIDGE] = {
+--		[ROLE_STATE.ST_SKYBRIDGE] = false,
+		[ROLE_STATE.ST_SKYMOVREST] = true,
+		[ROLE_STATE.ST_SKYMOVLINE] = true,
+		[ROLE_STATE.ST_SKYMOVPATH] = true,
+		[ROLE_STATE.ST_SKYMOVFREEZE] = true,
+	},
+	[ROLE_STATE.ST_SKYMOVREST] = {
+		[ROLE_STATE.ST_SKYBRIDGE] = true,
+--		[ROLE_STATE.ST_SKYMOVREST] = false,
+--		[ROLE_STATE.ST_SKYMOVLINE] = true,
+		[ROLE_STATE.ST_SKYMOVPATH] = true,
+--		[ROLE_STATE.ST_SKYMOVFREEZE] = false,
+	},
+	[ROLE_STATE.ST_SKYMOVLINE] = {
+		[ROLE_STATE.ST_SKYBRIDGE] = true,
+		[ROLE_STATE.ST_SKYMOVREST] = true,
+		[ROLE_STATE.ST_SKYMOVLINE] = true,
+		[ROLE_STATE.ST_SKYMOVPATH] = true,
+--		[ROLE_STATE.ST_SKYMOVFREEZE] = false,
+	},
+	[ROLE_STATE.ST_SKYMOVPATH] = {
+		[ROLE_STATE.ST_SKYBRIDGE] = true,
+		[ROLE_STATE.ST_SKYMOVREST] = true,
+--		[ROLE_STATE.ST_SKYMOVLINE] = true,
+		[ROLE_STATE.ST_SKYMOVPATH] = true,
+--		[ROLE_STATE.ST_SKYMOVFREEZE] = false,
+	},
+	[ROLE_STATE.ST_SKYMOVFREEZE] = {
+		[ROLE_STATE.ST_SKYBRIDGE] = true,
+		[ROLE_STATE.ST_SKYMOVREST] = true,
+		[ROLE_STATE.ST_SKYMOVLINE] = true,
+		[ROLE_STATE.ST_SKYMOVPATH] = true,
+		[ROLE_STATE.ST_SKYMOVFREEZE] = true,
+	},
+}
+
+------------------------------
+-- 跨层阻止表
+------------------------------
+CROSS_LAYER_FORBIT_TABLE = {
+	-- ActState阻止SkyMovState
+	[ROLE_STATE.ST_SKYMOVLINE] = {
+		[ROLE_STATE.ST_SKILL] = true,
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_DIE] = true,
+	},
+	[ROLE_STATE.ST_SKYMOVPATH] = {
+		[ROLE_STATE.ST_SKILL] = true,
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+		[ROLE_STATE.ST_LIE] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_REVIVE] = true,
+	},
+	[ROLE_STATE.ST_SKYMOVFREEZE] = {
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_SKILL] = true,
+	},
+	
+	-- ActState阻止GrdMovState
+	[ROLE_STATE.ST_GRDMOVLINE] = {
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_REVIVE] = true,
+	},
+	[ROLE_STATE.ST_GRDMOVPATH] = {
+		[ROLE_STATE.ST_SKILL] = true,
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_HIT] = true,
+		[ROLE_STATE.ST_FLIGHT] = true,
+		[ROLE_STATE.ST_FREEZE] = true,
+		[ROLE_STATE.ST_LIE] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_REVIVE] = true,
+	},
+	[ROLE_STATE.ST_GRDMOVFREEZE] = {
+		[ROLE_STATE.ST_DEFEND] = true,
+		[ROLE_STATE.ST_DIE] = true,
+		[ROLE_STATE.ST_SKILL] = true,
+	},
+	
+	-- SkyMovState阻止GrdMovState 
+	[ROLE_STATE.ST_GRDMOVPATH] = {
+		[ROLE_STATE.ST_SKYMOVFREEZE] = true,
+		[ROLE_STATE.ST_SKYMOVLINE] = true,
+	},
+	[ROLE_STATE.ST_GRDMOVLINE] = {
+		[ROLE_STATE.ST_SKYMOVFREEZE] = true,
+	},
+	
+	-- GrdMovState阻止SkyMovState
+	[ROLE_STATE.ST_SKYMOVPATH] = {
+		[ROLE_STATE.ST_GRDMOVLINE] = true,
+		[ROLE_STATE.ST_GRDMOVFREEZE] = true,
+	},
+	[ROLE_STATE.ST_SKYMOVLINE] = {
+		[ROLE_STATE.ST_GRDMOVFREEZE] = true,
+	},
+}
