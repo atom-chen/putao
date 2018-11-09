@@ -3,7 +3,7 @@
 --
 --[[
 ClsStoryPlayer.GetInstance():PlayStory( 
-			"test_story_1", 
+			"app.configs.story.test_story_1", 
 			function(reason) logger.warn("播放完毕回调") end)
 ]]--
 -------------------------
@@ -29,9 +29,11 @@ function ClsStoryPlayer:PlayStory(sFileName, finishCallback)
 		return 
 	end
 	
-	local StoryInfo = setting.GetStoryCfg(sFileName)
-	assert(StoryInfo, "不存在该剧情文件："..sFileName)
-	if not StoryInfo then return end
+	local StoryInfo = setting.Get(sFileName)
+	if not StoryInfo then 
+		assert(false, "不存在该剧情文件："..sFileName)
+		return 
+	end
 	
 	self.sCurStoryName = sFileName
 	self:PlayInfo(StoryInfo, finishCallback)
