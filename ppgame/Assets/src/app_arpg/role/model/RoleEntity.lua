@@ -53,32 +53,32 @@ function clsRoleEntity:ctor(Uid, TypeId)
 	assert(setting.T_card_cfg[TypeId], "无效的TypeId："..TypeId)
 	clsCoreObject.ctor(self)
 	
-	self:SetUid(Uid)
-	self:SetTypeId(TypeId)
-	self:SetShapeId(10001)
-	self:SetRoleType(const.ROLE_TYPE.TP_MONSTER)
-	self:SetRushSpeed(20)
-	self:SetRunSpeed(8)
-	self:SetWalkSpeed(5)
-	self:SetPosX(100)
-	self:SetPosY(100)
-	self:SetPosH(0)
-	self:SetCurDir(0)
-	self:SetCurMoveSpeed( self:GetRunSpeed() )
-	self:SetCurSkySpeed(0)
-	self:SetMaxHP(15000)
-	self:SetCurHP(15000)
-	self:SetPhyAtk(1000)
-	self:SetPhyDef(100)
-	self:SetMagicAtk(10000)
-	self:SetMagicDef(800)
-	self:SetCriAtk(2)
-	self:SetCriDef(0.1)
-	self:SetCriProb(30)
-	self:SetBuffPhyAtk(0)
-	self:SetBuffPhyDef(0)
-	self:SetBuffCriProb(0)
-	self:SetNick("战士"..self:GetUid())
+	self:Set_Uid(Uid)
+	self:Set_TypeId(TypeId)
+	self:Set_ShapeId(10001)
+	self:Set_RoleType(const.ROLE_TYPE.TP_MONSTER)
+	self:Set_RushSpeed(20)
+	self:Set_RunSpeed(8)
+	self:Set_WalkSpeed(5)
+	self:Set_PosX(100)
+	self:Set_PosY(100)
+	self:Set_PosH(0)
+	self:Set_CurDir(0)
+	self:Set_CurMoveSpeed( self:Get_RunSpeed() )
+	self:Set_CurSkySpeed(0)
+	self:Set_MaxHP(15000)
+	self:Set_CurHP(15000)
+	self:Set_PhyAtk(1000)
+	self:Set_PhyDef(100)
+	self:Set_MagicAtk(10000)
+	self:Set_MagicDef(800)
+	self:Set_CriAtk(2)
+	self:Set_CriDef(0.1)
+	self:Set_CriProb(30)
+	self:Set_BuffPhyAtk(0)
+	self:Set_BuffPhyDef(0)
+	self:Set_BuffCriProb(0)
+	self:Set_Nick("战士"..self:Get_Uid())
 --	self:InitByCfg()
 end
 
@@ -94,51 +94,51 @@ function clsRoleEntity:InitByCfg()
 end
 
 function clsRoleEntity:GetCfgInfo()
-	return setting.T_card_cfg[self:GetTypeId()]
+	return setting.T_card_cfg[self:Get_TypeId()]
 end
 
 function clsRoleEntity:GetHPPercent()
-	return self:GetCurHP()/self:GetMaxHP()
+	return self:Get_CurHP()/self:Get_MaxHP()
 end
 
 function clsRoleEntity:AddHP(iHp)
-	local curHP = math.Limit(self:GetCurHP()+iHp, 0, self:GetMaxHP())
-	self:SetCurHP(curHP)
+	local curHP = math.Limit(self:Get_CurHP()+iHp, 0, self:Get_MaxHP())
+	self:Set_CurHP(curHP)
 	return curHP
 end
 
 function clsRoleEntity:AddMaxHP(iValue)
-	local curValue = math.Limit(self:GetMaxHP()+iValue, 100)
-	self:SetMaxHP(curValue)
-	if self:GetCurHP() > curValue then
-		self:SetCurHP(curValue)
+	local curValue = math.Limit(self:Get_MaxHP()+iValue, 100)
+	self:Set_MaxHP(curValue)
+	if self:Get_CurHP() > curValue then
+		self:Set_CurHP(curValue)
 	end
 	return curValue
 end
 
 
 function clsRoleEntity:setPosition(x,y)
-	self:SetPosX(x)
-	self:SetPosY(y)
+	self:Set_PosX(x)
+	self:Set_PosY(y)
 end
 
 function clsRoleEntity:getPosition()
-	return self:GetPosX(), self:GetPosY()
+	return self:Get_PosX(), self:Get_PosY()
 end
 
 function clsRoleEntity:getPosition3D()
-	return self:GetPosX(), self:GetPosY(), self:GetPosH()
+	return self:Get_PosX(), self:Get_PosY(), self:Get_PosH()
 end 
 
 function clsRoleEntity:setPosition3D()
-	self:SetPosX()
-	self:SetPosY()
-	self:SetPosH()
+	self:Set_PosX()
+	self:Set_PosY()
+	self:Set_PosH()
 end 
 
 function clsRoleEntity:AddCurSkySpeed(iDelta)
-	local newSpeed = self:GetCurSkySpeed() + iDelta
-	self:SetCurSkySpeed( newSpeed )
+	local newSpeed = self:Get_CurSkySpeed() + iDelta
+	self:Set_CurSkySpeed( newSpeed )
 	return newSpeed
 end
 
@@ -146,5 +146,5 @@ function clsRoleEntity:FaceTo(x,y)
 	local sx, sy = self:getPosition()
 	local dX, dY = x-sx, y-sy
 	if dX == 0 and dY == 0 then return end
-	self:SetCurDir( math.Vector2Radian(dX, dY) )
+	self:Set_CurDir( math.Vector2Radian(dX, dY) )
 end

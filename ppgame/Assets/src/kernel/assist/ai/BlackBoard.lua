@@ -40,7 +40,7 @@ end
 -- 行为树开始执行时，标记到BlackBoard
 function clsBlackBoard:TellBTBegin(btTree, Callback)
 	assert(not btTree:IsRunning(self.mOwner))
-	logger.ai("行为树开始", self.mOwner:GetUid(), btTree.__cname)
+	logger.ai("行为树开始", self.mOwner:Get_Uid(), btTree.__cname)
 	self.tRunningTree[btTree] = BTSTATE.RUNNING
 	self._callback_info[btTree] = Callback
 end 
@@ -53,7 +53,7 @@ function clsBlackBoard:tell_bt_result(btTree, result)
 		self._callback_info[btTree] = nil 
 	end
 	self.tRunningTree[btTree] = result
-	logger.ai("行为树结束", self.mOwner:GetUid(), btTree.__cname, result)
+	logger.ai("行为树结束", self.mOwner:Get_Uid(), btTree.__cname, result)
 end
 
 -- 行为树被中断时，标记到BlackBoard
@@ -74,7 +74,7 @@ end
 
 -- 节点执行完成后，标记到BlackBoard
 function clsBlackBoard:DelRunningNode(RunningNode, result)
-	assert(self.tRunningNodes[RunningNode] == BTSTATE.RUNNING, self.mOwner:GetUid()..":"..RunningNode.__cname)
+	assert(self.tRunningNodes[RunningNode] == BTSTATE.RUNNING, self.mOwner:Get_Uid()..":"..RunningNode.__cname)
 	assert(result==BTSTATE.SUCC or result==BTSTATE.FAIL)
 	self.tRunningNodes[RunningNode] = result
 end

@@ -28,7 +28,7 @@ end
 -- 执行
 function clsBehaviorTree:Execute(theOwner, Callback)
 	if self:IsRunning(theOwner) then
-		--logger.ai("该行为树已经在执行中", theOwner:GetUid(),self.__cname)
+		--logger.ai("该行为树已经在执行中", theOwner:Get_Uid(),self.__cname)
 		return BTSTATE.RUNNING
 	end
 	theOwner:GetBlackBoard():TellBTBegin(self, Callback)

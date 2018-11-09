@@ -115,7 +115,7 @@ function clsRoleFighter:ClearRoadPath() self._mRoadPath = nil end
 -- 状态
 -------------------------
 function clsRoleFighter:GetStateMgr() return self.mStateMgr end
-function clsRoleFighter:IsInSky() return self:GetPosH() > 0 end
+function clsRoleFighter:IsInSky() return self:Get_PosH() > 0 end
 function clsRoleFighter:IsDead() return self.iActState == ROLE_STATE.ST_DIE end
 function clsRoleFighter:IsAlive() return self.iActState ~= ROLE_STATE.ST_DIE end
 function clsRoleFighter:GetActState() return self.iActState end
@@ -124,7 +124,7 @@ function clsRoleFighter:GetSkyMovState() return self.iSkyMovState end
 function clsRoleFighter:GetActStateObj() return self.mActState end
 function clsRoleFighter:GetGrdMovStateObj() return self.mGrdMovState end
 function clsRoleFighter:GetSkyMovStateObj() return self.mSkyMovState end
-function clsRoleFighter:IsHero() return self:GetUid()==ClsRoleEntityMgr.GetInstance():GetHeroId() end
+function clsRoleFighter:IsHero() return self:Get_Uid()==ClsRoleEntityMgr.GetInstance():GetHeroId() end
 function clsRoleFighter:GetBuffMgr() return self.mBuffMgr end 
 
 function clsRoleFighter:ResetStates()
@@ -538,7 +538,7 @@ function clsRoleFighter:ProcAOI(btNode, iRange)
 		if member_list then
 			for _, enemy in pairs(member_list) do
 				if not enemy:IsDead() and DistanceSquare(self, enemy) <= iRange_X_iRange then
-					self:GetBlackBoard():SetFightTargetId(enemy:GetUid())
+					self:GetBlackBoard():Set_FightTargetId(enemy:Get_Uid())
 					return ai.BTSTATE.SUCC
 				end
 			end
@@ -574,7 +574,7 @@ function clsRoleFighter:ProcFindNearestEnemy(btNode)
 	end
 	
 	if target ~= nil then
-		self:GetBlackBoard():SetFightTargetId(target:GetUid())
+		self:GetBlackBoard():Set_FightTargetId(target:Get_Uid())
 		return ai.BTSTATE.SUCC
 	else
 		self:GetBlackBoard():SetFightTargetId(nil)
@@ -820,7 +820,7 @@ function clsRoleFighter:ProcFollowOwner(btNode, sTarget)
 	elseif tonumber(sTarget) then
 		local target_id = tonumber(sTarget)
 		objTarget = ClsRoleEntityMgr.GetInstance():GetRole(target_id)
-	elseif sTarget.GetUid and ClsRoleEntityMgr.GetInstance():GetRole(sTarget:GetUid()) then
+	elseif sTarget.GetUid and ClsRoleEntityMgr.GetInstance():GetRole(sTarget:Get_Uid()) then
 		objTarget = sTarget
 	end
 	
@@ -829,7 +829,7 @@ function clsRoleFighter:ProcFollowOwner(btNode, sTarget)
 		return ai.BTSTATE.FAIL 
 	end
 	
-	self:GetBlackBoard():SetFollowTargetId(objTarget:GetUid())
+	self:GetBlackBoard():Set_FollowTargetId(objTarget:Get_Uid())
 	return ai.BTSTATE.SUCC
 end
 
@@ -883,7 +883,7 @@ function clsRoleFighter:OnHit(missleObj, HarmInfo)
 	
 	--更新血量
 	local curHp = Victim:AddHP(-iHurtValue)
-	logger.fight( string.format("【%d攻击%d】是否暴击: %s 掉血: %f 血量: %f",Attacker:GetUid(), Victim:GetUid(), bCri, iHurtValue, curHp) )
+	logger.fight( string.format("【%d攻击%d】是否暴击: %s 掉血: %f 血量: %f",Attacker:Get_Uid(), Victim:Get_Uid(), bCri, iHurtValue, curHp) )
 	
 	-- 死亡判断
 	if curHp <= 0 then

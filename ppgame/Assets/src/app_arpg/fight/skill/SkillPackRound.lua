@@ -90,20 +90,20 @@ end
 function clsSkillPackRound:IsSkillEnable(iSkillIndex)
 	assert(iSkillIndex)
 	if self:IsCastingSkill() then 
-		logger.fight("上一技能尚未释放完毕", self.mOwner:GetUid())
+		logger.fight("上一技能尚未释放完毕", self.mOwner:Get_Uid())
 		return false
 	end
 	if not self.tSkillObjList[iSkillIndex] then
-		logger.fight("尚未学习该技能", self.mOwner:GetUid())
+		logger.fight("尚未学习该技能", self.mOwner:Get_Uid())
 		return false
 	end
 	if self:IsSkillInCD(iSkillIndex) then
-		logger.fight("技能CD中", self.mOwner:GetUid(), iSkillIndex, self.tCDList[iSkillIndex])
+		logger.fight("技能CD中", self.mOwner:Get_Uid(), iSkillIndex, self.tCDList[iSkillIndex])
 		self.mOwner:DoSay("我在CD")
 		return false
 	end
 	if not self.mOwner then
-		logger.fight("并没有施法者", self.mOwner:GetUid())
+		logger.fight("并没有施法者", self.mOwner:Get_Uid())
 		return false 
 	end
 	

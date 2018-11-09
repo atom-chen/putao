@@ -51,13 +51,13 @@ function clsSkillRound:Play(sklArgu, cbFinish)
 	end
 	
 	-- 
-	logger.fight(theOwner:GetUid(), "释放技能：", iSkillId)
+	logger.fight(theOwner:Get_Uid(), "释放技能：", iSkillId)
 	theOwner:DoSay(setting.T_round_skill_cfg[iSkillId].sSkillName)
 
 	self.mXTree = skillfactory.GenSkill(iSkillId,theOwner)
 	self.mXTree:GetRoot():NextCall(self.mXTree.OnPlayOver, self.mXTree):SetName("tree end")
 	
-	local caster = ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:GetUid())
+	local caster = ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:Get_Uid())
 	self.mXTree:GetContext():SetPerformer("starman", caster)
 	
 	self.mXTree:Play(function(reason) 

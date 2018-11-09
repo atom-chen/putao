@@ -62,7 +62,7 @@ ALL_GEN_FUNC[11001] = function(Attacker)
 	
 	local targetLgc = g_SingleEnemyLessHp
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
@@ -111,7 +111,7 @@ ALL_GEN_FUNC[12001] = function(Attacker)
 
 	local targetLgc = g_AllEnemy
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
@@ -161,7 +161,7 @@ ALL_GEN_FUNC[21001] = function(Attacker)
 
 	local targetLgc = g_SingleEnemyLessHp
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
@@ -213,7 +213,7 @@ ALL_GEN_FUNC[22001] = function(Attacker)
 
 	local targetLgc = g_AllEnemy
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
@@ -270,7 +270,7 @@ ALL_GEN_FUNC[22002] = function(Attacker)
 
 	local targetLgc = g_AllEnemy
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
@@ -312,7 +312,7 @@ ALL_GEN_FUNC[22003] = function(Attacker)
 
 	local targetLgc = g_AllMySide
 	local targets = targetLgc:Search(Attacker,1)
-	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:GetUid(),#targets))
+	logger.fight(string.format("%d发起攻击：目标数量%d",Attacker:Get_Uid(),#targets))
 	
 	local xTree = smartor.clsSmartTree.new()
 	local ctx = xTree:GetContext()
