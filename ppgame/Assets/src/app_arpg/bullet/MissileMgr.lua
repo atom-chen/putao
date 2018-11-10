@@ -37,7 +37,7 @@ function ClsMissileMgr:CreateMissile(casterSpr, tMagicInfo)
 	_iMissileID = _iMissileID + 1 
 --	logger.normal("创建子弹", _iMissileID)
 	local cls = CFG_MISSILE[tMagicInfo.sMissleType]
-	self._tMissileList[_iMissileID] = cls.new(_iMissileID, tMagicInfo, casterSpr:Get_Uid(), casterSpr)
+	self._tMissileList[_iMissileID] = cls.new(_iMissileID, tMagicInfo, casterSpr:GetUid(), casterSpr)
 	return self._tMissileList[_iMissileID]
 end
 

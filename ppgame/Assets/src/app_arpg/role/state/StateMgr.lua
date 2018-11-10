@@ -83,7 +83,7 @@ end
 ------------------------
 
 function ClsStateMgr:ResetStates(obj)
-	obj:Set_PosH(0)
+	obj:SetPosH(0)
 	self:_SetActState(obj, ROLE_STATE.ST_IDLE)
 	self:_SetGrdMovState(obj, ROLE_STATE.ST_GRDMOVREST)
 	self:_SetSkyMovState(obj, ROLE_STATE.ST_SKYMOVREST)

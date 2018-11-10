@@ -11,7 +11,7 @@ function clsDieState:OnEnter(obj, args)
 	obj:RemoveFromTeam()
 	obj:OnEnterState(self)
 	obj.mBuffMgr:OnDead()
-	g_EventMgr:FireEvent("ROLE_DIE", obj:Get_Uid())
+	g_EventMgr:FireEvent("ROLE_DIE", obj:GetUid())
 end
 
 function clsDieState:OnExit(obj)

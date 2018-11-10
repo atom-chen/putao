@@ -35,7 +35,7 @@ function clsCombatPost:Calculate(Attacker, Victim, iDamagePower)
 	
 	iHurtValue = Victim.mBuffMgr:OnFixHurtValue(Attacker, iHurtValue)
 	
-	logger.fight(string.format("【%d攻击%d】总伤害：%f  是否暴击：%s",Attacker:Get_Uid(),Victim:Get_Uid(),iHurtValue,bCri))
+	logger.fight(string.format("【%d攻击%d】总伤害：%f  是否暴击：%s",Attacker:GetUid(),Victim:GetUid(),iHurtValue,bCri))
 	return iHurtValue
 end 
 

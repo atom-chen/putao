@@ -76,11 +76,11 @@ function clsBuffData:GetBuffPiaoZi()
 end 
 
 function clsBuffData:GetOwnerSpr()
-	return ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:Get_Uid())
+	return ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:GetUid())
 end 
 
 function clsBuffData:GetPlacerSpr()
-	return ClsRoleSprMgr.GetInstance():GetRole(self.mPlacer:Get_Uid())
+	return ClsRoleSprMgr.GetInstance():GetRole(self.mPlacer:GetUid())
 end 
 
 function clsBuffData:ToFinalValue(propValue, propMin, propMax)

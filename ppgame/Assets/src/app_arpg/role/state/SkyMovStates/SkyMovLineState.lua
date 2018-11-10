@@ -8,24 +8,24 @@ end
 function clsSkyMovLineState:OnEnter(obj, args)
 	assert(is_number(args.jmpSpeed))
 	assert(args.cbFinish==nil or is_function(args.cbFinish))
-	obj:Set_CurSkySpeed(args.jmpSpeed)
+	obj:SetCurSkySpeed(args.jmpSpeed)
 	obj._jump_callback = args.cbFinish
 end
 
 function clsSkyMovLineState:OnExit(obj)
-	obj:Set_CurSkySpeed(0)
+	obj:SetCurSkySpeed(0)
 	obj._jump_callback = nil
 end
 
 --@每帧更新
 function clsSkyMovLineState:FrameUpdate(obj, deltaTime)
 	local JumpSpeed = obj:AddCurSkySpeed(-1)
-	local newH = obj:Get_PosH() + JumpSpeed
+	local newH = obj:GetPosH() + JumpSpeed
 	
 	if newH > 0 then
-		obj:Set_PosH(newH)
+		obj:SetPosH(newH)
 	else
-		obj:Set_PosH(0)
+		obj:SetPosH(0)
 		self:OnComplete(obj)
 	end
 end

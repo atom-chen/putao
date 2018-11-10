@@ -57,7 +57,7 @@ function clsSkillInstant:Play(sklArgu, cbFinish)
 	end
 	
 	-- 
-	logger.fight(theOwner:Get_Uid(), "释放技能：", iSkillId)
+	logger.fight(theOwner:GetUid(), "释放技能：", iSkillId)
 	theOwner:DoSay(setting.T_skill_cfg[iSkillId].sSkillName)
 
 	if self.mXTree then
@@ -68,7 +68,7 @@ function clsSkillInstant:Play(sklArgu, cbFinish)
 		self.mXTree:BuildByInfo(tSkillPlayInfo)
 	end
 	
-	local caster = ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:Get_Uid())
+	local caster = ClsRoleSprMgr.GetInstance():GetRole(self.mOwner:GetUid())
 	self.mXTree:GetContext():SetPerformer("starman", caster)
 	
 	self.mXTree:Play(function(reason) 
