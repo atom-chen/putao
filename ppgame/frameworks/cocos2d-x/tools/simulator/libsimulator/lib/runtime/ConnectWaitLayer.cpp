@@ -33,8 +33,8 @@ using namespace cocos2d;
 
 ConnectWaitLayer::ConnectWaitLayer()
 {
-    int designWidth = 1280;
-    int designHeight = 800;
+    int designWidth = 720;
+    int designHeight = 1280;
     _imagebg = new Image();
     
     if (ConfigParser::getInstance()->isLanscape())
