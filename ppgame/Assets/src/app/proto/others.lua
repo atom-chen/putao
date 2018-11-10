@@ -53,23 +53,23 @@ function deal_spec_fail_code(recvdata)
 	
 	if errCode == 601 then
 		logger.error("被踢出")
-		--ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(false)
-	--	ClsLoginMgr.GetInstance():Set_isNeedRegistYzm(false)
+		--ClsLoginMgr.GetInstance():SetisNeedLoginYzm(false)
+	--	ClsLoginMgr.GetInstance():SetisNeedRegistYzm(false)
 		ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.kicked)
 		KE_SetTimeout(3, function() utils.TellMe("请重新登录") end)
 	elseif errCode == 401 then
 		logger.error("没有登录")
-		--ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(false)
-	--	ClsLoginMgr.GetInstance():Set_isNeedRegistYzm(false)
+		--ClsLoginMgr.GetInstance():SetisNeedLoginYzm(false)
+	--	ClsLoginMgr.GetInstance():SetisNeedRegistYzm(false)
 		ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.ready)
 		KE_SetTimeout(3, function() utils.TellMe("请先登录") end)
 	elseif errCode == 604 then
 		logger.error("退出登录")
-		--ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(false)
-	--	ClsLoginMgr.GetInstance():Set_isNeedRegistYzm(false)
-		UserDefaultData:Set_willquicklogon(false)
+		--ClsLoginMgr.GetInstance():SetisNeedLoginYzm(false)
+	--	ClsLoginMgr.GetInstance():SetisNeedRegistYzm(false)
+		UserDefaultData:Setwillquicklogon(false)
 		ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.logout)
     elseif errCode == 425 then
-        ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(true)
+        ClsLoginMgr.GetInstance():SetisNeedLoginYzm(true)
 	end
 end

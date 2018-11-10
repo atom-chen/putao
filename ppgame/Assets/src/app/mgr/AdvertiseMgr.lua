@@ -118,8 +118,8 @@ local pre_user = false
 function ClsAdvertiseMgr:AddPushor(info1)
 	if not info1.content or info1.content == "" then return end
 	if not VVDirector:GetCaipiaoProcedure() then return end
-	if pre_user and pre_user == UserEntity.GetInstance():Get_username() then return end
-	pre_user = UserEntity.GetInstance():Get_username()
+	if pre_user and pre_user == UserEntity.GetInstance():Getusername() then return end
+	pre_user = UserEntity.GetInstance():Getusername()
 	
 	local procedure_1 = smartor.clsPromise.new(info1)
 	procedure_1:SetProcFunc(function(thisObj, Procedure) 

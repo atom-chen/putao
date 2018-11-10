@@ -538,7 +538,7 @@ function clsRoleFighter:ProcAOI(btNode, iRange)
 		if member_list then
 			for _, enemy in pairs(member_list) do
 				if not enemy:IsDead() and DistanceSquare(self, enemy) <= iRange_X_iRange then
-					self:GetBlackBoard():SetFightTargetId(enemy:Get_Uid())
+					self:GetBlackBoard():SetFightTargetId(enemy:GetUid())
 					return ai.BTSTATE.SUCC
 				end
 			end
@@ -574,7 +574,7 @@ function clsRoleFighter:ProcFindNearestEnemy(btNode)
 	end
 	
 	if target ~= nil then
-		self:GetBlackBoard():SetFightTargetId(target:Get_Uid())
+		self:GetBlackBoard():SetFightTargetId(target:GetUid())
 		return ai.BTSTATE.SUCC
 	else
 		self:GetBlackBoard():SetFightTargetId(nil)
@@ -829,7 +829,7 @@ function clsRoleFighter:ProcFollowOwner(btNode, sTarget)
 		return ai.BTSTATE.FAIL 
 	end
 	
-	self:GetBlackBoard():SetFollowTargetId(objTarget:Get_Uid())
+	self:GetBlackBoard():SetFollowTargetId(objTarget:GetUid())
 	return ai.BTSTATE.SUCC
 end
 

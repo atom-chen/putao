@@ -30,10 +30,10 @@ function clsSetterView:InitUiEvents()
     end)
     
     utils.RegClickEvent(self.SoundNF,function()
-        self:ToggleSound(not UserDefaultData:Get_soundonoff(true))
+        self:ToggleSound(not UserDefaultData:Getsoundonoff(true))
     end)
     utils.RegClickEvent(self.ShakeNF,function()
-        self:ToggleShake(not UserDefaultData:Get_shakeonoff(true))
+        self:ToggleShake(not UserDefaultData:Getshakeonoff(true))
     end)
     
     utils.RegClickEvent(self.BtnSwitchNet,function()
@@ -41,8 +41,8 @@ function clsSetterView:InitUiEvents()
         utils.TellMe(HttpUtil._useOkHttp and "当前库：OkHttp" or "当前库：XmlHttpRequest")
     end)
     
-    self:ToggleSound(UserDefaultData:Get_soundonoff(true))
-    self:ToggleShake(UserDefaultData:Get_shakeonoff(true))
+    self:ToggleSound(UserDefaultData:Getsoundonoff(true))
+    self:ToggleShake(UserDefaultData:Getshakeonoff(true))
 end
 
 -- 注册全局事件
@@ -54,7 +54,7 @@ end
 
 function clsSetterView:ToggleShake(onoff)
 	if onoff == nil then onoff = true end
-	UserDefaultData:Set_shakeonoff(onoff)
+	UserDefaultData:Setshakeonoff(onoff)
 	if onoff then
 		--开
 		self.ImageShnf:setColor(cc.c3b(0,128,0))
@@ -68,7 +68,7 @@ end
 
 function clsSetterView:ToggleSound(onoff)
 	if onoff == nil then onoff = true end
-	UserDefaultData:Set_soundonoff(onoff)
+	UserDefaultData:Setsoundonoff(onoff)
 	if onoff then
 		--开
 		self.ImageSonf:setColor(cc.c3b(0,128,0))

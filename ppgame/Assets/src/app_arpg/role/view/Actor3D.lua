@@ -47,7 +47,7 @@ end
 function clsActor3D:_LoadBody()
 	if not self._entityObj:GetShapeId() then return end
 	if self._mBody then return end
-	self._mBody = utils.NewModel(self, string.format("role3d/%d/stand.c3b", self._entityObj:GetShapeId()))
+	self._mBody = utils.CreateModel(self, string.format("role3d/%d/stand.c3b", self._entityObj:GetShapeId()))
 	self._mBody:setScale(0.5)
 --	self._mBody.runAction = function() assert(false) end
 end

@@ -10,8 +10,8 @@ local ST_SKILL_READY = 1
 local ST_SKILL_PLAYING = 2
 local ST_SKILL_FINISH = 3
 
-local IsValidSkillId = function(v) assert(setting.T_skill_cfg[v] and setting.GetSkillPlayInfo(v)) end
-local IsValidSkillIndex = function(v) assert(v>=1 and v<=const.MAX_SKILL_INDEX) end
+local IsValidSkillId = function(v) return setting.T_skill_cfg[v] and setting.GetSkillPlayInfo(v) end
+local IsValidSkillIndex = function(v) return v>=1 and v<=const.MAX_SKILL_INDEX end
 
 clsSkillInstant = class("clsSkillInstant",clsCoreObject)
 

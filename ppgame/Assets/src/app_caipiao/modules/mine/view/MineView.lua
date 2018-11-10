@@ -118,7 +118,7 @@ function clsMineView:SetMoneyVisible(bVisible)
 	self.bMoneyVisible = bVisible
 	if self.bMoneyVisible then
 		local userObj = UserEntity.GetInstance()
-		self.lblBalance:setString("余额："..(userObj:Get_balance() or "0"))
+		self.lblBalance:setString("余额："..(userObj:Getbalance() or "0"))
 		self.lblBalance:setTextColor(cc.c3b(51,51,51))
 	else
 		self.lblBalance:setString("余额：*******")
@@ -166,12 +166,12 @@ end
 --刷新界面
 function clsMineView:RefleshUI(recvdata)
 	local userObj = UserEntity.GetInstance()
-	self.lblName:setString(userObj:Get_username() or "")
-	--self.lblBalance:setString("余额："..(userObj:Get_balance() or "0"))
+	self.lblName:setString(userObj:Getusername() or "")
+	--self.lblBalance:setString("余额："..(userObj:Getbalance() or "0"))
     self.lblBalance:setString("余额：*******")
 	self.HeadIcon:SetMaxSize(100,100)
-	self.HeadIcon:SetHeadImg(userObj:Get_img(), true, userObj:Get_dengji())
-	self.BtnVip:setTitleText( string.format("VIP%d",userObj:Get_dengji() or 0) )
+	self.HeadIcon:SetHeadImg(userObj:Getimg(), true, userObj:Getdengji())
+	self.BtnVip:setTitleText( string.format("VIP%d",userObj:Getdengji() or 0) )
 	self.BtnVip:setPositionX(self.lblName:getPositionX()+self.lblName:getContentSize().width+10)
 	self:SetMoneyVisible(self.bMoneyVisible)
 	

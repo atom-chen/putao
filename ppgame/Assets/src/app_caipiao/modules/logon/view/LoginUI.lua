@@ -129,7 +129,7 @@ function clsLoginUI:InitUiEvents()
 			username = self.EditRegUserName:getString(),
 			pwd = self.EditRegPassWord:getString(),
 			bank_name = self.EditRegYourName:getString(),
-			token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() or "",
+			token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() or "",
 			yzm = self.EditRegYzm:getString(),
 			ip = deviceData and deviceData.Ip or "",
 		}

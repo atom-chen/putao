@@ -47,7 +47,7 @@ function clsMyInfoView:InitUiEvents()
         self.BtnSex:setTouchEnabled(false)
         self.Sprite_7:setVisible(false)
         local userObj = UserEntity.GetInstance()
-        self.lblSex:setString( userObj:Get_sex() == "1" and "男" or "女" )
+        self.lblSex:setString( userObj:Getsex() == "1" and "男" or "女" )
     else
         self.BtnSex:setTouchEnabled(true)
         self.Sprite_7:setVisible(true)
@@ -66,11 +66,11 @@ function clsMyInfoView:InitUiEvents()
     end)
     utils.RegClickEvent(self.BtnSex,function()
         ClsUIManager.GetInstance():ShowPopWnd("clsSexSelectWnd", function(sSex)
-        	--if sSex == UserEntity.GetInstance():Get_sex() then return end
+        	--if sSex == UserEntity.GetInstance():Getsex() then return end
         	local function callback(mnuId)
         		if mnuId == 1 then
 					UserEntity.GetInstance():ReqChangeInfo("sex", sSex)
-                    self.lblSex:setString( UserEntity.GetInstance():Get_sex() == "1" and "男" or "女" )
+                    self.lblSex:setString( UserEntity.GetInstance():Getsex() == "1" and "男" or "女" )
 				else
 					self.lblSex:setString( "未设置" )
 				end
@@ -125,9 +125,9 @@ function clsMyInfoView:InitUiEvents()
 					"请选择头像选取方式？", 
 					function(mnuId)
 						if mnuId == 1 then
-							SalmonUtils:captureImage("face_"..UserEntity.GetInstance():Get_username()..".jpg", onTakePic)
+							SalmonUtils:captureImage("face_"..UserEntity.GetInstance():Getusername()..".jpg", onTakePic)
 						else
-							SalmonUtils:openGallery(onTakePic, "face_"..UserEntity.GetInstance():Get_username()..".jpg")
+							SalmonUtils:openGallery(onTakePic, "face_"..UserEntity.GetInstance():Getusername()..".jpg")
 						end
 					end, "拍照", "相册")
 		if cfm then cfm:SetCloseWhenClickMask(true) end
@@ -135,7 +135,7 @@ function clsMyInfoView:InitUiEvents()
 	
 	self.EditEmail:registerScriptEditBoxHandler(function(evenName, sender)
 		if evenName == "return" then
-			if self.EditEmail:getString() == UserEntity.GetInstance():Get_email() then return end
+			if self.EditEmail:getString() == UserEntity.GetInstance():Getemail() then return end
 			self:DestroyTimer("tmr_chginfo")
 			self:CreateTimerDelay("tmr_chginfo", 1, function()
 				if self.EditEmail:getString() ~= "" then
@@ -143,7 +143,7 @@ function clsMyInfoView:InitUiEvents()
 						if mnuId == 1 then
 							UserEntity.GetInstance():ReqChangeInfo("email", self.EditEmail:getString())
 						else
-							self.EditEmail:setString(UserEntity.GetInstance():Get_email() or "")
+							self.EditEmail:setString(UserEntity.GetInstance():Getemail() or "")
                             if self.EditEmail:getString() == "" then
                                 self.EmailPlaceHolder:setVisible(true)
                             end
@@ -200,7 +200,7 @@ function clsMyInfoView:InitUiEvents()
 	end)
 	self.EditPhone:registerScriptEditBoxHandler(function(evenName, sender)
 		if evenName == "return" then
-			if self.EditPhone:getString() == UserEntity.GetInstance():Get_phone() then return end
+			if self.EditPhone:getString() == UserEntity.GetInstance():Getphone() then return end
 			self:DestroyTimer("tmr_chginfo")
 			self:CreateTimerDelay("tmr_chginfo", 1, function()
 				if self.EditPhone:getString() ~= "" then
@@ -208,7 +208,7 @@ function clsMyInfoView:InitUiEvents()
 						if mnuId == 1 then
 							UserEntity.GetInstance():ReqChangeInfo("phone", self.EditPhone:getString())
 						else
-							self.EditPhone:setString(UserEntity.GetInstance():Get_phone() or "")
+							self.EditPhone:setString(UserEntity.GetInstance():Getphone() or "")
                             if self.EditPhone:getString() == "" then
                                 self.PhonePlaceHolder:setVisible(true)
                             end
@@ -261,7 +261,7 @@ function clsMyInfoView:InitUiEvents()
 	end)
 	self.EditNick:registerScriptEditBoxHandler(function(evenName, sender)
 		if evenName == "return" then
-			if self.EditNick:getString() == UserEntity.GetInstance():Get_nickname() then return end
+			if self.EditNick:getString() == UserEntity.GetInstance():Getnickname() then return end
 			self:DestroyTimer("tmr_chginfo")
 			self:CreateTimerDelay("tmr_chginfo", 1, function()
 				if self.EditNick:getString() ~= "" then
@@ -269,7 +269,7 @@ function clsMyInfoView:InitUiEvents()
 						if mnuId == 1 then
 							UserEntity.GetInstance():ReqChangeInfo("nickname", self.EditNick:getString())
 						else
-							self.EditNick:setString(UserEntity.GetInstance():Get_nickname() or "")
+							self.EditNick:setString(UserEntity.GetInstance():Getnickname() or "")
                             if self.EditNick:getString() == "" then
                                 self.NickPlaceHolder:setVisible(true)
                             end
@@ -397,12 +397,12 @@ end
 function clsMyInfoView:on_req_user_info(recvdata)
 	self._bAskedUserInfo = true
 	local userObj = UserEntity.GetInstance()
-	self.EditNick:setString( userObj:Get_nickname() or "" )
-	self.lblZhanghao:setString( userObj:Get_username() or "" )
-	self.EditPhone:setString( userObj:Get_phone() or "" )
-	self.EditEmail:setString( userObj:Get_email() or "" )
+	self.EditNick:setString( userObj:Getnickname() or "" )
+	self.lblZhanghao:setString( userObj:Getusername() or "" )
+	self.EditPhone:setString( userObj:Getphone() or "" )
+	self.EditEmail:setString( userObj:Getemail() or "" )
 	
-	self.HeadIcon:SetHeadImg(userObj:Get_img())
+	self.HeadIcon:SetHeadImg(userObj:Getimg())
     if UserEntity.GetInstance():IsModifyed("nickname") then
         self.EditNick:setTouchEnabled(false)
         self.Sprite_1_2:setVisible(false)
@@ -421,7 +421,7 @@ function clsMyInfoView:on_req_user_info(recvdata)
     if UserEntity.GetInstance():IsModifyed("sex") then
         self.BtnSex:setTouchEnabled(false)
         self.Sprite_7:setVisible(false)
-        self.lblSex:setString( userObj:Get_sex() == "1" and "男" or "女" )
+        self.lblSex:setString( userObj:Getsex() == "1" and "男" or "女" )
     else
         self.BtnSex:setTouchEnabled(true)
         self.Sprite_7:setVisible(true)
@@ -430,18 +430,18 @@ function clsMyInfoView:on_req_user_info(recvdata)
     if UserEntity.GetInstance():IsModifyed("birthday") then
         self.BtnBirthday:setTouchEnabled(false)
         self.Sprite_6:setVisible(false)
-        if tonumber(userObj:Get_birthday()) ~= 0 and os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Get_birthday()) )~=nil then
-	        self.lblBirthday:setString( os.date( "%Y/%m/%d", tonumber(userObj:Get_birthday()) ) or "未设置" )
+        if tonumber(userObj:Getbirthday()) ~= 0 and os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Getbirthday()) )~=nil then
+	        self.lblBirthday:setString( os.date( "%Y/%m/%d", tonumber(userObj:Getbirthday()) ) or "未设置" )
         end
     else
         self.BtnBirthday:setTouchEnabled(true)
         self.Sprite_6:setVisible(true)
         self.lblBirthday:setString("未设置")
     end
---	self.lblBirthday:setString( os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Get_birthday()) ) )
-	print("----- 生日：", userObj:Get_birthday(), os.date( "%Y/%m/%d", tonumber(userObj:Get_birthday()) ))
-	print("----- 生日：", userObj:Get_birthday(), os.date( "%Y-%m-%d", tonumber(userObj:Get_birthday()) ))
-	print("----- 生日：", userObj:Get_birthday(), os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Get_birthday()) ))
+--	self.lblBirthday:setString( os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Getbirthday()) ) )
+	print("----- 生日：", userObj:Getbirthday(), os.date( "%Y/%m/%d", tonumber(userObj:Getbirthday()) ))
+	print("----- 生日：", userObj:Getbirthday(), os.date( "%Y-%m-%d", tonumber(userObj:Getbirthday()) ))
+	print("----- 生日：", userObj:Getbirthday(), os.date( "%Y-%m-%d %H:%M:%S", tonumber(userObj:Getbirthday()) ))
 end
 
 function clsMyInfoView:on_req_user_nobility(recvdata)

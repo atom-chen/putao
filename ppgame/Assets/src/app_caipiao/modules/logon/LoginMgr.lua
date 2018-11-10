@@ -72,7 +72,7 @@ function ClsLoginMgr:IsHideTipLogonSucc()
 end
 
 function ClsLoginMgr:QuickLogon()
-	if UserDefaultData:Get_willquicklogon(false) then
+	if UserDefaultData:Getwillquicklogon(false) then
 		local info = self:GetInputLoginInfo()
 		if info and info.username and info.pwd then
 			if info.username ~= "" and info.pwd ~= "" then
@@ -106,7 +106,7 @@ function ClsLoginMgr:req_login_logon(username, pwd, yzm)
 		username = username,
 		pwd = crypto.md5(pwd),
 		code = yzm,
-		token_private_key = self:Get_token_private_key(),
+		token_private_key = self:Gettoken_private_key(),
 		--
 		client_origin_pwd = pwd,
 	}
@@ -125,11 +125,11 @@ function ClsLoginMgr:req_login_logon(username, pwd, yzm)
 end
 
 function ClsLoginMgr:LoginNeedYzm()
-	local SysInfo = self:Get_SysInfo()
+	local SysInfo = self:GetSysInfo()
 	if SysInfo then
-		return SysInfo.is_code == 1 or SysInfo.is_code == "1" or self:Get_isNeedLoginYzm()
+		return SysInfo.is_code == 1 or SysInfo.is_code == "1" or self:GetisNeedLoginYzm()
 	else
-		return self:Get_isNeedLoginYzm()
+		return self:GetisNeedLoginYzm()
 	end
 end
 
@@ -143,7 +143,7 @@ function ClsLoginMgr:req_login_regist(info)
 		bank_name = info.bank_name,
 		yzm = info.yzm,
 		ip = info.ip or self:GetIp(),
-		token_private_key = self:Get_token_private_key(),
+		token_private_key = self:Gettoken_private_key(),
 		from_way = const.FROMWAY,
 		--
 		client_origin_pwd = info.pwd,
@@ -189,16 +189,16 @@ function ClsLoginMgr:req_login_regist(info)
 end
 
 function ClsLoginMgr:RegistNeedYzm()
-	local SysInfo = self:Get_SysInfo()
+	local SysInfo = self:GetSysInfo()
 	if SysInfo then
-		return SysInfo.register_open_verificationcode == 1 or SysInfo.register_open_verificationcode == "1" or self:Get_isNeedRegistYzm()
+		return SysInfo.register_open_verificationcode == 1 or SysInfo.register_open_verificationcode == "1" or self:GetisNeedRegistYzm()
 	else
-		return self:Get_isNeedRegistYzm()
+		return self:GetisNeedRegistYzm()
 	end
 end
 
 function ClsLoginMgr:RegistNeedInvitecode()
-	local SysInfo = self:Get_SysInfo()
+	local SysInfo = self:GetSysInfo()
 	if SysInfo then
 		return SysInfo.is_agent == "1" or SysInfo.is_agent == "2" or SysInfo.is_agent == 1 or SysInfo.is_agent == 2
 	else
@@ -207,7 +207,7 @@ function ClsLoginMgr:RegistNeedInvitecode()
 end
 
 function ClsLoginMgr:IsInviteCodeMust()
-	local SysInfo = self:Get_SysInfo()
+	local SysInfo = self:GetSysInfo()
 	if SysInfo then
 		return SysInfo.is_agent == 2 or SysInfo.is_agent == "2" 
 	else
@@ -216,7 +216,7 @@ function ClsLoginMgr:IsInviteCodeMust()
 end
 
 function ClsLoginMgr:RegistNeedRealname()
-	local SysInfo = self:Get_SysInfo()
+	local SysInfo = self:GetSysInfo()
 	if SysInfo then
 		return SysInfo.register_open_username == 1 or SysInfo.register_open_username == "1"
 	else
@@ -265,7 +265,7 @@ end
 
 function ClsLoginMgr:GetInputLoginInfo()
 	return {
-		username = UserDefaultData:Get_username(""),
-		pwd = UserDefaultData:Get_password(""),
+		username = UserDefaultData:Getusername(""),
+		pwd = UserDefaultData:Getpassword(""),
 	}
 end 

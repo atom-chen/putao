@@ -71,6 +71,6 @@ function clsBetBasket:RefleshLblTotal()
 	if self.gameObj:GetBillPaper() then
 		betCount, totalCost = self.gameObj:GetBillPaper():GetTotalInfo(self.gameObj)
 	end
-	self.lblTotal:setString( string.format("共计%.3f元  可用余额%.3f元", totalCost, UserEntity.GetInstance():Get_balance() or 0) )
+	self.lblTotal:setString( string.format("共计%.3f元  可用余额%.3f元", totalCost, UserEntity.GetInstance():Getbalance() or 0) )
 	self.lblPaperNum:setString( string.format("共%d注", betCount) )
 end

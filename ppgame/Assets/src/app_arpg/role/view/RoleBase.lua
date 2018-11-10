@@ -64,8 +64,8 @@ end
 --------------------
 clsRoleBase.__set_position = cc.Node.setPosition
 clsRoleBase.setPosition = function(self,x,y)
-	self._entityObj:SetPosXSilent(x)
-	self._entityObj:SetPosYSilent(y)
+	self._entityObj:SetPosX_Silent(x)
+	self._entityObj:SetPosY_Silent(y)
 	self:__set_position(x,y)
 end
 
@@ -77,7 +77,7 @@ end
 clsRoleBase.__set_positionX = cc.Node.setPositionX
 clsRoleBase.setPositionX = function(self, x)
 	if self._entityObj:GetPosX() == x then return end
-	self._entityObj:SetPosXSilent(x)
+	self._entityObj:SetPosX_Silent(x)
 	self:__set_positionX(x)
 end
 
@@ -89,7 +89,7 @@ end
 clsRoleBase.__set_positionY = cc.Node.setPositionY
 clsRoleBase.setPositionY = function(self, y)
 	if self._entityObj:GetPosY() == y then return end
-	self._entityObj:SetPosYSilent(y)
+	self._entityObj:SetPosY_Silent(y)
 	self:__set_positionY(y)
 end
 
@@ -100,7 +100,7 @@ end
 
 -- 位置：高度
 clsRoleBase.SetPosH = function(self, h)
-	self._entityObj:SetPosHSilent(h)
+	self._entityObj:SetPosH_Silent(h)
 	if self._mBody then self._mBody:setPositionY(h) end
 end
 
@@ -128,7 +128,7 @@ end
 
 -- 设置水平方向速度
 function clsRoleBase:SetCurMoveSpeed(iSpeed)
-	self._entityObj:SetCurMoveSpeedSilent(iSpeed)
+	self._entityObj:SetCurMoveSpeed_Silent(iSpeed)
 end
 
 -- 获取水平方向速度
@@ -138,7 +138,7 @@ end
 
 -- 设置竖直方向速度
 function clsRoleBase:SetCurSkySpeed(iSpeed)
-	self._entityObj:SetCurSkySpeedSilent(iSpeed)
+	self._entityObj:SetCurSkySpeed_Silent(iSpeed)
 end
 
 -- 获取竖直方向速度
@@ -149,7 +149,7 @@ end
 -- 增加竖直方向速度
 function clsRoleBase:AddCurSkySpeed(iDelta)
 	local newSpeed = self._entityObj:GetCurSkySpeed() + iDelta
-	self._entityObj:SetCurSkySpeedSilent( newSpeed )
+	self._entityObj:SetCurSkySpeed_Silent( newSpeed )
 	return newSpeed
 end
 
@@ -160,14 +160,14 @@ clsRoleBase.runAction = function(self, act)
 		
 	self:CreateTimerLoop("tmr_sync_pos", 1, function()
 		local x, y = self:__get_position()
-		self._entityObj:SetPosXSilent(x)
-		self._entityObj:SetPosYSilent(y)
+		self._entityObj:SetPosX_Silent(x)
+		self._entityObj:SetPosY_Silent(y)
 		
 		if tolua_isnull(act__) then 
 			if not tolua_isnull(self) then
 				local x, y = self:__get_position()
-				self._entityObj:SetPosXSilent(x)
-				self._entityObj:SetPosYSilent(y)
+				self._entityObj:SetPosX_Silent(x)
+				self._entityObj:SetPosY_Silent(y)
 			end
 			return true 
 		end

@@ -109,8 +109,8 @@ end
 
 function clsRechargeView:RefleshUI(recvdata)
 	local userObj = UserEntity.GetInstance()
-	self.lblAccount:setString(userObj:Get_username() or "")
-	self.lblBalance:setString(string.format("%.3f元", userObj:Get_balance() or 0))
+	self.lblAccount:setString(userObj:Getusername() or "")
+	self.lblBalance:setString(string.format("%.3f元", userObj:Getbalance() or 0))
 end
 
 function clsRechargeView:on_req_pay_get_pay_channel_info(recvdata)

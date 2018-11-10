@@ -126,7 +126,7 @@ function clsHallUI:SwitchTo(pageIdx)
 		self:_swith_to(pageIdx)
 	else
 		self.aborded = false
-		if UserEntity.GetInstance():Get_type() then
+		if UserEntity.GetInstance():Gettype() then
 			self:_swith_to(pageIdx)
 		else
 			proto.req_user_balance(nil,nil,function(recvdata)

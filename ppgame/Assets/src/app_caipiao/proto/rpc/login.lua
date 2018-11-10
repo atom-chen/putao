@@ -24,13 +24,13 @@ end
 --系统信息
 function on_req_home_sysinfo(recvdata, tArgs)
 	if not recvdata then return end
-	ClsLoginMgr.GetInstance():Set_SysInfo(recvdata.data)
+	ClsLoginMgr.GetInstance():SetSysInfo(recvdata.data)
 end
 
 --获取token_private_key
 function on_req_login_get_token_private_key(recvdata)
 	if recvdata and recvdata.data then
-		ClsLoginMgr.GetInstance():Set_token_private_key(recvdata.data.token_private_key)
+		ClsLoginMgr.GetInstance():Settoken_private_key(recvdata.data.token_private_key)
 	end
 end
 
@@ -39,19 +39,19 @@ function on_req_login_logon(recvdata, tArgs)
 	HttpUtil.token = recvdata.data.token
 	ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.login_succ)
 	if recvdata.code == 200 then
-        ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(false)
+        ClsLoginMgr.GetInstance():SetisNeedLoginYzm(false)
     end
 	--初始化UserEntity
 	UserEntity.DelInstance()
 	UserEntity.GetInstance():BatchSetAttr(recvdata.data)
 	
 	--缓存登录密码
-	UserDefaultData:Set_willquicklogon(true)
-	UserDefaultData:Set_username(UserEntity.GetInstance():Get_username())
-	UserDefaultData:Set_password(tArgs.client_origin_pwd or "")
-	local allusers = UserDefaultData:Get_allusers({})
-	allusers[UserEntity.GetInstance():Get_username()] = tArgs.client_origin_pwd or ""
-	UserDefaultData:Set_allusers(allusers)
+	UserDefaultData:Setwillquicklogon(true)
+	UserDefaultData:Setusername(UserEntity.GetInstance():Getusername())
+	UserDefaultData:Setpassword(tArgs.client_origin_pwd or "")
+	local allusers = UserDefaultData:Getallusers({})
+	allusers[UserEntity.GetInstance():Getusername()] = tArgs.client_origin_pwd or ""
+	UserDefaultData:Setallusers(allusers)
 	
 	--进入游戏
 	ClsStateMachine.GetInstance():ToStateGameing()
@@ -68,7 +68,7 @@ end
 function fail_req_login_logon(recvdata)
 	ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.login_fail)
 	if recvdata and recvdata.code == 425 then
-		ClsLoginMgr.GetInstance():Set_isNeedLoginYzm(true)
+		ClsLoginMgr.GetInstance():SetisNeedLoginYzm(true)
 	end
 end
 
@@ -94,7 +94,7 @@ function fail_req_login_regist(recvdata)
 --	utils.TellMe("注册失败")
 	ClsLoginMgr.GetInstance():SetCurState(const.LOGON_STATE.regist_fail)
 	if recvdata and recvdata.code == 425 then
-		ClsLoginMgr.GetInstance():Set_isNeedRegistYzm(true)
+		ClsLoginMgr.GetInstance():SetisNeedRegistYzm(true)
 	end
 end
 

@@ -10,8 +10,12 @@ function clsRestScene:ctor(world_id, map_id)
 	
 	local heroInfo = { Uid=1, TypeId=10001 }
 	local heroObj = ClsRoleEntityMgr.GetInstance():UpdateHero(heroInfo)
-	heroObj:EnterMap(100,200)
-	VVDirector:GetMap():BindCameraOn(heroObj)
+	
+	local heroSpr = ClsRoleSprMgr.GetInstance():CreateHero()
+	heroSpr:EnterMap(500,200)
+	VVDirector:GetMap():BindCameraOn(heroSpr)
+	
+--	VVDirector:GetMap():SetCameraPos(0,0)
 end
 
 function clsRestScene:dtor()

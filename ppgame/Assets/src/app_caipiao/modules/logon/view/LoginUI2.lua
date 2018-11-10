@@ -80,12 +80,12 @@ function clsLoginUI2:InitUiEvents()
 	end)
 	
 	self.ImgLoginYzm:EnableTouch(function()
-		if ClsLoginMgr.GetInstance():Get_token_private_key() then 
-			proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+		if ClsLoginMgr.GetInstance():Gettoken_private_key() then 
+			proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 		else
 			proto.req_login_get_token_private_key(nil,nil,function()
-				if ClsLoginMgr.GetInstance():Get_token_private_key() then
-					proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+				if ClsLoginMgr.GetInstance():Gettoken_private_key() then
+					proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 				end
 			end)
 		end
@@ -93,7 +93,7 @@ function clsLoginUI2:InitUiEvents()
 	
 	self.EditLogonUsername:registerScriptEditBoxHandler(function(evenName, sender)
 		if evenName == "changed" then
-			local allusers = UserDefaultData:Get_allusers({}) or {}
+			local allusers = UserDefaultData:Getallusers({}) or {}
 			local name = self.EditLogonUsername:getString()
 			if allusers[name] then
 				self.EditLogonPassword:setString(allusers[name])
@@ -157,12 +157,12 @@ function clsLoginUI2:InitGlbEvents()
 	end)
 	
 	g_EventMgr:AddListener(self,"fail_req_login_logon",function(thisObj, recvdata)
-		if ClsLoginMgr.GetInstance():Get_token_private_key() then 
-			proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+		if ClsLoginMgr.GetInstance():Gettoken_private_key() then 
+			proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 		else
 			proto.req_login_get_token_private_key(nil,nil,function(RecvData2)
-				if ClsLoginMgr.GetInstance():Get_token_private_key() then
-					proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+				if ClsLoginMgr.GetInstance():Gettoken_private_key() then
+					proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 				end
 			end)
 		end
@@ -171,12 +171,12 @@ function clsLoginUI2:InitGlbEvents()
 	
 	g_EventMgr:AddListener(self,"on_req_home_sysinfo",function(thisObj, recvdata)
 		if ClsLoginMgr.GetInstance():LoginNeedYzm() then
-			if ClsLoginMgr.GetInstance():Get_token_private_key() then 
-				proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+			if ClsLoginMgr.GetInstance():Gettoken_private_key() then 
+				proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 			else
 				proto.req_login_get_token_private_key(nil,nil,function(RecvData2)
-					if ClsLoginMgr.GetInstance():Get_token_private_key() then
-						proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Get_token_private_key() }) 
+					if ClsLoginMgr.GetInstance():Gettoken_private_key() then
+						proto.req_login_code({ token_private_key = ClsLoginMgr.GetInstance():Gettoken_private_key() }) 
 					end
 				end)
 			end

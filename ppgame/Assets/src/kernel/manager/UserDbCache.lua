@@ -60,13 +60,13 @@ end
 function UserDbCache:GetUserFilepath(sKey)
 	if not sKey then print("获取用户缓存路径失败，未知Key") return nil end
 	assert(type(sKey)=="string")
-	local username = UserEntity.GetInstance():Get_username()
+	local username = UserEntity.GetInstance():Getusername()
 	if not username or username == "" then print("获取用户缓存路径失败，未知用户") return nil end
 	return string.format("%s/userdb/%s/%s/%s.lua", GAME_CONFIG.LOCAL_DIR, HTTP_HEAD_VAL_1, username, sKey)
 end
 
 function UserDbCache:GetUserFileDir()
-	local username = UserEntity.GetInstance():Get_username()
+	local username = UserEntity.GetInstance():Getusername()
 	if not username or username == "" then print("获取用户缓存路径失败，未知用户") return nil end
 	return string.format("%s/userdb/%s/%s", GAME_CONFIG.LOCAL_DIR, HTTP_HEAD_VAL_1, username)
 end

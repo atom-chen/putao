@@ -7,7 +7,7 @@ end
 
 function clsSkyMovRestState:OnEnter(obj, args)
 	assert(not obj:IsInSky(), "角色还在空中飘: "..obj:GetPosH())
-	obj:Set_PosH(0)
+	obj:SetPosH(0)
 end
 
 function clsSkyMovRestState:OnExit(obj)

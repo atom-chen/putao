@@ -26,9 +26,9 @@ end
 
 function clsRechargeRecharge:Refresh()
     local userObj = UserEntity.GetInstance()
-    self.HeadIcon:SetHeadImg(userObj:Get_img(), true, userObj:Get_dengji())
-    self.Text_43:setString(userObj:Get_username())
-    self.Text_44:setString(string.format("余额：%.3f",userObj:Get_balance() or 0))
+    self.HeadIcon:SetHeadImg(userObj:Getimg(), true, userObj:Getdengji())
+    self.Text_43:setString(userObj:Getusername())
+    self.Text_44:setString(string.format("余额：%.3f",userObj:Getbalance() or 0))
 end
 
 function clsRechargeRecharge:InitUiEvents()

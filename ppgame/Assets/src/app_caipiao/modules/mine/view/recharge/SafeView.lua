@@ -29,7 +29,7 @@ function clsSafeView:InitUiEvents()
         ClsUIManager.GetInstance():ShowPanel("clsModifyPasswords")
     end)
     utils.RegClickEvent(self.BtnZjmm,function() 
-        if UserEntity.GetInstance():Get_bank_pwd() == 1 then
+        if UserEntity.GetInstance():Getbank_pwd() == 1 then
             ClsUIManager.GetInstance():ShowPanel("clsModifyBankPwd")
         else
             ClsUIManager.GetInstance():ShowPanel("clsBankBindView")
@@ -43,7 +43,7 @@ function clsSafeView:InitGlbEvents()
 end
 
 function clsSafeView:Refresh()
-    if UserEntity.GetInstance():Get_bank_pwd() == 1 then
+    if UserEntity.GetInstance():Getbank_pwd() == 1 then
         self.lblUnSet:setString("已设置")
     end
 end

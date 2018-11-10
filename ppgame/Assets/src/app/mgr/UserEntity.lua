@@ -33,7 +33,7 @@ function UserEntity:dtor()
 end
 
 function UserEntity:IsAgent()
-	return self:Get_type() == 2 or self:Get_type() == "2"
+	return self:Gettype() == 2 or self:Gettype() == "2"
 end
 
 local Key2Modify = {
@@ -44,7 +44,7 @@ local Key2Modify = {
 	birthday = 5,
 }
 function UserEntity:IsModifyed(key)
-	local oldModify = UserEntity.GetInstance():Get_modify() or ""
+	local oldModify = UserEntity.GetInstance():Getmodify() or ""
 	if oldModify == "" then oldModify = "0,0,0,0,0" end
 	
 	local idxList = {}
@@ -58,15 +58,15 @@ function UserEntity:IsModifyed(key)
 end
 
 function UserEntity:ReqChangeInfo(key, value)
-	local oldModify = self:Get_modify() or ""
+	local oldModify = self:Getmodify() or ""
 	if oldModify == "" then oldModify = "0,0,0,0,0" end
-	print("--------", os.date( "%Y/%m/%d", tonumber(self:Get_birthday()) ) )
+	print("--------", os.date( "%Y/%m/%d", tonumber(self:Getbirthday()) ) )
 	local param = {
-		nickname = self:Get_nickname(),
-		phone = self:Get_phone(),
-		email = self:Get_email(),
-		sex = self:Get_sex(),
-		birthday = os.date( "%Y/%m/%d", tonumber(self:Get_birthday()) ) or "",
+		nickname = self:Getnickname(),
+		phone = self:Getphone(),
+		email = self:Getemail(),
+		sex = self:Getsex(),
+		birthday = os.date( "%Y/%m/%d", tonumber(self:Getbirthday()) ) or "",
 		modify = oldModify,
 	}
 	param[key] = value
