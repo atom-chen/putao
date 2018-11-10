@@ -47,6 +47,8 @@ function FixScreen()
 	GAME_CONFIG.HEIGHT_DIFF = GAME_CONFIG.DESIGN_H - GAME_CONFIG.VIEW_H
 end
 
+APP_TYPE = 1
+
 -----------------------------------------------------------------------------------------
 local serv_list = {
 --		ip					port		desc

@@ -264,7 +264,6 @@ function ClsApp:OnPreloadOver()
 	cc.Director:getInstance():getScheduler():scheduleScriptFunc(UpdateEveryFrame, 0, false)
 	
 	-- 启动子APP
-	local APP_TYPE = 2
 	if APP_TYPE == 1 then
 		self:load_CaiPiao()
 		cc.disable_global()

@@ -58,8 +58,11 @@ function VVDirector:InitDatas()
 	guide.ClsGuideMgr.GetInstance()
 	UserEntity.GetInstance()
 	--
-	self:InitCaiPiaoData()
-	self:InitArpgDatas()
+	if APP_TYPE == 1 then
+		self:InitCaiPiaoData()
+	else 
+		self:InitArpgDatas()
+	end
 end
 
 -- 清理数据
@@ -67,8 +70,11 @@ function VVDirector:ClearDatas()
 	guide.ClsGuideMgr.DelInstance()
 	UserEntity.DelInstance()
 	--
-	self:ClearCaiPiaoData()
-	self:ClearArpgDatas()
+	if APP_TYPE == 1 then
+		self:ClearCaiPiaoData()
+	else 
+		self:ClearArpgDatas()
+	end
 	
 	UserDbCache.GetInstance():ClearTmpData()
 end
