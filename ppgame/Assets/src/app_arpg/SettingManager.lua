@@ -20,7 +20,7 @@ T_round_skill_cfg = setting.ReLoad("app_arpg.configs.skill.T_round_skill_cfg")
 ------------------
 local ALL_SKILL_PLAY_INFO = {}
 function GetSkillPlayInfo(iSkillId)
-	ALL_SKILL_PLAY_INFO[iSkillId] = ALL_SKILL_PLAY_INFO[iSkillId] or setting.Get(string.format("src/app/configs/skill/T_skill_%d.lua", iSkillId))
+	ALL_SKILL_PLAY_INFO[iSkillId] = ALL_SKILL_PLAY_INFO[iSkillId] or setting.Get(string.format("app_arpg.configs.skill.T_skill_%d", iSkillId))
 	return ALL_SKILL_PLAY_INFO[iSkillId]
 end
 
