@@ -27,7 +27,7 @@ function clsCoreObject:_reg_var(groupID, VarName, globalEventName, CheckFuncer)
 	--Set接口，值变化时分发事件
 	assert(not self[formator("Set%s",VarName)], formator("函数被覆盖: Set%s",VarName))
 	self[formator("Set%s",VarName)] = function(this, Value)
-		logger.normal(this.__cname.."设置属性", VarName, Value)
+	--	logger.normal(this.__cname.."设置属性", VarName, Value)
 		local bSucc, tipStr = self._VAR_TYPE_TABLE[VarName](Value)
 		if not bSucc then assert(false, string.format("%s %s",VarName,tipStr)) end
 		local old_value = this[groupID][VarName]
@@ -41,7 +41,7 @@ function clsCoreObject:_reg_var(groupID, VarName, globalEventName, CheckFuncer)
 	--Set接口，不分发事件
 	assert(not self[formator("Set%s_Silent",VarName)], formator("函数被覆盖: Set%s_Silent",VarName))
 	self[formator("Set%s_Silent",VarName)] = function(this, Value)
-		logger.normal(this.__cname.."设置属性", VarName, Value)
+	--	logger.normal(this.__cname.."设置属性", VarName, Value)
 		local bSucc, tipStr = self._VAR_TYPE_TABLE[VarName](Value)
 		if not bSucc then assert(false, string.format("%s %s",VarName,tipStr)) end
 		this[groupID][VarName] = Value
@@ -95,7 +95,7 @@ function clsCoreObject:GetAttr(VarName)
 end
 
 function clsCoreObject:SetAttr(VarName, Value)
-	logger.normal(self.__cname.."设置属性", VarName, Value)
+--	logger.normal(self.__cname.."设置属性", VarName, Value)
 	local bSucc, tipStr = self._VAR_TYPE_TABLE[VarName](Value)
 	if not bSucc then assert(false, string.format("%s %s",VarName,tipStr)) end
 	
@@ -110,7 +110,7 @@ function clsCoreObject:SetAttr(VarName, Value)
 end
 
 function clsCoreObject:SetAttrSilent(VarName, Value)
-	logger.normal(self.__cname.."设置属性", VarName, Value)
+--	logger.normal(self.__cname.."设置属性", VarName, Value)
 	local bSucc, tipStr = self._VAR_TYPE_TABLE[VarName](Value)
 	if not bSucc then assert(false, string.format("%s %s",VarName,tipStr)) end
 	self._netprops[VarName] = Value
