@@ -32,7 +32,7 @@ function InitKeboardEvent(self, cur_scene)
 		if key_code == cc.KeyCode.KEY_BACK then
 			local bFlag = ClsUIManager.GetInstance():DestoryToppestView()
 			if not bFlag then
-				ClsStateMachine.GetInstance():AskExitApp()
+				g_EventMgr:FireEvent("ASK_ESC_GAME")
 			end
 		end
 		

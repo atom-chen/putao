@@ -107,7 +107,7 @@ function clsMyInfoView:InitUiEvents()
     utils.RegClickEvent(self.BtnHead,function()
     	local onTakePic = function(filepath)
     		if device.platform == "windows" then
-				filepath = "res/Default/wx_jpg_ewm.jpg"
+				filepath = "Default/wx_jpg_ewm.jpg"
 			end
 			
     		if utils.IsValidCCObject(self) then

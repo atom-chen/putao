@@ -180,6 +180,7 @@ end
 
 ----------------------------------------------------------
 
+--返回base files 
 function ClsApp:GetModFileList()
 	local ModFileList = {
 		--lib
@@ -278,18 +279,17 @@ function ClsApp:OnPreloadOver()
 end
 
 function ClsApp:load_Arpg()
+	cc.FileUtils:getInstance():addSearchPath("Assets/res_arpg")
 	require("app_arpg.init")
 end 
 
 function ClsApp:runArpg()
-	cc.FileUtils:getInstance():addSearchPath("Assets/res_arpg")
-	cc.SpriteFrameCache:getInstance():addSpriteFrames("uistu/common.plist")
-	
 	VVDirector:Init()
 	ClsSceneManager.GetInstance():Turn2Scene("clsRestScene")
 end 
 
 function ClsApp:load_CaiPiao()
+	cc.FileUtils:getInstance():addSearchPath("Assets/res_caipiao")
 	require("app_caipiao.init")
 end
 

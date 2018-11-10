@@ -1,6 +1,7 @@
 -------------------------
 -- 游戏逻辑层的全局事件
 -------------------------
+g_EventMgr:RegisterEventType("ASK_ESC_GAME")
 --状态机
 g_EventMgr:RegisterEventType("LOGIN_STATE")				--登录状态变更
 --游戏逻辑

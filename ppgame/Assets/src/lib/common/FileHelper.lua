@@ -12,7 +12,7 @@ FileHelper.FixFilePath = function(filepath)
 	return fixedname
 end
 
---@ 输入 res/icon/normal_bkg.png
+--@ 输入 icon/normal_bkg.png
 --@ 返回 normal_bkg
 FileHelper.GetFileName = function(filename)
 	local fixname = FileHelper.FixFilePath(filename)
@@ -20,8 +20,8 @@ FileHelper.GetFileName = function(filename)
 	return string.split(name,".")[1]
 end
 
---@ 输入 res/icon/normal_bkg.png
---@ 返回 res/icon/  normal_bkg.png
+--@ 输入 icon/normal_bkg.png
+--@ 返回 icon/  normal_bkg.png
 FileHelper.StripFileName = function(filename)
 -- 	local name = string.match(filename, “.+\\([^\\]*%.%w+)$”)
 	local fixname = FileHelper.FixFilePath(filename)

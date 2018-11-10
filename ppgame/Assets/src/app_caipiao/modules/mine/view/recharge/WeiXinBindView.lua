@@ -140,7 +140,7 @@ function clsWeiXinBindView:InitUiEvents()
 	utils.RegClickEvent(self.PanelQrImg, function() 
 		local handler = function(filepath)
 			if device.platform == "windows" then
-				filepath = "res/Default/wx_jpg_ewm.jpg"
+				filepath = "Default/wx_jpg_ewm.jpg"
 			end
 			
 			if utils.IsValidCCObject(self) then

@@ -35,13 +35,6 @@ local cmd_table = {
 			proto.req_home_tip_award_way({id="68"})
 		end,
 	},
-	{
-		desc = "重新登录",
-		func = function(gmWnd)
-			KE_SafeDelete(gmWnd)
-			ClsStateMachine:GetInstance():ToStateLogin()
-		end,
-	},
 }
 
 ----------------------------------------------

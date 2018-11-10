@@ -76,7 +76,7 @@ local cmd_parse_text_part = {
 		end
 	end,
 	--图片
-    -- eg: #o(0.6,res/chip/chip_1.png)
+    -- eg: #o(0.6,chip/chip_1.png)
 	["o"] = function(self, text_part)
 		local ctrl_text = text_part.ctrl_text
         local info_list = string.split(ctrl_text,",")
@@ -111,7 +111,7 @@ local cmd_parse_text_part = {
 		self:PushElement(re)
 	end,
 	--序列帧动画
-    -- eg: #a(0.5,res/cocosui/AllEmoj.plist,emoj/xiao,0.2)
+    -- eg: #a(0.5,cocosui/AllEmoj.plist,emoj/xiao,0.2)
     ["a"] = function(self, text_part)
         local ctrl_text = text_part.ctrl_text
         local info_list = string.split(ctrl_text,",")
@@ -198,7 +198,7 @@ function clsRichText:SetFontInfo(fontName, fontSize, fontColor, fontAlpha)
 	self._FontAlpha = fontAlpha or self._FontAlpha
 end
 
--- #n #cFFAA88EE, #fHelvetica, #d32, #pres/icons/money.png, #xCustomNode
+-- #n #cFFAA88EE, #fHelvetica, #d32, #picons/money.png, #xCustomNode
 function clsRichText:setString(sTxt)
 	sTxt = sTxt or ""
 	if self._sText == sTxt then return end

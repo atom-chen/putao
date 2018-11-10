@@ -371,7 +371,7 @@ function clsMap:ShowGrids()
 			local key = gridX.."_"..gridY
 			self._gridlist = self._gridlist or {}
 			if not self._gridlist[key] then
-				self._gridlist[key] = cc.Scale9Sprite:create("res/uiface/commons/others/mask_red.png")
+				self._gridlist[key] = cc.Scale9Sprite:create("commons/others/mask_red.png")
 				self._gridlist[key]:setAnchorPoint(cc.p(0,0))
 				self._gridlist[key]:setContentSize(MAP_GRID_WIDTH,MAP_GRID_HEIGHT)
 				self._gridlist[key]:setPosition(self:GridPos_2_WorldPos(gridX,gridY))
@@ -432,7 +432,7 @@ function clsMap:OnTouchEnd(touch, event)
 			local key = gridX.."_"..gridY
 			self._gridlist = self._gridlist or {}
 			if not self._gridlist[key] then
-				self._gridlist[key] = cc.Scale9Sprite:create("res/uiface/commons/others/mask_red.png")
+				self._gridlist[key] = cc.Scale9Sprite:create("commons/others/mask_red.png")
 				self._gridlist[key]:setAnchorPoint(cc.p(0,0))
 				self._gridlist[key]:setContentSize(MAP_GRID_WIDTH,MAP_GRID_HEIGHT)
 				self._gridlist[key]:setPosition(self:GridPos_2_WorldPos(gridX, gridY))
@@ -449,7 +449,7 @@ function clsMap:OnTouchEnd(touch, event)
 					local key = gridX.."_"..gridY
 					self._gridlist = self._gridlist or {}
 					if not self._gridlist[key] then
-						self._gridlist[key] = cc.Scale9Sprite:create("res/uiface/commons/others/mask_red.png")
+						self._gridlist[key] = cc.Scale9Sprite:create("commons/others/mask_red.png")
 						self._gridlist[key]:setAnchorPoint(cc.p(0,0))
 						self._gridlist[key]:setContentSize(MAP_GRID_WIDTH,MAP_GRID_HEIGHT)
 						self._gridlist[key]:setPosition(self:GridPos_2_WorldPos(gridX, gridY))

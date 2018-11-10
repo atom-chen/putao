@@ -56,7 +56,6 @@ end
 -- 初始化数据
 function VVDirector:InitDatas()
 	guide.ClsGuideMgr.GetInstance()
-	UserEntity.GetInstance()
 	--
 	if APP_TYPE == 1 then
 		self:InitCaiPiaoData()
@@ -68,7 +67,6 @@ end
 -- 清理数据
 function VVDirector:ClearDatas()
 	guide.ClsGuideMgr.DelInstance()
-	UserEntity.DelInstance()
 	--
 	if APP_TYPE == 1 then
 		self:ClearCaiPiaoData()
@@ -81,6 +79,7 @@ end
 
 function VVDirector:InitCaiPiaoData()
 	self.mCaipiaoProcedure = smartor.clsPromise.new()
+	UserEntity.GetInstance()
 	--
 	ClsAgentDataMgr.GetInstance()
 	ClsBankMgr.GetInstance()
@@ -107,6 +106,7 @@ end
 
 function VVDirector:ClearCaiPiaoData()
 	KE_SafeDelete(self.mCaipiaoProcedure) self.mCaipiaoProcedure = nil
+	UserEntity.DelInstance()
 	--
 	ClsAgentDataMgr.DelInstance()
 	ClsBankMgr.DelInstance()
