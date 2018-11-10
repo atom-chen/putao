@@ -9,7 +9,7 @@ local _FPS = 60
 GAME_CONFIG = {
 	FPS = _FPS,								-- 帧率
 	SPF = 1/_FPS,							-- 每帧有多少秒
-	ShowFps = false,						-- 是否显示帧率
+	ShowFps = true,						-- 是否显示帧率
 	LOCAL_DIR = FixFilePath(cc.FileUtils:getInstance():getWritablePath().."/ycdata"),	-- 本地缓存路径
 	APP_MODE = 1,
 	--
