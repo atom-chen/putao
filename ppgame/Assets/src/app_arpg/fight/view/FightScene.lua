@@ -6,6 +6,8 @@ clsFightScene = class("clsFightScene", clsScene)
 function clsFightScene:ctor(world_id, map_id)
 	assert(world_id and map_id)
 	clsScene.ctor(self, world_id, map_id)
+	
+	ClsUIManager.GetInstance():ShowView("clsFightUI")
 end
 
 function clsFightScene:dtor()
