@@ -47,7 +47,33 @@ function FixScreen()
 	GAME_CONFIG.HEIGHT_DIFF = GAME_CONFIG.DESIGN_H - GAME_CONFIG.VIEW_H
 end
 
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
+DEBUG = 0
+
+-- use framework, will disable all deprecated API, false - use legacy API
+CC_USE_FRAMEWORK = true
+
+-- show FPS on screen
+CC_SHOW_FPS = true
+
+-- disable create unexpected global variable
+CC_DISABLE_GLOBAL = false
+
+-- for module display
+CC_DESIGN_RESOLUTION = {
+    width = GAME_CONFIG.DESIGN_W,
+    height = GAME_CONFIG.DESIGN_H,
+    autoscale = "FIXED_WIDTH",
+}
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
 APP_TYPE = 2
+IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
 
 -----------------------------------------------------------------------------------------
 local serv_list = {
@@ -199,28 +225,3 @@ ENGINE_BUILD_TYPE = curSite.ENGINE_BUILD_TYPE	--1：消消乐   2：彩票  0: w
 SERVER_URL = curSite.SERVER_URL
 HTTP_HEAD_KEY = curSite.HTTP_HEAD_KEY
 HTTP_HEAD_VAL_1 = curSite.HTTP_HEAD_VAL_1
-
-IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
-
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
-DEBUG = 0
-
--- use framework, will disable all deprecated API, false - use legacy API
-CC_USE_FRAMEWORK = true
-
--- show FPS on screen
-CC_SHOW_FPS = true
-
--- disable create unexpected global variable
-CC_DISABLE_GLOBAL = false
-
--- for module display
-CC_DESIGN_RESOLUTION = {
-    width = GAME_CONFIG.DESIGN_W,
-    height = GAME_CONFIG.DESIGN_H,
-    autoscale = "FIXED_WIDTH",
-}
