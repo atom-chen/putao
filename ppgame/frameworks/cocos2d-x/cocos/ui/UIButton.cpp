@@ -72,7 +72,7 @@ _disabledTextureLoaded(false),
 _normalTextureAdaptDirty(true),
 _pressedTextureAdaptDirty(true),
 _disabledTextureAdaptDirty(true),
-_fontSize(10),
+_fontSize(24),
 _type(FontType::SYSTEM)
 {
     setTouchEnabled(true);
