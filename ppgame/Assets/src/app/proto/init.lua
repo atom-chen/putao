@@ -1,4 +1,4 @@
 -------------------------
 -- 协议
 -------------------------
-require("app.proto.others")
+require("app.proto.HttpProto")

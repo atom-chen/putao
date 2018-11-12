@@ -1,8 +1,6 @@
 -------------------------
 -- 分页请求数据
 -------------------------
-module("gameutil", package.seeall)
-
 clsPageCacher = class("clsPageCacher")
 
 function clsPageCacher:ctor(iPageSize)

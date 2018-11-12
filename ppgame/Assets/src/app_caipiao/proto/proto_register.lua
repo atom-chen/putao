@@ -1,7 +1,7 @@
 -------------------------
 -- 协议注册器
 -------------------------
-require("app.proto.others")
+require("app.proto.HttpProto")
 
 local proto_register = {}
 
