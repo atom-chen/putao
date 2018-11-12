@@ -27,6 +27,8 @@ function clsFightArgu:ctor(sCombatType)
 	self.EndCallback = function() end
 	self.bVideo = true
 	self.bAffectEnable = true
+	self.bHasReadyTime = false
+	self.bHasLeaveTime = false 
 end
 
 function clsFightArgu:Check()

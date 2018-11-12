@@ -47,7 +47,7 @@ function FixScreen()
 	GAME_CONFIG.HEIGHT_DIFF = GAME_CONFIG.DESIGN_H - GAME_CONFIG.VIEW_H
 end
 
-APP_TYPE = 1
+APP_TYPE = 2
 
 -----------------------------------------------------------------------------------------
 local serv_list = {

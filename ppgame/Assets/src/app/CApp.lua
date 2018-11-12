@@ -280,12 +280,30 @@ end
 
 function ClsApp:load_Arpg()
 	cc.FileUtils:getInstance():addSearchPath("Assets/res_arpg")
+	cc.FileUtils:getInstance():addSearchPath("Assets/res_caipiao")
 	require("app_arpg.init")
 end 
 
 function ClsApp:runArpg()
 	VVDirector:Init()
 	ClsSceneManager.GetInstance():Turn2Scene("clsRestScene")
+	clsGameArpg.new()
+	KE_SetAbsTimeout(8, function()
+		local fightArgu = fight.clsFightArgu.new(const.COMBAT_TYPE.Instant)
+		local soldier1 = { Uid=1, TypeId=10001 }
+		local soldier2 = { Uid=2, TypeId=10002 }
+		local soldier3 = { Uid=3, TypeId=10002 }
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier1)
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier2)
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier3)
+		local soldier4 = { Uid=4, TypeId=10001 }
+		local soldier5 = { Uid=5, TypeId=10002 }
+		local soldier6 = { Uid=6, TypeId=10002 }
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier4)
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier5)
+		ClsRoleEntityMgr.GetInstance():UpdateFighter(soldier6)
+		fight.FightService.GetInstance():EnterFight(fightArgu)
+	end)
 end 
 
 function ClsApp:load_CaiPiao()

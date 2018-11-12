@@ -77,23 +77,27 @@ function FightService:_OnLoadingOver()
 	end
 	
 	-- 3秒后开战
-	local compPicNumber = ui.clsPicNumber.new(ClsLayerManager.GetInstance():GetLayer(const.LAYER_WAITING))
-	compPicNumber:setPosition(GAME_CONFIG.DESIGN_W_2, GAME_CONFIG.DESIGN_H_2)
-	compPicNumber:SetModal(true,true)
-	compPicNumber:SetValue(3)
-	self:CreateAbsTimerLoop("tmStart", 1, function()
-		compPicNumber:SetValue(compPicNumber:GetValue()-1)
-		
-		if compPicNumber:GetValue() == 0 then
-			self:DestroyTimer("tmStart")
-			if compPicNumber then
-				KE_SafeDelete(compPicNumber)
-				compPicNumber = nil
+	if self.fightArgu.bHasReadyTime then
+		local compPicNumber = ui.clsPicNumber.new(ClsLayerManager.GetInstance():GetLayer(const.LAYER_WAITING))
+		compPicNumber:setPosition(GAME_CONFIG.DESIGN_W_2, GAME_CONFIG.DESIGN_H_2)
+		compPicNumber:SetModal(true,true)
+		compPicNumber:SetValue(3)
+		self:CreateAbsTimerLoop("tmStart", 1, function()
+			compPicNumber:SetValue(compPicNumber:GetValue()-1)
+			
+			if compPicNumber:GetValue() == 0 then
+				self:DestroyTimer("tmStart")
+				if compPicNumber then
+					KE_SafeDelete(compPicNumber)
+					compPicNumber = nil
+				end
+				-- 开战
+				self:StartCombat()
 			end
-			-- 开战
-			self:StartCombat()
-		end
-	end)
+		end)
+	else
+		self:StartCombat()
+	end
 end
 
 --开始战斗
@@ -132,27 +136,34 @@ end
 --离开战斗
 function FightService:_LeaveFight()
 	-- 3秒后退出战斗
-	local compPicNumber = ui.clsPicNumber.new(ClsLayerManager.GetInstance():GetLayer(const.LAYER_WAITING))
-	compPicNumber:setPosition(GAME_CONFIG.DESIGN_W_2, GAME_CONFIG.DESIGN_H_2)
-	compPicNumber:SetModal(true, true)
-	compPicNumber:SetValue(3)
-	self:CreateAbsTimerLoop("tmExit", 1, function()
-		compPicNumber:SetValue(compPicNumber:GetValue()-1)
-		
-		if compPicNumber:GetValue() <= 0 then
-			self:DestroyTimer("tmExit")
+	if self.fightArgu.bHasLeaveTime then
+		local compPicNumber = ui.clsPicNumber.new(ClsLayerManager.GetInstance():GetLayer(const.LAYER_WAITING))
+		compPicNumber:setPosition(GAME_CONFIG.DESIGN_W_2, GAME_CONFIG.DESIGN_H_2)
+		compPicNumber:SetModal(true, true)
+		compPicNumber:SetValue(3)
+		self:CreateAbsTimerLoop("tmExit", 1, function()
+			compPicNumber:SetValue(compPicNumber:GetValue()-1)
 			
-			if compPicNumber then
-				KE_SafeDelete(compPicNumber)
-				compPicNumber = nil
+			if compPicNumber:GetValue() <= 0 then
+				self:DestroyTimer("tmExit")
+				
+				if compPicNumber then
+					KE_SafeDelete(compPicNumber)
+					compPicNumber = nil
+				end
+				
+				self:_DoCleanup()
+				self._bInFight = false
+				
+				self:_ShowFightResult()
 			end
-			
-			self:_DoCleanup()
-			self._bInFight = false
-			
-			self:_ShowFightResult()
-		end
-	end)
+		end)
+	else
+		self:_DoCleanup()
+		self._bInFight = false
+				
+		self:_ShowFightResult()
+	end
 end
 
 --显示战斗结果

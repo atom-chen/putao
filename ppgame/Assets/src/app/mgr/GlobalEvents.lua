@@ -4,6 +4,7 @@
 g_EventMgr:RegisterEventType("ASK_ESC_GAME")
 --状态机
 g_EventMgr:RegisterEventType("LOGIN_STATE")				--登录状态变更
+g_EventMgr:RegisterEventType("LOGOUT")
 --游戏逻辑
 g_EventMgr:RegisterEventType("GAME_CUR_WANFA")
 g_EventMgr:RegisterEventType("GAME_ADD_BILLPAPER")
