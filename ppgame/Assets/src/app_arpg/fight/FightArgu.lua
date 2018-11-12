@@ -14,14 +14,14 @@ function clsFightArgu:ctor(sCombatType)
 	}
 	self.tTeamList = {
 		[1] = {
-			{ Uid=1,TypeId=10001 },
-			{ Uid=2,TypeId=10001 },
-			{ Uid=3,TypeId=10001 },
+			{ Uid=1,TypeId=10001,ShapeId=10001 },
+			{ Uid=2,TypeId=10001,ShapeId=10001 },
+			{ Uid=3,TypeId=10001,ShapeId=10001 },
 		},
 		[2] = {
-			{ Uid=4,TypeId=10001 },
-			{ Uid=5,TypeId=10001 },
-			{ Uid=6,TypeId=10001 },
+			{ Uid=4,TypeId=10001,ShapeId=10002 },
+			{ Uid=5,TypeId=10001,ShapeId=10002 },
+			{ Uid=6,TypeId=10001,ShapeId=10002 },
 		},
 	}
 	self.EndCallback = function() end
