@@ -74,6 +74,7 @@ CC_DESIGN_RESOLUTION = {
 
 APP_TYPE = 2
 IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
+IS_TIP_TRACE = true
 
 -----------------------------------------------------------------------------------------
 local serv_list = {

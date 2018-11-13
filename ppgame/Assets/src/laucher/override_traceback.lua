@@ -73,7 +73,7 @@ function __G__TRACKBACK__(e)
 		end
 	end
 	
-	if IS_DEBUG_MODE then
+	if IS_TIP_TRACE then
 --		cc.Director:getInstance():setAnimationInterval(0.5)
 		local theScene = cc.Director:getInstance():getRunningScene()
 		if ccui and theScene then
