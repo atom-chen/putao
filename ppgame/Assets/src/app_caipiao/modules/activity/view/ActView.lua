@@ -9,7 +9,7 @@ function clsActView:ctor(parent, actInfo)
 	clsBaseUI.ctor(self,parent,"uistu/AASkinNormal.csb")
 	self.lblTitle:setString("优惠活动")
 	
-	if device.platform ~= "windows" then
+	if device.platform ~= "windows" and device.platform ~= "mac" then
     	local webView = ccexp.WebView:create()
     	self:addChild(webView)
     	webView:setContentSize(cc.size(720,self:GetAdaptInfo().hAuto))

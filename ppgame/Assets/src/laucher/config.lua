@@ -218,7 +218,7 @@ local SITE_CFG = {
 	},
 }
 
-CUR_SITE_NAME = "testor"	--当前站点
+CUR_SITE_NAME = "xincai"	--当前站点
 
 local curSite = SITE_CFG[CUR_SITE_NAME]
 

@@ -61,7 +61,7 @@ function clsRechargeScan:ctor(parent, param)
 	self.qrImg:addTouchEventListener(touchEvent)
 	
 	
---	if device.platform ~= "windows" then
+--	if device.platform ~= "windows" and device.platform ~= "mac" then
 --    	local webView = ccexp.WebView:create()
 --    	self:addChild(webView)
 --    	webView:setContentSize(720,530)
