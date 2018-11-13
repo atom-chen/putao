@@ -32,6 +32,7 @@
 #include "platform/ios/CCDirectorCaller-ios.h"
 #include "platform/ios/CCGLViewImpl-ios.h"
 #include "base/CCTouch.h"
+#include "base/CCDirector.h"
 
 NS_CC_BEGIN
 

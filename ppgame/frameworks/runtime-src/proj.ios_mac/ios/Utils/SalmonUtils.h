@@ -18,7 +18,7 @@
 + (SalmonUtils*) getInstance;
 + (void) destroyInstance;
 
-+ (void)openWeixin;
++ (int)openWeixin;
 
 +(NSString *) getPhoneType : (NSDictionary *)dict;
 

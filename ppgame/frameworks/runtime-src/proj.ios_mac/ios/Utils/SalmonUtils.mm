@@ -88,19 +88,15 @@ static NSString* _deviceToken = nil;
 /**
  *  打开微信 , 没有配置
  */
-+ (void)openWeixin
++ (int)openWeixin
 {
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weixin://"]];
     NSURL *url = [NSURL URLWithString:@"weixin://"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
+        return 1;
     }else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示"
-                                                        message:@"没有安装微信"
-                                                       delegate:self
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
-        [alert show];
+        return 0;
     }
 }
 
