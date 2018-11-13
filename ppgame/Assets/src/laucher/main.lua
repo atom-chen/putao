@@ -70,7 +70,7 @@ local function main()
 	logger.EnablePrint(false)
 	cc.LuaLoadChunksFromZIP("Assets/src/cocos.zip")
 	require("cocos.init")
-	logger.EnablePrint(device.platform=="windows" or device.platform=="mac")
+	logger.EnablePrint(device.platform=="windows")
 	print("本地缓存路径",GAME_CONFIG.LOCAL_DIR)
 	
 	local function finishCallback(tbLoadChunkZips)
@@ -117,7 +117,7 @@ local function main()
 		require("laucher.HotUpdate")
 		logger.EnablePrint(false)
 		require("cocos.init")
-		logger.EnablePrint(device.platform=="windows" or device.platform=="mac")
+		logger.EnablePrint(device.platform=="windows")
 		require("laucher.override_traceback")
 		
 		--
