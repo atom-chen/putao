@@ -214,7 +214,7 @@ static AppDelegate s_sharedApplication;
 +(NSString*) getChannel:(NSDictionary*)dic{
     NSUserDefaults* userdafault = [NSUserDefaults standardUserDefaults];
     NSString* value = [userdafault objectForKey:@"channel_code"];
-    if(value != nil and value != @""){
+    if( value != nil and [value isEqualToString:@""] ){
         return value;
     }
     
@@ -285,14 +285,6 @@ static AppDelegate s_sharedApplication;
 +(int) getBattery:(NSDictionary*)dic{
     int level = (int)([UIDevice currentDevice].batteryLevel *100);
     return level;
-}
-
-+(float) getSafeAreaTopHei:(NSDictionary*)dic{
-    return 0;
-}
-
-+(float) getSafeAreaBottomHei:(NSDictionary*)dic{
-    return 0;
 }
 
 +(float) getKeyboardHei:(NSDictionary*)dic{
