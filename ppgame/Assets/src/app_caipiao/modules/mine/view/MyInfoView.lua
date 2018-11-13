@@ -349,10 +349,10 @@ function clsMyInfoView:UploadHead(filepath)
 			return
 		end
 		
-		local uploader = cc.CurlAsset:createUploader(SERVER_URL.."/user/user/user_head", filepath)
+		local uploader = CurlAsset:createUploader(SERVER_URL.."/user/user/user_head", filepath)
 		uploader:addToFileForm("file", filepath, contentType)
 		uploader:uploadFile(function(nMsg, sMsg)
-			
+			utils.TellMe(string.format("%s  %s", nMsg,sMsg))
 		end)
 	end
 end

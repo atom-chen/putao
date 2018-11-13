@@ -28,6 +28,7 @@ using namespace CocosDenshion;
 #include "serialize/PacketHelper.h"
 #include "utils/Log.h"
 #include "utils/int64.h"
+#include "curlhttp/CurlAsset.h"
 
 USING_NS_CC;
 using namespace std;
@@ -109,11 +110,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
 
+    register_all_curlasset(L);
 	quick_module_register(L);
 	register_packet_helper_manual(L);
 	register_Custom_XLog(L);
 	register_manual_MessageDispatcher(L);
-
+    
     register_all_packages();
 
 	std::string k = "LHPxyou520";
