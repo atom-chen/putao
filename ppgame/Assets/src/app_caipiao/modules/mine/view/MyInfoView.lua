@@ -106,9 +106,7 @@ function clsMyInfoView:InitUiEvents()
     end)
     utils.RegClickEvent(self.BtnHead,function()
     	local onTakePic = function(filepath)
-    		if device.platform == "windows" then
-				filepath = "Default/wx_jpg_ewm.jpg"
-			end
+    		if not filepath or filepath == "" then return end 
 			
     		if utils.IsValidCCObject(self) then
     			self:DestroyTimer("tmr_takephoto")
@@ -351,30 +349,11 @@ function clsMyInfoView:UploadHead(filepath)
 			return
 		end
 		
-		extra_network.uploadFile(function(evt)
-				if evt.name == "completed" then
-					local request = evt.request
-					printf("REQUEST getResponseStatusCode() = %d", request:getResponseStatusCode())
-					printf("REQUEST getResponseHeadersString() =\n%s", request:getResponseHeadersString())
-		 			printf("REQUEST getResponseDataLength() = %d", request:getResponseDataLength())
-	                printf("REQUEST getResponseString() =\n%s", request:getResponseString())
-	                utils.TellMe("头像更新成功")
-					proto.req_user_info()
-				end
-			end,
-			HttpUtil:GetPtoUrl("req_user_upload_headimg", {file=cc.FileUtils:getInstance():fullPathForFilename(filepath)}, nil),
-			{
-				fileFieldName="file",
-				filePath=cc.FileUtils:getInstance():fullPathForFilename(filepath),
-				contentType=contentType,
-				extra={
-					{"act", "upload"},
-					{"submit", "upload"},
-					{"file", cc.FileUtils:getInstance():fullPathForFilename(filepath)}
-				}
-			}
-		)
-	--	proto.req_user_upload_headimg({file=cc.FileUtils:getInstance():fullPathForFilename(filepath)})
+		local uploader = cc.CurlAsset:createUploader(SERVER_URL.."/user/user/user_head", filepath)
+		uploader:addToFileForm("file", filepath, contentType)
+		uploader:uploadFile(function(nMsg, sMsg)
+			
+		end)
 	end
 end
 

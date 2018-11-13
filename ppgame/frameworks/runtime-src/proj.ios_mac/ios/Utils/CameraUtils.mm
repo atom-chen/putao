@@ -55,9 +55,8 @@ void CameraUtils::closeFlashLight()
 
 void CameraUtils::setFlashLight(bool isOpen)
 {
-    if (isOpen) {
+    if (isOpen)
         openFlashLight();
-    }
     else
         closeFlashLight();
 }

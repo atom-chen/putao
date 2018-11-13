@@ -33,11 +33,9 @@ public:
      * @param[url] url链接
      * @param[filepath] 文件路径(用于获取文件大小)
      */
-    static CurlAsset* createUploader(const std::string &url,
-                                      const std::string &filepath);
+    static CurlAsset* createUploader(const std::string &url, const std::string &filepath);
     
-    bool initUploader(const std::string &url,
-                      const std::string &filepath);
+    bool initUploader(const std::string &url, const std::string &filepath);
     
     /*
      * @brief 添加表单内容
@@ -70,6 +68,7 @@ public:
     void uploadFile(const int &nHandler,
                     const int &connecttimeout = 10,
                     const int &uploadtimeout = 60);
+    
 private:
     void uploadCallBack(const int &nHandler, const int &nRes, const std::string &msg);
 private:

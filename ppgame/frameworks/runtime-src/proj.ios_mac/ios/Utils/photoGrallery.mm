@@ -31,7 +31,7 @@ static photoGrallery *mInstance = nil;
 -(id) init
 {
     handler = 0;
-        return self;
+    return self;
 }
 
 
@@ -61,7 +61,6 @@ static photoGrallery *mInstance = nil;
         [fileName release];
         fileName = [[NSString alloc]initWithFormat:@"%@",imageName];
     }
-    //fileName = imageName;
 }
 
 -(void) callbackHandler
@@ -78,7 +77,7 @@ static photoGrallery *mInstance = nil;
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.delegate = self;
-    picker.allowsEditing = false;
+    picker.allowsEditing = true;
     [window.rootViewController presentModalViewController:picker animated:YES];
     [picker release];
     
@@ -148,7 +147,7 @@ static photoGrallery *mInstance = nil;
         [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
         
         if (fileName && fileName.length != 0) {
-//            fileName = fileName;
+
         }
         else{
             fileName = @"/image.png";
@@ -178,6 +177,8 @@ static photoGrallery *mInstance = nil;
         //类似微薄选择图后的效果
         //结束
         [[photoGrallery getInstance] sendPathData];
+        self.view.hidden = YES;
+        [self removeFromParentViewController];
     }
 }
 
@@ -196,7 +197,6 @@ static photoGrallery *mInstance = nil;
 -(void) sendPathData
 {
     const char* destDir = [filePath UTF8String];
-
     if (handler) {
         LuaBridge::pushLuaFunctionById(handler);
         LuaStack *stack = LuaBridge::getStack();
@@ -204,22 +204,17 @@ static photoGrallery *mInstance = nil;
         stack->executeFunction(1);
     }
     [self releaseHandler];
-
 }
 
 
-- (UIImage *)fixOrientation:(UIImage *)aImage {
-    
+- (UIImage *)fixOrientation:(UIImage *)aImage
+{
     // No-op if the orientation is already correct
-    
     if (aImage.imageOrientation == UIImageOrientationUp)
-        
         return aImage;
     
     // We need to calculate the proper transformation to make the image upright.
-    
     // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
-    
     CGAffineTransform transform = CGAffineTransformIdentity;
     
     switch (aImage.imageOrientation) {
@@ -289,15 +284,10 @@ static photoGrallery *mInstance = nil;
     }
     
     // Now we draw the underlying CGImage into a new context, applying the transform
-    
     // calculated above.
-    
     CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
-                                             
                                              CGImageGetBitsPerComponent(aImage.CGImage), 0,
-                                             
                                              CGImageGetColorSpace(aImage.CGImage),
-                                             
                                              CGImageGetBitmapInfo(aImage.CGImage));
     
     CGContextConcatCTM(ctx, transform);
@@ -312,8 +302,6 @@ static photoGrallery *mInstance = nil;
             
         case UIImageOrientationRightMirrored:
             
-            // Grr...
-            
             CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
             
             break;
@@ -327,17 +315,11 @@ static photoGrallery *mInstance = nil;
     }
     
     // And now we just create a new UIImage from the drawing context
-    
     CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
-    
     UIImage *img = [UIImage imageWithCGImage:cgimg];
-    
     CGContextRelease(ctx);
-    
     CGImageRelease(cgimg);
-    
     return img;
-    
 }
 
 // 保存图片到相册
@@ -352,8 +334,7 @@ static photoGrallery *mInstance = nil;
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片" message:@"保存图片至相册失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        NSLog(@"保存图片至相册失败");
     }
 }
 
@@ -363,9 +344,7 @@ static photoGrallery *mInstance = nil;
     UIImage *newimage;
     
     if (nil == image)
-        
     {
-        
         newimage = nil;
         
     } else {
@@ -375,7 +354,6 @@ static photoGrallery *mInstance = nil;
         CGRect rect;
         
         if (asize.width/asize.height > oldsize.width/oldsize.height)
-            
         {
             
             rect.size.width = asize.height*oldsize.width/oldsize.height;
@@ -411,7 +389,6 @@ static photoGrallery *mInstance = nil;
         newimage = UIGraphicsGetImageFromCurrentImageContext();
         
         UIGraphicsEndImageContext();
-        
     }
     
     return newimage;
@@ -425,7 +402,12 @@ static photoGrallery *mInstance = nil;
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片" message:@"请输入正确的图片地址" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"保存图片"
+                              message:@"请输入正确的图片地址"
+                              delegate:self
+                              cancelButtonTitle:@"确定"
+                              otherButtonTitles:nil, nil];
         [alert show];
     }
 }
