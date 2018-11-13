@@ -12164,6 +12164,53 @@ int lua_cocos2dx_GLView_setIMEKeyboardState(lua_State* tolua_S)
 
     return 0;
 }
+int lua_cocos2dx_GLView_getSafeAreaRect(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::GLView* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.GLView",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::GLView*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_GLView_getSafeAreaRect'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_GLView_getSafeAreaRect'", nullptr);
+            return 0;
+        }
+        cocos2d::Rect ret = cobj->getSafeAreaRect();
+        rect_to_luaval(tolua_S, ret);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.GLView:getSafeAreaRect",argc, 0);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_GLView_getSafeAreaRect'.",&tolua_err);
+#endif
+    
+    return 0;
+}
 int lua_cocos2dx_GLView_getVR(lua_State* tolua_S)
 {
     int argc = 0;
@@ -13619,6 +13666,7 @@ int lua_register_cocos2dx_GLView(lua_State* tolua_S)
         tolua_function(tolua_S,"setContentScaleFactor",lua_cocos2dx_GLView_setContentScaleFactor);
         tolua_function(tolua_S,"getContentScaleFactor",lua_cocos2dx_GLView_getContentScaleFactor);
         tolua_function(tolua_S,"setIMEKeyboardState",lua_cocos2dx_GLView_setIMEKeyboardState);
+        tolua_function(tolua_S,"getSafeAreaRect",lua_cocos2dx_GLView_getSafeAreaRect);
         tolua_function(tolua_S,"getVR",lua_cocos2dx_GLView_getVR);
         tolua_function(tolua_S,"setScissorInPoints",lua_cocos2dx_GLView_setScissorInPoints);
         tolua_function(tolua_S,"getViewName",lua_cocos2dx_GLView_getViewName);
@@ -14092,6 +14140,53 @@ int lua_cocos2dx_Director_getDeltaTime(lua_State* tolua_S)
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_Director_getDeltaTime'.",&tolua_err);
 #endif
 
+    return 0;
+}
+int lua_cocos2dx_Director_getSafeAreaRect(lua_State* tolua_S)
+{
+    int argc = 0;
+    cocos2d::Director* cobj = nullptr;
+    bool ok  = true;
+    
+#if COCOS2D_DEBUG >= 1
+    tolua_Error tolua_err;
+#endif
+    
+    
+#if COCOS2D_DEBUG >= 1
+    if (!tolua_isusertype(tolua_S,1,"cc.Director",0,&tolua_err)) goto tolua_lerror;
+#endif
+    
+    cobj = (cocos2d::Director*)tolua_tousertype(tolua_S,1,0);
+    
+#if COCOS2D_DEBUG >= 1
+    if (!cobj)
+    {
+        tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_Director_getSafeAreaRect'", nullptr);
+        return 0;
+    }
+#endif
+    
+    argc = lua_gettop(tolua_S)-1;
+    if (argc == 0)
+    {
+        if(!ok)
+        {
+            tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_Director_getSafeAreaRect'", nullptr);
+            return 0;
+        }
+        cocos2d::Rect ret = cobj->getSafeAreaRect();
+        rect_to_luaval(tolua_S, ret);
+        return 1;
+    }
+    luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.Director:getSafeAreaRect",argc, 0);
+    return 0;
+    
+#if COCOS2D_DEBUG >= 1
+tolua_lerror:
+    tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_Director_getSafeAreaRect'.",&tolua_err);
+#endif
+    
     return 0;
 }
 int lua_cocos2dx_Director_setGLDefaultValues(lua_State* tolua_S)
@@ -17174,6 +17269,7 @@ int lua_register_cocos2dx_Director(lua_State* tolua_S)
         tolua_function(tolua_S,"resetMatrixStack",lua_cocos2dx_Director_resetMatrixStack);
         tolua_function(tolua_S,"convertToUI",lua_cocos2dx_Director_convertToUI);
         tolua_function(tolua_S,"pushMatrix",lua_cocos2dx_Director_pushMatrix);
+        tolua_function(tolua_S,"getSafeAreaRect",lua_cocos2dx_Director_getSafeAreaRect);
         tolua_function(tolua_S,"setDefaultValues",lua_cocos2dx_Director_setDefaultValues);
         tolua_function(tolua_S,"init",lua_cocos2dx_Director_init);
         tolua_function(tolua_S,"setScheduler",lua_cocos2dx_Director_setScheduler);

@@ -15,32 +15,6 @@ CLIENT_TYPE_ENUM = {
 	CLIENT_TYPE_MINI = 7,
 }
 
-FROMWAY = "1"
-if device.platform == "android" then
-	FROMWAY = "2"
-elseif device.platform == "ios" then
-	FROMWAY = "1"
-end
-
--- 默认字体
-local _DEF_FONT_CFG = {
-	fontFilePath = "uistu/fonts/wryh_arial.ttf",
-	fontSize = 24,
-	outlineSize = 0,
-	glyphs = cc.GLYPHCOLLECTION_DYNAMIC,
-	customGlyphs = nil,
-	distanceFieldEnabled = false,
-}
-function FONT_CFG(fontSize, outlineSize) 
-	local fontcfg = table.clone(_DEF_FONT_CFG) 
-	if fontSize then fontcfg.fontSize = fontSize end
-	if outlineSize then fontcfg.outlineSize = outlineSize end 
-	return fontcfg
-end
-function DEF_FONT_CFG_REF() 
-	return _DEF_FONT_CFG 
-end
-
 --层定义
 LAYER_MAP			= 0			-- 地图层
 LAYER_VIEW 			= 0			-- 一级界面
@@ -64,6 +38,36 @@ CORE_EVENT = {
 	["cleanup"] = "cleanup",
 }
 
+-- 默认字体
+local _DEF_FONT_CFG = {
+	fontFilePath = "uistu/fonts/wryh_arial.ttf",
+	fontSize = 24,
+	outlineSize = 0,
+	glyphs = cc.GLYPHCOLLECTION_DYNAMIC,
+	customGlyphs = nil,
+	distanceFieldEnabled = false,
+}
+
+function FONT_CFG(fontSize, outlineSize) 
+	local fontcfg = table.clone(_DEF_FONT_CFG) 
+	if fontSize then fontcfg.fontSize = fontSize end
+	if outlineSize then fontcfg.outlineSize = outlineSize end 
+	return fontcfg
+end
+
+function DEF_FONT_CFG_REF() 
+	return _DEF_FONT_CFG 
+end
+
+
+--HTTP头
+FROMWAY = "1"
+if device.platform == "android" then
+	FROMWAY = "2"
+elseif device.platform == "ios" then
+	FROMWAY = "1"
+end
+
 --关系
 RELATION_NONE = 0		--无关系
 RELATION_PARTNER = 1	--伙伴关系
@@ -73,6 +77,7 @@ RELATION_ENEMY = 2		--敌对关系
 MAP_GRID_WIDTH = 16
 MAP_GRID_HEIGHT = 16
 
+--颜色常量
 COLOR = {
 	RED = cc.c3b(255,0,0),
 	GREEN = cc.c3b(0,255,0),

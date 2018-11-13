@@ -238,6 +238,11 @@ public:
      * @return The visible rectangle of opengl viewport.
      */
     virtual Rect getVisibleRect() const;
+    
+    /**
+     * Gets safe area rectangle
+     */
+    virtual Rect getSafeAreaRect() const;
 
     /**
      * Set the design resolution size.

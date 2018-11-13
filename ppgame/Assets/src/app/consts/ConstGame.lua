@@ -32,19 +32,12 @@ GAME_TYPE = {
 }
 for k, v in pairs(GAME_TYPE) do assert(k==v.typeid) end
 
+--下注额限制
 MIN_BET_MONEY = 0.1
 --MAX_BET_MONEY = 1000000
 MAX_BET_LENGTH = 9
 
---六合彩
-GAME_LHC_COLOR = {
-	blue = cc.c3b(13,134,227),
-	green = cc.c3b(55,191,79),
-	red = cc.c3b(244,67,54),
-	white = cc.c3b(255,255,255),
-	gray = cc.c3b(99,99,99),
-}
-
+--下注单类型
 BILL_TYPE = {
 	SINGLE = "SINGLE",
 	MxN = "MxN",
@@ -53,4 +46,13 @@ BILL_TYPE = {
 	ZHIXUAN = "ZHIXUAN",
 	MULTY_GRP = "MULTY_GRP",
 	LHC_HX = "LHC_HX",
+}
+
+--六合彩
+GAME_LHC_COLOR = {
+	blue = cc.c3b(13,134,227),
+	green = cc.c3b(55,191,79),
+	red = cc.c3b(244,67,54),
+	white = cc.c3b(255,255,255),
+	gray = cc.c3b(99,99,99),
 }
