@@ -10,6 +10,9 @@ elseif device.platform == "ios" or device.platform == "mac" then
 end
 
 local className = "org.cocos2dx.lua.AppActivity"
+if device.platform == "ios" then
+	className = "AppController"
+end
 
 local socket = require("socket")
 
@@ -53,11 +56,47 @@ function PlatformHelper.closeSystemKeyboard(edtbox)
 	end
 end
 
--- 检查相机权限
-function PlatformHelper.CheckCamera()
+-- 获取虚拟键盘高度
+function PlatformHelper.getKeyboardHei()
 	if device.platform == "android" then
-		luaj.callStaticMethod("ppasist.utils.AuthorUtils", "CheckCamera", { }, "()Z")
+		local ok,ret  = luaj.callStaticMethod(className, "getKeyboardHei" , {}, "()I")
+	    if ok then
+	        return ret
+	    else
+	        return 0
+	    end
+	elseif device.platform == "ios" then
+	    local ok,ret  = luaoc.callStaticMethod(className,"getKeyboardHei",{})
+	    if ok then
+	        return ret
+	    else
+	        return 0
+	    end
+	elseif device.platform == "mac" then
+		print("当前平台不支持")
+	elseif device.platform == "windows" then
+		print("当前平台不支持")
 	end
+	return 0
+end
+
+--
+function PlatformHelper.getAdjustHei()
+	if device.platform == "android" then
+		print("当前平台不支持")
+	elseif device.platform == "ios" then
+		local ok,ret  = luaoc.callStaticMethod(className,"getAdjustHei",{})
+	    if ok then
+	        return ret
+	    else
+	        return 0
+	    end
+	elseif device.platform == "mac" then
+		print("当前平台不支持")
+	elseif device.platform == "windows" then
+		print("当前平台不支持")
+	end
+	return 0
 end
 
 -- 获取引擎版本
@@ -70,7 +109,7 @@ function PlatformHelper.getVersion()
 			return "V1.0.0"
 		end
 	elseif device.platform == "ios" then
-		local ok, ret = luaoc.callStaticMethod("AppController", "getVersion", { })
+		local ok, ret = luaoc.callStaticMethod(className, "getVersion", { })
 		if ok then
 			return "V" .. ret
 		else
@@ -96,7 +135,7 @@ function PlatformHelper.isInstallWX()
             return false
         end
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "isInstallWX", { })
+        local ok, ret = luaoc.callStaticMethod(className, "isInstallWX", { })
         if ok then
             return ret
         else
@@ -114,7 +153,7 @@ function PlatformHelper.onGameLauch()
     if device.platform == "android" then
         local ok, ret = luaj.callStaticMethod(className, "onGameLauch", { }, "()V")
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "onGameLauch", { })
+        local ok, ret = luaoc.callStaticMethod(className, "onGameLauch", { })
     elseif device.platform == "windows" then
 
     else
@@ -128,7 +167,7 @@ function PlatformHelper.isNetworkConnected()
         local ok, ret = luaj.callStaticMethod(className, "isNetworkConnected", { }, "()Z")
         return ret
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "isNetworkConnected", { })
+        local ok, ret = luaoc.callStaticMethod(className, "isNetworkConnected", { })
         return ret == 1 and true or false
     elseif device.platform == "windows" then
 
@@ -146,7 +185,7 @@ function PlatformHelper.getDeviceId()
             return ret;
         end
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "getDeviceId", { })
+        local ok, ret = luaoc.callStaticMethod(className, "getDeviceId", { })
         if ok then
             return ret;
         end
@@ -162,7 +201,7 @@ function PlatformHelper.getModel()
             return ret;
         end
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "getModel", { })
+        local ok, ret = luaoc.callStaticMethod(className, "getModel", { })
         if ok then
             return ret;
         end
@@ -178,13 +217,15 @@ function PlatformHelper.getBattery()
             return g_battery;
         end
     elseif device.platform == "ios" then
-        local ok, ret = luaoc.callStaticMethod("AppController", "getBattery", { })
+        local ok, ret = luaoc.callStaticMethod(className, "getBattery", { })
         if ok then
             return ret;
         end
     end
     return 100
 end
+
+---------------------------------------------------
 
 -- OkHttp GET
 function PlatformHelper.httpGet(url, succCallback, failCallback, loadingCallback)

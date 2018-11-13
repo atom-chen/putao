@@ -67,47 +67,11 @@ function SalmonUtils:fixUrl2utf8(url)
 	return url
 end
 
--- 获取虚拟键盘高度
-function SalmonUtils:getKeyboardHei()
+-- 检查相机权限
+function SalmonUtils:CheckCamera()
 	if device.platform == "android" then
-		local ok,ret  = luaj.callStaticMethod("org.cocos2dx.lua.AppActivity", "getKeyboardHei" , {}, "()I")
-	    if ok then
-	        return ret
-	    else
-	        return 0
-	    end
-	elseif device.platform == "ios" then
-	    local ok,ret  = luaoc.callStaticMethod("AppController","getKeyboardHei",{})
-	    if ok then
-	        return ret
-	    else
-	        return 0
-	    end
-	elseif device.platform == "mac" then
-		print("当前平台不支持")
-	elseif device.platform == "windows" then
-		print("当前平台不支持")
+		luaj.callStaticMethod(className, "CheckCamera", { }, "()Z")
 	end
-	return 0
-end
-
---
-function SalmonUtils:getAdjustHei()
-	if device.platform == "android" then
-		print("当前平台不支持")
-	elseif device.platform == "ios" then
-		local ok,ret  = luaoc.callStaticMethod("AppController","getAdjustHei",{})
-	    if ok then
-	        return ret
-	    else
-	        return 0
-	    end
-	elseif device.platform == "mac" then
-		print("当前平台不支持")
-	elseif device.platform == "windows" then
-		print("当前平台不支持")
-	end
-	return 0
 end
 
 -- 保存相片到相册

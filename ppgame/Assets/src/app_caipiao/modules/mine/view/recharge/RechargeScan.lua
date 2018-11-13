@@ -95,7 +95,7 @@ function clsRechargeScan:ctor(parent, param)
     self:LoadUrlData(clsRechargeScan._cache_data)
     
     KE_SetTimeout(2, function()
-    	PlatformHelper.CheckCamera()
+    	SalmonUtils:CheckCamera()
     end)
 end
 

@@ -76,7 +76,7 @@ function clsScene:InitSystemKeyboard()
 	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
 	
 	local listener = cc.EventListenerCustom:create("sys_keyboard_willshow", function(event)
-		local height = SalmonUtils:getAdjustHei()
+		local height = PlatformHelper.getAdjustHei()
 		if height > 0 then 
 			ClsLayerManager.GetInstance():StopFixLayer()
 			KE_SetTimeout(1, function()
@@ -87,7 +87,7 @@ function clsScene:InitSystemKeyboard()
 	eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
 
 	local listener = cc.EventListenerCustom:create("sys_keyboard_didshow", function(event)
-		local height = SalmonUtils:getAdjustHei()
+		local height = PlatformHelper.getAdjustHei()
 		if height > 0 then 
 			ClsLayerManager.GetInstance():StopFixLayer()
 			KE_SetTimeout(1, function()
@@ -127,8 +127,7 @@ function sys_keyboard_willshow(sArg)
 	KE_SetTimeout(2, function()
 		local editH = tonumber(sArg)
 		local editPosY = g_CurEditY or 80
-		local keboardH = math.ceil( 1.7*SalmonUtils:getKeyboardHei() / 0.33 )
---		utils.TellMe(display.contentScaleFactor .. " 键盘即将弹起 "..SalmonUtils:getKeyboardHei().." "..sArg.." "..keboardH.." "..editPosY, 3)
+		local keboardH = math.ceil( 1.7*PlatformHelper.getKeyboardHei() / 0.33 )
 		if (keboardH > editPosY) then
 			ClsLayerManager.GetInstance():FixLayerPos(keboardH-editPosY+5, 0.2)
 		end
@@ -138,7 +137,6 @@ end
 function sys_keyboard_willhide(sArg)
 	if device.platform ~= "android" then return end
 	KE_SetTimeout(1, function()
---		utils.TellMe("键盘即将关闭 "..SalmonUtils:getKeyboardHei())
 		ClsLayerManager.GetInstance():FixLayerPos(0, 0.2)
 	end)
 end

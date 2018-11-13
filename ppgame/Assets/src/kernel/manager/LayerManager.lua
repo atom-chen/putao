@@ -39,7 +39,7 @@ end
 local MAXKBDH = 0
 function ClsLayerManager:FixLayerPos(Hei, duration)
 	local aniObjs = self._keyboardAniDelegates or self.tAllLayers
-	MAXKBDH = math.max(MAXKBDH or 0, SalmonUtils:getKeyboardHei() or 0)
+	MAXKBDH = math.max(MAXKBDH or 0, PlatformHelper.getKeyboardHei() or 0)
 	if Hei > 0 and self._keyboardAniDelegates and self._keyboardFixHeight then
 		Hei = MAXKBDH + self._keyboardFixHeight
 	elseif Hei > 0 and self._keyboardAniDelegates then
