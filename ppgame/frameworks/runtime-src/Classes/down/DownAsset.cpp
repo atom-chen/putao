@@ -85,7 +85,7 @@ void CDownAsset::Notify(int wMain,int wSub)
 	if (m_nHandler != 0)
 	{
 #if CC_TARGET_PLATFORM != CC_PLATFORM_MAC
-		GetMCKernel()->HanderMessage(MSG_HTTP_DOWN,m_nHandler,(WORD)wMain,(WORD)wSub);
+		//GetMCKernel()->HanderMessage(MSG_HTTP_DOWN,m_nHandler,(WORD)wMain,(WORD)wSub);
 #endif
     }
 }
