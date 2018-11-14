@@ -37,10 +37,27 @@
 #pragma mark Application lifecycle
 
 const NSString* channel = @"IOSQY01";
+bool isFirstInstall = false;
 // cocos2d application instance
 static AppDelegate s_sharedApplication;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSNumber* buildVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* lastBuildVersion =  [defaults objectForKey:@"last_build_version"];
+//  NSLog(@"buildVersion = %@  lastBuildVersion = %@", buildVersion, lastBuildVersion);
+    if(lastBuildVersion == nil or [buildVersion intValue] > [lastBuildVersion intValue]){
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString* path = [NSString stringWithFormat:@"%@%@",[paths objectAtIndex:0],@"/hotupdate"];
+        NSFileManager* fm =  [NSFileManager defaultManager];
+        if([fm fileExistsAtPath:path]){
+            [fm removeItemAtPath:path error:nil];
+        }
+        isFirstInstall = true;
+    }
+    [defaults setObject:buildVersion forKey:@"last_build_version"];
     
     cocos2d::Application *app = cocos2d::Application::getInstance();
     
