@@ -53,6 +53,8 @@
 		8E0BE67F2181D2FE00284161 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */; };
 		8E1A8C0A219AF08400E934A3 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1A8C07219AF08400E934A3 /* libcurl.a */; };
 		8E1A8C0C219AF0D500E934A3 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1A8C0B219AF0D500E934A3 /* libcurl.a */; };
+		8E25B623219BF5160029C17C /* DownAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E25B620219BF5160029C17C /* DownAsset.cpp */; };
+		8E25B624219BF5160029C17C /* DownAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E25B620219BF5160029C17C /* DownAsset.cpp */; };
 		8E5FDD9F2192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
 		8E5FDDA02192DBF6008BD8F5 /* CurlAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */; };
 		8E768D4C2182C40D007336AD /* OSInfoUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E768D302182C40D007336AD /* OSInfoUtils.mm */; };
@@ -319,6 +321,10 @@
 		8E0BE67C2181D2FD00284161 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		8E1A8C07219AF08400E934A3 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/ios/libcurl.a"; sourceTree = "<group>"; };
 		8E1A8C0B219AF0D500E934A3 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = "../../cocos2d-x/external/curl/prebuilt/mac/libcurl.a"; sourceTree = "<group>"; };
+		8E25B61F219BF5160029C17C /* DownAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownAsset.h; sourceTree = "<group>"; };
+		8E25B620219BF5160029C17C /* DownAsset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DownAsset.cpp; sourceTree = "<group>"; };
+		8E25B625219BF6140029C17C /* FileAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileAsset.h; sourceTree = "<group>"; };
+		8E25B626219BF6140029C17C /* Define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		8E5FDD9D2192DBF6008BD8F5 /* CurlAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurlAsset.h; sourceTree = "<group>"; };
 		8E5FDD9E2192DBF6008BD8F5 /* CurlAsset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurlAsset.cpp; sourceTree = "<group>"; };
 		8E768D302182C40D007336AD /* OSInfoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OSInfoUtils.mm; sourceTree = "<group>"; };
@@ -584,6 +590,18 @@
 				5023811217EBBCAC00990C9B /* Icon-76.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		8E25B61E219BF5160029C17C /* down */ = {
+			isa = PBXGroup;
+			children = (
+				8E25B626219BF6140029C17C /* Define.h */,
+				8E25B625219BF6140029C17C /* FileAsset.h */,
+				8E25B61F219BF5160029C17C /* DownAsset.h */,
+				8E25B620219BF5160029C17C /* DownAsset.cpp */,
+			);
+			name = down;
+			path = ../Classes/down;
 			sourceTree = "<group>";
 		};
 		8E5FDD9C2192DBF6008BD8F5 /* curlhttp */ = {
@@ -1018,6 +1036,7 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E25B61E219BF5160029C17C /* down */,
 				8E5FDD9C2192DBF6008BD8F5 /* curlhttp */,
 				8E89F9BA217D94A8008948EA /* xian_you.h */,
 				8E89F914217D949C008948EA /* manual */,
@@ -1295,6 +1314,7 @@
 				8E89F9A7217D949D008948EA /* Plsocket.cpp in Sources */,
 				8E89F937217D949D008948EA /* libbase64.c in Sources */,
 				8E89F9AF217D949D008948EA /* int64.cpp in Sources */,
+				8E25B624219BF5160029C17C /* DownAsset.cpp in Sources */,
 				8E89F98D217D949D008948EA /* fpconv.c in Sources */,
 				8E89F9B7217D949D008948EA /* KKLabelFT2.cpp in Sources */,
 				8E5FDDA02192DBF6008BD8F5 /* CurlAsset.cpp in Sources */,
@@ -1339,6 +1359,7 @@
 				8E89F996217D949D008948EA /* lfs.c in Sources */,
 				8E89F992217D949D008948EA /* lpack.c in Sources */,
 				8E89F9AC217D949D008948EA /* MessageDispatcher.cpp in Sources */,
+				8E25B623219BF5160029C17C /* DownAsset.cpp in Sources */,
 				8E768D552182C40D007336AD /* MediaTool.m in Sources */,
 				8E89F984217D949D008948EA /* cocos2dx_extra_luabinding.cpp in Sources */,
 				8E5FDD9F2192DBF6008BD8F5 /* CurlAsset.cpp in Sources */,

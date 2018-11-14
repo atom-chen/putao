@@ -29,6 +29,7 @@ using namespace CocosDenshion;
 #include "utils/Log.h"
 #include "utils/int64.h"
 #include "curlhttp/CurlAsset.h"
+#include "down/DownAsset.h"
 
 USING_NS_CC;
 using namespace std;
