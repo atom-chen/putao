@@ -208,14 +208,14 @@ function clsGouCaiView:CreateGameBtn(wid, hei, name, every_time, img)
 	BtnGame:setScale9Enabled(true)
 	BtnGame:setContentSize(wid,hei)
 	
-	local lblZhouqi = utils.CreateLabel(every_time, 22)
+	local lblZhouqi = utils.CreateLabel(every_time, 22,nil,true)
     lblZhouqi:setAdditionalKerning(3)
 	BtnGame:addChild(lblZhouqi)
 	lblZhouqi:setPosition(wid/2, 45)
 	lblZhouqi:setColor(cc.c3b(99,99,99))
 	BtnGame.lblZhouqi = lblZhouqi
 	
-	local lblName = utils.CreateLabel(name, 28)
+	local lblName = utils.CreateLabel(name, 28,nil,true)
     lblName:setAdditionalKerning(5)
 	BtnGame:addChild(lblName)
 	lblName:setPosition(wid/2, 85)

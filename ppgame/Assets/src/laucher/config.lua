@@ -94,6 +94,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://agentapiuser.guocaiapi.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w01",
+		yOffset = 0,
 	},
 	--试玩站
 	shiwan = {
@@ -102,6 +103,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "yicai.tw",
+		yOffset = 0,
 	},
 	
 	--易彩乐
@@ -111,6 +113,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w08",
+		yOffset = -30,
 	},
 	--中彩网
 	zhongcai = {
@@ -119,6 +122,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w38",
+		yOffset = -170,
 	},
 	--易博
 	yibo = {
@@ -127,6 +131,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w42",
+		yOffset = -70,
 	},
 	--国彩
 	guocai = {
@@ -135,6 +140,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w31",
+		yOffset = 0,
 	},
 	--易彩网
 	yicaiwang = {
@@ -143,6 +149,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w50",
+		yOffset = -20,
 	},
 	--开采网
 	kaicai = {
@@ -151,6 +158,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w34",
+		yOffset = -160,
 	},
 	--易彩堂
 	yicaitang = {
@@ -159,6 +167,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w36",
+		yOffset = -170,
 	},
 	--8k站
 	k8ycy = {
@@ -167,6 +176,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w05",
+		yOffset = -160,
 	},
 	--全民彩票
 	quanmin = {
@@ -175,6 +185,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w62",
+		yOffset = -170,
 	},
 	--中彩64
 	zongcai64 = {
@@ -183,6 +194,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w64",
+		yOffset = 180,
 	},
 	--彩7
 	cai7 = {
@@ -191,6 +203,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w07",
+		yOffset = 0,
 	},
 	--大爆奖
 	dabaojiang = {
@@ -199,6 +212,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w46",
+		yOffset = -80,
 	},
 	--爱彩
 	aicai = {
@@ -207,6 +221,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w47",
+		yOffset = 260,
 	},
 	--新彩票
 	xincai = {
@@ -215,6 +230,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w44",
+		yOffset = -170,
 	},
 }
 
@@ -226,3 +242,4 @@ ENGINE_BUILD_TYPE = curSite.ENGINE_BUILD_TYPE	--1：消消乐   2：彩票  0: w
 SERVER_URL = curSite.SERVER_URL
 HTTP_HEAD_KEY = curSite.HTTP_HEAD_KEY
 HTTP_HEAD_VAL_1 = curSite.HTTP_HEAD_VAL_1
+HOT_Y_OFFSET = curSite.yOffset or 0
