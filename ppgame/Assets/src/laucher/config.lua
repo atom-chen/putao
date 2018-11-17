@@ -72,7 +72,7 @@ CC_DESIGN_RESOLUTION = {
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
-APP_TYPE = 2
+APP_TYPE = 1
 IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
 IS_TIP_TRACE = true
 
@@ -234,7 +234,7 @@ local SITE_CFG = {
 	},
 }
 
-CUR_SITE_NAME = "testor"	--当前站点
+CUR_SITE_NAME = "xincai"	--当前站点
 
 local curSite = SITE_CFG[CUR_SITE_NAME]
 

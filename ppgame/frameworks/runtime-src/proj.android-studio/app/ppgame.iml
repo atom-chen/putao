@@ -354,8 +354,32 @@
     <content url="file://$MODULE_DIR$/../../../cocos2d-x/external/xxtea">
       <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/external/xxtea" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/ProjectConfig">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/ProjectConfig" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf/io">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf/io" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf/stubs">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/protobuf-lite/google/protobuf/stubs" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/runtime">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/lib/runtime" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/proj.android/hellolua">
+      <sourceFolder url="file://$MODULE_DIR$/../../../cocos2d-x/tools/simulator/libsimulator/proj.android/hellolua" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/Gif">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/Gif" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/Gif/gif_lib">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/Gif/gif_lib" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../Classes/astar">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/astar" isTestSource="false" />
@@ -363,14 +387,17 @@
     <content url="file://$MODULE_DIR$/../../Classes/auto">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/auto" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/curlhttp">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/curlhttp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/down">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/down" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Classes/manual">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/manual" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../Classes/net">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/net" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/apptools">
-      <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/apptools" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/quick-src/extra/crypto" isTestSource="false" />
@@ -488,6 +515,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/build-info" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />

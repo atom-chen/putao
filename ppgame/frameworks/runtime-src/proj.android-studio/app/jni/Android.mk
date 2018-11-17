@@ -41,8 +41,21 @@ LOCAL_SRC_FILES := \
 ../../../Classes/net/ReceiveThread.cpp \
 ../../../Classes/net/SocketThread.cpp \
 ../../../Classes/curlhttp/CurlAsset.cpp \
+../../../Classes/down/DownAsset.cpp \
 ../../../Classes/auto/lua_xianyou_auto.cpp \
 ../../../Classes/manual/lua_xianyou_manual.cpp \
+../../../Classes/Gif/Bitmap.cpp \
+../../../Classes/Gif/CacheGif.cpp \
+../../../Classes/Gif/GifBase.cpp \
+../../../Classes/Gif/GifMovie.cpp \
+../../../Classes/Gif/InstantGif.cpp \
+../../../Classes/Gif/Movie.cpp \
+../../../Classes/Gif/gif_lib/dgif_lib.c \
+../../../Classes/Gif/gif_lib/gif_err.c \
+../../../Classes/Gif/gif_lib/gif_font.c \
+../../../Classes/Gif/gif_lib/gif_hash.c \
+../../../Classes/Gif/gif_lib/gifalloc.c \
+../../../Classes/Gif/gif_lib/quantize.c \
 hellolua/main.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
@@ -55,6 +68,8 @@ $(LOCAL_PATH)/../../../Classes/net \
 $(LOCAL_PATH)/../../../Classes/auto \
 $(LOCAL_PATH)/../../../Classes/manual \
 $(LOCAL_PATH)/../../../Classes/curlhttp \
+$(LOCAL_PATH)/../../../Classes/down \
+$(LOCAL_PATH)/../../../Classes/Gif \
 $(LOCAL_PATH)/../../../../cocos2d-x/external/curl/include/android \
 
 # _COCOS_HEADER_ANDROID_BEGIN
