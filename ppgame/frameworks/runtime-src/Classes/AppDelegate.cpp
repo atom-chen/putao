@@ -18,6 +18,7 @@ using namespace cocos2d::experimental;
 using namespace CocosDenshion;
 #endif
 
+#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
 #include "cocos2dx_extra.h"
 
 #include "luabinding/cocos2dx_extra_luabinding.h"
@@ -30,10 +31,68 @@ using namespace CocosDenshion;
 #include "utils/int64.h"
 #include "curlhttp/CurlAsset.h"
 #include "down/DownAsset.h"
+#include "Gif/CacheGif.h" // gif
+#include "Gif/InstantGif.h" // gif
 
 USING_NS_CC;
 using namespace std;
 
+
+static int toLua_AppDelegate_downFileAsync(lua_State* tolua_S)
+{
+    
+    int argc = lua_gettop(tolua_S);
+    if ( argc == 4 )
+    {
+        
+        const char* szUrl = lua_tostring(tolua_S,1);
+        const char* szSaveName = lua_tostring(tolua_S,2);
+        const char* szSavePath = lua_tostring(tolua_S,3);
+        int handler = toluafix_ref_function(tolua_S,4,0);
+        if (handler != 0)
+        {
+            CDownAsset::DownFile(szUrl,szSaveName,szSavePath,handler);
+            lua_pushboolean(tolua_S, 1);
+            return 1;
+        }
+        else
+        {
+            CCLOG("toLua_AppDelegate_setHttpDownCallback hadler or listener is null");
+        }
+    }
+    else
+    {
+        CCLOG("toLua_AppDelegate_setHttpDownCallback arg error now is %d",argc);
+    }
+    
+    return 0;
+}
+
+static int toLua_AppDelegate_createCacheGif(lua_State* tolua_S)
+{
+    auto argc = lua_gettop(tolua_S);
+    if (1 == argc)
+    {
+        std::string gifpath = lua_tostring(tolua_S, 1);
+        if (!FileUtils::getInstance()->isFileExist(gifpath))
+        {
+            //LogAsset::getInstance()->logData(StringUtils::format("gif file %s missing", gifpath.c_str()), true);
+            return 1;
+        }
+        GifBase *gif = CacheGif::create(gifpath.c_str());
+        if (nullptr != gif)
+        {
+            cocos2d::log("create ");
+            object_to_luaval<cocos2d::Sprite>(tolua_S, "cc.Sprite", (cocos2d::Sprite*)gif);
+        }
+        else
+        {
+            cocos2d::log("create fail");
+            object_to_luaval<cocos2d::Sprite>(tolua_S, "cc.Sprite", nullptr);
+        }
+    }
+    return 1;
+}
 
 static int tolua_Cocos2d_Function_loadChunksFromZIP(lua_State* tolua_S)
 {
@@ -54,6 +113,8 @@ static void quick_module_register(lua_State *L)
 	lua_getglobal(L, "_G");
 	if (lua_istable(L, -1))//stack:...,_G,
 	{
+        lua_register(L,"createCacheGif", toLua_AppDelegate_createCacheGif);
+        lua_register(L,"downFileAsync",toLua_AppDelegate_downFileAsync);
 		tolua_int64_open(L);
 		extendFunctions(L);
 		luaopen_cocos2dx_extra_luabinding(L);
