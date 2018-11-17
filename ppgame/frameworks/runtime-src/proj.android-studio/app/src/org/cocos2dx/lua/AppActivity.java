@@ -1,43 +1,52 @@
 /****************************************************************************
-Copyright (c) 2008-2010 Ricardo Quesada
-Copyright (c) 2010-2016 cocos2d-x.org
-Copyright (c) 2013-2017 Chukong Technologies Inc.
- 
-http://www.cocos2d-x.org
+ Copyright (c) 2008-2010 Ricardo Quesada
+ Copyright (c) 2010-2016 cocos2d-x.org
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ http://www.cocos2d-x.org
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-****************************************************************************/
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 package org.cocos2dx.lua;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxLuaJavaBridge;
 
-public class AppActivity extends Cocos2dxActivity{
+public class AppActivity extends Cocos2dxActivity {
     public static AppActivity mInstance = null;
-
+    public static TelephonyManager mTm = null;
 
     //----------------------------------------------------------------------------------------------
     // overrides
@@ -57,26 +66,26 @@ public class AppActivity extends Cocos2dxActivity{
         }
 
         // DO OTHER INITIALIZATION BELOW
-        
+
     }
 
     //----------------------------------------------------------------------------------------------
     // methods
     //----------------------------------------------------------------------------------------------
     //游戏启动完成回调
-    public static void onGameLauch(){
+    public static void onGameLauch() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        try{
+        try {
             mInstance.registerReceiver(connectionReceiver, intentFilter);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        intentFilter=new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        try{
+        intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        try {
             mInstance.registerReceiver(batteryReceiver, intentFilter);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -103,12 +112,12 @@ public class AppActivity extends Cocos2dxActivity{
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)){
+            if (intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)) {
                 //得到系统当前电量
-                int level=intent.getIntExtra("level", 0);
+                int level = intent.getIntExtra("level", 0);
                 //取得系统总电量
-                int total=intent.getIntExtra("scale", 100);
-                final String battery = (level*100)/total + "";
+                int total = intent.getIntExtra("scale", 100);
+                final String battery = (level * 100) / total + "";
                 mInstance.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
@@ -142,5 +151,84 @@ public class AppActivity extends Cocos2dxActivity{
         return 100;
     }
 
+    public static String getImei() {
+        if (ActivityCompat.checkSelfPermission(mInstance, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return "";
+        }
+        String imei = mTm.getDeviceId();
+        return imei == null ? "" : imei;
+    }
+
+    public static String getImsi() {
+        if (ActivityCompat.checkSelfPermission(mInstance, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return "";
+        }
+        String imsi = mTm.getSubscriberId();
+        return imsi == null ? "" : imsi;
+    }
+
+    public static String getModel() {
+        String model = android.os.Build.MODEL;
+        return model == null ? "" : model;
+    }
+
+    public static String getAppMetaData(String key) {
+        if (mInstance == null || TextUtils.isEmpty(key)) {
+            return "";
+        }
+        String resultData = "";
+        try {
+            PackageManager packageManager = mInstance.getPackageManager();
+            if (packageManager != null) {
+                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(mInstance.getPackageName(), PackageManager.GET_META_DATA);
+                if (applicationInfo != null) {
+                    if (applicationInfo.metaData != null) {
+                        resultData = applicationInfo.metaData.getString(key);
+                    }
+                }
+
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultData;
+    }
+
+    public static String getVersion() {
+        try {
+            PackageManager manager = mInstance.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(mInstance.getPackageName(), 0);
+            String version = info.versionName;
+            return version == null ? "" :version;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static String getChannel(){
+        SharedPreferences sp = mInstance.getSharedPreferences("open_install",MODE_PRIVATE);
+        String channel = sp.getString("channel_code","");
+        if(channel != null && channel != ""){
+            return channel;
+        }
+        channel = getAppMetaData("CUSTOM_CHANNEL");
+        return channel == null ? "" : channel;
+    }
 
 }
