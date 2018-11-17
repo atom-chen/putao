@@ -87,12 +87,14 @@ static AppDelegate s_sharedApplication;
         [window setRootViewController:_viewController];
     }
 
+    window.backgroundColor = [UIColor blackColor];
+    [UIApplication sharedApplication].statusBarStyle =  UIStatusBarStyleLightContent;
     [window makeKeyAndVisible];
 
     [[UIApplication sharedApplication] setStatusBarHidden:true];
     
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
-    cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView((__bridge void *)_viewController.view);
+    cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView((__bridge void *)_viewController._eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
     
     //run the cocos2d-x game scene

@@ -24,11 +24,13 @@
  ****************************************************************************/
 
 #import <UIKit/UIKit.h>
-
+#import "platform/ios/CCEAGLView-ios.h"
 
 @interface RootViewController : UIViewController {
 
 }
 - (BOOL) prefersStatusBarHidden;
+
+@property (nonatomic,assign) CCEAGLView* _eaglView;
 
 @end

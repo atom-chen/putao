@@ -28,6 +28,12 @@
 #import "platform/ios/CCEAGLView-ios.h"
 
 
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+#define SafeAreaTopHeight (SCREENHEIGHT == 812.0 ? 44 : 20)
+#define SafeAreaBottomHeight (SCREENHEIGHT == 812.0 ? 34 : 0)
+#define offsetYYY (SCREENHEIGHT == 812.0 ? 14 : 0)
+
+
 @implementation RootViewController
 
 /*
@@ -42,8 +48,16 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
+    
+    CGRect boundsRect = [[UIScreen mainScreen] bounds];
+    CGRect newRect = CGRectMake(
+                                boundsRect.origin.x,
+                                boundsRect.origin.y + SafeAreaTopHeight,
+                                boundsRect.size.width,
+                                boundsRect.size.height - SafeAreaBottomHeight - SafeAreaTopHeight);
+    
     // Initialize the CCEAGLView
-    CCEAGLView *eaglView = [CCEAGLView viewWithFrame: [UIScreen mainScreen].bounds
+    CCEAGLView *eaglView = [CCEAGLView viewWithFrame: newRect
                                          pixelFormat: (__bridge NSString *)cocos2d::GLViewImpl::_pixelFormat
                                          depthFormat: cocos2d::GLViewImpl::_depthFormat
                                   preserveBackbuffer: NO
@@ -54,8 +68,15 @@
     // Enable or disable multiple touches
     [eaglView setMultipleTouchEnabled:NO];
     
-    // Set EAGLView as view of RootViewController
-    self.view = eaglView;
+    UIView *newView = [[UIView alloc]initWithFrame:boundsRect];
+    newView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    
+    self._eaglView = eaglView;
+    self._eaglView.frame = CGRectMake(0, eaglView.frame.origin.y-offsetYYY, eaglView.frame.size.width, eaglView.frame.size.height+offsetYYY);
+    
+    [newView addSubview:self._eaglView];
+    
+    self.view = newView;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

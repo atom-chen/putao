@@ -54,6 +54,7 @@ function ClsApp:InitGLEnviroument()
 	theDirector:setAnimationInterval(1.0 / GAME_CONFIG.FPS)
 	cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_RGB_A8888)
 	theDirector:setProjection(cc.DIRECTOR_PROJECTION2_D)
+	g_ContentScaleFactor = cc.Director:getInstance():getOpenGLView():getContentScaleFactor()
 end
 
 -- 初始化App事件
