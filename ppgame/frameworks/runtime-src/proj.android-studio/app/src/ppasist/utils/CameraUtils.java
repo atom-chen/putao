@@ -146,15 +146,15 @@ public class CameraUtils {
 			uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
 		}
 
-	//	Iterator resInfoIterator = resInfoList.iterator();
-	//	while (resInfoIterator.hasNext()) {
-	//		ResolveInfo resolveInfo = (ResolveInfo) resInfoIterator.next();
-	//		String packageName = resolveInfo.activityInfo.packageName;
-	//		context.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-	//	}
+		//	Iterator resInfoIterator = resInfoList.iterator();
+		//	while (resInfoIterator.hasNext()) {
+		//		ResolveInfo resolveInfo = (ResolveInfo) resInfoIterator.next();
+		//		String packageName = resolveInfo.activityInfo.packageName;
+		//		context.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+		//	}
 
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-		context.startActivityForResult(intent, Constans.EVENT_CAPTURE_IMAGE);              
+		context.startActivityForResult(intent, Constans.EVENT_CAPTURE_IMAGE);
 	}
 	public File getTempCameraFile() {
 		return mTempCameraFile;
@@ -243,24 +243,24 @@ public class CameraUtils {
 		if(mHandler > 0)
 			Cocos2dxLuaJavaBridge.releaseLuaFunction(mHandler);
 	}
-	
+
 	private void setHandler(int handler)
 	{
 		releaseHandler();
 		mHandler = handler;
 		Cocos2dxLuaJavaBridge.retainLuaFunction(mHandler);
 	}
-	
-	
+
+
 	public void notifySelectedImg(String path)
-	{		
+	{
 		if( mHandler <=0 )
 			return ;
 		returnPath = path;
-		
+
 		notifyLuaCallBack();
 	}
-	
+
 	public void notifyLuaCallBack()
 	{
 		Activity activity = SalmonUtils.getAcitivity();
@@ -275,34 +275,37 @@ public class CameraUtils {
 			}
 		});
 	}
-	
+
 	public int numberOfCameras(){
 		return Camera.getNumberOfCameras();
 	}
-	
+
 	private static boolean checkCameraFacing(final int facing) {
-	    if (getSdkVersion() < Build.VERSION_CODES.GINGERBREAD) {
-	        return false;
-	    }
-	    final int cameraCount = Camera.getNumberOfCameras();
-	    CameraInfo info = new CameraInfo();
-	    for (int i = 0; i < cameraCount; i++) {
-	        Camera.getCameraInfo(i, info);
-	        if (facing == info.facing) {
-	            return true;
-	        }
-	    }
-	    return false;
+		if (getSdkVersion() < Build.VERSION_CODES.GINGERBREAD) {
+			return false;
+		}
+		final int cameraCount = Camera.getNumberOfCameras();
+		CameraInfo info = new CameraInfo();
+		for (int i = 0; i < cameraCount; i++) {
+			Camera.getCameraInfo(i, info);
+			if (facing == info.facing) {
+				return true;
+			}
+		}
+		return false;
 	}
+
 	public static boolean hasBackFacingCamera() {
-	    final int CAMERA_FACING_BACK = 0;
-	    return checkCameraFacing(CAMERA_FACING_BACK);
+		final int CAMERA_FACING_BACK = 0;
+		return checkCameraFacing(CAMERA_FACING_BACK);
 	}
+
 	public static boolean hasFrontFacingCamera() {
-	    final int CAMERA_FACING_BACK = 1;
-	    return checkCameraFacing(CAMERA_FACING_BACK);
+		final int CAMERA_FACING_BACK = 1;
+		return checkCameraFacing(CAMERA_FACING_BACK);
 	}
+
 	public static int getSdkVersion() {
-	    return android.os.Build.VERSION.SDK_INT;
+		return android.os.Build.VERSION.SDK_INT;
 	}
 }

@@ -18,7 +18,7 @@ import ppasist.utils.SalmonUtils;
 public class NetworkBroadcast extends BroadcastReceiver {
 
 	
-	enum NetworkStatus{
+	enum NetworkStatus {
 		UNVALID(0),
 		WIFI(1),
 		MOBILE(2);
@@ -37,8 +37,8 @@ public class NetworkBroadcast extends BroadcastReceiver {
 	};
 	
 	@Override
-	public void onReceive(Context context, Intent intent) {
-		
+	public void onReceive(Context context, Intent intent)
+	{
         State wifiState = null;  
         State mobileState = null;  
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);  
@@ -52,18 +52,20 @@ public class NetworkBroadcast extends BroadcastReceiver {
         
         if (wifiState != null && mobileState != null  
                 && State.CONNECTED != wifiState  
-                && State.CONNECTED == mobileState) {  
-            
+                && State.CONNECTED == mobileState)
+        {
         	Log.d("NetwrokBroadcast", "mobile network connect success");
         	SalmonUtils.notifyNetworkStatus(NetworkStatus.MOBILE.value(), tm.getNetworkType());
-        } else if (wifiState != null && mobileState != null  
+        }
+        else if (wifiState != null && mobileState != null
                 && State.CONNECTED != wifiState  
-                && State.CONNECTED != mobileState) {  
-            
+                && State.CONNECTED != mobileState)
+        {
         	Log.d("NetwrokBroadcast", "not network connectted");
         	SalmonUtils.notifyNetworkStatus(NetworkStatus.UNVALID.value(), 0);
-        } else if (wifiState != null && State.CONNECTED == wifiState) {  
-            
+        }
+        else if (wifiState != null && State.CONNECTED == wifiState)
+        {
         	Log.d("NetwrokBroadcast", "wifi network connect success");
         	SalmonUtils.notifyNetworkStatus(NetworkStatus.WIFI.value(), 0);
         }  

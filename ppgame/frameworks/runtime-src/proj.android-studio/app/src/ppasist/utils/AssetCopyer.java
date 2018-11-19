@@ -15,7 +15,7 @@ import android.content.res.AssetManager;
 
 /**
  * AssetCopyer类 实现将assets下的文件按目录结构拷贝到sdcard中
- * 
+ *
  * @author ticktick
  * @Email lujun.hust@gmail.com
  */
@@ -34,7 +34,7 @@ public class AssetCopyer {
 
 	/**
 	 * 将assets目录下指定的文件拷贝到sdcard中
-	 * 
+	 *
 	 * @return 是否拷贝成功,true 成功；false 失败
 	 * @throws IOException
 	 */
@@ -68,7 +68,7 @@ public class AssetCopyer {
 
 	/**
 	 * 获取需要拷贝的文件列表（记录在assets/assets.lst文件中）
-	 * 
+	 *
 	 * @return 文件列表
 	 * @throws IOException
 	 */
@@ -76,8 +76,7 @@ public class AssetCopyer {
 
 		List<String> files = new ArrayList<String>();
 
-		InputStream listFile = mAssetManager.open(new File(ASSET_LIST_FILENAME)
-				.getPath());
+		InputStream listFile = mAssetManager.open(new File(ASSET_LIST_FILENAME).getPath());
 		BufferedReader br = new BufferedReader(new InputStreamReader(listFile));
 		String path;
 		while (null != (path = br.readLine())) {
@@ -89,7 +88,7 @@ public class AssetCopyer {
 
 	/**
 	 * 执行拷贝任务
-	 * 
+	 *
 	 * @param asset
 	 *            需要拷贝的assets文件路径
 	 * @return 拷贝成功后的目标文件句柄
@@ -118,74 +117,74 @@ public class AssetCopyer {
 
 		return destinationFile;
 	}
-	
+
 	public Boolean CopyAssetsFile(Context context, String filename, String des) {
-	    Boolean isSuccess = true;
-	    //复制安卓apk的assets目录下任意路径的单个文件到des文件夹，注意是否对des有写权限
-	    AssetManager assetManager = context.getAssets();
+		Boolean isSuccess = true;
+		//复制安卓apk的assets目录下任意路径的单个文件到des文件夹，注意是否对des有写权限
+		AssetManager assetManager = context.getAssets();
 
-	   InputStream in = null;
-	   OutputStream out = null;
-	   try {
-	       in = assetManager.open(filename);
-	       String newFileName = des + "/" + filename;
-	       out = new FileOutputStream(newFileName);
+		InputStream in = null;
+		OutputStream out = null;
+		try {
+			in = assetManager.open(filename);
+			String newFileName = des + "/" + filename;
+			out = new FileOutputStream(newFileName);
 
-	       byte[] buffer = new byte[1024];
-	       int read;
-	       while ((read = in.read(buffer)) != -1) {
-	           out.write(buffer, 0, read);
-	       }
-	       in.close();
-	       in = null;
-	       out.flush();
-	       out.close();
-	       out = null;
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	      isSuccess = false;
-	    }
+			byte[] buffer = new byte[1024];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			in.close();
+			in = null;
+			out.flush();
+			out.close();
+			out = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isSuccess = false;
+		}
 
-	    return isSuccess;
+		return isSuccess;
 
 	}
 
-//	然后是文件夹的复制，需要调用上面的函数：
+	//	然后是文件夹的复制，需要调用上面的函数：
 	public Boolean CopyAssetsDir(Context context, String src, String des) {
-	  //复制安卓Assets下的“非空目录”到des文件夹，注意是否对des有写权限
-	  Boolean isSuccess = true;
-	  String[] files;
-	  try
-	  {
-	    files = context.getResources().getAssets().list(src);
-	  }
-	  catch (IOException e1)
-	  {
-	    return false;
-	  }
-//	  System.out.println("文件:"+files.length);
-	  if(files.length==0){
-	    isSuccess = CopyAssetsFile(context, src,des);//对于文件直接复制
-	    if(!isSuccess)
-	      return isSuccess;
-	  }
-	  else{
-	    File srcfile = new File(des+"/"+src);
-	    if(!srcfile.exists()){
-	      if(srcfile.mkdir()){//对于目录自行创建
-	        for(int i=0; i < files.length; i++){
-	          isSuccess = CopyAssetsDir(context, src + "/"+files[i], des);//递归调用
-	          if(!isSuccess)
-	            return isSuccess;
-	        }
-	      }
-	      else{
-	        return false;
-	      }
-	    }
+		//复制安卓Assets下的“非空目录”到des文件夹，注意是否对des有写权限
+		Boolean isSuccess = true;
+		String[] files;
+		try
+		{
+			files = context.getResources().getAssets().list(src);
+		}
+		catch (IOException e1)
+		{
+			return false;
+		}
+//	  	System.out.println("文件:"+files.length);
+		if(files.length==0){
+			isSuccess = CopyAssetsFile(context, src,des);//对于文件直接复制
+			if(!isSuccess)
+				return isSuccess;
+		}
+		else{
+			File srcfile = new File(des+"/"+src);
+			if(!srcfile.exists()){
+				if(srcfile.mkdir()){//对于目录自行创建
+					for(int i=0; i < files.length; i++){
+						isSuccess = CopyAssetsDir(context, src + "/"+files[i], des);//递归调用
+						if(!isSuccess)
+							return isSuccess;
+					}
+				}
+				else{
+					return false;
+				}
+			}
 
-	  }
-	  return isSuccess;
+		}
+		return isSuccess;
 	}
-	
+
 }

@@ -31,8 +31,7 @@ public class ScreenUtils {
 	public void luaCallBack(Configuration config, Rect rect) {
 		ScreenUtils.rect = rect;
 		if (luaHandler == 0) {
-			System.out
-					.println("ScreenUtils¡£luaCallBack have not reg lua handler");
+			System.out.println("ScreenUtils¡£luaCallBack have not reg lua handler");
 			return;
 		}
 		
@@ -115,8 +114,7 @@ public class ScreenUtils {
 	 */
 	public static int getStatusBarHeight() {
 		int result = 0;
-		int resourceId = AppActivity.mInstance.getResources().getIdentifier("status_bar_height", "dimen",
-				"android");
+		int resourceId = AppActivity.mInstance.getResources().getIdentifier("status_bar_height", "dimen", "android");
 		if (resourceId > 0) {
 			result = AppActivity.mInstance.getResources().getDimensionPixelSize(resourceId);
 		}
@@ -171,65 +169,4 @@ public class ScreenUtils {
 		return hasNavigationBar;
 	}
 
-	/**
-	 * 刘海屏
-	 */
-	public static int getLiuhaipingWidth() {
-		if (hasNotchInScreen()) {
-			int[] info = getNotchSize();
-			if(info.length == 0) {
-				return 0;
-			}
-			return info[0];
-		}
-		return 0;
-	}
-	public static int getLiuhaipingHeight() {
-		if (hasNotchInScreen()) {
-			int[] info = getNotchSize();
-			if(info.length < 2) {
-				return 0;
-			}
-			return info[1];
-		}
-		return 0;
-	}
-
-	/**
-	 * 刘海屏：华为
-	 */
-	public static boolean hasNotchInScreen() {
-		boolean ret = false;
-		try {
-			ClassLoader cl = AppActivity.mInstance.getClassLoader();
-			Class HwNotchSizeUtil = cl.loadClass("com.huawei.android.util.HwNotchSizeUtil");
-			Method get = HwNotchSizeUtil.getMethod("hasNotchInScreen");
-			ret = (boolean) get.invoke(HwNotchSizeUtil);
-		} catch (ClassNotFoundException e) {
-			//Log.e("test", "hasNotchInScreen ClassNotFoundException");
-		} catch (NoSuchMethodException e) {
-			//Log.e("test", "hasNotchInScreen NoSuchMethodException");
-		} catch (Exception e) {
-			//Log.e("test", "hasNotchInScreen Exception");
-		} finally {
-			return ret;
-		}
-	}
-	public static int[] getNotchSize() {
-		int[] ret = new int[]{0, 0};
-		try {
-			ClassLoader cl = AppActivity.mInstance.getClassLoader();
-			Class HwNotchSizeUtil = cl.loadClass("com.huawei.android.util.HwNotchSizeUtil");
-			Method get = HwNotchSizeUtil.getMethod("getNotchSize");
-			ret = (int[]) get.invoke(HwNotchSizeUtil);
-		} catch (ClassNotFoundException e) {
-			//Log.e("test", "getNotchSize ClassNotFoundException");
-		} catch (NoSuchMethodException e) {
-			//Log.e("test", "getNotchSize NoSuchMethodException");
-		} catch (Exception e) {
-			//Log.e("test", "getNotchSize Exception");
-		} finally {
-			return ret;
-		}
-	}
 }

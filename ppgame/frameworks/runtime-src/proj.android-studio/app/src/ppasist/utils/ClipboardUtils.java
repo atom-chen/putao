@@ -22,8 +22,7 @@ public class ClipboardUtils {
 	@SuppressLint("NewApi")
 	public void copy(String content, Context context) {
 		// 得到剪贴板管理器
-		ClipboardManager cmb = (ClipboardManager) context
-				.getSystemService(Context.CLIPBOARD_SERVICE);
+		ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 		cmb.setText(content.trim());
 	}
 
@@ -35,8 +34,7 @@ public class ClipboardUtils {
 	@SuppressLint("NewApi")
 	public String paste(Context context) {
 		// 得到剪贴板管理器
-		ClipboardManager cmb = (ClipboardManager) context
-				.getSystemService(Context.CLIPBOARD_SERVICE);
+		ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 		return cmb.getText().toString().trim();
 	}
 }

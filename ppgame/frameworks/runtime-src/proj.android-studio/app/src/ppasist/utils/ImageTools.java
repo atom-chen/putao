@@ -26,15 +26,15 @@ import android.graphics.drawable.Drawable;
 
 /**
  * Tools for handler picture
- * 
+ *
  * 图片处理
- * 
+ *
  */
 public final class ImageTools {
 
 	/**
 	 * Transfer drawable to bitmap
-	 * 
+	 *
 	 * @param drawable
 	 * @return
 	 */
@@ -42,8 +42,7 @@ public final class ImageTools {
 		int w = drawable.getIntrinsicWidth();
 		int h = drawable.getIntrinsicHeight();
 
-		Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-				: Bitmap.Config.RGB_565;
+		Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
 		Bitmap bitmap = Bitmap.createBitmap(w, h, config);
 		Canvas canvas = new Canvas(bitmap);
 		drawable.setBounds(0, 0, w, h);
@@ -53,7 +52,7 @@ public final class ImageTools {
 
 	/**
 	 * Bitmap to drawable
-	 * 
+	 *
 	 * @param bitmap
 	 * @return
 	 */
@@ -63,7 +62,7 @@ public final class ImageTools {
 
 	/**
 	 * Input stream to bitmap
-	 * 
+	 *
 	 * @param inputStream
 	 * @return
 	 * @throws Exception
@@ -75,7 +74,7 @@ public final class ImageTools {
 
 	/**
 	 * Byte transfer to bitmap
-	 * 
+	 *
 	 * @param byteArray
 	 * @return
 	 */
@@ -90,7 +89,7 @@ public final class ImageTools {
 
 	/**
 	 * Byte transfer to drawable
-	 * 
+	 *
 	 * @param byteArray
 	 * @return
 	 */
@@ -104,7 +103,7 @@ public final class ImageTools {
 
 	/**
 	 * Bitmap transfer to bytes
-	 * 
+	 *
 	 * @param byteArray
 	 * @return
 	 */
@@ -120,7 +119,7 @@ public final class ImageTools {
 
 	/**
 	 * Drawable transfer to bytes
-	 * 
+	 *
 	 * @param drawable
 	 * @return
 	 */
@@ -134,7 +133,7 @@ public final class ImageTools {
 
 	/**
 	 * Base64 to byte[]
-//	 */
+	 //	 */
 //	public static byte[] base64ToBytes(String base64) throws IOException {
 //		byte[] bytes = Base64.decode(base64);
 //		return bytes;
@@ -150,7 +149,7 @@ public final class ImageTools {
 
 	/**
 	 * Create reflection images
-	 * 
+	 *
 	 * @param bitmap
 	 * @return
 	 */
@@ -191,7 +190,7 @@ public final class ImageTools {
 
 	/**
 	 * Get rounded corner images
-	 * 
+	 *
 	 * @param bitmap
 	 * @param roundPx
 	 *            5 10
@@ -218,7 +217,7 @@ public final class ImageTools {
 
 	/**
 	 * Resize the bitmap
-	 * 
+	 *
 	 * @param bitmap
 	 * @param width
 	 * @param height
@@ -254,7 +253,7 @@ public final class ImageTools {
 				matrix, true);
 		return new BitmapDrawable(newbmp);
 	}
-	
+
 	/**
 	 * Get images from SD card by path and the name of image
 	 * @param photoName
@@ -268,23 +267,24 @@ public final class ImageTools {
 			return photoBitmap;
 		}
 	}
-	
+
 	/**
-	 * Check the SD card 
+	 * Check the SD card
 	 * @return
 	 */
 	public static boolean checkSDCardAvailable(){
 		return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 	}
-	
+
 	/**
 	 * Get image from SD card by path and the name of image
-	 * @param fileName
+	 * @param path
+	 * @param photoName
 	 * @return
 	 */
 	public static boolean findPhotoFromSDCard(String path,String photoName){
 		boolean flag = false;
-		
+
 		if (checkSDCardAvailable()) {
 			File dir = new File(path);
 			if (dir.exists()) {
@@ -305,15 +305,15 @@ public final class ImageTools {
 //			}else {
 //				flag = false;
 //			}
-			
+
 		}else {
 			flag = false;
 		}
 		return flag;
 	}
-	
+
 	/**
-	 * Save image to the SD card 
+	 * Save image to the SD card
 	 * @param photoBitmap
 	 * @param photoName
 	 * @param path
@@ -324,7 +324,7 @@ public final class ImageTools {
 			if (!dir.exists()){
 				dir.mkdirs();
 			}
-			
+
 			File photoFile = new File(path , photoName + ".png");
 			FileOutputStream fileOutputStream = null;
 			try {
@@ -348,12 +348,11 @@ public final class ImageTools {
 					e.printStackTrace();
 				}
 			}
-		} 
+		}
 	}
-	
+
 	/**
 	 * Delete the image from SD card
-	 * @param context
 	 * @param path
 	 * file:///sdcard/temp.jpg
 	 */
@@ -366,7 +365,7 @@ public final class ImageTools {
 			}
 		}
 	}
-	
+
 	public static void deletePhotoAtPathAndName(String path,String fileName){
 		if (checkSDCardAvailable()) {
 			File folder = new File(path);
