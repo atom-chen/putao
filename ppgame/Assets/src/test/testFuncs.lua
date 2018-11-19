@@ -3,6 +3,17 @@
 -----------------------------
 local test = {}
 
+function test.testDownload()
+	KE_SetTimeout(10, function()
+    	downFileAsync(
+    		"http://118.24.69.192:8080/examples/servlets/hotupdate/yicai/maios/aicai/assets/res/project.manifest",
+    		"project.manifest",
+    		GAME_CONFIG.LOCAL_DIR,
+    		function(...) print(...) end
+    	)
+    end)
+end
+
 function test.testContainerInterface(parent)
 	local scrollView = ccui.ScrollView:create()
 	scrollView:setDirection(ccui.ScrollViewDir.both)

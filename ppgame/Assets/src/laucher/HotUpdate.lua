@@ -379,8 +379,8 @@ function UpdateScene:downEngine(remotePackageUrl, isForceUpdate)
 				end
 			else
 				cc.Director:getInstance():endToLua()
-				if device.platform == "windows" or device.platform == "mac" then
-					os.exit()
+				if device.platform ~= "android" then
+					os.exit(0)
 				end
 			end
 		end)
@@ -394,8 +394,8 @@ function UpdateScene:downEngine(remotePackageUrl, isForceUpdate)
 					cc.Application:getInstance():openURL(remotePackageUrl)
 					self:updatePercent(UpdateState.DOWNLOADING, 50)
 				else
-					self:updatePercent(UpdateState.DOWNLOADING, 100)
-					self:updateFinish(true, "忽略引擎更新")
+					cc.Application:getInstance():openURL(remotePackageUrl)
+					self:updatePercent(UpdateState.DOWNLOADING, 50)
 				end 
 			else
 				self:updatePercent(UpdateState.CHECK_UPDATE, 100)
@@ -415,7 +415,7 @@ function UpdateScene:beginUpdate()
 		self:updateFinish(false, "加载本地清单文件失败")
 		return
 	end
-								
+	
 	self:updatePercent(UpdateState.UPDATING, 0)
 	local listener = cc.EventListenerAssetsManagerEx:create(self._am, function(event)
 		self:onUpdateEvent(event)
