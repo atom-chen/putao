@@ -100,10 +100,9 @@ public class SalmonUtils {
 		assetMgr = _activity.getResources().getAssets();
 		getInstance();
 		
-		setStatusBarVisible(true, 0);
-		doSetTransparentStatusBar();
+//		setStatusBarVisible(true, 0);
+//		doSetTransparentStatusBar();
 //		setTransparentStatusBar();
-//		 btutmain(assetMgr);
 	}
 
 	public String getTotalRxBytes() {
@@ -114,6 +113,81 @@ public class SalmonUtils {
 	public static void dealloc() {
 		// TODO: 可能需要做一些释放处理
 	}
+
+	// 来自activity的回调
+	public static void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == Activity.RESULT_OK) {
+			switch (requestCode) {
+				case Constans.EVENT_OPEN_GALLERY:
+					if (data != null) {
+						Uri uriGallery = data.getData();
+						CameraUtils.getInstance().crop(mActivity, uriGallery);
+					}
+					break;
+				case Constans.EVENT_CAPTURE_IMAGE:
+					Uri uriCamera = Uri.fromFile(CameraUtils.getInstance().getTempCameraFile());
+					CameraUtils.getInstance().crop(mActivity, uriCamera);
+					break;
+				case Constans.CUT_PHOTO:
+					Bitmap bitmapCut = BitmapFactory.decodeFile(CameraUtils.getInstance().getTempCropFile().getAbsolutePath());
+					CameraUtils.getInstance().saveAndCallback(bitmapCut);
+					break;
+				default:
+					break;
+			}
+		} else if (resultCode == Activity.RESULT_CANCELED) {
+			switch (requestCode) {
+				case Constans.EVENT_OPEN_GALLERY:
+					CameraUtils.getInstance().notifySelectedImg("");
+					break;
+				case Constans.EVENT_CAPTURE_IMAGE:
+					CameraUtils.getInstance().notifySelectedImg("");
+					break;
+				case Constans.CUT_PHOTO:
+					CameraUtils.getInstance().notifySelectedImg("");
+				default:
+					break;
+			}
+		}
+	}
+
+	public static void onWindowFocusChanged(boolean hasFocus)
+	{
+
+	}
+
+	public static void onConfigurationChanged(Configuration newConfig) {
+		Rect rect = new Rect();
+		Window window = ((Activity) mActivity).getWindow();
+		window.getDecorView().getWindowVisibleDisplayFrame(rect);
+		mInstance.screenUtils.luaCallBack(newConfig, rect);
+	}
+
+	public static void handleMessage(Message msg) {
+		switch (msg.what) {
+			case Constans.HANDLER_TYPE_SET_BRIGHTNESS:
+				Bundle bundle = msg.getData();
+				float percent = bundle.getFloat("percent");
+				SalmonUtils.setBrightnessInRightThread(percent);
+				break;
+			case Constans.HANDLER_TYPE_COPY_TEXT:
+				Bundle bundle1 = msg.getData();
+				String content = bundle1.getString("content");
+				SalmonUtils.copyByHandler(content);
+				break;
+			case Constans.HANDLER_TYPE_STATUS:
+				Bundle bundle11 = msg.getData();
+				int type = bundle11.getInt("type");
+				SalmonUtils.doSetStatus(type);
+				break;
+			case Constans.HANDLER_TYPE_STATUS_BAR_TRANSPARENT:
+				SalmonUtils.doSetTransparentStatusBar();
+				break;
+			default:
+				break;
+		}
+	}
+
 
 	public static int getEditBoxSelectionStart(final Cocos2dxEditBox editBox ){
     	return editBox.getSelectionStart();
@@ -148,7 +222,7 @@ public class SalmonUtils {
 	public static void setBrightnessInRightThread(float percent) {
 		MediaHelper.getInstance().setBrightness(percent);
 	}
-	
+
 	//获取版本名称
 	public static String getVersionName()
 	{
@@ -159,28 +233,6 @@ public class SalmonUtils {
  		} catch (Exception e) {
  		}
  		return null;
-	}
-
-	public static int getVersionIntName1()
-	{
-		String versionName = getVersionName();
-		String[] strList = versionName.split(".");
-		int v1 = Integer.parseInt(strList[0]);
-		return v1;
-	}
-	public static int getVersionIntName2()
-	{
-		String versionName = getVersionName();
-		String[] strList = versionName.split(".");
-		int v2 = Integer.parseInt(strList[1]);
-		return v2;
-	}
-	public static int getVersionIntName3()
-	{
-		String versionName = getVersionName();
-		String[] strList = versionName.split(".");
-		int v3 = Integer.parseInt(strList[2]);
-		return v3;
 	}
 	
 	public static String getVersionCode()
@@ -218,84 +270,6 @@ public class SalmonUtils {
 		CameraUtils.getInstance().captureImage(mActivity, handler, captureName);
 	}
 
-
-	// 来自activity的回调
-	public static void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode == Activity.RESULT_OK) {
-			switch (requestCode) {
-			case Constans.EVENT_OPEN_GALLERY:
-				if (data != null) {
-					Uri uriGallery = data.getData();
-					CameraUtils.getInstance().crop(mActivity, uriGallery);
-				}
-				break;
-			case Constans.EVENT_CAPTURE_IMAGE:
-				Uri uriCamera = Uri.fromFile(CameraUtils.getInstance().getTempCameraFile());
-				CameraUtils.getInstance().crop(mActivity, uriCamera);
-				break;
-			case Constans.CUT_PHOTO:
-				Bitmap bitmapCut = BitmapFactory.decodeFile(CameraUtils.getInstance().getTempCropFile().getAbsolutePath());
-				CameraUtils.getInstance().saveAndCallback(bitmapCut);
-				break;
-			default:
-				break;
-			}
-		} else if (resultCode == Activity.RESULT_CANCELED) {
-			switch (requestCode) {
-			case Constans.EVENT_OPEN_GALLERY:
-				CameraUtils.getInstance().notifySelectedImg("");
-				break;
-			case Constans.EVENT_CAPTURE_IMAGE:
-				CameraUtils.getInstance().notifySelectedImg("");
-				break;
-			case Constans.CUT_PHOTO:
-				CameraUtils.getInstance().notifySelectedImg("");
-			default:
-				break;
-			}
-		}
-	}
-	
-	public static void onWindowFocusChanged(boolean hasFocus)
-	{
-		
-	}
-	
-	public static void onConfigurationChanged(Configuration newConfig) {  
-		Rect rect = new Rect();
-		Window window = ((Activity) mActivity).getWindow();
-		window.getDecorView().getWindowVisibleDisplayFrame(rect);
-		mInstance.screenUtils.luaCallBack(newConfig, rect);
-	}
-
-	public static void handleMessage(Message msg) {
-		switch (msg.what) {
-		case Constans.HANDLER_TYPE_SET_BRIGHTNESS:
-			Bundle bundle = msg.getData();
-			float percent = bundle.getFloat("percent");
-			SalmonUtils.setBrightnessInRightThread(percent);
-			break;
-		case Constans.HANDLER_TYPE_COPY_TEXT:
-			Bundle bundle1 = msg.getData();
-			String content = bundle1.getString("content");
-			SalmonUtils.copyByHandler(content);
-			break;
-		case Constans.HANDLER_TYPE_LOCATION:
-			SalmonUtils.getCNByHandler();
-			break;
-		case Constans.HANDLER_TYPE_STATUS:
-			Bundle bundle11 = msg.getData();
-			int type = bundle11.getInt("type");
-			SalmonUtils.doSetStatus(type);
-			break;
-		case Constans.HANDLER_TYPE_STATUS_BAR_TRANSPARENT:
-			SalmonUtils.doSetTransparentStatusBar();
-			break;
-		default:
-			break;
-		}
-	}
-
 	/**
 	 * 获取内外缓存
 	 * 
@@ -318,19 +292,6 @@ public class SalmonUtils {
 		DataCleanManager.clearAllCache(mActivity);
 	}
 
-	public static String getCNBylocation(int handler) {
-	//	LocationUtils.getIntance().setLuaHandler(handler);
-		Bundle bundle = new Bundle();
-		Message msg = new Message();
-		msg.setData(bundle);
-		msg.what = Constans.HANDLER_TYPE_LOCATION;
-		mHandler.sendMessage(msg);
-		return "";
-	}
-
-	private static void getCNByHandler() {
-	//	LocationUtils.getIntance().getCNBylocation(mActivity);
-	}
 
 	/**
 	 * 复制文件，TODO:最好是开一个线程，完成后jni回调
@@ -383,23 +344,6 @@ public class SalmonUtils {
 		return ClipboardUtils.getInstance().paste(mActivity);
 	}
 
-	/**
-	 * wifi是否开启
-	 * 
-	 * @return
-	 */
-//	public static boolean isWifiOpened() {
-//		return NetworkUtils.isNetworkConnected(mActivity);
-//	}
-
-	/**
-	 * GPS 是否开启
-	 * 
-	 * @return
-	 */
-//	public static boolean isGpsEnable() {
-//		return NetworkUtils.isGpsEnable(mActivity);
-//	}
 
 	/**
 	 * 开启闪光灯
@@ -442,8 +386,6 @@ public class SalmonUtils {
 		}
 		return "";
 	}
-
-
 
 	public static void copyToWritablePath(String dir) {
 		String dest = Cocos2dxHelper.getCocos2dxWritablePath();

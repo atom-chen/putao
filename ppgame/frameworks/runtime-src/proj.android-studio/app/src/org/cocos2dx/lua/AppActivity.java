@@ -37,6 +37,9 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -44,9 +47,20 @@ import android.text.TextUtils;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxLuaJavaBridge;
 
+import ppasist.utils.SalmonUtils;
+
 public class AppActivity extends Cocos2dxActivity {
     public static AppActivity mInstance = null;
     public static TelephonyManager mTm = null;
+    public static Vibrator mVibrator =  null;
+
+
+    //支付分享统一回调
+    public static Handler mHandler = new Handler() {
+        public void handleMessage(final Message msg) {
+            SalmonUtils.handleMessage(msg);
+        }
+    };
 
     //----------------------------------------------------------------------------------------------
     // overrides
@@ -66,7 +80,7 @@ public class AppActivity extends Cocos2dxActivity {
         }
 
         // DO OTHER INITIALIZATION BELOW
-
+        SalmonUtils.init(this, mHandler);
     }
 
     //----------------------------------------------------------------------------------------------
@@ -141,8 +155,8 @@ public class AppActivity extends Cocos2dxActivity {
 
     //获取剩余电量
     public static int getBattery() {
-//		if(Build.VERSION.SDK_INT >21){
-//			BatteryManager batteryManager=(BatteryManager)mInstance.getSystemService(Context.BATTERY_SERVICE);
+//		if(Build.VERSION.SDK_INT > 21){
+//			BatteryManager batteryManager = (BatteryManager)mInstance.getSystemService(Context.BATTERY_SERVICE);
 //			int battery = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_AVERAGE);
 //			return battery;
 //		}else{
@@ -153,13 +167,6 @@ public class AppActivity extends Cocos2dxActivity {
 
     public static String getImei() {
         if (ActivityCompat.checkSelfPermission(mInstance, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return "";
         }
         String imei = mTm.getDeviceId();
@@ -168,13 +175,6 @@ public class AppActivity extends Cocos2dxActivity {
 
     public static String getImsi() {
         if (ActivityCompat.checkSelfPermission(mInstance, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return "";
         }
         String imsi = mTm.getSubscriberId();
