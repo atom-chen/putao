@@ -40,7 +40,6 @@ using namespace std;
 
 static int toLua_AppDelegate_downFileAsync(lua_State* tolua_S)
 {
-    
     int argc = lua_gettop(tolua_S);
     if ( argc == 4 )
     {
@@ -170,6 +169,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto engine = LuaEngine::getInstance();
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
+    
     lua_module_register(L);
 
     register_all_curlasset(L);
@@ -180,15 +180,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     register_all_packages();
 
+    //encrypt and search path
 	std::string k = "LHPxyou520";
 	std::string s = "xxtea";
 	FileUtils::getInstance()->setXXTEAKeyAndSign(k, s);
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign( k.c_str(), k.size(), s.c_str(), s.size() );
-
-    //register custom function
-    //LuaStack* stack = engine->getLuaStack();
-    //register_custom_function(stack->getLuaState());
     
     std::string updateDir = UserDefault::getInstance()->getStringForKey("update_dir", "");
     if (!updateDir.empty()) {

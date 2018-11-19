@@ -6,5 +6,4 @@ end
 
 require("kernel.platform.SalmonUtils")
 require("kernel.platform.PlatformHelper")
-require("kernel.platform.HttpHelper")
 require("kernel.platform.KeyBoard")

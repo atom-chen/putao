@@ -1,4 +1,3 @@
-require("kernel.utils.HttpUtil")
 require("kernel.utils.type_checker")
 require("kernel.utils.UtilRes")
 require("kernel.utils.UtilSensitive")
