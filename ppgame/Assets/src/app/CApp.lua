@@ -52,9 +52,8 @@ function ClsApp:InitGLEnviroument()
 --	theGLView:setDesignResolutionSize(GAME_CONFIG.DESIGN_W, GAME_CONFIG.DESIGN_H, cc.ResolutionPolicy.SHOW_ALL)
 	theDirector:setDisplayStats(GAME_CONFIG.ShowFps)
 	theDirector:setAnimationInterval(1.0 / GAME_CONFIG.FPS)
-	cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_RGB_A8888)
+	cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_RGB_A4444)
 	theDirector:setProjection(cc.DIRECTOR_PROJECTION2_D)
-	g_ContentScaleFactor = cc.Director:getInstance():getOpenGLView():getContentScaleFactor()
 end
 
 -- 初始化App事件
