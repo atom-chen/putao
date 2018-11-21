@@ -51,7 +51,7 @@ end
 -----------------------------------------------------------------------------------------
 
 -- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
-DEBUG = 0
+DEBUG = 2
 
 -- use framework, will disable all deprecated API, false - use legacy API
 CC_USE_FRAMEWORK = true
@@ -73,7 +73,7 @@ CC_DESIGN_RESOLUTION = {
 -----------------------------------------------------------------------------------------
 
 APP_TYPE = 1
-IS_DEBUG_MODE = false	--测试版or发布版（仅作用于脚本层）
+IS_DEBUG_MODE = true	--测试版or发布版（仅作用于脚本层）
 IS_TIP_TRACE = true
 
 -----------------------------------------------------------------------------------------

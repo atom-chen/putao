@@ -1,7 +1,7 @@
 -------------------------
 -- 日志
 -------------------------
-local _origin_print = print
+local _origin_print = release_print
 
 local function simple_filename(name)
 	local begPos, endPos = string.find(name, "%/%w*%.lua")
