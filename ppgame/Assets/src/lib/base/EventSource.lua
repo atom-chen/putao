@@ -12,7 +12,9 @@ clsEventSource = class("clsEventSource")
 function clsEventSource:RegisterEventType(evtName)
 	assert(type(evtName)=="string" or type(evtName)=="number", "事件名必须为数字或字符串")
 	self._tAllEventType = self._tAllEventType or {}
-	assert(not self._tAllEventType[evtName], string.format("重复注册相同类型事件: %s",evtName))
+    if self._tAllEventType[evtName] then
+	    print(string.format("警告：重复注册相同类型事件: %s",evtName))
+    end
 	self._tAllEventType[evtName] = true
 end
 

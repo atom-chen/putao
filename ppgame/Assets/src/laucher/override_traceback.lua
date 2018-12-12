@@ -65,15 +65,13 @@ function __G__TRACKBACK__(e)
 	end
 	
 	--辅助调试，发布版会跳过下面的代码
-	if device.platform == "windows" or device.platform == "mac" then
-		if FileHelper then
---			local filename = string.format( "errorlog/%s.lua", os.date("%Y-%m-%d_%H-%M-%S", os.time()) )
-			local filename = string.format( "errorlog/%s.lua", os.date("%d_%H-%M-%S", os.time()) )
-			FileHelper.SaveTable(errinfo, filename)
-		end
+	if device.platform == "windows" and FileHelper then
+--		local filename = string.format( "errorlog/%s.lua", os.date("%Y-%m-%d_%H-%M-%S", os.time()) )
+		local filename = string.format( "errorlog/%s.lua", os.date("%d_%H-%M-%S", os.time()) )
+		FileHelper.SaveTable(errinfo, filename)
 	end
 	
-	if IS_TIP_TRACE then
+	if IS_DEBUG_MODE then
 --		cc.Director:getInstance():setAnimationInterval(0.5)
 		local theScene = cc.Director:getInstance():getRunningScene()
 		if ccui and theScene then

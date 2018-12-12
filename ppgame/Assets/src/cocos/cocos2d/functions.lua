@@ -175,7 +175,9 @@ end
 local ALL_CLASS = {}
 function GetAllClass() return ALL_CLASS end
 function class(classname, ...)
-	assert( not ALL_CLASS[classname], string.format("class is already exist: %s",classname) )
+	if ALL_CLASS[classname] then 
+        print( string.format("class is already exist: %s",classname) )
+    end
 	ALL_CLASS[classname] = true
 	
     local cls = {__cname = classname}

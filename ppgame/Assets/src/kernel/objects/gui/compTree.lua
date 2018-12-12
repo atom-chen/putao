@@ -70,7 +70,7 @@ end
 
 function clsCompTree:CreateNode(oTreeNode)
 	if not self._BtnList[oTreeNode._Id] then
-		self._BtnList[oTreeNode._Id] = utils.CreateButton("commons/panels/edit_bg_2.png")
+		self._BtnList[oTreeNode._Id] = utils.CreateButton("res/uiface/commons/panels/edit_bg_2.png")
 		local Btn = self._BtnList[oTreeNode._Id]
 		Btn:setScale9Enabled(true)
 		Btn:setContentSize(TEXT_WID,ICON_SIZE)
@@ -92,7 +92,7 @@ function clsCompTree:ResetNodeType(oTreeNode)
 	
 	if oTreeNode.Childrens and #oTreeNode.Childrens>0 then
 		if not Btn.m_BtnExpand then
-			Btn.m_BtnExpand = utils.CreateButton("commons/panels/dividing_dark.png")
+			Btn.m_BtnExpand = utils.CreateButton("res/uiface/commons/panels/dividing_dark.png")
 			local BtnExpand = Btn.m_BtnExpand
 			BtnExpand:setScale9Enabled(true)
 			BtnExpand:setContentSize(30,30)
@@ -161,7 +161,7 @@ function clsCompTree:SetSelectedNodeSilent(SelectId)
 		return
 	end
 	
-	self.mSprHigh = cc.Scale9Sprite:create("commons/frames/frame_choosed.png")
+	self.mSprHigh = cc.Scale9Sprite:create("res/uiface/commons/frames/frame_choosed.png")
 	KE_SetParent(self.mSprHigh, self._BtnList[SelectId], 99)
 	local tSize = self._BtnList[SelectId]:getContentSize()
 	self.mSprHigh:setContentSize(tSize.width,tSize.height)

@@ -30,7 +30,7 @@ function HtmlText:setString(_content)
 	_content = _content or ""
     _content = string.gsub(_content, "\n", "")
     self:removeAllElement()
-    local tbHtml = html.parsestr(_content)
+	local tbHtml = html.parsestr(_content)
     self:parseTag(tbHtml)
     self:formatText()
 end
@@ -52,6 +52,8 @@ function HtmlText:parseTag(tag, _attr)
 				self:parseTag(tag[i], tag["_attr"])
 			end
 		elseif curTag == "p" then
+			local element = ccui.RichElementNewLine:create(1, self.defaultColor, 255)
+			self:pushBackElement(element)
 			for i = 1, #tag do
 				self:parseTag(tag[i], tag["_attr"])
 			end
@@ -153,8 +155,12 @@ function HtmlText:addImageItem(_attr)
                                 if self._params.fixWidth then
 				                	local sz = sprImg:getContentSize()
                 					sprImg:setContentSize(self._params.fixWidth, sz.height*self._params.fixWidth/sz.width)
-				                end
-                                self:formatText()
+								end
+								if self.formatRenderers then
+									self:formatRenderers()
+								else
+									self:formatText()
+								end
                                 if self.callback then
                                     self.callback()
                                 end

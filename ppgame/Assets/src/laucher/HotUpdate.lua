@@ -183,7 +183,7 @@ function UpdateScene:initView()
 	
 	g_cur_scene = self._curScene
 	
-	local yOffset = HOT_Y_OFFSET
+	local yOffset = CUR_SITE_CFG.Y_OFFSET or 0
 	self.progressBarBg:setPositionY(215+yOffset)
 	self.progressBar:setPositionY(216+yOffset)
 	self.updateTip:setPositionY(193+yOffset)

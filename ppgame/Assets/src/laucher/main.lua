@@ -100,7 +100,8 @@ local function main()
 			"Assets/src/cocos.zip",
 			"Assets/src/lib.zip",
 			"Assets/src/kernel.zip",
-			"Assets/src/app.zip" 
+			"Assets/src/app.zip",
+			"Assets/src/dragon.zip",
 		}
 		if tbLoadChunkZips then
 			tbZip = tbLoadChunkZips

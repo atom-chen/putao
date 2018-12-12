@@ -68,7 +68,7 @@ def compile_laucher():
     print "====> start compile_laucher\n"
     if not os.path.exists(to_src):
         os.makedirs(to_src)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/laucher.zip -x app,kernel,lib,cocos -e xxtea_chunk -ek %s -es %s -b 64' \
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/laucher.zip -x dragon,app,kernel,lib,cocos -e xxtea_chunk -ek %s -es %s -b 64' \
             %(engineRoot,from_src,to_src,key,sign), shell=True,env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
@@ -79,7 +79,7 @@ def compile_cocos():
     print "====> start compile_cocos\n"
     if not os.path.exists(to_src):
         os.makedirs(to_src)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/cocos.zip -x app,kernel,lib,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/cocos.zip -x dragon,app,kernel,lib,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
             %(engineRoot,from_src,to_src,key,sign), shell=True,env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
@@ -90,7 +90,7 @@ def compile_lib():
     print "====> start compile_lib\n"
     if not os.path.exists(to_src):
         os.makedirs(to_src)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/lib.zip -x app,kernel,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/lib.zip -x dragon,app,kernel,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
             %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
@@ -101,7 +101,7 @@ def compile_kernel():
     print "====> start compile_kernel\n"
     if not os.path.exists(to_src):
         os.makedirs(to_src)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/kernel.zip -x app,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/kernel.zip -x dragon,app,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
             %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
@@ -112,7 +112,18 @@ def compile_app():
     print "====> start compile_app\n"
     if not os.path.exists(to_src):
         os.makedirs(to_src)
-    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/app.zip -x kernel,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/app.zip -x dragon,kernel,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
+            %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
+    cmd.wait()
+    if cmd.returncode != 0:
+        print "Error while building, check error above!"
+        return
+
+def compile_dragon():
+    print "====> start compile_app\n"
+    if not os.path.exists(to_src):
+        os.makedirs(to_src)
+    cmd = subprocess.Popen('%s/quick/bin/compile_scripts.sh -i %s -o %s/dragon.zip -x app,kernel,lib,cocos,laucher -e xxtea_chunk -ek %s -es %s -b 64' \
             %(engineRoot,from_src,to_src,key,sign), shell=True, env=new_env)
     cmd.wait()
     if cmd.returncode != 0:
@@ -227,5 +238,6 @@ if __name__ == "__main__":
     compile_lib()
     compile_kernel()
     compile_app()
+    compile_dragon()
     GenerateprojectManifestPath()
     GenerateversionManifestPath()

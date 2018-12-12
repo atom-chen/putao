@@ -173,8 +173,8 @@
 		8E89F9B7217D949D008948EA /* KKLabelFT2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F92B217D949D008948EA /* KKLabelFT2.cpp */; };
 		8E89F9B8217D949D008948EA /* TextureMerge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F92E217D949D008948EA /* TextureMerge.cpp */; };
 		8E89F9B9217D949D008948EA /* TextureMerge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E89F92E217D949D008948EA /* TextureMerge.cpp */; };
-		8E9F30A221944DE800D76B13 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9F30A121944DE800D76B13 /* Assets */; };
-		8E9F30A321944DE800D76B13 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9F30A121944DE800D76B13 /* Assets */; };
+		8EA6CAAE21C0F62100FDFAA4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA6CAAD21C0F62100FDFAA4 /* Assets */; };
+		8EA6CAAF21C0F62100FDFAA4 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA6CAAD21C0F62100FDFAA4 /* Assets */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
@@ -486,7 +486,7 @@
 		8E89F92E217D949D008948EA /* TextureMerge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMerge.cpp; sourceTree = "<group>"; };
 		8E89F92F217D949D008948EA /* KKLabelFT2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKLabelFT2.h; sourceTree = "<group>"; };
 		8E89F9BA217D94A8008948EA /* xian_you.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xian_you.h; path = ../Classes/xian_you.h; sourceTree = "<group>"; };
-		8E9F30A121944DE800D76B13 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../Assets; sourceTree = "<group>"; };
+		8EA6CAAD21C0F62100FDFAA4 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../../../packer/out_ios/Assets; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
@@ -1144,7 +1144,7 @@
 		F293BC4615EB859D00256477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8E9F30A121944DE800D76B13 /* Assets */,
+				8EA6CAAD21C0F62100FDFAA4 /* Assets */,
 				C05D1C111923449100B808A4 /* config.json */,
 			);
 			name = Resources;
@@ -1308,7 +1308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E89F891217D947E008948EA /* KKLabelFT2.lua in Resources */,
-				8E9F30A321944DE800D76B13 /* Assets in Resources */,
+				8EA6CAAF21C0F62100FDFAA4 /* Assets in Resources */,
 				9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */,
 				8E89F88D217D947E008948EA /* lua_xianyou_auto_api.lua in Resources */,
 				8E89F88F217D947E008948EA /* TextureMerge.lua in Resources */,
@@ -1324,7 +1324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A8A4491834C64F00142BE0 /* Icon-114.png in Resources */,
-				8E9F30A221944DE800D76B13 /* Assets in Resources */,
+				8EA6CAAE21C0F62100FDFAA4 /* Assets in Resources */,
 				5023811D17EBBCAC00990C9B /* Icon-120.png in Resources */,
 				5091733B17ECE17A00D62437 /* Icon-100.png in Resources */,
 				8E89F892217D947E008948EA /* PathFinder.lua in Resources */,

@@ -9,7 +9,7 @@ local _FPS = 60
 GAME_CONFIG = {
 	FPS = _FPS,								-- 帧率
 	SPF = 1/_FPS,							-- 每帧有多少秒
-	ShowFps = true,						-- 是否显示帧率
+	ShowFps = false,						-- 是否显示帧率
 	LOCAL_DIR = FixFilePath(cc.FileUtils:getInstance():getWritablePath().."/ycdata"),	-- 本地缓存路径
 	APP_MODE = 1,
 	--
@@ -19,8 +19,8 @@ GAME_CONFIG = {
 	VV_ENABLE_MEMLEAK_CHECK = false,		-- 是否开启内测泄露检测
 	VV_ENABLE_AUTO_TEST = false,			-- 是否开启自动测试
 	--
-	ENABLE_AI_MODULE = true,
-	ENABLE_ACTREE_MODULE = true,
+	ENABLE_AI_MODULE = false,
+	ENABLE_ACTREE_MODULE = false,
 }
 GAME_CONFIG.SCREEN_W = screensize.width				-- 实际屏幕宽
 GAME_CONFIG.SCREEN_H = screensize.height			-- 实际屏幕高
@@ -48,35 +48,6 @@ function FixScreen()
 end
 
 -----------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
-DEBUG = 2
-
--- use framework, will disable all deprecated API, false - use legacy API
-CC_USE_FRAMEWORK = true
-
--- show FPS on screen
-CC_SHOW_FPS = true
-
--- disable create unexpected global variable
-CC_DISABLE_GLOBAL = false
-
--- for module display
-CC_DESIGN_RESOLUTION = {
-    width = GAME_CONFIG.DESIGN_W,
-    height = GAME_CONFIG.DESIGN_H,
-    autoscale = "FIXED_WIDTH",
-}
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
-APP_TYPE = 1
-IS_DEBUG_MODE = true	--测试版or发布版（仅作用于脚本层）
-IS_TIP_TRACE = true
-
------------------------------------------------------------------------------------------
 local serv_list = {
 --		ip					port		desc
 	{ "127.0.0.1", 			20013, 		"localhost" },
@@ -94,7 +65,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://agentapiuser.guocaiapi.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w01",
-		yOffset = 0,
+		Y_OFFSET = 0,
 	},
 	--试玩站
 	shiwan = {
@@ -102,8 +73,17 @@ local SITE_CFG = {
 		ENGINE_BUILD_TYPE = 2,
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
-		HTTP_HEAD_VAL_1 = "yicai.tw",
-		yOffset = 0,
+		HTTP_HEAD_VAL_1 = "w02",
+		Y_OFFSET = 0,
+	},
+	--长龙测试
+    dragon = {
+		hotdir = "dragon",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "http://hddtw01userapi.aikfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w01",
+		Y_OFFSET = 0,
 	},
 	
 	--易彩乐
@@ -113,7 +93,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w08",
-		yOffset = -30,
+		Y_OFFSET = -30,
 	},
 	--中彩网
 	zhongcai = {
@@ -122,7 +102,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w38",
-		yOffset = -170,
+		Y_OFFSET = -170,
 	},
 	--易博
 	yibo = {
@@ -131,7 +111,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w42",
-		yOffset = -70,
+		Y_OFFSET = -70,
 	},
 	--国彩
 	guocai = {
@@ -140,7 +120,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w31",
-		yOffset = 0,
+		Y_OFFSET = 0,
 	},
 	--易彩网
 	yicaiwang = {
@@ -149,7 +129,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w50",
-		yOffset = -20,
+		Y_OFFSET = -20,
 	},
 	--开采网
 	kaicai = {
@@ -158,7 +138,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w34",
-		yOffset = -160,
+		Y_OFFSET = -160,
 	},
 	--易彩堂
 	yicaitang = {
@@ -167,7 +147,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w36",
-		yOffset = -170,
+		Y_OFFSET = -170,
 	},
 	--8k站
 	k8ycy = {
@@ -176,7 +156,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w05",
-		yOffset = -160,
+		Y_OFFSET = -160,
 	},
 	--全民彩票
 	quanmin = {
@@ -185,7 +165,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w62",
-		yOffset = -170,
+		Y_OFFSET = -170,
 	},
 	--中彩64
 	zongcai64 = {
@@ -194,7 +174,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w64",
-		yOffset = 180,
+		Y_OFFSET = 180,
 	},
 	--彩7
 	cai7 = {
@@ -203,7 +183,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w07",
-		yOffset = 0,
+		Y_OFFSET = 0,
 	},
 	--大爆奖
 	dabaojiang = {
@@ -212,7 +192,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w46",
-		yOffset = -80,
+		Y_OFFSET = -80,
 	},
 	--爱彩
 	aicai = {
@@ -221,7 +201,7 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w47",
-		yOffset = 260,
+		Y_OFFSET = 260,
 	},
 	--新彩票
 	xincai = {
@@ -230,16 +210,102 @@ local SITE_CFG = {
 		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
 		HTTP_HEAD_KEY = "AuthGC",
 		HTTP_HEAD_VAL_1 = "w44",
-		yOffset = -170,
+		Y_OFFSET = -170,
+	},
+	--金达彩票
+	jinda = {
+		hotdir = "jinda",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w66",
+		Y_OFFSET = -170,
+	},
+	--易彩
+	yicaiw67 = {
+		hotdir = "yicaiw67",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w67",
+		Y_OFFSET = 0,
+	},
+	--千金彩
+	w30qianjin = {
+		hotdir = "w30qianjin",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w30",
+		Y_OFFSET = -170,
+	},
+	--K彩
+	w68kcai = {
+		hotdir = "w68kcai",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w68",
+		Y_OFFSET = 0,
+	},
+	--丰宏彩票
+	w69 = {
+		hotdir = "w69",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w69",
+		Y_OFFSET = -170,
+	},
+	--淘彩网
+	w70 = {
+		hotdir = "w70",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w70",
+		Y_OFFSET = -170,
+	},
+	--
+	w71 = {
+		hotdir = "w71",
+		ENGINE_BUILD_TYPE = 2,
+		SERVER_URL = "https://www.wpub1dkjflsdakjfsdkgdfjsdfj.com",
+		HTTP_HEAD_KEY = "AuthGC",
+		HTTP_HEAD_VAL_1 = "w71",
+		Y_OFFSET = 0,
 	},
 }
 
-CUR_SITE_NAME = "xincai"	--当前站点
+CUR_SITE_NAME = "testor"	--当前站点
+CUR_SITE_CFG = SITE_CFG[CUR_SITE_NAME]
 
-local curSite = SITE_CFG[CUR_SITE_NAME]
+ENGINE_BUILD_TYPE = CUR_SITE_CFG.ENGINE_BUILD_TYPE
+SERVER_URL = CUR_SITE_CFG.SERVER_URL
+HTTP_HEAD_KEY = CUR_SITE_CFG.HTTP_HEAD_KEY
+HTTP_HEAD_VAL_1 = CUR_SITE_CFG.HTTP_HEAD_VAL_1
 
-ENGINE_BUILD_TYPE = curSite.ENGINE_BUILD_TYPE	--1：消消乐   2：彩票  0: wifiuse
-SERVER_URL = curSite.SERVER_URL
-HTTP_HEAD_KEY = curSite.HTTP_HEAD_KEY
-HTTP_HEAD_VAL_1 = curSite.HTTP_HEAD_VAL_1
-HOT_Y_OFFSET = curSite.yOffset or 0
+IS_DEBUG_MODE = true	--测试版or发布版（仅作用于脚本层）
+
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
+DEBUG = 0
+
+-- use framework, will disable all deprecated API, false - use legacy API
+CC_USE_FRAMEWORK = true
+
+-- show FPS on screen
+CC_SHOW_FPS = true
+
+-- disable create unexpected global variable
+CC_DISABLE_GLOBAL = false
+
+-- for module display
+CC_DESIGN_RESOLUTION = {
+    width = GAME_CONFIG.DESIGN_W,
+    height = GAME_CONFIG.DESIGN_H,
+    autoscale = "FIXED_WIDTH",
+}

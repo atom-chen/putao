@@ -3,13 +3,10 @@
 -------------------------
 clsScene = class("clsScene", function() return cc.Scene:create() end)
 
-function clsScene:ctor(world_id, map_id)
+function clsScene:ctor()
 	self:EnableNodeEvents()
-	self.iWorldId = world_id		--场景ID
-	self.iMapId = map_id			--地图ID
 	ClsSceneManager:GetInstance()._mCurScene = self
 	keyboard:InitKeboardEvent(self)
-	self:SetMapId(self.iMapId)
 	self:InitUILayer(self)
 --	self.addChild = nil
 	self:InitSystemKeyboard()
@@ -21,29 +18,10 @@ end
 
 function clsScene:OnDestroy()
 	self:DestroyUILayer()
-	self:DestroyMap()
 end
 
 function clsScene:OnLoadingOver()
 	
-end
-
-function clsScene:SetMapId(iMapId, bLockCamera)
-	self.iMapId = iMapId
-	if self.mMap and self.mMap:GetUid()==iMapId then return end
-	
-	self:DestroyMap()
-	
-	if self.iMapId then  
-		self.mMap = clsMap.new(self, self.iMapId, bLockCamera)
-	end
-end
-
-function clsScene:DestroyMap()
-	if self.mMap then
-		KE_SafeDelete(self.mMap)
-		self.mMap = nil
-	end
 end
 
 function clsScene:InitUILayer(Parent)
@@ -65,10 +43,6 @@ function clsScene:DestroyUILayer()
 	ClsUIManager.GetInstance():DestroyAllWindow()
 end
 
-function clsScene:ShowMap(bShow)
-	if self.mMap then self.mMap:setVisible(bShow) end
-end
-
 
 
 function clsScene:InitSystemKeyboard()
@@ -76,7 +50,7 @@ function clsScene:InitSystemKeyboard()
 	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
 	
 	local listener = cc.EventListenerCustom:create("sys_keyboard_willshow", function(event)
-		local height = PlatformHelper.getAdjustHei()
+		local height = SalmonUtils:getAdjustHei()
 		if height > 0 then 
 			ClsLayerManager.GetInstance():StopFixLayer()
 			KE_SetTimeout(1, function()
@@ -87,7 +61,7 @@ function clsScene:InitSystemKeyboard()
 	eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
 
 	local listener = cc.EventListenerCustom:create("sys_keyboard_didshow", function(event)
-		local height = PlatformHelper.getAdjustHei()
+		local height = SalmonUtils:getAdjustHei()
 		if height > 0 then 
 			ClsLayerManager.GetInstance():StopFixLayer()
 			KE_SetTimeout(1, function()
@@ -127,7 +101,8 @@ function sys_keyboard_willshow(sArg)
 	KE_SetTimeout(2, function()
 		local editH = tonumber(sArg)
 		local editPosY = g_CurEditY or 80
-		local keboardH = math.ceil( 1.7*PlatformHelper.getKeyboardHei() / 0.33 )
+		local keboardH = math.ceil( 1.7*SalmonUtils:getKeyboardHei() / 0.33 )
+--		utils.TellMe(display.contentScaleFactor .. " 键盘即将弹起 "..SalmonUtils:getKeyboardHei().." "..sArg.." "..keboardH.." "..editPosY, 3)
 		if (keboardH > editPosY) then
 			ClsLayerManager.GetInstance():FixLayerPos(keboardH-editPosY+5, 0.2)
 		end
@@ -137,6 +112,7 @@ end
 function sys_keyboard_willhide(sArg)
 	if device.platform ~= "android" then return end
 	KE_SetTimeout(1, function()
+--		utils.TellMe("键盘即将关闭 "..SalmonUtils:getKeyboardHei())
 		ClsLayerManager.GetInstance():FixLayerPos(0, 0.2)
 	end)
 end

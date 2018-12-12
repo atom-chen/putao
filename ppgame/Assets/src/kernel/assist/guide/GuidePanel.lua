@@ -88,7 +88,7 @@ function clsGuidePanel:InitView()
 	
 	-- 再一层
 	if not self._AgentSpr then
-		self._AgentSpr = cc.Scale9Sprite:create("commons/frames/frame_choosed_1.png")
+		self._AgentSpr = cc.Scale9Sprite:create("res/uiface/commons/frames/frame_choosed_1.png")
 		self._AgentSpr:setAnchorPoint(cc.p(0.5,0.5))
 		KE_SetParent(self._AgentSpr, self)
 		
@@ -117,7 +117,7 @@ function clsGuidePanel:InitView()
 	if self.mMaskSpr then
 		self.mMaskSpr:setVisible(bShowMask)
 	elseif bShowMask then
-		self.mMaskSpr = cc.Scale9Sprite:create(sMaskPath or "commons/others/mask.png")
+		self.mMaskSpr = cc.Scale9Sprite:create(sMaskPath or "res/uiface/commons/others/mask.png")
 		self.mMaskSpr:setAnchorPoint(cc.p(0,0))
 		self.mMaskSpr:setPreferredSize(self:getContentSize())
 		KE_SetParent(self.mMaskSpr, self)
@@ -125,7 +125,7 @@ function clsGuidePanel:InitView()
 	
 	-- 跳过指引按钮
 	if not self._btnBreakGuide then
-		self._btnBreakGuide = utils.CreateButton("commons/buttons/btn_guide_skip.png")
+		self._btnBreakGuide = utils.CreateButton("res/uiface/commons/buttons/btn_guide_skip.png")
 		self._btnBreakGuide:setAnchorPoint(cc.p(1,1))
 		self._btnBreakGuide:setPosition(display.width, display.height)
 		self._btnBreakGuide:setTitleText("跳过指引")

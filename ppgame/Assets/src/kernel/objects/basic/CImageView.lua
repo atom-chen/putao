@@ -80,7 +80,19 @@ function ImageView:LoadTextureSync(url)
 		
 		self.callback = function(filepath)
 			if utils.IsValidCCObject(self) then
-				self:do_load_texture(filepath)
+				if string.sub(url, -3, -1) == "gif" then
+					if createCacheGif then
+						local cacheGif = createCacheGif(cc.FileUtils:getInstance():fullPathForFilename(filepath))
+						if cacheGif then
+							cacheGif:setPosition(self:getContentSize().width/2,self:getContentSize().height/2)  
+							self:addChild(cacheGif)
+							self._gifSprite = cacheGif
+						end
+					end
+					if self._loadCallback then self._loadCallback(self) end
+				else
+					self:do_load_texture(filepath)
+				end
 				self.callback = nil
 			end
 		end

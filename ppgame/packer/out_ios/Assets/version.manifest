@@ -10,7 +10,8 @@
     "Assets/src/cocos.zip", 
     "Assets/src/lib.zip", 
     "Assets/src/kernel.zip", 
-    "Assets/src/app.zip"
+    "Assets/src/app.zip", 
+    "Assets/src/dragon.zip"
   ], 
   "engineVersion": "cocos2d-x-3.16", 
   "remoteManifestUrl": "http://118.24.69.192:8080/yicai2/hotupdate/maios/testor/Assets/project.manifest", 

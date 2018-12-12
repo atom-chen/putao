@@ -6,7 +6,7 @@ module("smartor",package.seeall)
 local default_args = {
 	["atom_id"] = 1,
 	["parent_atom"] = 0,
-	["respath"] = "effects/effect_img/huoqiu.png",
+	["respath"] = "res/effects/effect_img/huoqiu.png",
 	["x"] = 500,
 	["y"] = 400,
 }

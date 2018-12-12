@@ -309,7 +309,7 @@ end
 function ClsUIManager:UpdateNotice(noticeWnd)
 	noticeWnd:scheduleUpdate(function(dt)
 		local LastLabel = noticeWnd.tNoticeLabelList[#noticeWnd.tNoticeLabelList]
-		local CanAdd = (not LastLabel) or (100 + LastLabel:getPositionX() + LastLabel:getContentSize().width <= BKG_WIDTH)
+		local CanAdd = (not LastLabel) or (100 + LastLabel:getPositionX() + LastLabel:getContentSize().width*LastLabel:getScale() <= BKG_WIDTH)
 		if not CanAdd then return end
 		local curStr = self.tNoticeStrList[1]
 		
@@ -418,7 +418,7 @@ function ClsUIManager:TellMe(Txt, DelayTime)
 	KE_SetParent(BkgTell, TellPanel)
 	local LabelTell = utils.CreateLabel(Txt, 26)
 	KE_SetParent(LabelTell, TellPanel)
-	BkgTell:setPreferredSize(cc.size(LabelTell:getContentSize().width+50, 48))
+	BkgTell:setPreferredSize(cc.size(LabelTell:getContentSize().width*LabelTell:getScale()+50, 48))
 	TellPanel:setPosition(PosX,BeginY)
 	all_tellme[TellPanel] = true
 	TellPanel._tellStr = Txt

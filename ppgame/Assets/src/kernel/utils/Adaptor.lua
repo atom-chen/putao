@@ -3,6 +3,45 @@
 ---------------------
 module("utils", package.seeall)
 
+function AdaptFont(lbl, fontSize)
+	if not lbl or not fontSize then return end
+	if lbl._has_allready_adapted then return end
+	lbl._has_allready_adapted = true
+	if lbl.enableShadow and lbl.getTextAreaSize then
+	--	local areaSz = lbl:getTextAreaSize()
+	--	if areaSz.width <= 0 and areaSz.height <= 0 then
+			lbl:setScale(1/g_ContentScaleFactor)
+			lbl:setFontSize(fontSize * g_ContentScaleFactor)
+	--	end
+	elseif lbl.getTitleFontSize and lbl.adaptFont then
+		lbl:adaptFont(lbl:getTitleFontSize())
+	end
+end
+
+function AdaptCsbFonts(root, skips)
+	if not root then return end
+	if root._has_allready_adapted then return end
+	root._has_allready_adapted = true
+--	skips = skips or {}
+	local function getNode(parent)
+		if (not parent) or(not parent.getChildren) then return end
+		local children = parent:getChildren()
+		for _, v in pairs(children) do
+		--	if not skips[v:GetName()] then
+				if v.getFontSize and v.isIgnoreContentAdaptWithSize and v:isIgnoreContentAdaptWithSize() then
+					if #v:getChildren() <=0 then
+						AdaptFont(v, v:getFontSize())
+					end
+				elseif v.getTitleFontSize then
+					AdaptFont(v, v:getTitleFontSize())
+				end
+		--	end
+			getNode(v)
+		end
+	end
+	getNode(root)
+end
+
 function AdaptLayout(theView, topArea, bottomArea, autoArea, lineArea)
 	FixScreen()
 	theView:setContentSize(GAME_CONFIG.DESIGN_W, GAME_CONFIG.DESIGN_H)

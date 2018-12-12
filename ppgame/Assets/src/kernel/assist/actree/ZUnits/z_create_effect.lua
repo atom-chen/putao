@@ -6,7 +6,7 @@ module("smartor",package.seeall)
 local default_args = {
 	["atom_id"] = 1,
 	["effect_id"] = 1,
-	["res_path"] = "effects/effect_seq/bingpo.plist",
+	["res_path"] = "res/effects/effect_seq/bingpo.plist",
 	["x"] = 0,
 	["y"] = 0,
 }

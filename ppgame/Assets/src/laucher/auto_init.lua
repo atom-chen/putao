@@ -150,14 +150,11 @@ local function IsValidVarName(Name)
 	return true
 end
 
----------------------------------------------------------------------------
----------------------------------------------------------------------------
-
 local function check_res_path()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/res"
+	local INPUT_DIR = "res"
 	
 	local AllImages = {}
 	
@@ -200,8 +197,8 @@ local function init_res_path()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/res/uistu"
-	local OUT_PATH = "Assets/src/app/consts/IMG_CONFIG.lua"
+	local INPUT_DIR = "res/uistu"
+	local OUT_PATH = "src/app/arpg/consts/IMG_CONFIG.lua"
 	
 	local AllImages = {}
 	
@@ -245,21 +242,84 @@ local function init_res_path()
 	fout:close()
 end
 
+local function init_modules()
+	if device.platform ~= "windows" then return end
+	
+	local WORK_DIR = lfs.currentdir()
+	local INPUT_DIR = "src/app/arpg/modules"
+	local OUT_PATH = INPUT_DIR .. "/init.lua"
+	local skipFile = "app.arpg.modules.init"
+	
+	local path_list = {}
+	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
+	local cut = WORK_DIR .. "/src/"
+	for i, sss in ipairs(path_list) do 
+		path_list[i] = string.gsub(sss, cut, "")
+		path_list[i] = string.gsub(path_list[i], "/", ".")
+		path_list[i] = string.sub(path_list[i], 1, -5)
+	end 
+	
+	local fout = io.open(OUT_PATH,"w")
+	if not fout then assert(false, "无法自动生成"..OUT_PATH) return end
+	fout:write("-------------------------------\n")
+	fout:write("-- 该文件自动生成，请勿更改\n")
+	fout:write("-------------------------------\n")
+	for i, filestr in ipairs(path_list) do 
+		if filestr ~= skipFile then
+			fout:write( string.format("require(\"%s\") \n",filestr) )
+		end
+	end
+	fout:close()
+end
+
+local function init_games()
+	if device.platform ~= "windows" then return end
+	
+	local WORK_DIR = lfs.currentdir()
+	local INPUT_DIR = "src/app/arpg/games"
+	local OUT_PATH = INPUT_DIR .. "/init.lua"
+	local skipFile = "app.arpg.games.init"
+	
+	local path_list = {}
+	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
+	local cut = WORK_DIR .. "/src/"
+	for i, sss in ipairs(path_list) do 
+		path_list[i] = string.gsub(sss, cut, "")
+		path_list[i] = string.gsub(path_list[i], "/", ".")
+		path_list[i] = string.sub(path_list[i], 1, -5)
+	end 
+	
+	local fout = io.open(OUT_PATH,"w")
+	if not fout then assert(false, "无法自动生成"..OUT_PATH) return end
+	fout:write("-------------------------------\n")
+	fout:write("-- 该文件自动生成，请勿更改\n")
+	fout:write("-------------------------------\n")
+	for i, filestr in ipairs(path_list) do 
+		if filestr ~= skipFile then
+			fout:write( string.format("require(\"%s\") \n",filestr) )
+		end
+	end
+	fout:close()
+end
+
 --init_res_path()
+init_modules()
+init_games()
 
 ---------------------------------------------------------------------------
 
-local function init_app_caipiao_modules()
+--[[
+local function init_xiaoxiaole()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/app_caipiao/modules"
+	local INPUT_DIR = "src/app/xiaoxiaole"
 	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "app_caipiao.modules.init"
+	local skipFile = "app.xiaoxiaole.init"
 	
 	local path_list = {}
 	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
-	local cut = WORK_DIR .. "/Assets/src/"
+	local cut = WORK_DIR .. "/src/"
 	for i, sss in ipairs(path_list) do 
 		path_list[i] = string.gsub(sss, cut, "")
 		path_list[i] = string.gsub(path_list[i], "/", ".")
@@ -279,19 +339,22 @@ local function init_app_caipiao_modules()
 	fout:close()
 end
 
-init_app_caipiao_modules()
+init_xiaoxiaole()
+]]
 
-local function init_app_caipiao_games()
+---------------------------------------------------------------------------
+--[[
+local function init_star()
 	if device.platform ~= "windows" then return end
 	
 	local WORK_DIR = lfs.currentdir()
-	local INPUT_DIR = "Assets/src/app_caipiao/games"
+	local INPUT_DIR = "src/fegg/disstar"
 	local OUT_PATH = INPUT_DIR .. "/init.lua"
-	local skipFile = "app_caipiao.games.init"
+	local skipFile = "fegg.disstar.init"
 	
 	local path_list = {}
 	FindInDir(WORK_DIR.."/"..INPUT_DIR, "%.lua", path_list, true)
-	local cut = WORK_DIR .. "/Assets/src/"
+	local cut = WORK_DIR .. "/src/"
 	for i, sss in ipairs(path_list) do 
 		path_list[i] = string.gsub(sss, cut, "")
 		path_list[i] = string.gsub(path_list[i], "/", ".")
@@ -311,6 +374,5 @@ local function init_app_caipiao_games()
 	fout:close()
 end
 
-init_app_caipiao_games()
-
----------------------------------------------------------------------------
+init_star()
+]]

@@ -8,6 +8,7 @@ require("kernel.objects.basic.CScale9Sprite")
 require("kernel.objects.basic.CImageView")
 require("kernel.objects.basic.CButton")
 require("kernel.objects.basic.CEditBox")
+require("kernel.objects.basic.CLabel")
 
 require("kernel.objects.gui.compRichText")
 require("kernel.objects.gui.compList")
@@ -21,5 +22,3 @@ require("kernel.objects.gui.ScrollHtmlText")
 require("kernel.objects.gui.BaseUI")
 
 require("kernel.objects.effect.EffectSeq")
-
-require("kernel.objects.map.CMap")

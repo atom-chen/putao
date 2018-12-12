@@ -12,9 +12,9 @@ local _InstSpriteFrameCache = cc.SpriteFrameCache:getInstance()
 local _InstAnimationCache = cc.AnimationCache:getInstance()
 local _InstArmatureDataMgr = ccs.ArmatureDataManager:getInstance()
 
--- utils.CreateObject(parent, {sResType="particle",sResPath="effects/particles/SmallSun.plist",iPositionType=0x2})
--- utils.CreateObject(parent, {sResType="EffectSeq",sResPath="effects/effect_seq/bingpo.plist"})
--- utils.CreateObject(parent, {sResType="Sprite",sResPath="effects/effect_img/huoqiu.png"})
+-- utils.CreateObject(parent, {sResType="particle",sResPath="res/effects/particles/SmallSun.plist",iPositionType=0x2})
+-- utils.CreateObject(parent, {sResType="EffectSeq",sResPath="res/effects/effect_seq/bingpo.plist"})
+-- utils.CreateObject(parent, {sResType="Sprite",sResPath="res/effects/effect_img/huoqiu.png"})
 function CreateObject(parent, info)
 	local obj 
 	local sResType = info.sResType
@@ -242,10 +242,14 @@ function CreateLabel(str, fontSize, fontColor, bForceSys)
 	local font = const.FONT_CFG(fontSize)
 	local label
 	if not bForceSys and cc.FileUtils:getInstance():isFileExist(font.fontFilePath) then
+		local scaleFactor = g_ContentScaleFactor
+		font.fontSize = font.fontSize * scaleFactor
+		
 		label = cc.Label:createWithTTF(font, str or "")
 		if label and fontColor then
 			label:setColor(fontColor)
 		end
+		label:setScale(1/scaleFactor)
 	else
 		label = cc.Label:create()
 		if fontSize then label:setSystemFontSize(fontSize) end
